@@ -1,7 +1,7 @@
 /* Optional beta measurement activates only in an independently verified release. */
 (function(win){
   'use strict';
-  const VERSION='2.46.7';
+  const VERSION='2.47.0';
   const container=win.document.getElementById('kt-analytics-choice');
   if(!container||!win.KampTrailAnalyticsBootstrap)return;
   container.dataset.version=VERSION;

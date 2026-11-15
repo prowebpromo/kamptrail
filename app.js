@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.46.7' || [window.KampTrailSafety,window.KampTrailBeta,window.KampTrailI18n,window.DataQuality,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailInstall,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.46.7')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.47.0' || [window.KampTrailSafety,window.KampTrailBeta,window.KampTrailI18n,window.DataQuality,window.KampTrailListingHistory,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailInstall,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.47.0')) {
     showToast(t("Updating KampTrail. This page will reload automatically when the update is ready."),'info',0);
     document.getElementById('result-summary').textContent=t("Updating the saved app…");
     return;
@@ -124,7 +124,9 @@
     // Load failures render first, so the overview keeps the notice and its Retry.
     const errors = document.getElementById('data-errors');
     const agencyFailed = status.agencyFailedStates || [], agencyMissing = status.agencyIndex === 'failed' || agencyFailed.length > 0;
-    errors.replaceChildren(); errors.hidden = !status.failedStates.length && !agencyMissing;
+    const historyMissing=status.history==='unavailable';
+    errors.replaceChildren(); errors.hidden = !status.failedStates.length && !agencyMissing && !historyMissing;
+    if(historyMissing){const message=document.createElement('p');message.textContent=t('Listing history is unavailable. Reconnect and retry before opening campsite records.');const retry=document.createElement('button');retry.type='button';retry.textContent=t('Retry');retry.onclick=()=>{retry.disabled=true;KampTrailData.retryHistory().then(()=>openSharedLink()).catch(error=>showToast(error.message,'error')).finally(()=>{retry.disabled=false;});};errors.append(message,retry);}
     if (status.failedStates.length) {
       const message = document.createElement('div');
       message.textContent = t("Could not load: {states}. Saved listings remain available.", {states:status.failedStates.map(s=>s.state).join(', ')});
@@ -303,6 +305,23 @@
   window.KampTrailRigProfile?.init();
   document.getElementById('rig-profile').onclick=()=>window.KampTrailRigProfile?.open();
   KampTrailTrip.init(map);
+  // Historical records have their own view; current fee, access and rig renderers never see them.
+  function openHistorical(record,requestedId=record.id){
+    const box=document.createElement('section');box.className='kt-historical-listing';box.setAttribute('aria-label',t('Historical listing'));box.style.overflowWrap='anywhere';
+    const text=(tag,value)=>{const node=document.createElement(tag);node.textContent=value;box.append(node);return node;};
+    const heading=text('h2',record.name);heading.tabIndex=-1;text('strong',t('Historical listing'));
+    const close=document.createElement('button');close.type='button';close.className='btn';close.style.display='block';close.style.minHeight='44px';close.style.margin='10px 0';close.textContent=t('Close');close.setAttribute('aria-label',t('Close historical listing'));close.onclick=()=>map.closePopup();box.append(close);
+    text('p',t('Current status is unverified. This dated record is kept for saved stops and shared links and is excluded from current campsite search. It does not establish current access, camping permission, fees or rig suitability.'));
+    const reasons={source_absent_latest_feed:'This listing was absent from the latest source feed.',no_longer_in_current_catalogue:'This listing is no longer in the current catalogue.',historical_identity_pending_reconciliation:'This historical listing’s identity still needs reconciliation.'};
+    text('p',t(reasons[record.reason]));text('p',t('Original listing ID: {id}',{id:record.id}));if(requestedId!==record.id)text('p',t('Opened saved ID: {id}',{id:requestedId}));
+    for(const date of record.source_dates)text('p',t('Source {id} · retrieved: {retrieved} · updated: {updated}',{id:date.source_record_id,retrieved:date.retrieved_at||t('Date unavailable'),updated:date.updated_at||t('Date unavailable')}));
+    if(!record.source_dates.length)text('p',t('Source dates unavailable.'));
+    text('p',t('Archived in KampTrail: {date}. This is a bookkeeping date, not a visit or source observation.',{date:record.archived_at}));
+    for(const source of record.source_urls){const link=document.createElement('a');link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=t('Original source: {id}',{id:source.source_record_id});const p=document.createElement('p');p.append(link);box.append(p);}
+    const size=map.getSize();
+    map.setView([record.lat,record.lng],12,{animate:false});L.popup({closeButton:false,maxWidth:Math.max(100,Math.min(300,size.x-70)),maxHeight:Math.max(80,Math.min(320,size.y-230)),autoPanPaddingTopLeft:[12,140],autoPanPaddingBottomRight:[12,28]}).setLatLng([record.lat,record.lng]).setContent(box).openOn(map);heading.focus({preventScroll:true});
+  }
+  window.KampTrailHistorical={open:openHistorical};
   // Shared links: #site=<id> opens a campsite, #spot=lat,lng opens the spot check.
   async function openSharedLink() {
     const target = KampTrailShare.parse();
@@ -310,13 +329,11 @@
     if(target.elevation)KampTrailFilters.setElevationFilters(target.elevation);
     if(target.forecast)KampTrailFilters.setForecastFilters(target.forecast);
     if (target.spot) { map.setView(target.spot, 13); KampTrailLayers.openSpot(L.latLng(target.spot[0], target.spot[1])); return; }
-    await ensureSiteIndex();
-    // A link to any published id, canonical or legacy, opens the same listing. The link is not rewritten.
-    const entry = campsiteIndex.find(s => s.id === target.site) || campsiteIndex.find(s => s.legacy_ids?.includes(target.site));
-    if (entry) { map.setView([entry.lat, entry.lng], 12); await KampTrailData.loadStates(entry.states); }
+    const result=await KampTrailData.resolveListing(target.site);
+    if(result.kind==='historical'){openHistorical(result.record,target.site);return;}
     if (!KampTrailData.focusCampsite(target.site,{preserveFilters:!!target.elevation||!!target.forecast})) showToast(KampTrailData.getCampsiteById(target.site)?t("That campsite does not match your filters or has unknown or expired evidence. Change filters to view it."):t("That shared campsite could not be found. It may have been removed from the catalogue."), 'error');
   }
-  addEventListener('hashchange', () => openSharedLink().catch(() => {}));
+  addEventListener('hashchange', () => openSharedLink().catch(error => showToast(error.message,'error')));
   window.KampTrailMapDataReady=KampTrailData.init(map, {maxMarkers:5000,onTripAdd:id=>KampTrailTrip.addStop(id)}).then(() => { renderResults(); return openSharedLink(); }).catch(err => {
     console.error(err);setLoading(false);
     showToast(t("Some campsite listings could not load. Open the campsite list and retry."), 'error');
