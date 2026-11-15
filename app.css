@@ -441,7 +441,9 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-skip-map:focus{width:auto;height:auto;padding:12px;overflow:visible;clip-path:none;outline:3px solid #a86d00}
 #map .leaflet-marker-icon:focus-visible{outline:3px solid #a86d00;outline-offset:4px}
 .kt-state-bubble:before,.marker-cluster:before{content:'';position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%);border-radius:50%}
-#kt-filter-panel{position:fixed!important;left:16px!important;top:80px!important;bottom:20px!important;max-height:none!important;z-index:2500!important;display:flex;flex-direction:column;background:#fff;color:#203b2d;overflow:hidden}
+#kt-filter-panel{position:fixed!important;left:16px!important;top:80px!important;bottom:20px!important;height:calc(100dvh - 100px);max-height:none!important;z-index:2500!important;display:flex;flex-direction:column;background:#fff;color:#203b2d;overflow:hidden;margin:0;padding:0}
+#kt-trip-drawer{margin:0 0 0 auto;padding:0;max-height:none}
+#kt-trip-drawer::backdrop,#kt-filter-panel::backdrop{background:#10281f66}
 #kt-filter-panel .filter-header{flex:none;display:flex;align-items:center;padding:12px;gap:8px;background:#f3f6ef}
 #kt-filter-panel .filter-body{overflow:auto;min-height:0;flex:1;padding:16px}
 .kt-filter-footer{padding:12px;flex:none;background:#f3f6ef;border-top:1px solid #b9c8b8}.kt-filter-footer .btn{width:100%;min-height:44px}
@@ -459,9 +461,10 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 .kt-workspace #app{display:flex;flex-direction:column}.kt-workspace main{height:68dvh;min-height:560px;flex:none}.kt-workspace #explore{scroll-margin-top:0}
 @media(max-width:760px){
  .kt-site-nav a{min-height:44px!important}#kt-language{min-height:44px}#search-form .btn,#state-select{min-height:44px!important}
- #kt-filter-panel{inset:0!important;width:100%!important;max-width:none!important;height:100dvh!important;border-radius:0!important}
- #kt-trip-drawer{inset:0!important;width:100%!important;max-width:none!important;height:100dvh!important;border-radius:0!important;z-index:2500!important}
+ #kt-filter-panel{inset:0!important;width:100vw!important;max-width:none!important;height:100dvh!important;border-radius:0!important}
+ #kt-trip-drawer{inset:0!important;width:100vw!important;max-width:none!important;height:100dvh!important;margin:0!important;border-radius:0!important;z-index:2500!important}
  #kt-trip-drawer .btn,#kt-filter-panel .btn{min-height:44px!important}
+ html:has(body.kt-filter-sheet-open),html:has(body.kt-trip-sheet-open){overflow:hidden;scrollbar-gutter:auto}
  body.kt-filter-sheet-open,body.kt-trip-sheet-open{overflow:hidden}
  .kt-workspace #app>header{padding:8px 12px}.kt-workspace .kt-site-nav{gap:0 12px}.kt-workspace main{height:60dvh;min-height:560px}
  #kt-full-site{min-height:44px;margin:8px 0 0}

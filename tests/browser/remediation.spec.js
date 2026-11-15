@@ -33,6 +33,27 @@ test('mobile panels have one scroll region and return focus while counts match t
  const scrolls=await page.locator('#kt-trip-drawer').evaluate(e=>[...e.querySelectorAll('*')].filter(n=>/(auto|scroll)/.test(getComputedStyle(n).overflowY)&&n.scrollHeight>n.clientHeight+2).map(n=>n.className||n.id));expect(scrolls).toEqual(['kt-trip-scroll']);
  await page.keyboard.press('Escape');await expect(page.locator('#kt-trip-drawer')).toBeHidden();
 });
+
+for(const width of [390,1280])test(`native sheets isolate modal content and preserve nested dialog focus at ${width}px`,async({page})=>{
+ await page.setViewportSize({width,height:844});await page.goto('/?source=pwa');await page.waitForFunction(()=>document.getElementById('kt-filter-panel')&&document.getElementById('kt-trip-drawer'));
+ const filters=page.locator('#kt-filter-panel'),trip=page.locator('#kt-trip-drawer');
+ await page.locator('#trip').click();expect(await trip.evaluate(e=>e.matches(':modal'))).toBe(true);
+ if(width<=760){const rect=await trip.boundingBox();expect(rect.x).toBe(0);expect(rect.width).toBe(width);expect(rect.height).toBe(844);expect(await page.evaluate(()=>document.documentElement.clientWidth)).toBe(width);}
+ // The legal links are outside #app: modal isolation must cover them too.
+ await page.locator('.kt-legal-nav a').first().evaluate(e=>e.focus());await expect(page.locator('#kt-trip-close')).toBeFocused();
+ await page.locator('#kt-trip-backup-json-file').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{}')});await expect(page.locator('#kt-trip-notice')).toBeVisible();await expect(page.locator('#kt-trip-notice')).not.toBeEmpty();await expect(page.locator('#kt-trip-notice')).toHaveAttribute('role','status');
+ await page.keyboard.press('Escape');await expect(trip).toBeHidden();await expect(page.locator('#trip')).toBeFocused();
+ await page.locator('#filters').click();expect(await filters.evaluate(e=>e.matches(':modal'))).toBe(width<=760);
+ if(width<=760){const rect=await filters.boundingBox();expect(rect.x).toBe(0);expect(rect.width).toBe(width);}
+ if(width<=760){await page.locator('#destination').evaluate(e=>e.focus());await expect(page.locator('#kt-f-close')).toBeFocused();}
+ else {await page.locator('#destination').evaluate(e=>e.focus());await expect(page.locator('#destination')).toBeFocused();}
+ await page.locator('#kt-filter-rig-profile').click();await expect(page.locator('#kt-rig-dialog')).toBeVisible();
+ await page.keyboard.press('Tab');expect(await page.evaluate(()=>document.getElementById('kt-rig-dialog').contains(document.activeElement))).toBe(true);
+ const resizedWidth=width<=760?1280:390;await page.setViewportSize({width:resizedWidth,height:844});expect(await page.locator('#kt-rig-dialog').evaluate(e=>e.matches(':modal'))).toBe(true);
+ await page.keyboard.press('Escape');await expect(page.locator('#kt-rig-dialog')).toBeHidden();await expect(filters).toBeVisible();await expect(page.locator('#kt-filter-rig-profile')).toBeFocused();
+ expect(await filters.evaluate(e=>e.matches(':modal'))).toBe(resizedWidth<=760);
+ await page.locator('#kt-filter-show').click();await expect(filters).toBeHidden();await expect(page.locator('#filters')).toBeFocused();
+});
 test('uncached state selection offline announces the limitation immediately',async({page,context})=>{
  await ready(page);await context.setOffline(true);await page.locator('#state-select').selectOption('WY');await expect(page.locator('#toast')).toContainText(/offline|unavailable/i,{timeout:2000});await expect(page.locator('#toast')).toHaveAttribute('aria-live','polite');expect(await page.locator('#state-select').inputValue()).toBe('WY');
 });
