@@ -31,7 +31,7 @@
   const isDate = v => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
   const cleanText = (v, max) => typeof v === 'string' ? v.slice(0, max) : '';
   function syncRevision() {
-    const key=JSON.stringify(st.stops.map(stop=>[stop.id,valid(stop.feature)?stop.feature.geometry.coordinates.slice(0,2):null]));
+    const key=JSON.stringify(st.stops.map(stop=>{const site=getSite(stop);return [stop.id,valid(site)?site.geometry.coordinates.slice(0,2):null];}));
     if(key!==st.topologyKey){st.topologyKey=key;st.revision++;if(typeof window.CustomEvent==='function')window.dispatchEvent(new window.CustomEvent('kamptrail:tripchanged',{detail:{revision:st.revision}}));}
     return st.revision;
   }
@@ -62,11 +62,19 @@
     const record=historicalRecord(stop);if(record)return window.KampTrailListingHistory.historicalFeature(record);
     // A saved service may share an OSM identity with a campground; keep its service evidence.
     if(stop.feature?.properties?.type==='service')return valid(stop.feature)?stop.feature:null;
-    // Any published id (canonical or alias) finds its listing. The saved id itself is never
-    // rewritten: which member a browser shows can depend on which states have loaded.
+    // Resolve current display/routing data without rewriting the saved id or original snapshot.
     const current=window.KampTrailData?.getCampsiteById(stop.id);
-    if(valid(current)) stop.feature=clone(current);
+    if(valid(current))return clone(current);
     return valid(stop.feature) ? stop.feature : null;
+  }
+  function captureMissingSnapshots(){
+    let changed=false;
+    for(const stop of st.stops){
+      if(valid(stop.feature)||historicalRecord(stop))continue;
+      const current=window.KampTrailData?.getCampsiteById(stop.id);
+      if(valid(current)){stop.feature=clone(current);changed=true;}
+    }
+    return changed;
   }
   // A new stop saves the listing's published index id, so it does not depend on load order.
   const savedId = site => String(site.properties.type==='service'||site.properties.type==='imported'?site.properties.id:(window.KampTrailData?.publishedId?.(site.properties.id) ?? site.properties.id));
@@ -473,14 +481,14 @@
     if(!status || (!status.loading && !status.totalSites && !status.loadedStates?.length))return;
     const codes=[...new Set(st.stops.filter(stop=>!getSite(stop)).map(stop=>stop.id.match(/^([A-Z]{2})[-_]/)?.[1]).filter(code=>code&&!st.recoveryStates.has(code)))];
     codes.forEach(code=>st.recoveryStates.add(code));
-    if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
+    if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{if(captureMissingSnapshots())save();render();drawRoute();}).catch(()=>{});
   }
   window.KampTrailTrip={
     version:'2.47.0',
-    getRevision(){st.stops.forEach(getSite);return syncRevision();},
+    getRevision(){return syncRevision();},
     init(map) {
       if(st.el)return;
-      st.map=map;load();st.el=drawer();render();drawRoute();
+      st.map=map;load();if(captureMissingSnapshots())save();st.el=drawer();render();drawRoute();
       const trigger=document.getElementById('trip');trigger?.setAttribute('aria-expanded','false');trigger?.setAttribute('aria-controls','kt-trip-drawer');
       if(trigger)trigger.onclick=()=>st.open?close():open();
       st.el.querySelector('#kt-trip-close').onclick=close;
@@ -500,7 +508,7 @@
       const backupFile=st.el.querySelector('#kt-trip-backup-json-file');
       st.el.querySelector('#kt-trip-backup-json-import').onclick=()=>backupFile.click();
       backupFile.onchange=()=>{importBackup(backupFile.files[0]);backupFile.value='';};
-      window.addEventListener('kamptrail:dataupdated',()=>{if(window.KampTrailData?.getLoadStatus?.().history==='ready')for(const[id,result]of listingResolutions)if(result.kind==='unavailable')listingResolutions.delete(id);const before=JSON.stringify(st.stops);render();if(JSON.stringify(st.stops)!==before){save();drawRoute();}recoverLegacyStops();});
+      window.addEventListener('kamptrail:dataupdated',()=>{if(window.KampTrailData?.getLoadStatus?.().history==='ready')for(const[id,result]of listingResolutions)if(result.kind==='unavailable')listingResolutions.delete(id);const before=st.topologyKey;if(captureMissingSnapshots())save();syncRevision();render();if(st.topologyKey!==before)drawRoute();recoverLegacyStops();});
     },
     addStop(id,snapshot) {
       const site=window.KampTrailData?.getCampsiteById(id) || snapshot;

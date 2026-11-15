@@ -28,7 +28,7 @@ The historical registry SHA-256 is `0a689478d064146979fdaa861117af2d5d09d2b5086b
 
 ## Runtime behavior
 
-Historical records never enter current campsite search, filters, counts, route discovery or ordinary active lookup. Shared links and saved-stop map actions use a separate historical resolver. Saved IDs, notes, trip dates and stored snapshots are preserved. The historical view contains original source links and dates, an unverified-status notice, and no revived current fee, access or rig-suitability claims. English, Spanish and French copy is included.
+Historical records never enter current campsite search, filters, counts, route discovery or ordinary active lookup. Shared links and saved-stop map actions use a separate historical resolver. Saved IDs, notes, trip dates and stored snapshots are preserved. Active display and routing can use newer resolved coordinates without rewriting the stored snapshot. Legacy entries that never had a snapshot may capture one once when their exact listing becomes available. The historical view contains original source links and dates, an unverified-status notice, and no revived current fee, access or rig-suitability claims. English, Spanish and French copy is included.
 
 The history registry and each current data file are bound to the index by SHA-256. A missing or mismatched registry prevents current admission; cached bytes must validate too. Retry discards rejected promises and stale in-memory admission state before loading a coherent generation. Offline historical reopening works when the validated registry was previously cached. A missing offline registry is reported as unavailable.
 
