@@ -265,6 +265,10 @@ The draft regression job allows 45 minutes for offline generation and cross-chec
 
 The regression workflow also runs on pushes to `review/tourism-admission-r3`. This checks the exact source-only draft head while the PR has conflicts with current main and pull-request CI cannot start. It does not verify integration with current main, resolve those conflicts, change the review status, or authorize a merge or deployment.
 
+CI is pinned to Ubuntu 24.04 and uses the runner's Chrome through the existing `CHROMIUM_PATH` option. The first source-head hosted run passed the full Node, MySQL, backup, Python and candidate checks, then stopped because Playwright 1.57 could not install Chromium on Ubuntu 26.04. The environment repair changes no dependencies or assertions.
+
+The unchanged mobile controls test reproduced a 497 px map on local Windows Chrome at 390×844. Reducing only the mobile header's vertical padding from 10 to 6 px changes the header from 103 to 95 px and the map from 497 to 505 px; that original test now passes, including its greater-than-500 assertion and the saved-stop interactions. At 320 and 390 px widths, no horizontal overflow appears and all four header action buttons remain 44 px high. This is a draft-only UI change; the earlier Linux 493 px result remains historical until the new hosted browser run finishes.
+
 ## Code changes
 
 - `data-quality.js`: `HELD_PUBLISHED_LABELS` (38: 9 pending withdrawals, 2 decision-4 exceptions, 27 review holds), `OWNER_REVIEWED_LABELS` (44 labels accepted from own records, each bound to its ledger field and quote, `type_evidence.kind = owner_reviewed_own_record`), the pending-withdrawal set, the two pinned lodging points and the Shaw House closure notice pinned to its retrieval and wording. Names no longer set a type outside the ledger. The 7 Other listings use the existing pending-admission path.
@@ -283,7 +287,7 @@ All runs used the rebuilt candidate in this worktree. Main f9752ecb was served f
 | `npm run test:python` | 419 ran, OK, 9 skipped (native forecast and parser tests) | not rerun |
 | Browser, Chromium, desktop and mobile: tourism-review, app, features, identity, saved-stops, fee-evidence, amenity-evidence, rig-evidence, ridb-amenities, usfs-site-amenities, locale | 60 of 61 passed | app.spec: 8 of 9 passed |
 
-The one failure is `app.spec.js` "mobile controls remain clickable": the map-height check gets 493 px, expected more than 500. It fails the same way on main. `tourism-review.spec.js` passes on desktop and mobile for 17 listings and 19 canonical and legacy ids. The ledger unit test reads the generated `docs/candidates/tourism-type-admission.json`, so it passes only after a rebuild.
+That earlier run's one failure was `app.spec.js` "mobile controls remain clickable": the map-height check got 493 px, expected more than 500. It failed the same way on the old main baseline. The draft-only header repair and its current local results are recorded above; a new full hosted browser run is still required. `tourism-review.spec.js` passed on desktop and mobile for 17 listings and 19 canonical and legacy ids. The ledger unit test reads the generated `docs/candidates/tourism-type-admission.json`, which the isolated test preparation now rebuilds automatically.
 
 ## Limitations
 
