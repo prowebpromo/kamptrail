@@ -42,10 +42,10 @@ The original ownership expectations remain pinned to exact retained baseline inp
 
 Release packaging rejects missing or inconsistent registry/index/source generations and historical IDs leaking into current search. Data files use exact checkout bytes, including on Windows. Focused tests cover identity preservation, provenance dates, failed source scopes, source reappearance, duplicate reservations, cached and mismatched generations, saved snapshots, shared aliases, retry and offline reopening.
 
-Saved stops also uses valid list semantics in empty and populated states; dedicated browser checks cover both.
+Saved stops also uses valid list semantics in empty and populated states; dedicated browser checks cover both. Its button derives its accessible name from the visible translated label and count, keeping speech and screen-reader labels aligned.
 
 Packaged HTML script replacement handles both LF and Windows CRLF checkouts and fails the build if the required block is missing or duplicated. This keeps the requested bundles aligned with the offline shell. The historical registry bypasses generic service-worker JSON handling; the data loader owns its exact-byte validation and offline cache.
 
-The refreshed Forest Service fee receipts mark Airplane Flat (35645), Blodgett (60306), Gold Creek (60320) and Paradise (60666) as changed. Their old maintained free-fee observations remain blocked, and current fee status stays unknown. Tests retain the real October 30 receipt and its expiry separately from current evidence; no future confirmation was created.
+The refreshed Forest Service fee receipts mark Airplane Flat (35645), Blodgett (60306), Gold Creek (60320) and Paradise (60666) as changed. Their old maintained free-fee observations remain blocked; those refreshed USFS records retain unknown fee status. Tests retain the real October 30 receipt and its expiry separately from current evidence; no future confirmation was created.
 
 Final exact-head CI and live desktop/mobile results are recorded in the release handoff after publication. A passing automated check is not physical-phone or Safari verification, nor a claim that a historical campground's real-world status was established.
