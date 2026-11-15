@@ -1,4 +1,5 @@
 import hashlib
+from datetime import date
 import json
 import sys
 import tempfile
@@ -263,9 +264,22 @@ class MainGuards(unittest.TestCase):
 
 class CommittedFile(unittest.TestCase):
     def test_committed_file_matches_the_snapshot_record_counts(self):
-        data = json.loads((Path(__file__).resolve().parents[2] / 'data/campsites/usfs-site-amenities.json').read_text())
-        self.assertEqual(data['source']['retrieved'], '2026-10-31')
-        self.assertEqual(data['source']['matched_facilities'], 735)
+        root = Path(__file__).resolve().parents[2]
+        data = json.loads((root / 'data/campsites/usfs-site-amenities.json').read_text())
+        source = data['source']
+        success = json.loads((root / 'data/health.json').read_text())['sources']['usfs_sites']['scopes']['US']['last_success']
+        self.assertEqual(date.fromisoformat(source['retrieved']).isoformat(), source['retrieved'])
+        if source['basis'] == 'layer_query':
+            self.assertEqual(source['retrieved'], success[:10], 'live query retains its own successful retrieval day')
+        else:
+            self.assertLessEqual(source['retrieved'], success[:10], 'a saved snapshot keeps its original date')
+        wanted = usfs.catalogue_facilities(root / 'data/campsites/search-index.json')
+        self.assertTrue(set(data['facilities']).issubset(wanted), 'statements join only exact current Recreation.gov identities')
+        self.assertLessEqual(usfs.MATCH_RANGE[0], source['matched_facilities'])
+        self.assertLessEqual(source['matched_facilities'], min(usfs.MATCH_RANGE[1], len(wanted)))
+        self.assertLessEqual(len(data['facilities']), source['matched_facilities'])
+        self.assertLessEqual(usfs.ROWS_RANGE[0], source['rows_used'])
+        self.assertLessEqual(source['rows_used'], usfs.ROWS_RANGE[1])
         self.assertEqual(len(data['facilities']), data['source']['facilities_with_statements'])
         self.assertEqual(sum(len(f['records']) for f in data['facilities'].values()), data['source']['records'])
 

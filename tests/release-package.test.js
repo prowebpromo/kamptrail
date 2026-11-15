@@ -46,6 +46,10 @@ test('built release contains agency index dependencies and supports a custom-dom
   }
   execFileSync(process.execPath,['scripts/build-release.js'],{cwd:root,env:{...env,KAMPTRAIL_PUBLIC_URL:'https://kamptrail.com/'},stdio:'pipe'});
   const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
+  const worker=fs.readFileSync(path.join(out,'service-worker.js'),'utf8');
+  const shell=require('node:vm').runInNewContext('('+worker.match(/const SHELL = (\[[\s\S]*?\]);/)[1]+')');
+  for(const [,src]of html.matchAll(/<script\b[^>]*\b(?:data-)?src="([^"]+)"/g))assert.ok(shell.includes(src.split('?')[0]),`Offline shell must cache the script actually requested by packaged HTML: ${src}`);
+  assert.match(html,/data-src="app\.bundle\.js\?v=/);assert.match(html,/src="analytics\.bundle\.js\?v=/);
   assert.equal(html.match(/<meta name="kamptrail-version" content="([^"]+)">/)?.[1],require('../package.json').version,'Packaged app metadata must match the release version');
   assert.match(html,/<link rel="canonical" href="https:\/\/kamptrail\.com\/">/);
   assert.match(html,/<meta property="og:url" content="https:\/\/kamptrail\.com\/">/);
