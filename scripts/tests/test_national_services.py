@@ -1,9 +1,12 @@
 import copy
+import errno
 import hashlib
 import io
 import json
 from pathlib import Path
 import shutil
+import socket
+import ssl
 import subprocess
 import sys
 import tempfile
@@ -133,6 +136,62 @@ class NationalServicesTests(unittest.TestCase):
             self.assertEqual(path.read_bytes(),b'last-good')
             self.assertFalse(path.with_suffix('.part').exists())
 
+    def test_initial_transport_failures_retry_with_fresh_same_state_redirect_guard(self):
+        for code in (errno.ENETDOWN, errno.ENETUNREACH, errno.EHOSTUNREACH,
+                     errno.ECONNRESET, errno.ECONNABORTED, errno.ECONNREFUSED,
+                     errno.ETIMEDOUT):
+            for wrapped in (False, True):
+                failure = OSError(code, 'temporary transport failure')
+                if wrapped:
+                    failure = urllib.error.URLError(failure)
+                with self.subTest(errno=code, wrapped=wrapped), tempfile.TemporaryDirectory() as tmp:
+                    path = Path(tmp) / 'RI.osm.pbf'; path.write_bytes(b'last-good')
+                    clock = Clock(); opener = unittest.mock.Mock()
+                    opener.open.side_effect = [failure, Response(b'complete', 8)]
+                    with patch('urllib.request.build_opener', return_value=opener) as build, patch('import_services.time.monotonic', clock.monotonic), patch('import_services.time.sleep', clock.sleep):
+                        receipt = services.download('RI', path)
+                    self.assertEqual(path.read_bytes(), b'complete')
+                    self.assertEqual(receipt['sha256'], hashlib.sha256(b'complete').hexdigest())
+                    self.assertEqual(clock.pauses, [1])
+                    self.assertEqual(opener.open.call_count, 2)
+                    self.assertTrue(all(call.args[0].full_url == URLS['RI'] for call in opener.open.call_args_list))
+                    self.assertEqual([call.args[0].region for call in build.call_args_list], ['RI', 'RI'])
+                    self.assertIsNot(build.call_args_list[0].args[0], build.call_args_list[1].args[0])
+                    self.assertFalse(path.with_suffix('.part').exists())
+
+    def test_network_unreachable_exhausts_three_attempts_and_retains_last_good(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'RI.osm.pbf'; path.write_bytes(b'last-good')
+            path.with_suffix('.part').write_bytes(b'interrupted-old-partial')
+            clock = Clock(); opener = unittest.mock.Mock()
+            failure = urllib.error.URLError(OSError(errno.ENETUNREACH, 'Network is unreachable'))
+            opener.open.side_effect = failure
+            with patch('urllib.request.build_opener', return_value=opener), patch('import_services.time.monotonic', clock.monotonic), patch('import_services.time.sleep', clock.sleep):
+                with self.assertRaises(urllib.error.URLError) as caught:
+                    services.download('RI', path)
+            self.assertIs(caught.exception, failure)
+            self.assertEqual(opener.open.call_count, 3)
+            self.assertEqual(clock.pauses, [1, 3])
+            self.assertEqual(path.read_bytes(), b'last-good')
+            self.assertFalse(path.with_suffix('.part').exists())
+
+    def test_network_unreachable_retry_cannot_extend_original_deadline(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'RI.osm.pbf'; path.write_bytes(b'last-good')
+            clock = Clock(); opener = unittest.mock.Mock()
+            def unreachable(request, timeout):
+                clock.now += services.MAX_SECONDS - .5
+                raise urllib.error.URLError(OSError(errno.ENETUNREACH, 'Network is unreachable'))
+            opener.open.side_effect = unreachable
+            with patch('urllib.request.build_opener', return_value=opener), patch('import_services.time.monotonic', clock.monotonic), patch('import_services.time.sleep', clock.sleep):
+                with self.assertRaisesRegex(ValueError, 'download budget'):
+                    services.download('RI', path)
+            self.assertEqual(opener.open.call_count, 1)
+            self.assertEqual(clock.pauses, [.5])
+            self.assertEqual(clock.now, 100 + services.MAX_SECONDS)
+            self.assertEqual(path.read_bytes(), b'last-good')
+            self.assertFalse(path.with_suffix('.part').exists())
+
     def test_startup_retry_shares_original_deadline_and_bounds_backoff(self):
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
@@ -173,8 +232,13 @@ class NationalServicesTests(unittest.TestCase):
             self.assertFalse(path.with_suffix('.part').exists())
 
     def test_http_auth_redirect_and_partial_body_errors_are_not_retried(self):
-        failures=[urllib.error.HTTPError(URLS['RI'],code,'refused',{},None) for code in (401,403,404)]
-        failures.extend([urllib.error.URLError('not a timeout'),ValueError('invalid redirect')])
+        failures=[urllib.error.HTTPError(URLS['RI'],code,'refused',{},None) for code in (401,403,404,429,500,503)]
+        failures.extend([urllib.error.URLError('not a timeout'), ValueError('invalid redirect')])
+        for reason in (OSError(errno.EACCES, 'permission denied'), OSError('unknown OS error'),
+                       socket.gaierror(socket.EAI_AGAIN, 'temporary DNS failure'),
+                       ssl.SSLCertVerificationError('certificate verify failed'),
+                       ssl.SSLError(errno.ECONNRESET, 'TLS failure')):
+            failures.extend([reason, urllib.error.URLError(reason)])
         for failure in failures:
             with self.subTest(failure=str(failure)), tempfile.TemporaryDirectory() as tmp:
                 path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
@@ -185,16 +249,18 @@ class NationalServicesTests(unittest.TestCase):
                 sleep.assert_not_called()
                 self.assertEqual(path.read_bytes(),b'last-good')
                 self.assertFalse(path.with_suffix('.part').exists())
-        with tempfile.TemporaryDirectory() as tmp:
-            path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
-            response=Response(b'',8);response.read=unittest.mock.Mock(side_effect=[b'part',TimeoutError('body timeout')])
-            opener=unittest.mock.Mock();opener.open.return_value=response
-            with patch('urllib.request.build_opener',return_value=opener), patch('import_services.time.sleep') as sleep:
-                with self.assertRaises(TimeoutError):services.download('RI',path)
-            self.assertEqual(opener.open.call_count,1)
-            sleep.assert_not_called()
-            self.assertEqual(path.read_bytes(),b'last-good')
-            self.assertFalse(path.with_suffix('.part').exists())
+        for failure in (TimeoutError('body timeout'), OSError(errno.ENETUNREACH, 'body unreachable'),
+                        urllib.error.URLError(OSError(errno.ENETUNREACH, 'body unreachable'))):
+            with self.subTest(body_failure=str(failure)), tempfile.TemporaryDirectory() as tmp:
+                path=Path(tmp)/'RI.osm.pbf';path.write_bytes(b'last-good')
+                response=Response(b'',8);response.read=unittest.mock.Mock(side_effect=[b'part',failure])
+                opener=unittest.mock.Mock();opener.open.return_value=response
+                with patch('urllib.request.build_opener',return_value=opener), patch('import_services.time.sleep') as sleep:
+                    with self.assertRaises(type(failure)):services.download('RI',path)
+                self.assertEqual(opener.open.call_count,1)
+                sleep.assert_not_called()
+                self.assertEqual(path.read_bytes(),b'last-good')
+                self.assertFalse(path.with_suffix('.part').exists())
 
     def test_parse_walltime_and_disk_failure_never_touch_accepted_source(self):
         with tempfile.TemporaryDirectory() as tmp:
