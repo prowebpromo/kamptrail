@@ -6,11 +6,13 @@ Raw downloads, location indexes and report intermediates belong outside the repo
 """
 import argparse
 import datetime as dt
+import errno
 import hashlib
 import json
 import math
 import os
 import re
+import ssl
 from pathlib import Path
 import tempfile
 import time
@@ -86,16 +88,23 @@ class FixedRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def _open_download(request, region, deadline):
-    """Retry only initial-response timeouts, within the original download budget."""
+    """Retry explicit transient startup failures within the original budget."""
     for delay in (1, 3, None):  # At most three total attempts, never body retries.
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             raise ValueError('PBF download budget exceeded')
         try:
             return urllib.request.build_opener(FixedRedirect(region)).open(request, timeout=min(60, remaining))
-        except (TimeoutError, urllib.error.URLError) as exc:
-            timed_out = isinstance(exc, TimeoutError) or isinstance(getattr(exc, 'reason', None), TimeoutError)
-            if isinstance(exc, urllib.error.HTTPError) or not timed_out:
+        except OSError as exc:
+            reason = exc.reason if isinstance(exc, urllib.error.URLError) else exc
+            transient = isinstance(reason, TimeoutError) or (
+                isinstance(reason, OSError) and reason.errno in (
+                    errno.ENETDOWN, errno.ENETUNREACH, errno.EHOSTUNREACH,
+                    errno.ECONNRESET, errno.ECONNABORTED, errno.ECONNREFUSED,
+                    errno.ETIMEDOUT,
+                )
+            )
+            if isinstance(exc, urllib.error.HTTPError) or isinstance(reason, ssl.SSLError) or not transient:
                 raise
             if delay is None:
                 raise
