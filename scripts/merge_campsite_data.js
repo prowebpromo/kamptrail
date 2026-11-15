@@ -152,6 +152,14 @@ class CampsiteMerger {
     if (p1.facility_id != null && String(p1.facility_id) === String(p2.facility_id)) return true;
     if (p1.osm_id != null && String(p1.osm_id) === String(p2.osm_id)
       && p1.osm_type && p1.osm_type === p2.osm_type) return true;
+    // Fuzzy names and proximity cannot join separately published canonicals. Include
+    // source_ids so a canonical already grouped under an alias stays protected too.
+    if (this.preferredIds?.size) {
+      const canonicals = p => [p.id, ...(Array.isArray(p.source_ids) ? p.source_ids : [])]
+        .filter(id => this.preferredIds.has(id));
+      const a = canonicals(p1), b = canonicals(p2);
+      if (a.length && b.length && new Set([...a, ...b]).size > 1) return false;
+    }
     const distance = this.calculateDistance(lat1, lon1, lat2, lon2);
     const name1 = p1.name || p1.Name || '';
     const name2 = p2.name || p2.Name || '';
