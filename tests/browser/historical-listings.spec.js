@@ -35,11 +35,11 @@ for(const width of [390,1280])test(`historical shared aliases and saved stops pr
  expect(await page.evaluate(()=>KampTrailData.getAllCampsites().map(f=>f.properties.id))).toEqual(['ridb:123']);
  expect(await page.evaluate(()=>KampTrailData.getCampsiteById('old-saved-id'))).toBeUndefined();
  expect(await page.evaluate(async()=>{const d=await KampTrailData.loadSearchIndex();return d.sites.map(s=>({id:s.id,aliases:s.legacy_ids}));})).toEqual([{id:'ridb:123',aliases:[]}]);
- await popup.getByRole('button',{name:'Close historical listing',exact:true}).click();await page.locator('#trip').click();await expect(page.locator('.kt-saved-history')).toContainText('Historical listing');
+ await popup.getByRole('button',{name:'Close historical listing',exact:true}).click();await expect(popup).toHaveCount(0);await page.locator('#trip').click();await expect(page.locator('.kt-saved-history')).toContainText('Historical listing');
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')))).toEqual([saved]);
  await page.screenshot({path:test.info().outputPath(`saved-historical-${width}.png`)});
  expect(await page.evaluate(()=>JSON.parse(KampTrailTrip.buildBackup()).stops)).toEqual([saved]);
-  await page.locator('#kt-trip-list').getByRole('button',{name:'View on map',exact:true}).click();await expect(popup).toContainText('Opened saved ID: old-saved-id');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')))).toEqual([saved]);
+  await page.locator('#kt-trip-list').getByRole('button',{name:'View on map',exact:true}).click();await expect(popup).toHaveCount(1);await expect(popup).toContainText('Opened saved ID: old-saved-id');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')))).toEqual([saved]);
  await page.evaluate(()=>KampTrailTrip.addStop('osm:node:99',{type:'Feature',geometry:{type:'Point',coordinates:[-75.2,43.1]},properties:{id:'osm:node:99',type:'service',name:'Separate dump service',service_evidence:'Original service evidence'}}));
  expect(await page.evaluate(()=>KampTrailTrip.getStops().find(stop=>stop.id==='osm:node:99').feature.properties.type)).toBe('service');expect(await page.evaluate(()=>KampTrailTrip.getStops().find(stop=>stop.id==='osm:node:99').feature.geometry.coordinates)).toEqual([-75.2,43.1]);
 });
