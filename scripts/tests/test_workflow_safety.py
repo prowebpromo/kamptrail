@@ -26,6 +26,31 @@ def shell_expression_steps(text):
 
 
 class WorkflowSafetyTests(unittest.TestCase):
+    def test_history_is_built_after_refresh_from_a_frozen_baseline_before_final_index(self):
+        jobs = yaml.safe_load(OWNER.read_text())['jobs']
+        steps = jobs['fetch-data']['steps']
+        freeze = next(i for i,s in enumerate(steps) if s.get('name') == 'Freeze published identities before refreshing sources')
+        refresh = next(i for i,s in enumerate(steps) if s.get('name') == 'Refresh sources and rebuild visible snapshots')
+        self.assertLess(freeze, refresh)
+        self.assertIn('cp data/campsites/search-index.json', steps[freeze]['run'])
+        build = next(s['run'] for s in steps if s.get('name') == 'Rebuild national campsite-name search')
+        self.assertLess(build.index('node scripts/build-search-index.js'), build.index('node scripts/build-listing-history.js'))
+        self.assertLess(build.index('node scripts/build-listing-history.js'), build.rindex('node scripts/build-search-index.js'))
+        self.assertIn('--previous-index "$RUNNER_TEMP/previous-search-index.json"', build)
+        self.assertIn('set -euo pipefail', build)
+
+    def test_every_campsite_index_writer_preserves_old_history_and_checks_before_commit(self):
+        jobs = yaml.safe_load(OWNER.read_text())['jobs']
+        for name in ('fetch-data', 'agencies', 'elevation'):
+            steps = jobs[name]['steps']
+            verify = [i for i,s in enumerate(steps) if 'bash scripts/verify-refresh.sh HEAD' in s.get('run','')]
+            commit = next(i for i,s in enumerate(steps) if s.get('id') in ('commit','commit_refresh'))
+            self.assertTrue(verify, name)
+            self.assertLess(verify[0],commit,name)
+        verifier = (ROOT / 'scripts/verify-refresh.sh').read_text()
+        self.assertIn('git show "$baseline:data/campsites/withdrawn.json"', verifier)
+        self.assertIn('data/campsites/withdrawn.json "$tmp/previous-withdrawn.json"',verifier)
+
     def test_services_share_branch_writer_lock_and_verify_only_exact_output(self):
         workflow = yaml.safe_load(OWNER.read_text())
         self.assertEqual(workflow['concurrency']['group'], 'kamptrail-data-refresh-${{ github.ref }}')

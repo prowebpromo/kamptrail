@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const {check} = require('../scripts/check-id-continuity');
 
 const index = sites => ({version: 1, sites});
+const historical = (id,legacy_ids=[]) => ({id,legacy_ids,name:'Original listing',lat:40,lng:-110,states:['UT'],source_dates:[{source_record_id:id,retrieved_at:null,updated_at:null}],source_urls:[],reason:'source_absent_latest_feed',archived_at:'2026-11-15T00:00:00Z'});
 
 test('unchanged ids pass, including legacy ids', () => {
   const a = index([{id: 'osm:way:1', legacy_ids: ['ridb:9']}, {id: 'usfs:2'}]);
@@ -24,10 +25,10 @@ test('an id that now opens a different listing is moved', () => {
 
 test('a reviewed withdrawal with the same host keeps the id resolving', () => {
   const prev = index([{id: 'ridb:1', legacy_ids: ['osm:way:3']}, {id: 'usfs:2'}]);
-  const withdrawn = {version: 1, listings: [{id: 'ridb:1', legacy_ids: ['osm:way:3']}]};
+  const withdrawn = {version: 1, listings: [historical('ridb:1',['osm:way:3'])]};
   assert.equal(check(prev, index([{id: 'usfs:2'}]), withdrawn).lost.length, 0);
   // A withdrawal entry for a different host does not excuse the loss.
-  assert.equal(check(prev, index([{id: 'usfs:2'}]), {version: 1, listings: [{id: 'ridb:99', legacy_ids: ['osm:way:3']}]}).lost.length, 2);
+  assert.equal(check(prev, index([{id: 'usfs:2'}]), {version: 1, listings: [historical('ridb:99',['osm:way:3'])]}).lost.length, 2);
 });
 
 test('new listings never fail the check', () => {

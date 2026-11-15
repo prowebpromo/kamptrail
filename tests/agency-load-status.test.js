@@ -7,6 +7,7 @@ const assert=require('node:assert/strict');
 const vm=require('node:vm');
 const fs=require('node:fs');
 const path=require('node:path');
+const {withEmptyHistory,webcrypto}=require('./helpers/listing-history-fixture.js');
 const read=f=>fs.readFileSync(path.join(__dirname,'..',f),'utf8');
 
 function harness(fetcher){
@@ -19,8 +20,10 @@ function harness(fetcher){
   const context={console:{warn(){},log(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,CustomEvent:class{constructor(type,opts){this.type=type;this.detail=opts.detail;}},document:{addEventListener(){}},dispatchEvent:e=>events.push(e),
     L:{markerClusterGroup:()=>cluster,layerGroup:()=>({addLayer(){},items:[]}),divIcon:o=>o,marker:coords=>evented({coords,bindPopup(){return this;},setPopupContent(){return this;},isPopupOpen(){return false;}})}};
   context.window=context;
+  context.fetch=withEmptyHistory(context.fetch);context.crypto=webcrypto;context.TextEncoder=TextEncoder;
   vm.createContext(context);
   vm.runInContext(read('data-quality.js'),context);
+  vm.runInContext(read('listing-history.js'),context);
   vm.runInContext(read('data-loader.js'),context);
   return {api:context.KampTrailData,map,events};
 }

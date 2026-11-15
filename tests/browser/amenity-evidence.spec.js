@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test,expect}=require('@playwright/test');
 // R8 (2.31.0): the popup states source, scope and date for every amenity statement, and the
 // amenity filters show exactly the listings whose popup reports that amenity at a valid scope.
@@ -31,6 +32,7 @@ async function open(page,context){
   await page.route('**/data/campsites/ridb-amenities.json',r=>json(r,ridb));
   await page.route('**/data/campsites/usfs-site-amenities.json',r=>json(r,usfs));
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features}));
+  await bindCampsiteFixture(page,{states:['NY'],features});
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43.015,lng:-75.13,zoom:12})));
   const usfsLoaded=page.waitForResponse('**/data/campsites/usfs-site-amenities.json'),ridbLoaded=page.waitForResponse('**/data/campsites/ridb-amenities.json');
   await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await usfsLoaded;await ridbLoaded;

@@ -1,5 +1,21 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.46.7',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.47.0',messages:{
+  "Listing history is unavailable. Reconnect and retry before opening campsite records.": "El historial de lugares no está disponible. Vuelve a conectarte e inténtalo de nuevo antes de abrir los registros.",
+  "Historical listing": "Registro histórico",
+  "Close historical listing": "Cerrar registro histórico",
+  "Current status is unverified. This dated record is kept for saved stops and shared links and is excluded from current campsite search. It does not establish current access, camping permission, fees or rig suitability.": "El estado actual no está verificado. Este registro fechado se conserva para las paradas guardadas y los enlaces compartidos y no aparece en la búsqueda actual de campamentos. No confirma el acceso, el permiso para acampar, las tarifas ni la idoneidad para tu vehículo en la actualidad.",
+  "This listing was absent from the latest source feed.": "Este lugar no apareció en la última actualización de la fuente.",
+  "This listing is no longer in the current catalogue.": "Este lugar ya no figura en el catálogo actual.",
+  "This historical listing’s identity still needs reconciliation.": "La identidad de este registro histórico aún debe conciliarse.",
+  "Original listing ID: {id}": "ID original del lugar: {id}",
+  "Opened saved ID: {id}": "ID guardado abierto: {id}",
+  "Source {id} · retrieved: {retrieved} · updated: {updated}": "Fuente {id} · recuperada: {retrieved} · actualizada: {updated}",
+  "Date unavailable": "Fecha no disponible",
+  "Source dates unavailable.": "Fechas de la fuente no disponibles.",
+  "Archived in KampTrail: {date}. This is a bookkeeping date, not a visit or source observation.": "Archivado en KampTrail: {date}. Es una fecha administrativa, no la fecha de una visita ni de una observación de la fuente.",
+  "Original source: {id}": "Fuente original: {id}",
+  "Historical listing. Current status is unverified. Original source dates are shown when you view the record.": "Registro histórico. El estado actual no está verificado. Las fechas originales de la fuente aparecen al ver el registro.",
+  "Saved location only. Current listing status could not yet be verified.": "Solo ubicación guardada. Aún no se ha podido verificar el estado actual del lugar.",
   "KampTrail map preview near Moab, Utah": "Vista previa del mapa de KampTrail cerca de Moab, Utah",
   "Check land management, save your stops and plan your trip.": "Consulta quién gestiona el terreno, guarda tus paradas y planifica tu viaje.",
   "Choose a state or search to start.": "Elige un estado o busca para empezar.",

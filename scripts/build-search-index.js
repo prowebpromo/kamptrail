@@ -8,6 +8,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 require('./build-record-overrides.js').build();
 const DataQuality = require('../data-quality.js');
+const History = require('../listing-history.js');
 
 function featureIds(feature) {
   const p = feature.properties;
@@ -33,7 +34,8 @@ function listingRow(feature, quality = DataQuality, states = []) {
   return {id:p.id,legacy_ids:(p.legacy_ids||[]).filter(id=>id!==p.id),name:p.name,states,lat,lng,m};
 }
 
-function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = [], preferredIds = null, previousHosts = null, amenitySidecars = {}) {
+function buildSearchIndex(collections, quality = DataQuality, siteDetails = null, elevationSnapshots = [], preferredIds = null, previousHosts = null, amenitySidecars = {}, history = null) {
+  if (history) History.validateHistory(history);
   // Amenity evidence is attached exactly as the map attaches it, so search and route filters match the popup.
   const attachAmenities = feature => {
     if (amenitySidecars.ridb) quality.attachRIDBAmenities(feature, amenitySidecars.ridb);
@@ -46,7 +48,8 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if (geojson?.type !== 'FeatureCollection' || !Array.isArray(geojson.features)) {
       throw new Error(`${state} is not a GeoJSON FeatureCollection`);
     }
-    for (const raw of quality.publicationCandidates(geojson.features,{state})) {
+    const active = geojson.features.map(raw => History.filterActiveFeature(raw, history)).filter(Boolean);
+    for (const raw of quality.publicationCandidates(active,{state})) {
       const feature = quality.normalizeFeature(raw, {state});
       if (!feature) continue;
       if(siteDetails)quality.attachSiteDetails(feature,siteDetails);
@@ -73,7 +76,8 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     return listingRow(feature, quality, [...states].sort());
   });
   sites.sort((a,b) => a.name.localeCompare(b.name, 'en') || a.id.localeCompare(b.id, 'en'));
-  return {version:1, filter_version:1, community_version:1, elevation_version:1, amenity_version:1, sites};
+  return {version:1, filter_version:1, community_version:1, elevation_version:1, amenity_version:1,
+    ...(history ? {history_sha256:crypto.createHash('sha256').update(History.serializeHistory(history)).digest('hex')} : {}), sites};
 }
 
 function readElevationSnapshots(directory){
@@ -120,6 +124,8 @@ function publishedHosts(directory) {
 }
 
 function buildFromDirectory(directory) {
+  const historyPath=path.join(directory,'withdrawn.json');
+  const history=fs.existsSync(historyPath)?History.validateHistory(JSON.parse(fs.readFileSync(historyPath,'utf8'))):{version:1,listings:[]};
   const files = fs.readdirSync(directory).filter(name => /^[A-Z]{2}_merged\.geojson$/.test(name)).sort();
   if (files.length !== 50) {
     throw new Error(`Expected 50 saved state snapshots; found ${files.length}. Search index was not replaced.`);
@@ -129,21 +135,32 @@ function buildFromDirectory(directory) {
   const sidecar=(name,valid)=>{const file=path.join(directory,name);if(!fs.existsSync(file))return null;const data=JSON.parse(fs.readFileSync(file,'utf8'));if(!valid(data))throw new Error('Invalid amenity evidence: '+name);return data;};
   const amenitySidecars={ridb:sidecar('ridb-amenities.json',DataQuality.validRIDBAmenities),usfs:sidecar('usfs-site-amenities.json',DataQuality.validUSFSSiteAmenities)};
   // Agency records (USFS, BLM) load beside each state snapshot, so search must index them too.
-  return buildSearchIndex(files.map(name => {
+  const sourceHashes={};
+  const readSource=name=>{
+    const raw=fs.readFileSync(path.join(directory,name));
+    sourceHashes['data/campsites/'+name.replaceAll('\\','/')]=crypto.createHash('sha256').update(raw).digest('hex');
+    return JSON.parse(raw.toString('utf8'));
+  };
+  const result=buildSearchIndex(files.map(name => {
     const state = name.slice(0,2);
-    const geojson = JSON.parse(fs.readFileSync(path.join(directory,name), 'utf8'));
+    const geojson = readSource(name);
     const agencyFile = path.join(directory, 'agency', `${state}.geojson`);
     if (fs.existsSync(agencyFile)) {
-      const agency = JSON.parse(fs.readFileSync(agencyFile, 'utf8'));
+      const agency = readSource('agency/'+`${state}.geojson`);
       if (agency?.type === 'FeatureCollection' && Array.isArray(agency.features)) geojson.features = [...geojson.features, ...agency.features];
     }
     return {state, geojson};
-  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(directory),publishedHosts(directory),amenitySidecars);
+  }),DataQuality,siteDetails,readElevationSnapshots(directory),publishedIds(directory),publishedHosts(directory),amenitySidecars,history);
+  result.source_sha256=sourceHashes;
+  return result;
 }
 
 if (require.main === module) {
   const directory = path.resolve(__dirname, '../data/campsites');
   try {
+    const historyPath=path.join(directory,'withdrawn.json');
+    const history=fs.existsSync(historyPath)?History.validateHistory(JSON.parse(fs.readFileSync(historyPath,'utf8'))):{version:1,listings:[]};
+    fs.writeFileSync(historyPath,History.serializeHistory(history));
     const result = buildFromDirectory(directory);
     if (!result.sites.length) throw new Error('No publishable campsites found. Search index was not replaced.');
     const output = path.join(directory, 'search-index.json');
@@ -152,8 +169,19 @@ if (require.main === module) {
     fs.renameSync(temporary, output);
     // Canonical hosts for the browser, so the map elects the same listing ids as this index.
     const hosts=path.join(directory,'identity-hosts.json');
-    fs.writeFileSync(hosts+'.tmp',JSON.stringify(require('./build-identity-hosts.js').identityHosts(fs.readFileSync(output,'utf8')))+'\n');
+    fs.writeFileSync(hosts+'.tmp',JSON.stringify({...require('./build-identity-hosts.js').identityHosts(fs.readFileSync(output,'utf8')),history_sha256:result.history_sha256})+'\n');
     fs.renameSync(hosts+'.tmp',hosts);
+    const stateIndex=path.join(directory,'index.json');
+    if(fs.existsSync(stateIndex)){
+      const metadata=JSON.parse(fs.readFileSync(stateIndex,'utf8'));
+      metadata.history_sha256=result.history_sha256;
+      metadata.source_sha256=result.source_sha256;
+      if(Array.isArray(metadata.states)){
+        metadata.states=metadata.states.map(row=>({...row,count:result.sites.filter(site=>site.states.includes(row.state)).length}));
+        metadata.total_sites=metadata.states.reduce((total,row)=>total+row.count,0);
+      }
+      fs.writeFileSync(stateIndex+'.tmp',JSON.stringify(metadata,null,2)+'\n');fs.renameSync(stateIndex+'.tmp',stateIndex);
+    }
     const identity=path.join(directory,'coordinate-index.json');
     fs.writeFileSync(identity+'.tmp',JSON.stringify(coordinateIndex(result.sites))+'\n');
     fs.renameSync(identity+'.tmp',identity);

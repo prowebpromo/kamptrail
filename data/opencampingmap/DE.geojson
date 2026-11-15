@@ -22,7 +22,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/158245077",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -45,7 +45,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/1193607220",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -67,7 +67,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/5282791516",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -89,7 +89,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/6968088869",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -111,7 +111,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/6968103642",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -133,7 +133,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/6968112329",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -153,217 +153,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/8356227080",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7567285,
-          38.5393152
-        ]
-      },
-      "properties": {
-        "name": "Ababco Outpost (10)",
-        "tourism": "camp_site",
-        "osm_id": 8902433349,
-        "osm_type": "node",
-        "id": "osm:node:8902433349",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8902433349",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7446198,
-          38.5460454
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "fixme": "Need ground survey",
-        "name": "Crazy Woman Outpost (3)",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "osm_id": 8911860194,
-        "osm_type": "node",
-        "id": "osm:node:8911860194",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8911860194",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7419031,
-          38.5489128
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "fixme": "Need ground survey",
-        "name": "Hidden Field Outpost (2)",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "osm_id": 8911860195,
-        "osm_type": "node",
-        "id": "osm:node:8911860195",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8911860195",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7386929,
-          38.5486547
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "fixme": "Need ground survey",
-        "name": "Kuskarawa Outpost (1)",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "osm_id": 8911860196,
-        "osm_type": "node",
-        "id": "osm:node:8911860196",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8911860196",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7481943,
-          38.550582
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "fixme": "Need ground survey",
-        "name": "Old Bucket Outpost (4)",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "osm_id": 8911860197,
-        "osm_type": "node",
-        "id": "osm:node:8911860197",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8911860197",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7504032,
-          38.5525069
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "fixme": "Need ground survey",
-        "name": "Dan Beard Outpost (7)",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "osm_id": 8911860198,
-        "osm_type": "node",
-        "id": "osm:node:8911860198",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8911860198",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7426518,
-          38.5567739
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "name": "Lost Mill Outpost (5)",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "osm_id": 8911860199,
-        "osm_type": "node",
-        "id": "osm:node:8911860199",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8911860199",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7412519,
-          38.5595466
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "name": "Boundary Outpost (8)",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "osm_id": 8911860210,
-        "osm_type": "node",
-        "id": "osm:node:8911860210",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8911860210",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.7520757,
-          38.5577587
-        ]
-      },
-      "properties": {
-        "backcountry": "yes",
-        "name": "Medicine Stick Outpost (8)",
-        "tents": "yes",
-        "tourism": "camp_site",
-        "osm_id": 8911860211,
-        "osm_type": "node",
-        "id": "osm:node:8911860211",
-        "source": "openstreetmap",
-        "schema_version": 3,
-        "source_url": "https://www.openstreetmap.org/node/8911860211",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -389,7 +179,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/node/13649630201",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -410,7 +200,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/40399753",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -430,7 +220,7 @@
         "id": "osm:way:40407056",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/40407056",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -451,7 +241,7 @@
         "id": "osm:way:86177632",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/86177632",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -478,7 +268,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/106463509",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -506,7 +296,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/196122181",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -527,7 +317,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/225521725",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -574,7 +364,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/314929989",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -595,7 +385,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/372327900",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -620,7 +410,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/428657876",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -642,7 +432,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/471846959",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -663,7 +453,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/476445314",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -684,7 +474,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/476445316",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -712,7 +502,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/547314300",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -733,7 +523,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/548442004",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -760,7 +550,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/553100850",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -786,7 +576,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/560486181",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -808,7 +598,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/588540706",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -829,7 +619,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/598339069",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -863,7 +653,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/649327872",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -884,7 +674,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/672328547",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -907,7 +697,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/672375041",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -929,7 +719,7 @@
         "id": "osm:way:714956283",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/714956283",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -965,7 +755,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/732468456",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -997,7 +787,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/743382290",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -1030,7 +820,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/744201023",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -1057,7 +847,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/744208484",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -1083,7 +873,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/744518071",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -1109,7 +899,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/749452747",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -1129,7 +919,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/1091502131",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -1152,7 +942,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/1132533036",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -1173,7 +963,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/way/1484176151",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     },
     {
@@ -1195,7 +985,7 @@
         "source": "openstreetmap",
         "schema_version": 3,
         "source_url": "https://www.openstreetmap.org/relation/6362828",
-        "source_retrieved_at": "2026-10-29T02:54:34Z"
+        "source_retrieved_at": "2026-11-15T11:00:27Z"
       }
     }
   ]

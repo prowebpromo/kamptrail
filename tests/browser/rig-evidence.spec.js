@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test,expect}=require('@playwright/test');
 // Rig-tag ownership (2.34.0): the popup rig line reads only the listing's own sources, lists merged
 // elements' rig tags as not used, keeps negatives and conflicts, and the Tents and Trailers filters agree.
@@ -21,6 +22,7 @@ async function open(page,context){
   await page.route('**/data/campsites/agency/index.json',r=>json(r,{version:1,states:[]}));
   await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:2,facilities:{'901':{t:20,r:20,L:40,g:[[40,0,20]]},'904':{t:12,r:0,L:0}}}));
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features}));
+  await bindCampsiteFixture(page,{states:['NY'],features});
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43.01,lng:-75.12,zoom:12})));
   await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('osm:way:903')?.properties.ridb_rig_check);

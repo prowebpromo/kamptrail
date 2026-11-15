@@ -1,0 +1,2 @@
+# Dataset manifests bind exact bytes; checkout must not translate line endings.
+data/** -text

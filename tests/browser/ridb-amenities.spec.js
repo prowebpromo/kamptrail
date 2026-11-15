@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test,expect}=require('@playwright/test');
 const source=require('../../data/campsites/ridb-amenities.json').source;
 test.use({serviceWorkers:'block',viewport:{width:390,height:844}});
@@ -14,6 +15,7 @@ test('campsite records retain qualified amenity evidence and filters match at re
   await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:2,facilities:{}}));
   await page.route('**/data/campsites/ridb-amenities.json',r=>json(r,evidence));
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[camp]}));
+  await bindCampsiteFixture(page,{states:['NY'],features:[camp]});
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.1,zoom:11})));
   await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('ridb:123')?.properties.ridb_amenity_evidence);
   await page.evaluate(()=>KampTrailData.focusCampsite('ridb:123'));
@@ -54,6 +56,7 @@ test('a delayed sidecar preserves open popup controls and appears on reopening t
   await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:2,facilities:{}}));
   await page.route('**/data/campsites/ridb-amenities.json',async r=>{await delayed;await json(r,evidence);});
   await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[camp]}));
+  await bindCampsiteFixture(page,{states:['NY'],features:[camp]});
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:43,lng:-75.1,zoom:11})));
   await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());
   await page.waitForFunction(()=>window.KampTrailData?.getCampsiteById('ridb:123'));

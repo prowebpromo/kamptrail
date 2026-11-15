@@ -1,3 +1,4 @@
+const {boundSearchFixture}=require('./helpers/campsite-fixture');
 const{test,expect}=require('@playwright/test');const AxeBuilder=require('@axe-core/playwright').default;const crypto=require('node:crypto');
 test.use({serviceWorkers:'block'});
 const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=','base64');
@@ -11,11 +12,11 @@ async function setup(page,context,{fail=false,hold=false,filters=null}={}){
  const requests=[],errors=[];let release,waiting=null;page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.url().includes('/data/services/'))requests.push({url:r.url(),method:r.method(),body:r.postData()});});
  await context.route(/^https:\/\//,r=>r.fulfill({contentType:'image/png',body:pixel}));const json=(r,d)=>r.fulfill({contentType:'application/json',body:JSON.stringify(d)});
  await page.route('**/api/route.php',r=>json(r,{ok:true,route}));
- await page.route('**/data/campsites/search-index.json',r=>json(r,{version:1,filter_version:1,sites:[]}));
+ await page.route('**/data/campsites/search-index.json',r=>json(r,boundSearchFixture({version:1,filter_version:1,sites:[]})));
  await page.route('**/data/services/index.json',r=>fail?r.fulfill({status:503,body:'unavailable'}):json(r,manifest));
  await page.route('**/data/services/snapshots/**',async r=>{if(hold){waiting=true;await new Promise(resolve=>release=resolve);}return r.fulfill({contentType:'application/json',body:raw});});
  await page.addInitScript(({stops,filters})=>{localStorage.setItem('kt_last_position',JSON.stringify({lat:39,lng:-98,zoom:4}));if(!localStorage.getItem('kt_trip'))localStorage.setItem('kt_trip',JSON.stringify(stops.map(feature=>({id:feature.properties.id,feature,note:'',arrive:'',depart:''}))));if(filters)localStorage.setItem('kt_filters_mvp',JSON.stringify(filters));localStorage.setItem('kt_service_categories_v2',JSON.stringify(['groceries','fuel','lpg','showers']));},{stops,filters});
- await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailRoutes&&window.KampTrailServices&&window.KampTrailTrip);await page.getByRole('button',{name:'Saved stops',exact:true}).click();await page.getByRole('button',{name:'Calculate road route',exact:true}).click();await expect(page.locator('#kt-trip-summary')).toContainText('2 hr 0 min driving');await page.locator('#kt-trip-discover').click();await expect(page.locator('#kt-route-discovery')).toBeVisible();
+ await page.goto('/',{waitUntil:'domcontentloaded'});await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailRoutes&&window.KampTrailServices&&window.KampTrailTrip?.getStops().length===2);await page.getByRole('button',{name:'Saved stops',exact:true}).click();await page.getByRole('button',{name:'Calculate road route',exact:true}).click();await expect(page.locator('#kt-trip-summary')).toContainText('2 hr 0 min driving');await page.locator('#kt-trip-discover').click();await expect(page.locator('#kt-route-discovery')).toBeVisible();
  return {requests,errors,setFail(v){fail=v;},release(){hold=false;release?.();},waiting:()=>waiting};
 }
 const panel=page=>page.locator('#kt-route-services-panel');

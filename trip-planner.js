@@ -10,6 +10,17 @@
     && site.properties && site.properties.id != null && String(site.properties.id).trim() !== '';
   const clone = value => JSON.parse(JSON.stringify(value));
   const nameOf = site => String(site.properties.name || t("Saved campsite"));
+  const listingResolutions=new Map(),resolvingListings=new Set();
+  const historicalRecord=stop=>localOnlyStop(stop)?null:listingResolutions.get(stop.id)?.record||window.KampTrailData?.getHistoricalById?.(stop.id)||null;
+  const localOnlyStop=stop=>['service','spot','imported'].includes(stop.feature?.properties?.type)||/^(?:spot:|gpx:)/.test(stop.id);
+  function resolveSavedListings(){
+    const api=window.KampTrailData;if(!api?.resolveListing)return;
+    for(const stop of st.stops){
+      if(localOnlyStop(stop)||resolvingListings.has(stop.id)||listingResolutions.has(stop.id))continue;
+      resolvingListings.add(stop.id);
+      api.resolveListing(stop.id).then(result=>{listingResolutions.set(stop.id,result);render();}).catch(()=>{listingResolutions.set(stop.id,{kind:'unavailable'});render();}).finally(()=>resolvingListings.delete(stop.id));
+    }
+  }
   function announce(message,type){
     const notice=st.el?.querySelector('#kt-trip-notice');
     if(notice){notice.hidden=false;notice.textContent=message;notice.classList.toggle('is-error',type==='error');}
@@ -48,6 +59,7 @@
     try { st.showRoute = localStorage.getItem('kt_trip_route') === '1'; } catch {}
   }
   function getSite(stop) {
+    const record=historicalRecord(stop);if(record)return window.KampTrailListingHistory.historicalFeature(record);
     // A saved service may share an OSM identity with a campground; keep its service evidence.
     if(stop.feature?.properties?.type==='service')return valid(stop.feature)?stop.feature:null;
     // Any published id (canonical or alias) finds its listing. The saved id itself is never
@@ -101,7 +113,7 @@
   function stayKey(stop){return `${stop.id}|${stop.depart||stop.arrive}`;}
   function stayDue(stop,site,today=localToday()){
     const date=stop.depart||stop.arrive;
-    return !!(site&&site.properties?.type!=='service'&&isDate(date)&&date<=today&&!stayDismissed()[stayKey(stop)]);
+    return !!(site&&!site.properties?.historical_listing&&(!window.KampTrailData?.resolveListing||listingResolutions.get(stop.id)?.kind==='active')&&site.properties?.type!=='service'&&isDate(date)&&date<=today&&!stayDismissed()[stayKey(stop)]);
   }
   function dismissStay(stop){const v=stayDismissed();v[stayKey(stop)]=localToday();try{localStorage.setItem(STAY_KEY,JSON.stringify(v));}catch{}}
   function stayPrompt(stop,site,label){
@@ -114,7 +126,11 @@
   function button(text,action) {
     const el=document.createElement('button');el.type='button';el.className='btn';el.textContent=text;el.onclick=action;return el;
   }
-  function viewStop(stop) {
+  async function viewStop(stop) {
+    if(window.KampTrailData?.resolveListing&&!localOnlyStop(stop)){
+      try{const result=await window.KampTrailData.resolveListing(stop.id);listingResolutions.set(stop.id,result);if(result.kind==='historical'){close();window.KampTrailHistorical?.open(result.record,stop.id);return;}}
+      catch(error){notify(error.message);return;}
+    }
     const site=getSite(stop);if(!site)return;
     close();
     st.savedMarker?.remove();st.savedMarker=null;
@@ -220,6 +236,7 @@
     box.hidden=false;
   }
   function render() {
+    resolveSavedListings();
     if(!st.el)return;
     // Only an exact repeat of a saved id is collapsed. Different saved ids are kept as saved.
     const seen=new Set();st.stops=st.stops.filter(stop=>{getSite(stop);if(seen.has(stop.id))return false;seen.add(stop.id);return true;});
@@ -259,7 +276,11 @@
       const up=button(t("Up"),()=>move(index,-1));up.classList.add('kt-trip-up');up.disabled=index===0;up.setAttribute('aria-label',t("Move {name} up", {name:label}));
       const down=button(t("Down"),()=>move(index,1));down.classList.add('kt-trip-down');down.disabled=index===st.stops.length-1;down.setAttribute('aria-label',t("Move {name} down", {name:label}));
       const remove=button(t("Remove"),()=>{st.stops=st.stops.filter(item=>item!==stop);save();render();drawRoute();st.el.querySelector('#kt-trip-close').focus();});remove.classList.add('kt-trip-del');remove.setAttribute('aria-label',t("Remove {name}", {name:label}));
-      actions.append(up,down,remove);card.append(title,detail,actions);if(stayDue(stop,site))card.append(stayPrompt(stop,site,label));card.append(stopEditor(stop));list.append(card);
+      actions.append(up,down,remove);card.append(title,detail);
+      const record=historicalRecord(stop);
+      if(record){const notice=document.createElement('p');notice.className='kt-saved-history';notice.textContent=t('Historical listing. Current status is unverified. Original source dates are shown when you view the record.');card.append(notice);}
+      else if(!localOnlyStop(stop)&&window.KampTrailData?.resolveListing&&listingResolutions.get(stop.id)?.kind!=='active'){const notice=document.createElement('p');notice.textContent=t('Saved location only. Current listing status could not yet be verified.');card.append(notice);}
+      card.append(actions);if(stayDue(stop,site))card.append(stayPrompt(stop,site,label));card.append(stopEditor(stop));list.append(card);
     });
   }
   // Local recovery backup. GPX remains an interchange format, not a full trip restore.
@@ -454,7 +475,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{render();save();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.46.7',
+    version:'2.47.0',
     getRevision(){st.stops.forEach(getSite);return syncRevision();},
     init(map) {
       if(st.el)return;
@@ -478,7 +499,7 @@
       const backupFile=st.el.querySelector('#kt-trip-backup-json-file');
       st.el.querySelector('#kt-trip-backup-json-import').onclick=()=>backupFile.click();
       backupFile.onchange=()=>{importBackup(backupFile.files[0]);backupFile.value='';};
-      window.addEventListener('kamptrail:dataupdated',()=>{const before=JSON.stringify(st.stops);render();if(JSON.stringify(st.stops)!==before){save();drawRoute();}recoverLegacyStops();});
+      window.addEventListener('kamptrail:dataupdated',()=>{if(window.KampTrailData?.getLoadStatus?.().history==='ready')for(const[id,result]of listingResolutions)if(result.kind==='unavailable')listingResolutions.delete(id);const before=JSON.stringify(st.stops);render();if(JSON.stringify(st.stops)!==before){save();drawRoute();}recoverLegacyStops();});
     },
     addStop(id,snapshot) {
       const site=window.KampTrailData?.getCampsiteById(id) || snapshot;

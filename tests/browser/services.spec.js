@@ -1,3 +1,4 @@
+const {bindCampsiteFixture}=require('./helpers/campsite-fixture');
 const {test,expect}=require('@playwright/test');
 const AxeBuilder=require('@axe-core/playwright').default;
 const {mockServices}=require('./helpers/services-fixture');
@@ -13,6 +14,7 @@ async function fixture(page,context,{zoom=11,mobile=false,corrupt=false}={}){
  await page.route('**/data/campsites/agency/index.json',r=>json(r,{version:1,states:[]}));
  await page.route('**/data/campsites/ridb-sites.json',r=>json(r,{version:1,facilities:{}}));
  await page.route('**/data/campsites/*_merged.geojson',r=>json(r,{type:'FeatureCollection',features:[campsite]}));
+ await bindCampsiteFixture(page,{states:['UT'],features:[campsite]});
  await page.addInitScript(z=>{if(!localStorage.getItem('kt_last_position'))localStorage.setItem('kt_last_position',JSON.stringify({lat:40.75,lng:-111.88,zoom:z}));if(localStorage.getItem('test_services_offline')==='1')Object.defineProperty(navigator,'onLine',{get:()=>false,configurable:true});},zoom);
  await page.goto('/');await page.evaluate(()=>window.KampTrailMapLoader?.start());await page.waitForFunction(()=>window.KampTrailLayers&&window.KampTrailServices&&window.map);
  return{...services,errors};

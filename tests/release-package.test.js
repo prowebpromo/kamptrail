@@ -63,6 +63,9 @@ test('built release contains agency index dependencies and supports a custom-dom
   assert.equal(fs.readFileSync(path.join(permissionDir,'.htaccess'),'utf8'),'Require all denied\n','Generated identity data must be denied over HTTP');
   assert.equal(fs.readdirSync(permissionDir).filter(name=>/^[a-f0-9]{2}\.json$/.test(name)).length,256,'Every protected identity bucket is packaged');
   assert.ok(fs.existsSync(path.join(out,'permissions.js')));
+  assert.ok(fs.existsSync(path.join(out,'listing-history.js')));
+  assert.deepEqual(fs.readFileSync(path.join(out,'data/campsites/withdrawn.json')),fs.readFileSync(path.join(root,'data/campsites/withdrawn.json')),'Packaged historical identities retain the exact reviewed bytes');
+  require('../scripts/validate-history-release.js').validateHistoryRelease(path.join(out,'data/campsites'));
   const amenities=JSON.parse(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'));
   assert.equal(require('../data-quality.js').validRIDBAmenities(amenities),true);
   assert.equal(fs.readFileSync(path.join(out,'data/campsites/ridb-amenities.json'),'utf8'),fs.readFileSync(path.join(root,'data/campsites/ridb-amenities.json'),'utf8'));
