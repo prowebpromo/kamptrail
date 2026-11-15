@@ -7,7 +7,7 @@
   const HOOKUPS=[['electric',t("Electric")],['water',t("Water")],['sewer',t("Sewer")]];
   const defaults=()=>({cost:'all',type:'all',rigSize:'all',roadDifficulty:'all',amenities:[],minRating:0,rigLength:0,rigIncludeUnknown:false,hookups:[],minReviews:1,scoreSeason:'',minScore_quietness:0,minScore_shade:0,minScore_comfort:0,observedDays:365,elevationMin:null,elevationMax:null,elevationUnit:'ft',forecastMinC:null,forecastMaxC:null,forecastHours:24,forecastUnit:'F'});
   const state={filters:defaults(),panel:null,button:null};
-  function close(){if(state.panel.style.display==='none')return;state.panel.style.display='none';document.body.classList.remove('kt-filter-sheet-open');state.button.setAttribute('aria-expanded','false');state.button.focus();}
+  function close(){if(!state.panel.open)return;state.panel.close();state.panel.style.display='none';document.body.classList.remove('kt-filter-sheet-open');state.button.setAttribute('aria-expanded','false');state.button.focus();}
   function count(f){return Number(f.cost!=='all')+Number(f.type!=='all')+Number(f.rigSize!=='all')+f.amenities.length+Number(f.rigLength>0)+f.hookups.length+Number(f.minRating>0)+Number(f.minReviews>1)+(window.KampTrailDiscovery?.scoreFilterCount(f)||0)+Object.keys(window.KampTrailDiscovery?.AXES||{}).filter(k=>f['observed_'+k]).length+Number(!!f.observed_carrier)+Number(!!f.observed_signal)+Number(!!f.observed_radio)+Number(DataQuality.elevationRange(f).active)+Number(window.KampTrailForecast?.active(f));}
   function apply(origin='manual'){
     const f=state.filters;
@@ -60,8 +60,8 @@
   window.KampTrailFilters={
     version:'2.46.7',
     init(map){
-      const p=document.createElement('div');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
-      p.setAttribute('role','region');p.setAttribute('aria-label',t("Campsite filters"));
+      const p=document.createElement('dialog');p.id='kt-filter-panel';p.style.cssText='display:none;position:absolute;left:12px;width:300px;border-radius:10px;box-shadow:0 4px 20px #0003';
+      p.setAttribute('aria-label',t("Campsite filters"));
       p.innerHTML=`<div class="filter-header"><h2 style="flex:1">${t("Filters")}</h2><button id="kt-f-reset" class="btn">${t("Reset")}</button><button id="kt-f-close" class="btn" aria-label="${t("Close filters")}">${t("Close")}</button></div>
         <div class="filter-body"><p id="kt-rig-filter-status" class="filter-note" role="status">${t("Profile matching is off.")}</p><button type="button" id="kt-filter-rig-profile" class="btn">${t("Rig profile")}</button><strong>${t("Reported fee")}</strong><div class="cost-options">
         <label><input type="radio" name="f-cost" value="all" checked> ${t("All fees")}</label>
@@ -161,8 +161,14 @@
         const heading=node.matches('.kt-elevation-filters')?'Elevation and weather':node.matches('label[for="f-length"]')?'Rig and hookups':node.matches('.kt-camper-filters')?'Camper reports':!group?'Fee and type':null;
         if(heading){group=document.createElement('details');group.className='kt-filter-group';group.open=true;const title=document.createElement('summary');title.textContent=t(heading);group.append(title);body.append(group);}group.append(node);
       }
-      state.button.onclick=()=>{const open=p.style.display==='none';if(!open){close();return;}p.style.display='flex';document.body.classList.add('kt-filter-sheet-open');state.button.setAttribute('aria-expanded','true');p.querySelector('#kt-f-close').focus();resultCount();};
-      p.addEventListener('keydown',event=>{if(event.key!=='Tab')return;const all=[...p.querySelectorAll('button:not([disabled]),input,select,summary')].filter(n=>n.getClientRects().length);const first=all[0],last=all.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}});
+      const mobile=matchMedia('(max-width:760px)');
+      const present=()=>{p.style.display='flex';p.setAttribute('aria-modal',String(mobile.matches));if(mobile.matches)p.showModal();else p.show();};
+      state.button.onclick=()=>{if(p.open){close();return;}present();document.body.classList.add('kt-filter-sheet-open');state.button.setAttribute('aria-expanded','true');p.querySelector('#kt-f-close').focus();resultCount();};
+      // Keep a nested dialog on top during rotation; update the panel after it closes.
+      const updatePresentation=()=>{if(!p.open||mobile.matches===p.matches(':modal')||[...document.querySelectorAll('dialog[open]')].some(d=>d!==p))return;const focus=document.activeElement;p.close();present();if(p.contains(focus))focus.focus();};
+      mobile.addEventListener('change',updatePresentation);
+      document.addEventListener('close',updatePresentation,true);
+      p.addEventListener('cancel',event=>{event.preventDefault();close();});
       p.querySelector('#kt-filter-rig-profile').onclick=()=>window.KampTrailRigProfile?.open();
       p.querySelector('#kt-f-reset').onclick=reset;p.querySelector('#kt-f-close').onclick=()=>{close();state.button.focus();};
       p.querySelectorAll('[name="f-cost"]').forEach(el=>el.onchange=()=>{state.filters.cost=el.value;apply();});
@@ -177,7 +183,7 @@
       len.onchange=()=>{clearTimeout(lenTimer);setLen(true);};
       p.querySelector('#f-length-unknown').onchange=e=>{state.filters.rigIncludeUnknown=e.target.checked;apply();};
       p.querySelectorAll('[name="f-hookup"]').forEach(el=>el.onchange=()=>{state.filters.hookups=[...p.querySelectorAll('[name="f-hookup"]:checked')].map(i=>i.value);apply();});
-      document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&p.open&&(!e.target.closest('dialog[open]')||e.target.closest('dialog[open]')===p)){e.preventDefault();close();}});
       apply();
     },reset,applyEntry(mode){state.filters=defaults();if(mode==='overnight-parking')state.filters.type='parking';if(mode==='free-camping')state.filters.cost='free';if(mode==='blm')state.filters.catalogueSource='blm';if(['rest-areas','dump-stations'].includes(mode))state.filters.entryLayer=mode;sync();apply('entry');},applyProfile,setElevationFilters,setForecastFilters,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
   };

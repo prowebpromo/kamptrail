@@ -10,8 +10,13 @@
     && site.properties && site.properties.id != null && String(site.properties.id).trim() !== '';
   const clone = value => JSON.parse(JSON.stringify(value));
   const nameOf = site => String(site.properties.name || t("Saved campsite"));
-  const notify = message => window.showToast?.(message, 'error');
-  const info = message => window.showToast?.(message, 'info');
+  function announce(message,type){
+    const notice=st.el?.querySelector('#kt-trip-notice');
+    if(notice){notice.hidden=false;notice.textContent=message;notice.classList.toggle('is-error',type==='error');}
+    window.showToast?.(message,type);
+  }
+  const notify = message => announce(message,'error');
+  const info = message => announce(message,'info');
   const isDate = v => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
   const cleanText = (v, max) => typeof v === 'string' ? v.slice(0, max) : '';
   function syncRevision() {
@@ -358,9 +363,10 @@
     }).catch(err=>notify(err.message||t("That GPX file could not be read.")));
   }
   function drawer() {
-    const d=document.createElement('div');d.id='kt-trip-drawer';d.hidden=true;
+    const d=document.createElement('dialog');d.id='kt-trip-drawer';d.hidden=true;
     d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','kt-saved-title');d.setAttribute('aria-hidden','true');
     d.innerHTML=`<div class="kt-saved-header"><h2 id="kt-saved-title">${t("Saved stops")}</h2><button type="button" class="btn" id="kt-trip-close" aria-label="${t("Close saved stops")}">${t("Close")}</button></div>
+      <p id="kt-trip-notice" class="kt-trip-notice" role="status" aria-live="polite" hidden></p>
       <p class="kt-saved-note">${t("Saved on this device. Confirm current access before traveling.")}</p>
       <div id="kt-trip-backup" class="kt-backup-prompt" hidden><p>${t("Back up your full trip with Export JSON backup. Browser storage can be cleared or removed. GPX exports locations for other apps.")}</p><button type="button" class="btn" id="kt-trip-backup-export">${t("Export GPX backup")}</button><button type="button" class="btn" id="kt-trip-backup-dismiss">${t("Dismiss backup reminder")}</button></div>
       <p id="kt-trip-ios" class="kt-ios-storage-note">${t("On iPhone or iPad, adding KampTrail to the Home Screen may help retain saved data. Keep a JSON backup too.")}</p>
@@ -390,6 +396,8 @@
       #kt-trip-drawer {position:fixed;top:12px;right:0;width:390px;max-width:calc(100vw - 12px);height:calc(100dvh - 24px);display:flex;flex-direction:column;background:#10281f;color:#e3f0e5;border:1px solid #55705b;border-radius:12px 0 0 12px;box-shadow:-4px 0 20px #0006;z-index:1600;overflow:hidden}
       #kt-trip-drawer[hidden],#kt-trip-drawer [hidden] {display:none!important}
       #kt-trip-drawer .kt-saved-header {padding:12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #45624b}
+      #kt-trip-notice {flex:none;margin:10px 12px 0;padding:10px;border:1px solid #73947b;border-radius:6px;font-size:13px;line-height:1.5}
+      #kt-trip-notice.is-error {color:#fff1d9;border-color:#e3b359}
       #kt-trip-drawer h2 {font-size:18px;margin:0;flex:1}
       #kt-trip-drawer .kt-saved-note,#kt-trip-drawer .kt-backup-privacy,#kt-trip-drawer .kt-ios-storage-note,#kt-trip-summary {font-size:12px;line-height:1.5;margin:10px 14px 0;color:#bed3c4}
       #kt-trip-summary {font-weight:600;color:#e3f0e5}
@@ -418,22 +426,23 @@
       #kt-trip-drawer .kt-saved-footer {padding:12px;border-top:1px solid #45624b;display:flex;gap:7px;flex-wrap:wrap}
     `;
     const scroll=document.createElement('div');scroll.className='kt-trip-scroll';
-    for(const child of [...d.children])if(!child.classList.contains('kt-saved-header')&&!child.classList.contains('kt-saved-footer'))scroll.append(child);
+    for(const child of [...d.children])if(!child.classList.contains('kt-saved-header')&&!child.classList.contains('kt-saved-footer')&&!child.classList.contains('kt-trip-notice'))scroll.append(child);
     d.insertBefore(scroll,d.querySelector('.kt-saved-footer'));
+    d.addEventListener('cancel',event=>{event.preventDefault();close();});
+    d.addEventListener('close',()=>{if(!d.open)close();});
     document.head.append(style);document.body.append(d);return d;
   }
   function open() {
     if(!st.el)return;
-    st.previousFocus=document.activeElement;st.open=true;document.body.classList.add('kt-trip-sheet-open');render();st.el.hidden=false;st.el.style.right='0';st.el.setAttribute('aria-hidden','false');
+    if(!st.open)st.previousFocus=document.activeElement;st.open=true;document.body.classList.add('kt-trip-sheet-open');render();st.el.hidden=false;st.el.style.right='0';st.el.setAttribute('aria-hidden','false');
     document.getElementById('trip')?.setAttribute('aria-expanded','true');
-    const app=document.getElementById('app');if(app)app.inert=true;
+    if(!st.el.open)st.el.showModal();
     st.el.querySelector('#kt-trip-close').focus();
   }
   function close() {
     if(!st.el||!st.open)return;
-    st.open=false;document.body.classList.remove('kt-trip-sheet-open');st.el.hidden=true;st.el.setAttribute('aria-hidden','true');
+    st.open=false;st.el.close();document.body.classList.remove('kt-trip-sheet-open');st.el.hidden=true;st.el.setAttribute('aria-hidden','true');
     document.getElementById('trip')?.setAttribute('aria-expanded','false');
-    const app=document.getElementById('app');if(app)app.inert=false;
     const target=st.previousFocus?.isConnected?st.previousFocus:document.getElementById('trip');target?.focus();
   }
   function recoverLegacyStops() {
@@ -469,17 +478,6 @@
       const backupFile=st.el.querySelector('#kt-trip-backup-json-file');
       st.el.querySelector('#kt-trip-backup-json-import').onclick=()=>backupFile.click();
       backupFile.onchange=()=>{importBackup(backupFile.files[0]);backupFile.value='';};
-      document.addEventListener('keydown',event=>{
-        if(!st.open)return;
-        if(event.key==='Escape'){event.preventDefault();close();return;}
-        if(event.key==='Tab') {
-          const focusable=[...st.el.querySelectorAll('button:not([disabled]),a[href],input:not([hidden]),textarea,summary')].filter(el=>!el.hidden&&!el.closest('[hidden]')&&el.getClientRects().length>0);
-          const first=focusable[0],last=focusable[focusable.length-1];
-          if(!st.el.contains(document.activeElement)){event.preventDefault();(event.shiftKey?last:first).focus();}
-          else if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
-          else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
-        }
-      });
       window.addEventListener('kamptrail:dataupdated',()=>{const before=JSON.stringify(st.stops);render();if(JSON.stringify(st.stops)!==before){save();drawRoute();}recoverLegacyStops();});
     },
     addStop(id,snapshot) {

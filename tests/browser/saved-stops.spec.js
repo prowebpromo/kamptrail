@@ -54,8 +54,11 @@ test('mobile dialog closes with Escape, restores focus, and stays above the app'
   await expect(page.locator('#kt-trip-close')).toBeFocused();
   const rect=await page.locator('#kt-trip-drawer').boundingBox();expect(rect.x).toBeGreaterThanOrEqual(0);expect(rect.height).toBeLessThanOrEqual(844);
   const lastControl=page.locator('#kt-trip-backup-json-import');await expect(lastControl).toBeVisible();await expect(lastControl).toBeEnabled();
-  await page.keyboard.press('Shift+Tab');await expect(lastControl).toBeFocused();
-  await page.keyboard.press('Tab');await expect(page.locator('#kt-trip-close')).toBeFocused();
+  expect(await page.locator('#kt-trip-drawer').evaluate(e=>e.matches(':modal'))).toBe(true);
+  await page.locator('#trip').evaluate(e=>e.focus());await expect(page.locator('#kt-trip-close')).toBeFocused();
+  // Native modal dialogs may let focus visit the browser chrome at the boundary.
+  await page.keyboard.press('Shift+Tab');await expect(page.locator('#trip')).not.toBeFocused();
+  await page.keyboard.press('Tab');expect(await page.locator('#kt-trip-drawer').evaluate(e=>e.contains(document.activeElement))).toBe(true);
   await page.keyboard.press('Escape');await expect(page.locator('#kt-trip-drawer')).toBeHidden();await expect(page.locator('#trip')).toBeFocused();
 });
 
