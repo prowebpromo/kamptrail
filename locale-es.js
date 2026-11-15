@@ -1,5 +1,5 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.47.0',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.47.1',messages:{
   "Listing history is unavailable. Reconnect and retry before opening campsite records.": "El historial de lugares no está disponible. Vuelve a conectarte e inténtalo de nuevo antes de abrir los registros.",
   "Historical listing": "Registro histórico",
   "Close historical listing": "Cerrar registro histórico",
