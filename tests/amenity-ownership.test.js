@@ -5,6 +5,7 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 const Q=require('../data-quality.js');
 const {CampsiteMerger}=require('../scripts/merge_campsite_data');
 const {buildSearchIndex}=require('../scripts/build-search-index');
+const {frozenOwnership,currentOwnership,assertHistorical,assertOwnOsmTags}=require('./helpers/ownership-source-fixture');
 const routesContext={DataQuality:Q,URL,Set,Map,Math,Number,Date,Array,AbortController,setTimeout,clearTimeout};vm.createContext(routesContext);vm.runInContext(fs.readFileSync(path.join(__dirname,'../routes.js'),'utf8'),routesContext);const R=routesContext.KampTrailRoutes;
 
 const osm=(id,tags={},coords=[-105,40],name='Pine Campground')=>({type:'Feature',geometry:{type:'Point',coordinates:coords},properties:{id:`osm:node:${id}`,osm_id:id,osm_type:'node',tourism:'camp_site',name,schema_version:3,source:'openstreetmap',source_retrieved_at:'2026-10-29T02:53:12Z',...tags}});
@@ -143,20 +144,9 @@ function popupFor(features,language='en'){
   return context.KampTrailData.popupHTML(site);
 }
 
-test('published fixture: each of the 191 borrowed-amenity and 221 Recreation.gov toilet-record listings has its stated outcome',()=>{
+test('frozen published sources retain all 191 borrowed-amenity and 221 Recreation.gov toilet-record outcomes',()=>{
   const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/amenity-ownership-cases.json'),'utf8'));
-  const dir=path.join(__dirname,'../data/campsites'),read=f=>JSON.parse(fs.readFileSync(path.join(dir,f),'utf8'));
-  const details=read('ridb-sites.json').facilities,ridbData=read('ridb-amenities.json'),usfsData=read('usfs-site-amenities.json'),idx=read('search-index.json').sites;
-  const preferredIds=new Set(idx.map(s=>s.id)),previousHosts=new Map();for(const s of idx)for(const a of s.legacy_ids||[])previousHosts.set(a,s.id);
-  const attach=f=>{Q.attachSiteDetails(f,details);Q.attachRIDBAmenities(f,ridbData);Q.attachUSFSSiteAmenities(f,usfsData);};
-  const wanted=new Set(fixture.cases.map(c=>c.id)),input=[];
-  for(const name of fs.readdirSync(dir).filter(n=>/^[A-Z]{2}_merged\.geojson$/.test(n)).sort()){
-    const state=name.slice(0,2),features=read(name).features,agency=path.join(dir,'agency',state+'.geojson');
-    if(fs.existsSync(agency))features.push(...JSON.parse(fs.readFileSync(agency,'utf8')).features);
-    for(const raw of Q.publicationCandidates(features,{state})){const f=Q.normalizeFeature(raw,{state});if(f){attach(f);input.push(f);}}
-  }
-  const catalogue=Q.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{preferredIds,previousHosts}).features;catalogue.forEach(attach);
-  const by=new Map(catalogue.filter(f=>wanted.has(f.properties.id)).map(f=>[f.properties.id,f.properties]));
+  const {by}=frozenOwnership();
   assert.equal(fixture.cases.filter(c=>c.borrowed).length,191);assert.equal(fixture.cases.filter(c=>c.ridb_toilet_records).length,221);
   for(const c of fixture.cases){
     const p=by.get(c.id);assert.ok(p,c.id);
@@ -169,4 +159,55 @@ test('published fixture: each of the 191 borrowed-amenity and 221 Recreation.gov
     for(const k of ['toilet','water','toilet_with_length_filter'])if(!c[k].included)assert.ok(c[k].reason,c.id);
   }
   assert.ok(fixture.cases.some(c=>!c.toilet.included),'exclusions remain; not every record was made to match');
+});
+
+test('every published amenity fixture ID remains current with own-source evidence or resolves only as its original historical host',()=>{
+  const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/amenity-ownership-cases.json'),'utf8')),context=currentOwnership();
+  const historical=[],current=[];
+  const fields={toilet:'toilet',water:'water',dump:'dump',shower:'shower'},ridbKeys={toilet:'toilet',water:'drinking_water',dump:'dump',shower:'shower'};
+  const campgroundTypes=new Set(['CAMPGROUND','GROUP CAMPGROUND','HORSE CAMP']);
+  const classes={toilet:{positive:['flush','vault_or_pit'],negative:['no_toilet']},water:{positive:['drinking_water'],negative:['no_drinking_water','no_water']}};
+  for(const c of fixture.cases){
+    const p=context.by.get(c.id);if(!p){assertHistorical(c.id,context);historical.push(c.id);continue;}current.push(c.id);
+    assertOwnOsmTags(p,'osm_amenity_tags',context);
+    const ids=new Set([p.id,...p.legacy_ids]),evidence=Q.amenityEvidence(p);
+    // Check source -> observation as well as observation -> source. A newly
+    // retrieved own-site statement must not disappear merely to retain old counts.
+    for(const id of ids)if(id.startsWith('ridb:')){
+      const source=context.usfsAmenities.facilities[id.slice(5)];if(!source)continue;
+      for(const record of source.records)if(campgroundTypes.has(record.type))for(const amenity of ['toilet','water']){
+        const statement=record[amenity];if(!statement)continue;
+        const polarity=source.conflicts.includes(amenity)?'conflict':classes[amenity].positive.includes(statement.class)?'positive':classes[amenity].negative.includes(statement.class)?'negative':'other';
+        assert.ok(evidence.amenities[amenity][polarity].some(r=>r.record===id&&r.name===record.name&&r.type===record.type&&r.value===statement.text),c.id+' lost its own USFS '+amenity+' statement');
+      }
+    }
+    for(const [amenity,observations] of Object.entries(evidence.amenities)){
+      for(const polarity of ['positive','negative','conflict'])for(const observation of observations[polarity]){
+        assert.ok(ids.has(observation.record),c.id+' uses another record '+observation.record);
+        if(observation.source==='osm'){assert.equal(observation.record,p.id);assert.equal(observation.scope,'element');}
+        if(observation.source==='ridb'){
+          assert.equal(observation.scope,'campsite_records');const source=context.ridbAmenities.facilities[observation.record.slice(5)].amenities[ridbKeys[amenity]];
+          assert.ok(source,c.id+' RIDB observation missing its own source');assert.ok(source[polarity==='positive'?'reported':polarity]>0,c.id+' RIDB polarity unsupported');
+        }
+        if(observation.source==='usfs'){
+          const source=context.usfsAmenities.facilities[observation.record.slice(5)],record=source.records.find(r=>r.name===observation.name&&r.type===observation.type&&r[fields[amenity]]?.text===observation.value);
+          assert.ok(record,c.id+' USFS observation missing its exact facility record');assert.ok(campgroundTypes.has(record.type));assert.equal(observation.scope,'site_record');assert.equal(observation.date,record.updated||null);assert.equal(observation.retrieved,context.usfsAmenities.source.retrieved);
+          if(polarity==='conflict')assert.ok(source.conflicts.includes(fields[amenity]));else assert.ok(classes[amenity][polarity].includes(record[fields[amenity]].class),c.id+' USFS class unsupported');
+        }
+      }
+      const reason=Q.amenityFilterReason(p,amenity),withLength=Q.amenityFilterReason(p,amenity,fixture.length_filter_used);
+      if(reason.included){assert.ok(observations.positive.length,c.id+' matched without own positive evidence');assert.equal(observations.negative.length+observations.conflict.length,0,c.id+' matched contradictory evidence');}
+      const positiveOnly=observations.positive.length>0&&!observations.negative.length&&!observations.conflict.length;
+      assert.equal(reason.included,positiveOnly,c.id+' current own-source inclusion');
+      assert.equal(withLength.included,positiveOnly&&observations.positive.some(r=>['element','listing_record','site_record'].includes(r.scope)),c.id+' current whole-site versus individual-site scope');
+      if(withLength.included)assert.ok(observations.positive.some(r=>r.scope!=='campsite_records'),c.id+' borrowed an amenity across individual campsites');
+      if(!reason.included)assert.ok(reason.reason,c.id+' exclusion lacks reason');
+    }
+    // The old fixture outcomes remain pinned above; refreshed USFS source records
+    // can add whole-site evidence, but every current category must retain its scope.
+    const sets=Q.amenityFilterSets(p),row=context.indexBy.get(c.id);
+    assert.deepEqual(row.m.a||[],sets.g,c.id+' current campground-wide index ownership');assert.deepEqual(row.m.s||[],sets.s,c.id+' current campsite-record index scope');
+  }
+  assert.equal(current.length+historical.length,404);
+  for(const id of ['osm:node:1596375040','osm:node:1922410822','osm:node:2332493731'])assert.ok(historical.includes(id),id+' historical reservation disappeared');
 });

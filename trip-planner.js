@@ -243,6 +243,7 @@
     const badge=document.getElementById('trip-count');if(badge)badge.textContent=`(${st.stops.length})`;
     st.el.querySelector('.kt-saved-note').textContent=st.storageAvailable?t("Saved on this device. Confirm current access before traveling."):t("Browser storage is unavailable. Changes are available only while this page stays open.");
     const list=st.el.querySelector('#kt-trip-list');list.replaceChildren();
+    if(st.stops.length)list.setAttribute('role','list');else list.removeAttribute('role');
     st.el.querySelector('#kt-trip-clear').hidden=!st.stops.length;
     st.el.querySelector('#kt-trip-tools').hidden=!st.stops.length;
     const road=currentDrive();
@@ -257,7 +258,7 @@
     if(!st.stops.length) {const empty=document.createElement('p');empty.textContent=t("No saved stops yet. Save a campsite from its listing or map popup, long-press the map to save any spot, or import a GPX file.");list.append(empty);return;}
     st.stops.forEach((stop,index)=>{
       const site=getSite(stop),coords=site?.geometry.coordinates;
-      const card=document.createElement('article');card.className='kt-saved-stop';card.setAttribute('role','listitem');
+      const card=document.createElement('div');card.className='kt-saved-stop';card.setAttribute('role','listitem');
       const title=document.createElement('h3');title.textContent=`${index+1}. ${site?nameOf(site):t("Saved stop {0}", {"0":(stop.id)})}`;
       const detail=document.createElement('p');
       let text=coords ? `${coords[1].toFixed(4)}, ${coords[0].toFixed(4)}` : t("This older saved stop has no location details. Find and save the campsite again, or remove this entry.");

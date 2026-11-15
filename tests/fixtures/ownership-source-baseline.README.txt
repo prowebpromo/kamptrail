@@ -1,0 +1,19 @@
+ownership-source-baseline.json.gz freezes source inputs, not calculated outcomes.
+
+Baseline: prowebpromo/kamptrail commit
+1c1ac3a3b5f742c829370fbcfa6f1cb7291afdc3.
+
+The fixture contains 806 original merged/agency source Features contributing to
+the union of all 404 amenity and 245 rig fixture cases (510 original canonical
+listings), their published identity rows, and original RIDB/USFS sidecars.
+Every contributing source file was checked against its original Git blob before
+extraction. The JSON includes the source paths and original SHA-256 hashes.
+Descriptions, attributed member evidence, dates and explicit negatives are kept.
+
+The existing amenity-ownership-cases.json, rig-tag-ownership-cases.json and CSV
+expected results are unchanged. Tests replay every original case against these
+frozen inputs, then check every case's current own-source evidence or its exact
+historical host and absence from active classification/identity membership.
+
+To inspect: decompress with node:zlib.gunzipSync or any gzip reader. The helper
+pins the compressed fixture SHA-256 to make changes deliberate and reviewable.

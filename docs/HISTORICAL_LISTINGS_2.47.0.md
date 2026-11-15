@@ -34,8 +34,14 @@ The history registry and each current data file are bound to the index by SHA-25
 
 History is append-only during automated refresh. A source reappearing does not silently reactivate a historical listing. A future verified reactivation requires an explicit reviewed change. Refreshes freeze the previous index, create justified historical reservations, rebuild the current index, and enforce continuity before committing. Still-publishable records lost by merging block the refresh instead of being automatically archived.
 
+## Ownership regression coverage
+
+The original ownership expectations remain pinned to exact retained baseline inputs. Current data is checked separately against each listing's own source evidence and historical reservations. Review of the published amenity fixtures found 90 changed outcomes across 31 active IDs, all supported by newly available own-facility Forest Service records, including six explicit water negatives. No active rig-category outcome changed in the reviewed fixture set. Historical fixture rows resolve to their original hosts and cannot supply current classifications.
+
 ## Release verification
 
 Release packaging rejects missing or inconsistent registry/index/source generations and historical IDs leaking into current search. Data files use exact checkout bytes, including on Windows. Focused tests cover identity preservation, provenance dates, failed source scopes, source reappearance, duplicate reservations, cached and mismatched generations, saved snapshots, shared aliases, retry and offline reopening.
+
+Saved stops also uses valid list semantics in empty and populated states; dedicated browser checks cover both.
 
 Final exact-head CI and live desktop/mobile results are recorded in the release handoff after publication. A passing automated check is not physical-phone or Safari verification, nor a claim that a historical campground's real-world status was established.

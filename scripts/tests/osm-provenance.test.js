@@ -8,10 +8,191 @@ const DQ=require('../../data-quality');
 const fixtures=require('./fixtures/osm-provenance.json').fixtures;
 const dir=path.resolve(__dirname,'../../data/opencampingmap'),raw=new Map();
 for(const file of fs.readdirSync(dir).filter(f=>/^[A-Z]{2}\.geojson$/.test(f)))for(const f of JSON.parse(fs.readFileSync(path.join(dir,file))).features)if(!raw.has(f.properties.id))raw.set(f.properties.id,f);
+// Exact own-source Features from accepted baseline 1c1ac3a, before the November 15 refresh.
+// The five canonicals are now historical; the sixth row was an absorbed member. Keep this
+// original input evidence only in the ownership replay; never restore rows to the current
+// catalogue to satisfy a test.
+const historicalInputs=new Map(Object.entries({
+  "osm:node:1596375040": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.0532475,
+        45.5942025
+      ]
+    },
+    "properties": {
+      "name": "Ainsworth Campground",
+      "ownership": "Oregon State Parks",
+      "tourism": "camp_site",
+      "osm_id": 1596375040,
+      "osm_type": "node",
+      "id": "osm:node:1596375040",
+      "source": "openstreetmap",
+      "schema_version": 3,
+      "source_url": "https://www.openstreetmap.org/node/1596375040",
+      "source_retrieved_at": "2026-10-29T03:29:55Z"
+    }
+  },
+  "osm:node:1922410822": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -111.6761623,
+        40.4486872
+      ]
+    },
+    "properties": {
+      "addr:city": "Pleasant Grove",
+      "addr:postcode": "84062",
+      "addr:state": "Utah",
+      "addr:street": "Little Mill Campground Road",
+      "camp_site": "standard",
+      "name": "Little Mill Campground",
+      "tourism": "camp_site",
+      "osm_id": 1922410822,
+      "osm_type": "node",
+      "id": "osm:node:1922410822",
+      "source": "openstreetmap",
+      "schema_version": 3,
+      "source_url": "https://www.openstreetmap.org/node/1922410822",
+      "source_retrieved_at": "2026-10-29T03:37:36Z"
+    }
+  },
+  "osm:node:2332493731": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -105.505055,
+        32.904688
+      ]
+    },
+    "properties": {
+      "name": "James Canyon Campground",
+      "operator": "USFS",
+      "source": "openstreetmap",
+      "tourism": "camp_site",
+      "uuid": "sonora_20130605",
+      "website": "https://www.fs.usda.gov/recarea/lincoln/recarea/?recid=34174",
+      "osm_id": 2332493731,
+      "osm_type": "node",
+      "id": "osm:node:2332493731",
+      "schema_version": 3,
+      "source_url": "https://www.openstreetmap.org/node/2332493731",
+      "source_retrieved_at": "2026-10-29T03:19:02Z"
+    }
+  },
+  "osm:node:2937772756": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -86.0049087,
+        42.1087744
+      ]
+    },
+    "properties": {
+      "addr:city": "Decatur",
+      "addr:housenumber": "84981",
+      "addr:postcode": "49045",
+      "addr:state": "MI",
+      "addr:street": "47 1/2 Street",
+      "gnis:feature_id": "2574946",
+      "name": "Timber Trails RV Park",
+      "phone": "+1-269-423-7311",
+      "tents": "yes",
+      "tourism": "caravan_site",
+      "website": "https://www.timbertrailsrvpark.com/",
+      "osm_id": 2937772756,
+      "osm_type": "node",
+      "id": "osm:node:2937772756",
+      "source": "openstreetmap",
+      "schema_version": 3,
+      "source_url": "https://www.openstreetmap.org/node/2937772756",
+      "source_retrieved_at": "2026-10-29T03:07:26Z"
+    }
+  },
+  "osm:node:7486715212": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -94.1016101,
+        47.5234095
+      ]
+    },
+    "properties": {
+      "addr:city": "Deer River",
+      "addr:state": "MN",
+      "capacity": "22",
+      "drinking_water": "yes",
+      "name": "West Seelye Bay  Campground",
+      "operator": "USFS",
+      "phone": "+1-218-335-8600",
+      "toilets": "yes",
+      "tourism": "camp_site",
+      "osm_id": 7486715212,
+      "osm_type": "node",
+      "id": "osm:node:7486715212",
+      "source": "openstreetmap",
+      "schema_version": 3,
+      "source_url": "https://www.openstreetmap.org/node/7486715212",
+      "source_retrieved_at": "2026-10-29T03:08:26Z"
+    }
+  },
+  "osm:node:14119851944": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -111.6760867,
+        40.4485493
+      ]
+    },
+    "properties": {
+      "addr:city": "Pleasant Grove",
+      "addr:postcode": "84062",
+      "addr:state": "Utah",
+      "addr:street": "Little Mill Campground Road",
+      "camp_site": "standard",
+      "name": "Little Mill Campground",
+      "operator": "Utah Recreation",
+      "tourism": "camp_site",
+      "osm_id": 14119851944,
+      "osm_type": "node",
+      "id": "osm:node:14119851944",
+      "source": "openstreetmap",
+      "schema_version": 3,
+      "source_url": "https://www.openstreetmap.org/node/14119851944",
+      "source_retrieved_at": "2026-10-29T03:37:36Z"
+    }
+  }
+}));
 const make=(input,synthetic)=>{
- if(!synthetic){assert.ok(raw.has(input.id),input.id);return structuredClone(raw.get(input.id));}
+ if(!synthetic){const feature=historicalInputs.get(input.id)||raw.get(input.id);assert.ok(feature,input.id);return structuredClone(feature);}
  return {type:'Feature',geometry:{type:'Point',coordinates:[-40,30]},properties:{id:input.id,name:'Synthetic Test Campground',schema_version:3,source:input.id.startsWith('osm:')?'openstreetmap':'recreation.gov',source_retrieved_at:'2026-10-30T00:00:00Z',...(input.id.startsWith('osm:')?{osm_type:input.id.split(':')[1],osm_id:Number(input.id.split(':')[2]),tourism:'camp_site'}:{}),...input.tags}};
 };
+test('frozen provenance inputs keep own evidence and published canonicals resolve historically',()=>{
+ const root=path.resolve(__dirname,'../..');
+ const history=require('../../listing-history').historyMap(JSON.parse(fs.readFileSync(path.join(root,'data/campsites/withdrawn.json'),'utf8')));
+ const active=JSON.parse(fs.readFileSync(path.join(root,'data/campsites/search-index.json'),'utf8')).sites;
+ const activeIds=new Set(active.flatMap(site=>[site.id,...(site.legacy_ids||[])]));
+ for(const [id,feature] of historicalInputs){
+  const original=fixtures.flatMap(f=>f.inputs).find(input=>input.id===id);
+  for(const [key,value] of Object.entries(original.tags))assert.deepEqual(feature.properties[key],value,id+' original '+key);
+  assert.equal(feature.properties.id,id);assert.match(feature.properties.source_retrieved_at,/^2026-10-29T/);
+  // Absorbed evidence does not require an independent historical canonical notice.
+  if(fixtures.some(f=>!f.synthetic&&f.inputs[0].id===id)){
+   const record=history.get(id);assert.ok(record,id+' historical notice');assert.equal(record.id,id);
+   assert.deepEqual(feature.geometry.coordinates,[record.lng,record.lat],id+' original point');
+   assert.ok(record.source_dates.some(date=>date.source_record_id===id&&date.retrieved_at===feature.properties.source_retrieved_at),id+' original own retrieval date');
+   assert.equal(activeIds.has(id),false,id+' must not reappear in current discovery');
+  }
+ }
+});
 for(const f of fixtures.filter(f=>f.kind!=='synthetic_index_layer'))test('Claude provenance '+f.fixture_id,()=>{
  const m=new CampsiteMerger();
  const inputs=f.inputs.map(i=>make(i,f.synthetic));
