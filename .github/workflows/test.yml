@@ -9,7 +9,7 @@ on:
         default: ''
   pull_request:
   push:
-    branches: [main]
+    branches: [main, review/tourism-admission-r3]
 permissions:
   contents: read
 jobs:

@@ -263,6 +263,8 @@ For a persistent disposable checkout, run `node scripts/tourism-type-admission/t
 
 The draft regression job allows 45 minutes for offline generation and cross-checks plus the unchanged suites. The prior 25-minute limit covered the suites without this source-only draft preparation; local Windows preparation alone exceeded 20 minutes. Hosted CI will establish the Linux duration. No checks or assertions were dropped to fit the time limit.
 
+The regression workflow also runs on pushes to `review/tourism-admission-r3`. This checks the exact source-only draft head while the PR has conflicts with current main and pull-request CI cannot start. It does not verify integration with current main, resolve those conflicts, change the review status, or authorize a merge or deployment.
+
 ## Code changes
 
 - `data-quality.js`: `HELD_PUBLISHED_LABELS` (38: 9 pending withdrawals, 2 decision-4 exceptions, 27 review holds), `OWNER_REVIEWED_LABELS` (44 labels accepted from own records, each bound to its ledger field and quote, `type_evidence.kind = owner_reviewed_own_record`), the pending-withdrawal set, the two pinned lodging points and the Shaw House closure notice pinned to its retrieval and wording. Names no longer set a type outside the ledger. The 7 Other listings use the existing pending-admission path.
