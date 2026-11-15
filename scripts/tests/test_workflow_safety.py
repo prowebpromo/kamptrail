@@ -41,6 +41,29 @@ class WorkflowSafetyTests(unittest.TestCase):
         self.assertTrue(steps[audit]['with']['uploadArtifacts'])
         policy = json.loads((ROOT / '.lighthouserc.json').read_text())['ci']['assert']['assertions']
         self.assertEqual(policy['categories:performance'], ['warn', {'minScore': 0.9}])
+        self.assertNotIn('categories:pwa', policy)  # Lighthouse 12 removed this category.
+
+    def test_pwa_manifest_assets_and_existing_install_offline_checks_remain_in_ci(self):
+        manifest = json.loads((ROOT / 'manifest.json').read_text())
+        self.assertTrue(manifest.get('name') or manifest.get('short_name'))
+        self.assertEqual(manifest['display'], 'standalone')
+        self.assertEqual(manifest['scope'], './')
+        self.assertEqual(manifest['start_url'], './?source=pwa')
+        for size in (192, 512):
+            for purpose in ('any', 'maskable'):
+                icon = next(i for i in manifest['icons'] if i['sizes'] == f'{size}x{size}' and purpose in i['purpose'].split())
+                self.assertEqual(icon['type'], 'image/png')
+                png = (ROOT / icon['src']).read_bytes()
+                self.assertEqual(png[:8], b'\x89PNG\r\n\x1a\n')
+                self.assertEqual(png[12:16], b'IHDR')
+                self.assertEqual((int.from_bytes(png[16:20], 'big'), int.from_bytes(png[20:24], 'big')), (size, size))
+        scripts = json.loads((ROOT / 'package.json').read_text())['scripts']
+        for check in ('install', 'service-worker', 'offline-readiness', 'offline-safety'):
+            self.assertIn(f'tests/{check}.test.js', scripts['test'])
+        regression = yaml.safe_load((WORKFLOWS / 'test.yml').read_text())['jobs']['regression']['steps']
+        for command in ('npm test', 'npm run test:browser'):
+            self.assertTrue(any(step.get('run') == command for step in regression))
+        self.assertIn("'app.spec.js'", (ROOT / 'playwright.config.js').read_text())
 
     def test_history_is_built_after_refresh_from_a_frozen_baseline_before_final_index(self):
         jobs = yaml.safe_load(OWNER.read_text())['jobs']
