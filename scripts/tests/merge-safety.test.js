@@ -230,4 +230,58 @@ test('the kept record is not replaced when it is already published as a listing 
   const result = await merger.mergeDatasets([{type: 'FeatureCollection', features: [
     osmSite(30, 'Highway K', -90.7666667, 37.3241667), osmSite(31, 'Highway K', -90.7612754, 37.3250398)]}]);
   assert.equal(result.features[0].properties.id, 'osm:way:30');
+  assert.equal(result.features.length, 1);
+  assert.deepEqual(new Set(result.features[0].properties.source_ids), new Set(['osm:way:30', 'osm:way:31']));
+});
+
+test('a renamed nearby listing cannot fuzzy-merge two separately published canonical IDs', async () => {
+  const sites = [
+    osmSite(407716029, 'Geico Ground Red Premium', -81.0668171, 29.1872808),
+    osmSite(407716030, 'Geico Grounds Red Premium', -81.0697843, 29.1836323)
+  ];
+  const originals = structuredClone(sites);
+  for (const features of [sites, [...sites].reverse()]) {
+    const merger = new CampsiteMerger();
+    merger.preferredIds = new Set(sites.map(site => site.properties.id));
+    merger.publishedAnyIds = new Set(merger.preferredIds);
+    assert.ok(merger.stringSimilarity(sites[0].properties.name, sites[1].properties.name) > .85);
+    const result = await merger.mergeDatasets([{features}]);
+    assert.equal(result.duplicatesRemoved, 0);
+    assert.equal(result.features.length, 2);
+    for (const original of sites) {
+      const kept = result.features.find(site => site.properties.id === original.properties.id);
+      assert.ok(kept, original.properties.id);
+      assert.deepEqual(kept.geometry, original.geometry);
+      assert.deepEqual(kept.properties.source_ids, [original.properties.id]);
+    }
+  }
+  assert.deepEqual(sites, originals);
+});
+
+test('an alias cannot indirectly fuzzy-merge two published canonical identities', async () => {
+  const merger = new CampsiteMerger();
+  merger.preferredIds = new Set(['osm:way:31', 'osm:way:32']);
+  merger.publishedAnyIds = new Set(['osm:way:30', ...merger.preferredIds]);
+  const result = await merger.mergeDatasets([{features: [
+    osmSite(30, 'Highway K', -90.76, 37.32),
+    osmSite(31, 'Highway K', -90.76, 37.321),
+    osmSite(32, 'Highway K', -90.76, 37.322)
+  ]}]);
+  assert.equal(result.features.length, 2);
+  assert.equal(result.duplicatesRemoved, 1);
+  assert.deepEqual(new Set(result.features[0].properties.source_ids), new Set(['osm:way:30', 'osm:way:31']));
+  assert.equal(result.features[1].properties.id, 'osm:way:32');
+});
+
+test('new unpublished fuzzy duplicates still merge with published identity guards enabled', async () => {
+  const merger = new CampsiteMerger();
+  merger.preferredIds = new Set(['osm:way:99']);
+  merger.publishedAnyIds = new Set(['osm:way:99']);
+  const result = await merger.mergeDatasets([{features: [
+    osmSite(407716029, 'Geico Ground Red Premium', -81.0668171, 29.1872808),
+    osmSite(407716030, 'Geico Grounds Red Premium', -81.0697843, 29.1836323)
+  ]}]);
+  assert.equal(result.features.length, 1);
+  assert.equal(result.duplicatesRemoved, 1);
+  assert.deepEqual(result.features[0].properties.source_ids, ['osm:way:407716029', 'osm:way:407716030']);
 });
