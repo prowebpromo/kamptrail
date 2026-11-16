@@ -1,0 +1,70 @@
+name: Verify full catalogue identity
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'data/campsites/**'
+      - 'data/opencampingmap/**'
+      - 'data/agency/**'
+      - 'data/sources/usfs.json'
+      - 'data/sources/blm.json'
+      - 'data-quality.js'
+      - 'data-loader.js'
+      - 'record-overrides.js'
+      - 'listing-history.js'
+      - 'scripts/build-search-index.js'
+      - 'scripts/merge_campsite_data.js'
+      - 'scripts/check-browser-identity.js'
+      - '.github/workflows/check-catalogue-identity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  identity:
+    name: Catalogue (${{ matrix.scenario }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [default, reversed]
+    env:
+      CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.CANDIDATE_SHA }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Compare every listing through the real data loader
+        env:
+          SCENARIO: ${{ matrix.scenario }}
+        run: node scripts/check-browser-identity.js --scenarios "$SCENARIO" --out catalogue-identity.json
+      - name: Require all 50 states and zero identity or claim differences
+        env:
+          SCENARIO: ${{ matrix.scenario }}
+        run: |
+          node <<'JS'
+          const fs = require('node:fs');
+          const result = JSON.parse(fs.readFileSync('catalogue-identity.json', 'utf8'));
+          const check = result.scenarios[process.env.SCENARIO];
+          result.source_commit = process.env.CANDIDATE_SHA;
+          result.finished_at = new Date().toISOString();
+          fs.writeFileSync('catalogue-identity.json', JSON.stringify(result, null, 2) + '\n');
+          if (!check || new Set(check.order.split(',')).size !== 50 || result.index_sites <= 0 ||
+              check.listings !== result.index_sites ||
+              !['canonical', 'source_ids', 'claims', 'missing', 'extra'].every(key => check.counts[key] === 0)) {
+            throw new Error('Full catalogue identity or claim comparison failed');
+          }
+          console.log(JSON.stringify({source_commit: result.source_commit, scenario: process.env.SCENARIO,
+            listings: check.listings, counts: check.counts}));
+          JS
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: catalogue-identity-${{ matrix.scenario }}-${{ github.run_id }}
+          path: catalogue-identity.json
+          if-no-files-found: error

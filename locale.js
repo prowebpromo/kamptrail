@@ -2,7 +2,7 @@
 (function(global){
   'use strict';
   const STORAGE_KEY='kt_language', supported=['en','es','fr'];
-  const FR_VERSION = '2.47.1';
+  const FR_VERSION = '2.48.0';
   let language='en';
   try{const saved=global.localStorage?.getItem(STORAGE_KEY);if(supported.includes(saved))language=saved;}catch{}
   const pack=code=>{const value=global[code==='es'?'KampTrailI18nEs':'KampTrailI18nFr'];return value?.version===FR_VERSION&&value.messages&&typeof value.messages==='object'?value.messages:null;};
@@ -32,7 +32,7 @@
   }
   const labels = {
     fee:{free:'Reported free',conditional:'Free with conditions',paid:'Paid',unknown:'Fee unknown'},
-    type:{established:'Campground',dispersed:'Dispersed',backcountry:'Backcountry',parking:'Overnight parking',other:'Other / unspecified',spot:'This spot',service:'Services',imported:'Imported point'},
+    type:{established:'Campground',dispersed:'Dispersed',backcountry:'Backcountry',parking:'Overnight parking',lodging:'Lookout, cabin or other lodging',other:'Other / unspecified',spot:'This spot',service:'Services',imported:'Imported point'},
     amenity:{toilet:'Toilets',water:'Drinking water',dump:'Dump station',shower:'Showers',fire_ring:'Fire ring',picnic_table:'Picnic table'},
     rig:{tent:'Tents',trailer:'Trailers and caravans',rv:'RV'},
     hookup:{electric:'Electric',water:'Water',sewer:'Sewer'},
@@ -67,7 +67,7 @@
     for (const node of root.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
     for (const attr of ['aria-label', 'placeholder', 'title', 'alt']) for (const node of root.querySelectorAll('[data-i18n-' + attr + ']')) node.setAttribute(attr, t(node.getAttribute('data-i18n-' + attr)));
   }
-  global.KampTrailI18n = {version:'2.47.1', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
+  global.KampTrailI18n = {version:'2.48.0', t, label, number, date, locale, get language(){return language;}, supported:[...supported], catalogueReady, setLanguage, apply};
   function notice(message){
     const help=global.document?.getElementById('kt-language-help');
     if(help){help.removeAttribute?.('data-i18n');help.textContent=message;help.setAttribute('role','status');help.setAttribute('aria-live','polite');}

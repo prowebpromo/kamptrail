@@ -29,19 +29,21 @@ function harness(mode = hostMapMode) {
   const fetcher = async (url, opts) => {
     const rel = String(url).replace(/^\.?\//, '');
     if (rel === 'data/campsites/identity-hosts.json' && hostState.mode !== 'served') {
-      if (hostState.mode === 'missing') return {ok: false, status: 404, json: async () => ({})};
-      if (hostState.mode === 'corrupt') return {ok: true, status: 200, json: async () => ({version: 1, hosts: 'not a map'})};
+      if (hostState.mode === 'missing') return new Response('{}',{status:404});
+      if (hostState.mode === 'corrupt') return new Response(JSON.stringify({version:1,hosts:'not a map'}));
       return new Promise((resolve, reject) => opts?.signal?.addEventListener('abort', () => reject(Object.assign(new Error('aborted'), {name: 'AbortError'}))));
     }
     const file = path.join(root, rel);
-    if (!rel.startsWith('data/') || !fs.existsSync(file)) return {ok: false, status: 404, json: async () => ({})};
+    if (!rel.startsWith('data/') || !fs.existsSync(file)) return new Response('{}',{status:404});
     // Parse per request: the loader may keep and mutate what it receives.
-    return {ok: true, status: 200, json: async () => JSON.parse(readText(rel))};
+    return new Response(readText(rel),{headers:{'content-type':'application/json'}});
   };
-  const context = {console: {warn() {}, log() {}, error() {}}, fetch: fetcher, setTimeout, clearTimeout, AbortController, URL, document: {addEventListener() {}},
+  const context = {crypto:require('node:crypto').webcrypto,TextEncoder,console: {warn() {}, log() {}, error() {}}, fetch: fetcher, setTimeout, clearTimeout, AbortController, URL, document: {addEventListener() {}},
     dispatchEvent() {}, L: {markerClusterGroup: () => cluster, divIcon: o => o, marker: () => ({bindPopup() { return this; }, on() { return this; }, setPopupContent() { return this; }})}};
   context.window = context;
   vm.createContext(context);
+  vm.runInContext(readText('record-overrides.js'), context);
+  vm.runInContext(readText('listing-history.js'), context);
   vm.runInContext(readText('data-quality.js'), context);
   vm.runInContext(readText('data-loader.js'), context);
   return {api: context.KampTrailData, DQ: context.DataQuality, map, hostState};

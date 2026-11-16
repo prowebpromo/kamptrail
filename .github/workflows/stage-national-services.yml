@@ -62,37 +62,157 @@ jobs:
         state: ${{ fromJSON(needs.plan.outputs.states) }}
     steps:
       - uses: actions/checkout@v7.0.1
+      - uses: ./.github/actions/stage-services-state
+        with:
+          state: ${{ matrix.state }}
+          batch: ${{ github.run_id }}-${{ github.sha }}
+
+  # At most three new-runner rounds. Successful state artifacts are retained;
+  # only an exhausted startup-transport receipt can enter a recovery matrix.
+  retry-plan-1:
+    needs: [plan, state]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      states: ${{ steps.pending.outputs.states }}
+      has_pending: ${{ steps.pending.outputs.has_pending }}
+    steps:
+      - uses: actions/checkout@v7.0.1
       - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
       - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22'
-      - name: Install checksum-pinned native parser
-        run: python -m pip install --no-deps --require-hashes -r scripts/requirements-services.txt
-      - name: Verify bounded importer and immutable delivery
-        run: |
-          python -m unittest scripts/tests/test_services_import.py scripts/tests/test_national_services.py
-          node --test scripts/tests/services-builder.test.js
-      - name: Import one bounded complete state
-        env:
-          SERVICE_STATE: ${{ matrix.state }}
-          BATCH: ${{ github.run_id }}-${{ github.sha }}
-        run: python -u scripts/stage_services.py --regions "$SERVICE_STATE" --batch "$BATCH" --stage "$RUNNER_TEMP/stage" --scratch "$RUNNER_TEMP/public-pbf"
-      - name: Keep state proof, including failure receipt
-        if: always()
-        uses: actions/upload-artifact@v7.0.2
+      - uses: actions/download-artifact@v8.0.2
         with:
-          name: services-state-${{ matrix.state }}
-          overwrite: true
+          digest-mismatch: warn # Complete checkpoint hashes/schema remain authoritative.
+          pattern: services-state-*
           path: ${{ runner.temp }}/stage
-          if-no-files-found: error
-          retention-days: 14
+          merge-multiple: true
+      - name: Validate proofs and select deferred startup failures
+        id: pending
+        env:
+          REGIONS: ${{ needs.plan.outputs.regions }}
+          BATCH: ${{ github.run_id }}-${{ github.sha }}
+        run: python scripts/plan_services_recovery.py --regions "$REGIONS" --batch "$BATCH" --stage "$RUNNER_TEMP/stage"
+
+  state-retry-1:
+    needs: retry-plan-1
+    if: ${{ !cancelled() && needs.retry-plan-1.result == 'success' && needs.retry-plan-1.outputs.has_pending == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        state: ${{ fromJSON(needs.retry-plan-1.outputs.states) }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: ./.github/actions/stage-services-state
+        with:
+          state: ${{ matrix.state }}
+          batch: ${{ github.run_id }}-${{ github.sha }}
+
+  retry-plan-2:
+    needs: [plan, retry-plan-1, state-retry-1]
+    if: ${{ !cancelled() && needs.retry-plan-1.result == 'success' && (needs.state-retry-1.result == 'success' || needs.state-retry-1.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      states: ${{ steps.pending.outputs.states }}
+      has_pending: ${{ steps.pending.outputs.has_pending }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          digest-mismatch: warn # Complete checkpoint hashes/schema remain authoritative.
+          pattern: services-state-*
+          path: ${{ runner.temp }}/stage
+          merge-multiple: true
+      - name: Validate proofs and select deferred startup failures
+        id: pending
+        env:
+          REGIONS: ${{ needs.plan.outputs.regions }}
+          BATCH: ${{ github.run_id }}-${{ github.sha }}
+        run: python scripts/plan_services_recovery.py --regions "$REGIONS" --batch "$BATCH" --stage "$RUNNER_TEMP/stage"
+
+  state-retry-2:
+    needs: retry-plan-2
+    if: ${{ !cancelled() && needs.retry-plan-2.result == 'success' && needs.retry-plan-2.outputs.has_pending == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        state: ${{ fromJSON(needs.retry-plan-2.outputs.states) }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: ./.github/actions/stage-services-state
+        with:
+          state: ${{ matrix.state }}
+          batch: ${{ github.run_id }}-${{ github.sha }}
+
+  retry-plan-3:
+    needs: [plan, retry-plan-2, state-retry-2]
+    if: ${{ !cancelled() && needs.retry-plan-2.result == 'success' && (needs.state-retry-2.result == 'success' || needs.state-retry-2.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      states: ${{ steps.pending.outputs.states }}
+      has_pending: ${{ steps.pending.outputs.has_pending }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          digest-mismatch: warn # Complete checkpoint hashes/schema remain authoritative.
+          pattern: services-state-*
+          path: ${{ runner.temp }}/stage
+          merge-multiple: true
+      - name: Validate proofs and select deferred startup failures
+        id: pending
+        env:
+          REGIONS: ${{ needs.plan.outputs.regions }}
+          BATCH: ${{ github.run_id }}-${{ github.sha }}
+        run: python scripts/plan_services_recovery.py --regions "$REGIONS" --batch "$BATCH" --stage "$RUNNER_TEMP/stage"
+
+  state-retry-3:
+    needs: retry-plan-3
+    if: ${{ !cancelled() && needs.retry-plan-3.result == 'success' && needs.retry-plan-3.outputs.has_pending == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        state: ${{ fromJSON(needs.retry-plan-3.outputs.states) }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: ./.github/actions/stage-services-state
+        with:
+          state: ${{ matrix.state }}
+          batch: ${{ github.run_id }}-${{ github.sha }}
 
   aggregate:
     outputs:
       candidate_artifact: ${{ steps.receipt.outputs.name }}
-    needs: [plan, state]
+    needs: [plan, retry-plan-3, state-retry-3]
+    # Skipped final recovery means all proofs were already complete. A deferred
+    # final failure still reaches the unchanged aggregate, which fails closed.
+    if: ${{ !cancelled() && needs.plan.result == 'success' && needs.retry-plan-3.result == 'success' && (needs.state-retry-3.result == 'success' || needs.state-retry-3.result == 'skipped') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

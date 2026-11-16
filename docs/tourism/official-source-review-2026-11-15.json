@@ -1,0 +1,1286 @@
+{
+  "version": 1,
+  "prepared_on": "2026-11-15",
+  "purpose": "Complete official-source evidence review of 27 held labels, 2 identity exceptions and 7 pending Other admissions. No owner decisions or source code changes made.",
+  "evidence_currentness": "Official public pages consulted through web.run on this date; tool may serve an indexed/cached version. Consulted date is not an API retrieval date or a publication date. Failed current pages are clearly separated from retained October evidence.",
+  "identity_rule": "A name plus point match is candidate evidence only. Another agency's fields classify a listing only with a shared facility id or an independently verified link to that exact facility.",
+  "policy": "Preserve all existing owner-approved labels and all holds. Proposed labels are reviewer recommendations, not new owner decisions. Do not classify an absorbed record from another agency using name/proximity alone.",
+  "summary": {
+    "total": 36,
+    "current_exact_id_official_pages_readable": 31,
+    "current_exact_id_pages_unreadable": 5,
+    "proposed_campground": 23,
+    "proposed_dispersed": 1,
+    "unresolved": 12
+  },
+  "records": [
+    {
+      "id": "ridb:10023205",
+      "facility_id": "10023205",
+      "name": "Ojo Redondo Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10023205",
+        "name": "Ojo Redondo Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10023205",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "This campground is located southwest of"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/NM.geojson",
+        "source_retrieved_at": "2026-10-29T03:15:00Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10023205",
+        "name": "Ojo Redondo Campground",
+        "description": "<p>This campground is located southwest of  Mt. Sedgwick, the highest peak in the Zuni Mountains.  It is situated in ponderosa pine, douglas fir, and aspen trees, with a scenic meadow adjacent to the campground.  Be advised of road conditions due to elevation and precipitation.</p>"
+      },
+      "reason": "Own description explicitly calls the facility a campground."
+    },
+    {
+      "id": "ridb:10039245",
+      "facility_id": "10039245",
+      "name": "Post Pile Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10039245",
+        "name": "Post Pile Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10039245",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Campground facilities include seven campsites"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OR.geojson",
+        "source_retrieved_at": "2026-10-29T03:28:33Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10039245",
+        "name": "Post Pile Campground",
+        "description": "<p>With views of nearby Chimney Rock, this campground offers year-round camping and Crooked River access along the Lower Crooked Back Country Byway. Campground facilities include seven campsites with excellent access to the Crooked Wild and Scenic River.</p><h2>Know Before You Go:</h2><ul><li>Open year-round on a first-come, first-served basis. No reservations are accepted.</li><li>Potable water is available year-round at the nearby Chimney Rock Campground, 1.3 miles north on State Highway 27.</li><li>Cell phone service is not available in the campground.</li><li>Watch for bicyclists: the section of State Highway 27 between Prineville and Bowman Dam is designated as the Crooked River Canyon Scenic Bikeway.</li></ul><h2>Point of Interest:</h2><p>The campground takes its name from nearby rock outcrops composed of basaltic lava. As these formations cooled, a multi-sided joint pattern formed which seemingly resulted in the appearance of a pile of posts stacked vertically. The geologic phenomena is known as columnar basalt.</p>"
+      },
+      "reason": "Own description explicitly describes a campground and campsite count."
+    },
+    {
+      "id": "ridb:10069432",
+      "facility_id": "10069432",
+      "name": "Kiwanis Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10069432",
+        "name": "Kiwanis Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "dispersed",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10069432",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "This is a one-unit dispersed camping area"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/ID.geojson",
+        "source_retrieved_at": "2026-10-29T02:57:25Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10069432",
+        "name": "Kiwanis Campground",
+        "description": "<p>This is a <strong>one-unit </strong>dispersed camping area along Mann Creek. It is next to the road so it can be noisy and dusty. There is no potable water available at the site, so come prepared with your own.</p><p>Typical season of use is mid-May through late September or early October.</p>"
+      },
+      "reason": "Own description explicitly says dispersed; prefer it over the Campground proper name. Current hold remains until a decision."
+    },
+    {
+      "id": "ridb:10069654",
+      "facility_id": "10069654",
+      "name": "Pittsburg Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10069654",
+        "name": "Pittsburg Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10069654",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Pittsburg Campground overlooks"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/ID.geojson",
+        "source_retrieved_at": "2026-10-29T02:57:25Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10069654",
+        "name": "Pittsburg Campground",
+        "description": "<p>Pittsburg Campground overlooks the <a href=\"http://www.fs.usda.gov/detail/wallowa-whitman/?cid=STELPRDB5227104\" rel=\"nofollow\">Wild and Scenic Snake River </a>in the Hells Canyon National Recreation Area. This large facility is open year-round with 28 tent/trailer sites many of which can accommodate large RVs and trailers. The accessible facility has accessible campsites and toilets with paved roads and camp spurs. Drinking water is available. With access to the Snake River for fishing, boating, historic intepretation, exploring and hiking within minutes of the campground, the facility is popular throughout the year. The Deer Creek road is maintained by the County and is steep and narrow for the last few miles after entering into the <a href=\"http://www.fs.usda.gov/detail/wallowa-whitman/?cid=STELPRDB5238987\" rel=\"nofollow\">Hells Canyon National Recreation Area</a>.</p><p><a href=\"http://www.fs.usda.gov/recarea/wallowa-whitman/recreation/recarea/?recid=51785\" rel=\"nofollow\">Pittsburg Landing Boat Launch</a></p><p><a href=\"http://www.fs.usda.gov/recarea/wallowa-whitman/recreation/recarea/?recid=51787\" rel=\"nofollow\">Pittsburg Rockart Interpretive Site </a></p><p><strong>***FIRE RESTRICTIONS ARE JUNE 1 THRU SEPTEMBER 30*** </strong></p><p><strong>***CHARCOAL FIRES IN FIRE PAN ONLY***</strong></p>"
+      },
+      "reason": "Own description describes a campground with 28 tent/trailer sites."
+    },
+    {
+      "id": "ridb:10072072",
+      "facility_id": "10072072",
+      "name": "Thain Creek Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10072072",
+        "name": "Thain Creek Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10072072",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Thain Creek Campground is the only campground in the Highwood Mountains."
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/MT.geojson",
+        "source_retrieved_at": "2026-10-29T03:10:59Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10072072",
+        "name": "Thain Creek Campground",
+        "description": "<p>Thain Creek Campground is the only campground in the Highwood Mountains. One of the 19 campsites can accommodate a maximum trailer length of 40 feet. The campground is usually open from May through the middle of fall.</p><p>A nearby trailhead leads up to Windy Mountain and back on a 6 mile loop trail, offering scenic views of the surrounding plains and faraway mountains. Other hikes are along Briggs Creek or from the North Fork Highwood Creek Trailhead. Please heed seasonal trail closures, as all trails in the Highwoods close either September 1st or Oct 15th .</p><p>All campgrounds on the Helena-Lewis and Clark National Forest are first-come, first-served. Reservations are not available. Camping is limited to 16 consecutive days in one location. A campground fee is required. Please pay at the self-serve campground fee station. Campsites cannot be reserved by simply paying for the site; camper must be present. A food storage order is in effect from March 1st to December 1st to prevent human-bear conflicts on the Helena-Lewis and Clark National Forest. Store all unattended food and attractants properly. Please see Food Storage Order for specifics. Open and close dates can vary depending on snowfall conditions. Please call the local district office or check our website. Leashed dogs are welcome. Horses are not allowed in campgrounds. Motorized OHVs must stay on the campground road. The campgrounds include access to potable water during the warmer months, and all have at least one handicap accessible vault toilet. Each campsite has a fire ring and/or grill, and a picnic table. Even if water is unavailable, campground fees are still required.</p><p> </p><p> </p>"
+      },
+      "reason": "Own description explicitly identifies a campground."
+    },
+    {
+      "id": "ridb:10072073",
+      "facility_id": "10072073",
+      "name": "Spring Creek Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10072073",
+        "name": "Spring Creek Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10072073",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Located only 4 miles from Highway 12, Spring Creek Campground is easily accessible."
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/MT.geojson",
+        "source_retrieved_at": "2026-10-29T03:10:59Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10072073",
+        "name": "Spring Creek Campground",
+        "description": "<p>Located only 4 miles from Highway 12, Spring Creek Campground is easily accessible. The 10 campsites are in a lush riparian zone along Spring Creek. Campers can wade in the creek, or fish Spring Creek Campground can only accommodate a maximum trailer length of 35 feet, and is not recommended for campers with large RVs. The campground is usually open from May through the middle of fall.</p><p>An ATV trailhead in the campground connects to a non-motorized trail with sweeping views of the surrounding mountain ranges.</p><p>All campgrounds on the Helena-Lewis and Clark National Forest are first-come, first-served. Reservations are not available. Camping is limited to 16 consecutive days in one location. A campground fee is required. Please pay at the self-serve campground fee station. Campsites cannot be reserved by simply paying for the site; camper must be present. A food storage order is in effect from March 1<sup>st</sup> to December 1<sup>st</sup> to prevent human-bear conflicts on the Helena-Lewis and Clark National Forest. Store all unattended food and attractants properly. Please see Food Storage Order for specifics. Open and close dates can vary depending on snowfall conditions. Please call the local district office or check our website. Leashed dogs are welcome. Horses are not allowed in campgrounds. Motorized OHVs must stay on the campground road. The campgrounds include access to potable water during the warmer months, and all have at least one handicap accessible vault toilet. Each campsite has a fire ring and/or grill, and a picnic table. Even if water is unavailable, campground fees are still required.</p>"
+      },
+      "reason": "Own description explicitly describes a campground with ten campsites."
+    },
+    {
+      "id": "ridb:10072881",
+      "facility_id": "10072881",
+      "name": "Lane Farm Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10072881",
+        "name": "Lane Farm Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10072881",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "this small campground is approximately 5 miles north of Marietta"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OH.geojson",
+        "source_retrieved_at": "2026-10-29T03:26:26Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10072881",
+        "name": "Lane Farm Campground",
+        "description": "<p>Formerly the Lane family farm, this small campground is approximately 5 miles north of Marietta along the National Forest Covered Bridge Scenic Byway. The site has four campsites on the Little Muskingum.</p>"
+      },
+      "reason": "Own description explicitly describes a campground."
+    },
+    {
+      "id": "ridb:10072883",
+      "facility_id": "10072883",
+      "name": "Finner Creek Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10072883",
+        "name": "Finner Creek Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10072883",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "this campground offers trailhead access."
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/WA.geojson",
+        "source_retrieved_at": "2026-10-29T03:39:39Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10072883",
+        "name": "Finner Creek Campground",
+        "description": "<p>Located along Finner Creek, near the Chiwawa River, 17 miles from Lake Wenatchee, this campground offers trailhead access.</p>"
+      },
+      "reason": "Own description explicitly calls it a campground."
+    },
+    {
+      "id": "ridb:10074140",
+      "facility_id": "10074140",
+      "name": "South Mineral Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10074140",
+        "name": "South Mineral Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10074140",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "The campground has 26 sites"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/CO.geojson",
+        "source_retrieved_at": "2026-10-29T02:52:25Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10074140",
+        "name": "South Mineral Campground",
+        "description": "<p>South Mineral Campground, located along South Mineral Creek, is one of the most popular campgrounds in the San Juan National Forest. The campground has 26 sites,<em> all of which are first-come, first-serve</em>.  Most campsites are shaded and well-spaced thanks to spruce and fir trees. Some sites are handicapped accessible.  Some sites have large parking areas.</p><p>Services include water, trash pickup, fire grates, picnic tables, and pit toilets. Bear-safe food storage is recommended. No electricity.  Between September and May, this campground has no services (water, electric, trash pick up or rest rooms). Please keep them clean and pack it out. </p><p>Nearby peaks have cliffs of brilliant color-contrasting reds and grays. A waterfall on the creek just upstream from the campground adds to the attraction of the area. But the main attraction is the trail adjacent to the campground, Ice Lake Trail, a strenuous, steep, and popular hike.</p>"
+      },
+      "reason": "Own description explicitly describes the campground and its site count."
+    },
+    {
+      "id": "ridb:10074570",
+      "facility_id": "10074570",
+      "name": "UPPER PLEASANT CREEK CAMPGROUND",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10074570",
+        "name": "UPPER PLEASANT CREEK CAMPGROUND",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10074570",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Campground. This is a favorite for campers."
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/UT.geojson",
+        "source_retrieved_at": "2026-10-29T03:36:53Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10074570",
+        "name": "UPPER PLEASANT CREEK CAMPGROUND",
+        "description": "<p>Campground. This is a favorite for campers. There is trout fishing nearby at Lower Bowns Reservoir and Lower Pleasant Creek. RVs over 25 feet long are not advised.  Water will be turned off at threat of first frost.  Campground closes 10/15/20 or threat of first frost.</p>"
+      },
+      "reason": "Own description explicitly identifies a campground. The same page has a 2020 seasonal closing statement; do not imply this proves present availability."
+    },
+    {
+      "id": "ridb:10074574",
+      "facility_id": "10074574",
+      "name": "Tin Can Flat Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10074574",
+        "name": "Tin Can Flat Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10074574",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Tin Can Flat Campground features 11 camp units"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/ID.geojson",
+        "source_retrieved_at": "2026-10-29T02:57:25Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10074574",
+        "name": "Tin Can Flat Campground",
+        "description": "<p><img align=\"left\" alt=\"Photo of a well shaded campsite at Tin Can Flat Campground\" height=\"180\" src=\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5076325\" title=\"Photo of a well shaded campsite at Tin Can Flat Campground\" width=\"242\"/>Tin Can Flat Campground features 11 camp units, potable water (June-October), and vault toilets. Please observe the Pack it In, Pack it Out refuse policy. Attractions include St. Joe Wild and Scenic River, fishing, floating (until mid-July).</p>"
+      },
+      "reason": "Own description explicitly describes the campground and camp units."
+    },
+    {
+      "id": "ridb:10076130",
+      "facility_id": "10076130",
+      "name": "Tom Bennett Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10076130",
+        "name": "Tom Bennett Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10076130",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "this campground is situated adjacent to the South Fork Cache la Poudre River"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/CO.geojson",
+        "source_retrieved_at": "2026-10-29T02:52:25Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10076130",
+        "name": "Tom Bennett Campground",
+        "description": "<p>Located near Pingree Park, this campground is situated adjacent to the South Fork Cache la Poudre River in a lodgepole pine forest setting. This campground provides a primitive camping experience in a remote location. There are ten sites, each with a picnic table and fire grate. This is an older facility and will not accommodate larger RVs. Popular activities include hiking and stream fishing.</p>"
+      },
+      "reason": "Own description explicitly describes a campground with ten sites."
+    },
+    {
+      "id": "ridb:10076131",
+      "facility_id": "10076131",
+      "name": "Carr Lake Campsites",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10076131",
+        "name": "Carr Lake Campsites",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10076131",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "The campsite is fairly roomy"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/MI.geojson",
+        "source_retrieved_at": "2026-10-29T03:06:41Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10076131",
+        "name": "Carr Lake Campsites",
+        "description": "<p>Campers will typically find seclusion and privacy at this small, 16 acre lake. The campsite is fairly roomy (70 ft. by 40 ft), grassy, and suitable for 2 families. Access to the lake is by carry-in only and a boat slide has been constructed for small boats or canoes. Limited parking is available. Carr Lake is provides fishing for largemouth bass, yellow perch, northern pike and an occasional brook or brown trout. Carr Creek, both upstream and downstream from the lake, offers a good fishery for brook and brown trout The lake does not have good swimming.</p>"
+      },
+      "reason": "Own page establishes a campsite suitable for two families, but no campground or dispersed type. Keep held Campground pending policy judgment."
+    },
+    {
+      "id": "ridb:10076892",
+      "facility_id": "10076892",
+      "name": "Ring Mill Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10076892",
+        "name": "Ring Mill Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10076892",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityName",
+        "quote": "Ring Mill Campground"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OH.geojson",
+        "source_retrieved_at": "2026-10-29T03:26:26Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10076892",
+        "name": "Ring Mill Campground",
+        "description": "<p>This was once the site of a mill and farmstead. The mill is now gone, but the stone house of its original owner, built in 1846, is still located at the site. The house is on the National Register of Historic Places. It has three camp-sites and a picnic shelter, and is also a canoe access point and near the North Country Trail.</p>"
+      },
+      "reason": "Own name says Campground; description independently confirms three campsites. Proposal uses the same own-name basis previously accepted for thirteen other named campgrounds."
+    },
+    {
+      "id": "ridb:10078442",
+      "facility_id": "10078442",
+      "name": "Apache Creek Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10078442",
+        "name": "Apache Creek Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10078442",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "This is a nice quiet undeveloped campground"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/NM.geojson",
+        "source_retrieved_at": "2026-10-29T03:15:00Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10078442",
+        "name": "Apache Creek Campground",
+        "description": "<p><em>This is a nice quiet undeveloped campground amongst ponderosa pines and abundant wildlife.</em></p><p>Apache Creek Campground is in the northwest region of the forest. There are plenty of trees to provide shade and this is a very clean campground.</p>"
+      },
+      "reason": "Own description explicitly calls it a campground; undeveloped alone is not a dispersed classification."
+    },
+    {
+      "id": "ridb:10134446",
+      "facility_id": "10134446",
+      "name": "Hidden Lake Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10134446",
+        "name": "Hidden Lake Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10134446",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Hidden Lake Campground is a 5-site campground"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/MT.geojson",
+        "source_retrieved_at": "2026-10-29T03:10:59Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10134446",
+        "name": "Hidden Lake Campground",
+        "description": "<p>Hidden Lake Campground is a 5-site campground southwest of Seeley Lake, Montana. The lake is a 33-acre kettle lake on the west edge of the Clearwater Valley, and is stocked with westslope cuthroat trout. Non-motorized boating is welcome.</p>"
+      },
+      "reason": "Own description explicitly identifies a campground."
+    },
+    {
+      "id": "ridb:10150488",
+      "facility_id": "10150488",
+      "name": "Bridger Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10150488",
+        "name": "Bridger Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10150488",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "This campground has firewood available to purchase."
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/UT.geojson",
+        "source_retrieved_at": "2026-10-29T03:36:53Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10150488",
+        "name": "Bridger Campground",
+        "description": "<p>This campground has firewood available to purchase.</p><p> </p>"
+      },
+      "reason": "Own description explicitly calls it a campground."
+    },
+    {
+      "id": "ridb:10155245",
+      "facility_id": "10155245",
+      "name": "Rattlesnake Canyon Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10155245",
+        "name": "Rattlesnake Canyon Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10155245",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Several campsites in the campground offer direct river access"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OR.geojson",
+        "source_retrieved_at": "2026-10-29T03:28:33Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10155245",
+        "name": "Rattlesnake Canyon Campground",
+        "description": "<p>Located at the mouth of its namesake canyon and along the scenic Lower Deschutes River Back Country Byway, Rattlesnake Canyon Campground is located 20.4 miles north of the city of Maupin, Oregon. Several campsites in the campground offer direct river access along a verdant strip of riparian vegetation.</p><h2>Know Before You Go</h2><ul><li>Rattlesnake Canyon Campground is open year-round with 8 individual campsites, one group-use campsite, a vault toilet and garbage service. No drinking water or utility hookups are available.</li><li>No reservations are accepted; all campsites are on a first-come, first-served basis only.</li><li>Campfires and smoking are allowed only from October 16 through May 31, annually, unless posted otherwise.</li><li>When recreating on public lands, practice <a href=\"https://lnt.org/why/7-principles/\" title=\"Leave-No-Trace Principles\" rel=\"nofollow\">Leave-No-Trace Principles</a>.</li></ul><h2>Point of Interest</h2><p>Rattlesnakes? Yes, but they are out and about in all low elevation desert river canyons in the region. As predators, rattlesnakes play an important ecological role in keeping small mammal populations in check. Please observe rattlesnakes from a safe distance and do not attempt to engage with them; they want to avoid you as much as you may want to avoid them.</p>"
+      },
+      "reason": "Own description explicitly describes a campground."
+    },
+    {
+      "id": "ridb:10278188",
+      "facility_id": "10278188",
+      "name": "Chosa Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10278188",
+        "name": "Chosa Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10278188",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Chosa Campground consists of a 3.5-acre, pipe-rail fenced pad"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/NM.geojson",
+        "source_retrieved_at": "2026-10-29T03:15:00Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10278188",
+        "name": "Chosa Campground",
+        "description": "<p>Chosa Campground consists of a 3.5-acre, pipe-rail fenced pad that offers a trash container and a safe parking space for your Recreational Vehicle plus a protected area to set tents, whatever your camping style. Chosa campground provides visitors a fee free location strategically located between two national parks with Carlsbad Caverns a short 11-mile drive north and Guadalupe Mountains National Park 27 miles south on Highway 62.</p><h4>Chosa Draw</h4><p>Chosa Campground obtained its name from Chosa Draw, which is 0.8 miles southeast of this site, and well known for its gypsum karst cave systems. As this site is situated within the gypsum karst ecosystem, many unique habitat features exist that are within walking distance of the campground. Some of these features include flora such as gypsum grama as well as natural formations like the various springs which are a true jewel of the Chihuahuan Desert. The riparian channels associated with the springs provide a home to the various wildlife species that grace the desert, providing a glimpse into the hidden beauty of the desert landscape.</p>"
+      },
+      "reason": "Own description identifies a named campground with tent and RV space. No inference of hookups or marked site count."
+    },
+    {
+      "id": "ridb:10321880",
+      "facility_id": "10321880",
+      "name": "Twin Springs Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10321880",
+        "name": "Twin Springs Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10321880",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Twin Springs Campground offers six individual campsites"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OR.geojson",
+        "source_retrieved_at": "2026-10-29T03:28:33Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10321880",
+        "name": "Twin Springs Campground",
+        "description": "<p>Wedged between the Lower Deschutes River Back Country Byway and the Deschutes River, Twin Springs Campground offers six individual campsites, each with a picnic table and fire ring. Bring you own shade: only one campsite has any and what sun protection it does offer is minimal.</p><h2>Know Before You Go</h2><ul><li>Twin Springs Campground is open year-round with limited river access, one vault toilet and garbage service. There are no group-use campsites.</li><li>No drinking water or utility hookups are available. No reservations are accepted; all campsites, are available on a first-come, first-served basis only.</li><li>Lower Deschutes Boater Passes are required year-round, for both day and overnight use, for anyone using a watercraft or any other floating device as a means of transport on the Lower Deschutes River.</li><li>Limited cell phone service may be available. Campfires and smoking are allowed only from October 16 through May 31, annually, unless posted otherwise.</li></ul><h2>Point of Interest</h2><p>Look around and across the Deschutes River above the train tracks to get a view of the numerous springs on the cliffside. Which are the twin springs?</p>"
+      },
+      "reason": "Own description explicitly identifies a campground."
+    },
+    {
+      "id": "ridb:10322469",
+      "facility_id": "10322469",
+      "name": "Devil's Canyon Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10322469",
+        "name": "Devil's Canyon Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10322469",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "This small and off-the-beaten-track campground features three walk-in campsites"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OR.geojson",
+        "source_retrieved_at": "2026-10-29T03:28:33Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10322469",
+        "name": "Devil's Canyon Campground",
+        "description": "<p>This small and off-the-beaten-track campground features three walk-in campsites and a small day use site. Campsite number three is set apart from the others, providing an elusive experience of solitude in a developed campground. The campsites are situated above a thin green strip of lush vegetation and have limited access to the Deschutes Wild and Scenic River.</p><h2>Know Before You Go</h2><ul><li>Devil's Canyon Campground is open year-round and has one vault toilet and garbage service.</li><li>No drinking water or utility hookups are available.</li><li>No reservations are accepted; all campsites, are available on a first-come, first-served basis only.</li><li>Parking is very limited here: larger vehicles and trailers are not advised. The Campground road is narrow and is designated for one-way travel from north to south.</li><li>Campfires and smoking are allowed only from October 16 through May 31, annually, unless posted otherwise.</li></ul>"
+      },
+      "reason": "Own description explicitly identifies a campground."
+    },
+    {
+      "id": "ridb:236715",
+      "facility_id": "236715",
+      "name": "Bell Farm Horse Camp",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:236715",
+        "name": "Bell Farm Horse Camp",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/236715",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "is a popular place for wagontrain riders"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/KY.geojson",
+        "source_retrieved_at": "2026-10-29T03:01:56Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/236715",
+        "name": "Bell Farm Horse Camp",
+        "description": "<p><a href=\"https://usfs-public.box.com/s/9y1y45j145ltgyffkw80ruapmr2gl4it\" rel=\"nofollow\">View Guide and Map</a></p><p>Bell Farm Horse Camp, located on <a href=\"http://www.fs.usda.gov/recarea/dbnf/recreation/recarea/?recid=39716\" rel=\"nofollow\">Stearns District</a> of the Daniel Boone National Forest, is a popular place for wagontrain riders who come to \"rest a spell.\" The nearest hiking and horse trails in the Big South Fork National River and Recreation Area.</p><p><a href=\"http://www.fs.usda.gov/recarea/dbnf/recreation/recarea/?recid=72124\" rel=\"nofollow\">Rock Creek</a>, a State Wild River, runs along the camp. Rock Creek is stocked with rainbow trout year March - June and September - December. A Kentucky fishing license is required. <a href=\"http://fw.ky.gov\" rel=\"nofollow\">Kentucky Department of Fish and Wildlife Resources</a></p><p>In the early 1900s this area was a logging and mining town. During the 1930s, a Civilian Conservation Corps camp was located here. The walnut trees you see here today were planted in 1953.</p><p> </p>"
+      },
+      "reason": "Own page supports a horse camp but does not explicitly identify Campground or Dispersed. Its linked exact guide could not be read.",
+      "unreadable_exact_outbound_links": [
+        "https://usfs-public.box.com/s/9y1y45j145ltgyffkw80ruapmr2gl4it"
+      ]
+    },
+    {
+      "id": "ridb:252786",
+      "facility_id": "252786",
+      "name": "Goldhill Camping Area",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:252786",
+        "name": "Goldhill Camping Area",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/252786",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "retrieval_failed",
+        "publication_or_update_date": null,
+        "field": null,
+        "quote": null
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/CA.geojson",
+        "source_retrieved_at": "2026-10-29T02:50:45Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/252786",
+        "name": "Goldhill Camping Area",
+        "description": "<p>Goldhill Camping Area is an open camping location adjacent to Piru Creek at the base of Alamo Mountain.  Recreational Vehicles up to 26 feet. Picnic tables, fire rings, toilets. No potable water available.  Located near several Forest Service Off-Highway Vehicle (motorcycle and four-wheel drive) roads and trails and is approximately eight miles southwest of Hungry Valley State Vehicular Recreation Area.</p><p>Area ammenities: Tent camping, Trailer camping, Picnic tables, Toilets, Parking, Trash service</p>"
+      },
+      "reason": "Exact-ID public page failed repeated retrieval. Retained own record supports camping and amenities, but a current readable official type source was not obtained."
+    },
+    {
+      "id": "ridb:262731",
+      "facility_id": "262731",
+      "name": "Green Mountain Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:262731",
+        "name": "Green Mountain Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/262731",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityName",
+        "quote": "Green Mountain Campground"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OR.geojson",
+        "source_retrieved_at": "2026-10-29T03:28:33Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/262731",
+        "name": "Green Mountain Campground",
+        "description": "<p>Featuring panoramic views of the lava flows, cinder cones, and the desert landscape of the Fort Rock and Christmas Valley area of central Oregon, the Green Mountain Campground offers a remote camping experience perfect for photography, solitude and stargazing. Whether using it as a basecamp for exploring nearby attractions like <a href=\"https://www.blm.gov/visit/crack-ground\" title=\"Crack-in-the-Ground\" rel=\"nofollow\">Crack-in-the-Ground</a> and the Four Craters Lava Field, or simply seeking an out-of-the-way site with stunning sunrises and sunsets, visitors willing to brave its rough access road will not be disappointed.</p><h2>Know Before You Go</h2><ul><li>Open season: Green Mountain Campground is open YEAR-ROUND.</li><li>Four-wheel drive vehicles recommended. Access is via rugged dirt roads that may be impassable at times.</li><li>Six primitive campsites with picnic tables and fire grates; first come, first serve.</li><li>Vault restroom.</li><li>No drinking water available.</li><li>Pack out your trash.</li><li>The nearest services are in the nearby town of Christmas Valley, Oregon.</li><li>BLM’s <a href=\"https://www.blm.gov/visit/crack-ground\" title=\"Crack-in-the-Ground\" rel=\"nofollow\">Crack-in-the-Ground</a> Trailhead located nearby.</li></ul><h2>Point of Interest</h2><p>There is an active fire lookout atop nearby Green Mountain that is staffed from June through October.</p>"
+      },
+      "reason": "Own exact-ID name identifies a campground; description supplies six primitive campsites. Primitive alone does not mean dispersed."
+    },
+    {
+      "id": "ridb:262776",
+      "facility_id": "262776",
+      "name": "Fish Lake Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:262776",
+        "name": "Fish Lake Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/262776",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Fish Lake Campground is located on the flanks of Steens Mountain"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OR.geojson",
+        "source_retrieved_at": "2026-10-29T03:28:33Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/262776",
+        "name": "Fish Lake Campground",
+        "description": "<p>Fish Lake Campground is located on the flanks of Steens Mountain, within the <a href=\"https://www.blm.gov/programs/recreation/recreation-activities/oregon-washington/steens-mountain\" title=\"Steens Mountain Cooperative Management and Protective Area\" rel=\"nofollow\">Steens Mountain Cooperative Management and Protective Area</a> (CMPA). This area encompasses an extraordinary landscape with deep glacier carved-gorges, stunning scenery, wilderness, wild rivers, a rich diversity of plant and animal species, and a way of life for all who live there. At 7400-foot elevation and set among aspen stands and shore willows, Fish Lake Campground offers great opportunities for swimming, picnicking, cross-country hiking, and fishing the lake for stocked keeper trout planted by Oregon Department of Fish and Wildlife.</p><h2>Know Before You Go</h2><ul><li>Open season: Fish Lake Campground is open mid-June through October.</li><li>High clearance vehicles recommended on some portions of the Steens Mountain Loop.</li><li>23 Campsites with picnic tables and fire grates; first come, first serve.</li><li>Universal access restroom available.</li><li>Drinking water available.</li><li>America the Beautiful Pass accepted.</li><li>Pack out your trash.</li><li>Mountain weather can be unpredictable and change suddenly.</li><li>Ticks, mosquitos, and rattlesnakes may be present during summer months.</li><li>The nearest services are in the communities of Fields, Frenchglen, Crane, or Narrows, Oregon.</li></ul><h2>Point of Interest</h2><p><a href=\"http://traveloregon.com/trip-ideas/scenic-byways/steens-loop-tour-route/\" title=\"Steens Mountain Loop Road\" rel=\"nofollow\">The Steens Mountain Loop Road</a> is a designated <a href=\"http://www.oregon.gov/ODOT/Programs/Pages/Scenic-Byways.aspx\" title=\"Oregon State Scenic Tour Route\" rel=\"nofollow\">Oregon State Scenic Tour Route</a>. Travel the entire loop to experience all this unique landscape’s scenic vistas and abundant mix of wildlife.</p>"
+      },
+      "reason": "Own description identifies a campground and supplies 23 campsites."
+    },
+    {
+      "id": "ridb:272170",
+      "facility_id": "272170",
+      "name": "Elderberry Flat Campground",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:272170",
+        "name": "Elderberry Flat Campground",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/272170",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Elderberry Flat Campground provides 11 campsites"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OR.geojson",
+        "source_retrieved_at": "2026-10-29T03:28:33Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/272170",
+        "name": "Elderberry Flat Campground",
+        "description": "<p>Elderberry Flat Campground provides 11 campsites along the tranquil and beautiful West Fork of Evans Creek, a tributary to the famous Rogue River. There is a paved road that provides easy access to the campground which is typically open from late May to September. The area offers a variety of recreation activities including camping, biking, hiking, hunting, OHV riding, picnicking, swimming, and wildlife viewing. The campground provides multiple access points to the creek to enjoy the cool water on hot summer days. Granite sand bars, calm water, and gentle sloping access provide family friendly access to the water. Campsites are equipped with picnic tables and grills and there is one pit toilet. There is no fee to use the campground but a 14 day limit is enforced.</p>\n"
+      },
+      "reason": "Own description explicitly identifies a campground."
+    },
+    {
+      "id": "ridb:274051",
+      "facility_id": "274051",
+      "name": "Chiwawa Horse Camp",
+      "group": "held_label_27",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:274051",
+        "name": "Chiwawa Horse Camp",
+        "held_label": "established",
+        "status": "held at main label, pending owner review"
+      },
+      "applied_change": false,
+      "proposed_label": "established",
+      "recommendation_status": "evidence_based_proposal_not_owner_decision",
+      "confidence": "high",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/274051",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "this campground is approximately 15 miles up the Chiwawa River Road #6200."
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/WA.geojson",
+        "source_retrieved_at": "2026-10-29T03:39:39Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/274051",
+        "name": "Chiwawa Horse Camp",
+        "description": "<p>Located near the Chiwawa River at Rock Creek this campground is approximately 15 miles up the Chiwawa River Road #6200. It offers 7 long pull-through spurs and horse facilities. It is wheelchair accessible.  The <a href=\"http://www.fs.usda.gov/recarea/okawen/recreation/hiking/recarea/?recid=58647&actid=50\" rel=\"nofollow\">Basalt Ridge Trail #1527</a> and The <a href=\"www.fs.usda.gov/recarea/okawen/recreation/hiking/recarea/?recid=58959&actid=50\" rel=\"nofollow\">Rock Creek Trail #1509</a> are accessed from this horsecamp.</p>"
+      },
+      "reason": "Own description calls this horse camp a campground and describes seven pull-through spurs."
+    },
+    {
+      "id": "ridb:243702",
+      "facility_id": "243702",
+      "name": "Head O' Boulder Forest Camp",
+      "group": "identity_exception_2",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:243702",
+        "name": "Head O' Boulder Forest Camp",
+        "group": "downgrade_22",
+        "decision": "exception_held_pending",
+        "label": "established",
+        "own_field": "FacilityDescription",
+        "own_quote": "This rustic camp offers a few sites",
+        "result": "Held at Campground, pending. The own record establishes camping but not Campground. The Campground label came from the USFS record usfs:39956, matched by name and point only.",
+        "status": "exception under decision 4"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/243702",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "This rustic camp offers a few sites"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/OR.geojson",
+        "source_retrieved_at": "2026-10-29T03:28:33Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/243702",
+        "name": "Head O' Boulder Forest Camp",
+        "description": "<p>This rustic camp offers a few sites and is also a trailhead which accesses the <a href=\"http://www.fs.usda.gov/recarea/malheur/recarea/?recid=39908\" rel=\"nofollow\">Vinegar Hill-Indian Rock Scenic Area</a>.  From the trailhead visitors can access other trails such as the <a href=\"http://www.fs.usda.gov/recarea/malheur/recarea/?recid=40004\" rel=\"nofollow\">Princess trail #251</a>, <a href=\"http://www.fs.usda.gov/recarea/malheur/recarea/?recid=40012\" rel=\"nofollow\">Sunrise Butte Trail #255</a> and <a href=\"http://www.fs.usda.gov/recarea/malheur/recarea/?recid=39916\" rel=\"nofollow\">Blackeye Trail #243</a>.  Allowing for multiple opportunities for hiking. </p>"
+      },
+      "reason": "Own page establishes camping but not the required type. Agency page was consulted, but no shared ID or verified exact cross-link to ridb:243702 was found. Preserve decision-4 exception hold.",
+      "additional_official_sources": [
+        {
+          "url": "https://www.fs.usda.gov/r06/malheur/recreation/head-o-boulder-forest-camp",
+          "consulted_on": "2026-11-15",
+          "source_updated_on": "2026-05-04",
+          "quote": "This rustic camp offers a few sites",
+          "identity_basis": "unverified_exact_identity; matching descriptive text is corroboration only",
+          "availability_caution": "Agency page says Site Temporarily Closed. Exact RIDB-to-agency identity is unverified; do not copy closure automatically."
+        }
+      ]
+    },
+    {
+      "id": "ridb:249902",
+      "facility_id": "249902",
+      "name": "Wolf Gap Recreation Area",
+      "group": "identity_exception_2",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:249902",
+        "name": "Wolf Gap Recreation Area",
+        "group": "downgrade_22",
+        "decision": "exception_held_pending",
+        "label": "established",
+        "own_field": "FacilityDescription",
+        "own_quote": "Stay at one of our charming campsites",
+        "result": "Held at Campground, pending. The own record establishes camping but not Campground. The Campground label came from the USFS record usfs:74043, matched by name and point only.",
+        "status": "exception under decision 4"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/249902",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "Stay at one of our charming campsites"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/KY.geojson",
+        "source_retrieved_at": "2026-10-29T03:01:56Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/249902",
+        "name": "Wolf Gap Recreation Area",
+        "description": "<p>Wolf Gap Recreation Area was once the site of a 1930’s African American Civilian Conservation Corps Camp. This recreation area has many hiking opportunities nearby. From here begin your hike to the popular Big Schloss Overlook with scenic views of Virginia and West Virginia mountains. Stay at one of our charming campsites and enjoy falling asleep to the peaceful symphony of nearby crickets.</p>"
+      },
+      "reason": "Own page establishes camping but not the required type. Agency page was consulted, but no shared ID or verified exact cross-link to ridb:249902 was found. Preserve decision-4 exception hold.",
+      "additional_official_sources": [
+        {
+          "url": "https://www.fs.usda.gov/r08/gwj/recreation/wolf-gap-recreation-area",
+          "consulted_on": "2026-11-15",
+          "source_updated_on": "2025-05-02",
+          "quote": "Stay at one of our charming campsites",
+          "identity_basis": "unverified_exact_identity; matching descriptive text is corroboration only"
+        }
+      ]
+    },
+    {
+      "id": "ridb:10049041",
+      "facility_id": "10049041",
+      "name": "Morrow Bridge and Midway Seasonal Camps",
+      "group": "other_pending_7",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:10049041",
+        "name": "Morrow Bridge and Midway Seasonal Camps",
+        "group": "downgrade_22",
+        "decision": "relabel_other_pending",
+        "label": "other",
+        "own_field": "FacilityDescription",
+        "own_quote": "offer primitive facilities in a setting ideal for hunting",
+        "result": "→ Other, pending review",
+        "status": "accepted, pending admission review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/10049041",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "offer primitive facilities in a setting ideal for hunting"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/SC.geojson",
+        "source_retrieved_at": "2026-10-29T03:32:57Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/10049041",
+        "name": "Morrow Bridge and Midway Seasonal Camps",
+        "description": "<p>Morrow Bridge and Midway seasonal camps, located in the western and northern portions of the Long Cane Ranger District, offer primitive facilities in a setting ideal for hunting.The surrounding forest sustains abundant populations of deer, turkey and quail, placing it among the most desirable hunting areas in the upstate. Several check stations and supply stores are located in the area.</p><p><a href=\"http://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5279990.pdf\" rel=\"nofollow\">Click here</a><span> </span>for a printable guide and vicinity map of Morrow Bridge Camp.</p><p><a href=\"http://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5275597.pdf\" rel=\"nofollow\">Click here</a><span> </span>for a printable guide and vicinity map of Midway Camp.</p>"
+      },
+      "reason": "Own page is an aggregate for Morrow Bridge and Midway camps; primitive facilities does not establish dispersed or a single campground. Exact linked guide PDFs failed retrieval.",
+      "unreadable_exact_outbound_links": [
+        "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5279990.pdf",
+        "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5275597.pdf"
+      ]
+    },
+    {
+      "id": "ridb:240871",
+      "facility_id": "240871",
+      "name": "Enduro Camp",
+      "group": "other_pending_7",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:240871",
+        "name": "Enduro Camp",
+        "group": "downgrade_22",
+        "decision": "relabel_other_pending",
+        "label": "other",
+        "own_field": "FacilityDescription",
+        "own_quote": "The Enduro camp has vaulted restrooms.",
+        "result": "→ Other, pending review",
+        "status": "accepted, pending admission review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/240871",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "The Enduro camp has vaulted restrooms."
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/LA.geojson",
+        "source_retrieved_at": "2026-10-29T03:03:23Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/240871",
+        "name": "Enduro Camp",
+        "description": "<p>The Enduro camp has vaulted restrooms. There are no trash receptacles so please bring out what you bring in. There is no water available at this site so be sure to bring plenty of your own. </p>"
+      },
+      "reason": "Own page gives amenities but no explicit campground or dispersed classification."
+    },
+    {
+      "id": "ridb:240903",
+      "facility_id": "240903",
+      "name": "Sugar Creek Hunter Camp",
+      "group": "other_pending_7",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:240903",
+        "name": "Sugar Creek Hunter Camp",
+        "group": "downgrade_22",
+        "decision": "relabel_other_pending",
+        "label": "other",
+        "own_field": "FacilityDescription",
+        "own_quote": "Sugar Creek Hunter Camp",
+        "result": "→ Other, pending review",
+        "status": "accepted, pending admission review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/240903",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "retrieval_failed",
+        "publication_or_update_date": null,
+        "field": null,
+        "quote": null
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/LA.geojson",
+        "source_retrieved_at": "2026-10-29T03:03:23Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/240903",
+        "name": "Sugar Creek Hunter Camp",
+        "description": "Sugar Creek Hunter Camp"
+      },
+      "reason": "Exact-ID public page failed repeated retrieval. Retained own description is only the name; leave Other pending."
+    },
+    {
+      "id": "ridb:241301",
+      "facility_id": "241301",
+      "name": "Bear Creek Lake Recreation Area",
+      "group": "other_pending_7",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:241301",
+        "name": "Bear Creek Lake Recreation Area",
+        "group": "downgrade_22",
+        "decision": "relabel_other_pending",
+        "label": "other",
+        "own_field": "FacilityDescription",
+        "own_quote": "the recreation area offers three campgrounds",
+        "result": "→ Other, pending review",
+        "status": "accepted, pending admission review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/241301",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "readable_official_page",
+        "publication_or_update_date": null,
+        "field": "FacilityDescription",
+        "quote": "the recreation area offers three campgrounds"
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/AR.geojson",
+        "source_retrieved_at": "2026-10-29T02:48:25Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/241301",
+        "name": "Bear Creek Lake Recreation Area",
+        "description": "<p>The 625-acre Bear Creek Lake Recreation Area has 30 miles of shore line and offers the following recreational opportunities: camping, picnicking, swimming, canoeing, fishing and hiking. Sitting atop Crowley’s Ridge, the recreation area offers three campgrounds, two picnic areas, a mile-long nature trail, a swim beach and a handicap-accessible fishing pier which all provide visitors a variety of recreational experiences. Bear Creek Nature Trail provides a one-mile loop winding through a forested area. There are excellent scenic views of the lake shoreline, including Beech Point, and interpretive posts that highlight ecology in action. Trophy Largemouth Bass, Red-eyed Bream and Channel Catfish are just a few of the many species of fish that you’ll find in the lakes and streams in the area.</p><p>Fish Your National Forests: This site can be accessed by Passenger Car; Fish available include: Bass, Panfish; Types of fishing available include: Shore, Motorized boat, Float tube, Fly, Spin, Bait; ADA Accessible fishing access with fishing pier and boat launch</p><p>The Bear Creek Lake Recreation Area is managed by the <a href=\"http://www.arkansasstateparks.com/mississippiriver/\" rel=\"nofollow\">Mississippi River State Park</a>. Please call the Mississippi River State Park - Marianna Office for any questions at 870-295-4040.</p>"
+      },
+      "reason": "Own page is a 625-acre umbrella for three campgrounds, not one identified campground. Exact linked park source confirms named component campgrounds; leave Other pending an umbrella policy decision.",
+      "additional_official_sources": [
+        {
+          "url": "https://www.arkansas.com/state-parks/explore/parks/mississippi-river-state-park",
+          "consulted_on": "2026-11-15",
+          "source_updated_on": null,
+          "quote": "Lone Pine Campground (Bear Creek Lake)",
+          "identity_basis": "verified_outbound_link_from_own_Recreation.gov_record_to_managing_park"
+        }
+      ]
+    },
+    {
+      "id": "ridb:243195",
+      "facility_id": "243195",
+      "name": "McDougle Camp",
+      "group": "other_pending_7",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:243195",
+        "name": "McDougle Camp",
+        "group": "downgrade_22",
+        "decision": "relabel_other_pending",
+        "label": "other",
+        "own_field": "FacilityDescription",
+        "own_quote": "McDougle Camp",
+        "result": "→ Other, pending review",
+        "status": "accepted, pending admission review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/243195",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "retrieval_failed",
+        "publication_or_update_date": null,
+        "field": null,
+        "quote": null
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/AL.geojson",
+        "source_retrieved_at": "2026-10-29T02:45:26Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/243195",
+        "name": "McDougle Camp",
+        "description": "McDougle Camp"
+      },
+      "reason": "Exact-ID public page failed repeated retrieval. Retained own description is only the name; leave Other pending."
+    },
+    {
+      "id": "ridb:244320",
+      "facility_id": "244320",
+      "name": "Bowman Lake Area",
+      "group": "other_pending_7",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:244320",
+        "name": "Bowman Lake Area",
+        "group": "downgrade_22",
+        "decision": "relabel_other_pending",
+        "label": "other",
+        "own_field": "FacilityDescription",
+        "own_quote": "The Bowman Lake area is located in Lake and Sweetwater Townships in Lake County.",
+        "result": "→ Other, pending review",
+        "status": "accepted, pending admission review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/244320",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "retrieval_failed",
+        "publication_or_update_date": null,
+        "field": null,
+        "quote": null
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/MI.geojson",
+        "source_retrieved_at": "2026-10-29T03:06:41Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/244320",
+        "name": "Bowman Lake Area",
+        "description": "<p>This area not only has the Pere Marquette River running through it, but also contains a portion of the North Country National Scenic Trail and habitat for the federally endangered Karner blue butterfly.</p><p>The Bowman Lake area is located in Lake and Sweetwater Townships in Lake County. A total of 1,145 acres of NFS lands and 368 acres of private lands are within the boundary of the Bowman Lake area.</p><p>The terrain is characterized by rolling hills, glacial depressions and leatherleaf bogs. A 3-acre lake is located within the area. The area tends to be densely forested with a mix of hardwoods, red and white pine and aspen. Wildlife species that commonly inhabit this area include white-tailed deer, bobcat, coyote, red fox, raccoon, porcupine, squirrels, pileated woodpecker, ruffed grouse, wild turkey and various songbirds.</p><p>Visitor recreation activities include camping, fishing, mushroom gathering, bird-watching, hunting, hiking and canoeing. Mountain biking and horseback riding are also common uses on the area trails. Although trails are not groomed in the winter, the area is popular for snowshoeing and cross-country skiing.</p><p> </p><p>The Bowman Lake Trailhead serves as a main entry point onto the North Country National Scenic Trail (NCT). A 3-mile segment of the NCT is located within this area and mountain biking is allowed on this section of trail. In addition, a small trailhead is located on NFS Road 6267, giving access to the Bowman Lake Campground Trail, which is approximately 7.5 miles of loop trail designed for nonmotorized recreation.</p><p>This trail system can also be used by mountain bikers and horseback riders. Four improved campsites are located on Bowman Lake. Segments of the State of Michigan snowmobile trail system and Michigan Cycle Conservation Club Trail (MCCCT) system are located immediately south of the area.</p>"
+      },
+      "reason": "Exact-ID public page failed repeated retrieval. Retained description covers a broad mixed-ownership area and four improved lakeside campsites; it does not establish this whole record as one campground."
+    },
+    {
+      "id": "ridb:244321",
+      "facility_id": "244321",
+      "name": "Condon Lakes West",
+      "group": "other_pending_7",
+      "historical_owner_or_hold_record": {
+        "id": "ridb:244321",
+        "name": "Condon Lakes West",
+        "group": "downgrade_22",
+        "decision": "relabel_other_pending",
+        "label": "other",
+        "own_field": "FacilityDescription",
+        "own_quote": "This area is very popular for mushroom and berry picking, as well as hunting, fishing and camping.",
+        "result": "→ Other, pending review",
+        "status": "accepted, pending admission review"
+      },
+      "applied_change": false,
+      "proposed_label": null,
+      "recommendation_status": "unresolved_preserve_existing_status",
+      "confidence": "insufficient_for_type_decision",
+      "official_source": {
+        "url": "https://www.recreation.gov/camping/poi/244321",
+        "identity_basis": "own_Recreation.gov_facility_id_in_URL",
+        "consulted_on": "2026-11-15",
+        "read_status": "retrieval_failed",
+        "publication_or_update_date": null,
+        "field": null,
+        "quote": null
+      },
+      "retained_own_record": {
+        "repository_path": "data/campsites/MI.geojson",
+        "source_retrieved_at": "2026-10-29T03:06:41Z",
+        "source_url": "https://www.recreation.gov/camping/campgrounds/244321",
+        "name": "Condon Lakes West",
+        "description": "<p>This area is very popular for mushroom and berry picking, as well as hunting, fishing and camping.</p>"
+      },
+      "reason": "Exact-ID public page failed repeated retrieval. Retained description names camping as one activity in a wider area; no specific campsite or type is established."
+    }
+  ]
+}

@@ -30,7 +30,8 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=10
-    timeout-minutes: 25
+    # Full browser coverage takes about 20 minutes; allow setup and packaging too.
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v7.0.1
         with:

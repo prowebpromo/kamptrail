@@ -1,0 +1,1099 @@
+{
+  "baseline": "3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+  "current_count": 33353,
+  "previous_count": 33353,
+  "continuity": {
+    "previous_ids": 36272,
+    "next_ids": 36272,
+    "lost": [],
+    "moved": [],
+    "conflicts": []
+  },
+  "history_unchanged": true,
+  "historical_count": 202,
+  "history_sha256": "0a689478d064146979fdaa861117af2d5d09d2b5086b52ad75f82ad06855cf3f",
+  "changes": [
+    {
+      "id": "osm:way:1199876963",
+      "field": "states",
+      "before": [
+        "NC"
+      ],
+      "after": [
+        "NC",
+        "TN"
+      ]
+    },
+    {
+      "id": "osm:node:1788117418",
+      "field": "states",
+      "before": [
+        "NC"
+      ],
+      "after": [
+        "NC",
+        "TN"
+      ]
+    },
+    {
+      "id": "ridb:251354",
+      "field": "m.t",
+      "before": "established",
+      "after": "lodging"
+    },
+    {
+      "id": "osm:node:4897597801",
+      "field": "states",
+      "before": [
+        "NC",
+        "VA"
+      ],
+      "after": [
+        "NC",
+        "TN",
+        "VA"
+      ]
+    },
+    {
+      "id": "ridb:241301",
+      "field": "m.t",
+      "before": "established",
+      "after": "other"
+    },
+    {
+      "id": "ridb:246536",
+      "field": "states",
+      "before": [
+        "VT"
+      ],
+      "after": [
+        "NY",
+        "VT"
+      ]
+    },
+    {
+      "id": "ridb:244320",
+      "field": "m.t",
+      "before": "dispersed",
+      "after": "other"
+    },
+    {
+      "id": "osm:way:163726478",
+      "field": "states",
+      "before": [
+        "NV"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "osm:node:7821270685",
+      "field": "states",
+      "before": [
+        "NV"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "ridb:10060062",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:10344823",
+      "field": "m.t",
+      "before": "established",
+      "after": "lodging"
+    },
+    {
+      "id": "ridb:244321",
+      "field": "m.t",
+      "before": "established",
+      "after": "other"
+    },
+    {
+      "id": "ridb:10078697",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "osm:node:778881316",
+      "field": "states",
+      "before": [
+        "NV"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "osm:way:1108044726",
+      "field": "states",
+      "before": [
+        "KY",
+        "MO"
+      ],
+      "after": [
+        "IL",
+        "KY",
+        "MO"
+      ]
+    },
+    {
+      "id": "ridb:10134448",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "osm:node:1602292651",
+      "field": "states",
+      "before": [
+        "ID"
+      ],
+      "after": [
+        "ID",
+        "MT"
+      ]
+    },
+    {
+      "id": "osm:way:456269017",
+      "field": "states",
+      "before": [
+        "NC"
+      ],
+      "after": [
+        "GA",
+        "NC"
+      ]
+    },
+    {
+      "id": "ridb:234185",
+      "field": "m.t",
+      "before": "established",
+      "after": "lodging"
+    },
+    {
+      "id": "ridb:261695",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:240871",
+      "field": "m.t",
+      "before": "established",
+      "after": "other"
+    },
+    {
+      "id": "ridb:10078445",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:10078676",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "osm:way:891398797",
+      "field": "states",
+      "before": [
+        "NV"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "ridb:248513",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:251352",
+      "field": "m.t",
+      "before": "established",
+      "after": "lodging"
+    },
+    {
+      "id": "osm:node:12079371218",
+      "field": "states",
+      "before": [
+        "ID"
+      ],
+      "after": [
+        "ID",
+        "MT"
+      ]
+    },
+    {
+      "id": "ridb:10072074",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:245164",
+      "field": "states",
+      "before": [
+        "ID"
+      ],
+      "after": [
+        "ID",
+        "UT"
+      ]
+    },
+    {
+      "id": "ridb:272101",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:249627",
+      "field": "m.t",
+      "before": "established",
+      "after": "dispersed"
+    },
+    {
+      "id": "ridb:237765",
+      "field": "states",
+      "before": [
+        "ID"
+      ],
+      "after": [
+        "ID",
+        "OR"
+      ]
+    },
+    {
+      "id": "ridb:10069432",
+      "field": "m.t",
+      "before": "established",
+      "after": "dispersed"
+    },
+    {
+      "id": "osm:way:494010120",
+      "field": "states",
+      "before": [
+        "TN"
+      ],
+      "after": [
+        "NC",
+        "TN"
+      ]
+    },
+    {
+      "id": "ridb:10007101",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "osm:node:2994955727",
+      "field": "states",
+      "before": [
+        "ID"
+      ],
+      "after": [
+        "ID",
+        "MT"
+      ]
+    },
+    {
+      "id": "ridb:255118",
+      "field": "lat",
+      "before": 38.738289,
+      "after": 38.7382889
+    },
+    {
+      "id": "ridb:255118",
+      "field": "lng",
+      "before": -109.351769,
+      "after": -109.3517694
+    },
+    {
+      "id": "ridb:255118",
+      "field": "m.e",
+      "before": {
+        "m": 1249.423461914,
+        "k": "38.7382890,-109.3517690",
+        "d": "2026-10-30T01:58:35.991497Z"
+      }
+    },
+    {
+      "id": "osm:way:224194057",
+      "field": "states",
+      "before": [
+        "MD",
+        "WV"
+      ],
+      "after": [
+        "MD",
+        "VA",
+        "WV"
+      ]
+    },
+    {
+      "id": "ridb:243195",
+      "field": "m.t",
+      "before": "established",
+      "after": "other"
+    },
+    {
+      "id": "ridb:10048852",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:10049041",
+      "field": "m.t",
+      "before": "established",
+      "after": "other"
+    },
+    {
+      "id": "osm:node:1549651215",
+      "field": "states",
+      "before": [
+        "NV"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "osm:way:425653468",
+      "field": "states",
+      "before": [
+        "OR"
+      ],
+      "after": [
+        "OR",
+        "WA"
+      ]
+    },
+    {
+      "id": "ridb:10134443",
+      "field": "m.t",
+      "before": "other",
+      "after": "dispersed"
+    },
+    {
+      "id": "ridb:10278932",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "osm:way:266761488",
+      "field": "states",
+      "before": [
+        "MD"
+      ],
+      "after": [
+        "MD",
+        "VA"
+      ]
+    },
+    {
+      "id": "osm:way:42486427",
+      "field": "states",
+      "before": [
+        "NV"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "osm:node:7396447201",
+      "field": "states",
+      "before": [
+        "OK"
+      ],
+      "after": [
+        "OK",
+        "TX"
+      ]
+    },
+    {
+      "id": "ridb:10134449",
+      "field": "m.t",
+      "before": "other",
+      "after": "dispersed"
+    },
+    {
+      "id": "ridb:234149",
+      "field": "m.t",
+      "before": "established",
+      "after": "lodging"
+    },
+    {
+      "id": "ridb:257133",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "osm:way:1125191111",
+      "field": "states",
+      "before": [
+        "VT"
+      ],
+      "after": [
+        "NH",
+        "VT"
+      ]
+    },
+    {
+      "id": "ridb:233178",
+      "field": "m.t",
+      "before": "established",
+      "after": "lodging"
+    },
+    {
+      "id": "ridb:10072265",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "osm:way:233908081",
+      "field": "states",
+      "before": [
+        "TN"
+      ],
+      "after": [
+        "NC",
+        "TN"
+      ]
+    },
+    {
+      "id": "ridb:234159",
+      "field": "m.t",
+      "before": "established",
+      "after": "lodging"
+    },
+    {
+      "id": "osm:node:8815593229",
+      "field": "states",
+      "before": [
+        "NV"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "ridb:249674",
+      "field": "m.t",
+      "before": "established",
+      "after": "dispersed"
+    },
+    {
+      "id": "ridb:240903",
+      "field": "m.t",
+      "before": "dispersed",
+      "after": "other"
+    },
+    {
+      "id": "ridb:240676",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "osm:way:1236096005",
+      "field": "states",
+      "before": [
+        "CA"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "osm:node:5000446521",
+      "field": "states",
+      "before": [
+        "ID"
+      ],
+      "after": [
+        "ID",
+        "MT"
+      ]
+    },
+    {
+      "id": "osm:relation:13941087",
+      "field": "states",
+      "before": [
+        "NC"
+      ],
+      "after": [
+        "GA",
+        "NC"
+      ]
+    },
+    {
+      "id": "osm:node:4393034273",
+      "field": "states",
+      "before": [
+        "NV"
+      ],
+      "after": [
+        "CA",
+        "NV"
+      ]
+    },
+    {
+      "id": "osm:node:3264589189",
+      "field": "states",
+      "before": [
+        "WA"
+      ],
+      "after": [
+        "OR",
+        "WA"
+      ]
+    },
+    {
+      "id": "ridb:252494",
+      "field": "m.t",
+      "before": "established",
+      "after": "lodging"
+    },
+    {
+      "id": "osm:way:731236866",
+      "field": "states",
+      "before": [
+        "MT"
+      ],
+      "after": [
+        "ID",
+        "MT"
+      ]
+    },
+    {
+      "id": "ridb:10070265",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:10068990",
+      "field": "states",
+      "before": [
+        "ID"
+      ],
+      "after": [
+        "ID",
+        "UT"
+      ]
+    },
+    {
+      "id": "ridb:255262",
+      "field": "m.t",
+      "before": "established",
+      "after": "dispersed"
+    },
+    {
+      "id": "ridb:265204",
+      "field": "m.t",
+      "before": "other",
+      "after": "established"
+    },
+    {
+      "id": "ridb:249902",
+      "field": "states",
+      "before": [
+        "WV"
+      ],
+      "after": [
+        "KY",
+        "VA",
+        "WV"
+      ]
+    }
+  ],
+  "snapshots": {
+    "changed_rows": 2339,
+    "fields": {
+      "member_evidence": 2170,
+      "tourism": 702,
+      "description_source_record_id": 45,
+      "type": 202,
+      "source_ids": 32,
+      "sources": 26,
+      "reservation": 3,
+      "website": 11,
+      "data_conflicts": 23,
+      "wikidata": 3,
+      "leisure": 2,
+      "addr:city": 1,
+      "addr:housenumber": 1,
+      "addr:postcode": 1,
+      "addr:state": 1,
+      "addr:street": 1,
+      "cabins": 2,
+      "camp_site": 1,
+      "phone": 2,
+      "operator": 9,
+      "contact:phone": 1,
+      "contact:website": 1,
+      "permanent_camping": 1,
+      "mobile_reception": 2,
+      "fixme": 1,
+      "dog": 2,
+      "official_name": 2,
+      "sport": 1,
+      "mobile_reception:strength": 1,
+      "nudism": 1,
+      "start_date": 1,
+      "payment:cash": 1,
+      "payment:coins": 1,
+      "payment:credit_cards": 1,
+      "opening_hours": 1,
+      "operator:wikipedia": 2,
+      "operator:short": 1,
+      "operator:type": 1,
+      "operator:wikidata": 1,
+      "area": 1
+    },
+    "identity_deltas": [
+      {
+        "file": "AZ_merged.geojson",
+        "before": 1563,
+        "after": 1564
+      },
+      {
+        "file": "AZ_merged.geojson",
+        "id": "ridb:10000330"
+      },
+      {
+        "file": "AZ_merged.geojson",
+        "new_id": "ridb:2046"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "before": 4924,
+        "after": 4932
+      },
+      {
+        "file": "CA_merged.geojson",
+        "id": "ridb:245478"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "id": "ridb:232881"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "id": "ridb:232891"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "id": "ridb:247865"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "id": "ridb:232889"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "id": "ridb:233314"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "id": "ridb:233830"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "id": "ridb:249982"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "new_id": "osm:node:778881316"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "new_id": "osm:node:1549651215"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "new_id": "osm:node:4393034273"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "new_id": "osm:node:7821270685"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "new_id": "osm:node:8815593229"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "new_id": "osm:way:42486427"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "new_id": "osm:way:163726478"
+      },
+      {
+        "file": "CA_merged.geojson",
+        "new_id": "osm:way:891398797"
+      },
+      {
+        "file": "GA_merged.geojson",
+        "before": 1122,
+        "after": 1124
+      },
+      {
+        "file": "GA_merged.geojson",
+        "id": "ridb:247922"
+      },
+      {
+        "file": "GA_merged.geojson",
+        "id": "ridb:255286"
+      },
+      {
+        "file": "GA_merged.geojson",
+        "new_id": "osm:way:456269017"
+      },
+      {
+        "file": "GA_merged.geojson",
+        "new_id": "osm:relation:13941087"
+      },
+      {
+        "file": "ID_merged.geojson",
+        "before": 2317,
+        "after": 2318
+      },
+      {
+        "file": "ID_merged.geojson",
+        "id": "ridb:249916"
+      },
+      {
+        "file": "ID_merged.geojson",
+        "new_id": "osm:way:731236866"
+      },
+      {
+        "file": "IL_merged.geojson",
+        "before": 873,
+        "after": 874
+      },
+      {
+        "file": "IL_merged.geojson",
+        "id": "ridb:233483"
+      },
+      {
+        "file": "IL_merged.geojson",
+        "new_id": "osm:way:1108044726"
+      },
+      {
+        "file": "MO_merged.geojson",
+        "before": 1358,
+        "after": 1359
+      },
+      {
+        "file": "MO_merged.geojson",
+        "id": "ridb:232604"
+      },
+      {
+        "file": "MO_merged.geojson",
+        "new_id": "osm:node:12546710572"
+      },
+      {
+        "file": "MT_merged.geojson",
+        "before": 1351,
+        "after": 1355
+      },
+      {
+        "file": "MT_merged.geojson",
+        "id": "ridb:272276"
+      },
+      {
+        "file": "MT_merged.geojson",
+        "id": "ridb:239314"
+      },
+      {
+        "file": "MT_merged.geojson",
+        "id": "ridb:10134446"
+      },
+      {
+        "file": "MT_merged.geojson",
+        "id": "ridb:236111"
+      },
+      {
+        "file": "MT_merged.geojson",
+        "new_id": "osm:node:1602292651"
+      },
+      {
+        "file": "MT_merged.geojson",
+        "new_id": "osm:node:2994955727"
+      },
+      {
+        "file": "MT_merged.geojson",
+        "new_id": "osm:node:5000446521"
+      },
+      {
+        "file": "MT_merged.geojson",
+        "new_id": "osm:node:12079371218"
+      },
+      {
+        "file": "NC_merged.geojson",
+        "before": 1899,
+        "after": 1901
+      },
+      {
+        "file": "NC_merged.geojson",
+        "id": "ridb:231994"
+      },
+      {
+        "file": "NC_merged.geojson",
+        "id": "ridb:232486"
+      },
+      {
+        "file": "NC_merged.geojson",
+        "new_id": "osm:way:233908081"
+      },
+      {
+        "file": "NC_merged.geojson",
+        "new_id": "osm:way:494010120"
+      },
+      {
+        "file": "NH_merged.geojson",
+        "before": 510,
+        "after": 511
+      },
+      {
+        "file": "NH_merged.geojson",
+        "id": "ridb:273778"
+      },
+      {
+        "file": "NH_merged.geojson",
+        "new_id": "osm:way:1125191111"
+      },
+      {
+        "file": "NV_merged.geojson",
+        "before": 1321,
+        "after": 1322
+      },
+      {
+        "file": "NV_merged.geojson",
+        "id": "ridb:234208"
+      },
+      {
+        "file": "NV_merged.geojson",
+        "new_id": "osm:way:1236096005"
+      },
+      {
+        "file": "OR_merged.geojson",
+        "before": 2666,
+        "after": 2667
+      },
+      {
+        "file": "OR_merged.geojson",
+        "id": "ridb:252341"
+      },
+      {
+        "file": "OR_merged.geojson",
+        "new_id": "osm:node:3264589189"
+      },
+      {
+        "file": "TN_merged.geojson",
+        "before": 1202,
+        "after": 1205
+      },
+      {
+        "file": "TN_merged.geojson",
+        "id": "ridb:232485"
+      },
+      {
+        "file": "TN_merged.geojson",
+        "id": "ridb:273847"
+      },
+      {
+        "file": "TN_merged.geojson",
+        "id": "ridb:251757"
+      },
+      {
+        "file": "TN_merged.geojson",
+        "new_id": "osm:node:1788117418"
+      },
+      {
+        "file": "TN_merged.geojson",
+        "new_id": "osm:node:4897597801"
+      },
+      {
+        "file": "TN_merged.geojson",
+        "new_id": "osm:way:1199876963"
+      },
+      {
+        "file": "TX_merged.geojson",
+        "before": 4132,
+        "after": 4133
+      },
+      {
+        "file": "TX_merged.geojson",
+        "id": "ridb:233579"
+      },
+      {
+        "file": "TX_merged.geojson",
+        "new_id": "osm:node:7396447201"
+      },
+      {
+        "file": "UT_merged.geojson",
+        "before": 2471,
+        "after": 2472
+      },
+      {
+        "file": "UT_merged.geojson",
+        "id": "ridb:251835"
+      },
+      {
+        "file": "UT_merged.geojson",
+        "new_id": "ridb:255118"
+      },
+      {
+        "file": "VA_merged.geojson",
+        "before": 1341,
+        "after": 1343
+      },
+      {
+        "file": "VA_merged.geojson",
+        "id": "ridb:233379"
+      },
+      {
+        "file": "VA_merged.geojson",
+        "id": "ridb:232432"
+      },
+      {
+        "file": "VA_merged.geojson",
+        "new_id": "osm:way:224194057"
+      },
+      {
+        "file": "VA_merged.geojson",
+        "new_id": "osm:way:266761488"
+      },
+      {
+        "file": "WA_merged.geojson",
+        "before": 2895,
+        "after": 2896
+      },
+      {
+        "file": "WA_merged.geojson",
+        "id": "ridb:232799"
+      },
+      {
+        "file": "WA_merged.geojson",
+        "new_id": "osm:way:425653468"
+      },
+      {
+        "file": "WY_merged.geojson",
+        "before": 892,
+        "after": 893
+      },
+      {
+        "file": "WY_merged.geojson",
+        "id": "ridb:202226"
+      },
+      {
+        "file": "WY_merged.geojson",
+        "new_id": "ridb:14703"
+      }
+    ],
+    "holds_before": [
+      {
+        "state": "FL",
+        "id": "osm:node:8021890291",
+        "hold": {
+          "value": "private",
+          "source_record_id": "osm:way:549386043"
+        }
+      },
+      {
+        "state": "NY",
+        "id": "osm:way:1062744164",
+        "hold": {
+          "value": "private",
+          "source_record_id": "osm:way:1062961186"
+        }
+      },
+      {
+        "state": "PA",
+        "id": "osm:way:364973410",
+        "hold": {
+          "value": "private",
+          "source_record_id": "osm:way:1029939158"
+        }
+      },
+      {
+        "state": "WA",
+        "id": "ridb:238903",
+        "hold": {
+          "value": "no",
+          "source_record_id": "osm:way:968061661"
+        }
+      }
+    ],
+    "holds_after": [
+      {
+        "state": "FL",
+        "id": "osm:node:8021890291",
+        "hold": {
+          "value": "private",
+          "source_record_id": "osm:way:549386043"
+        }
+      },
+      {
+        "state": "NY",
+        "id": "osm:way:1062744164",
+        "hold": {
+          "value": "private",
+          "source_record_id": "osm:way:1062961186"
+        }
+      },
+      {
+        "state": "PA",
+        "id": "osm:way:364973410",
+        "hold": {
+          "value": "private",
+          "source_record_id": "osm:way:1029939158"
+        }
+      },
+      {
+        "state": "WA",
+        "id": "ridb:238903",
+        "hold": {
+          "value": "no",
+          "source_record_id": "osm:way:968061661"
+        }
+      }
+    ]
+  },
+  "history_release_validation": "0a689478d064146979fdaa861117af2d5d09d2b5086b52ad75f82ad06855cf3f",
+  "id_union": {
+    "active_ids": 36272,
+    "historical_ids": 208,
+    "union": 36480,
+    "overlap": 0
+  }
+}

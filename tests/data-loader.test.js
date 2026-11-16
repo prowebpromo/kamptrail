@@ -447,3 +447,33 @@ test('Spanish Forest Service statements keep the agency text in English and tran
   assert.match(html,/El registro del sitio del Servicio Forestal indica/);assert.match(html,/“Yes, drinking water is available from a hand pump”/);assert.match(html,/Normalizado: Agua potable indicada, bomba manual/);
   assert.match(html,/actualizado 2026-08-05/);assert.match(html,/Datos descargados 2026-10-31/);
 });
+
+test('a known own-record closure cannot become an open claim when later wording is missing',()=>{
+  const {api}=harness(async()=>response({}));
+  const row=feature({id:'ridb:233178',name:'SHAW HOUSE',type:'lodging',fee_status:'unknown',open_status:'open',
+    own_closure_notice:{status:'temporarily closed',notice_date:'2026-09-10',retrieved_at:'2026-10-29T02:47:24Z',current_record_retrieved_at:'2030-01-01T00:00:00Z',current_record_supports_notice:false}});
+  const html=api.popupHTML(row);
+  assert.match(html,/Earlier agency notice:/);assert.match(html,/temporarily closed/);assert.match(html,/Notice dated 2026-09-10/);
+  assert.match(html,/Current status is unverified/);assert.doesNotMatch(html,/Status \(agency\):/);assert.doesNotMatch(html,/Agency reports:/);
+});
+
+test('a refreshed admission hold does not contradict the still-supported own-record type',()=>{
+  const {api}=harness(async()=>response({}));
+  const row=feature({id:'ridb:243218',name:'Coleman Lake Recreation Area',type:'established',fee_status:'unknown',
+    camping_classification:'published_pending_review',camping_evidence:'previously_published_pending_adjudication',
+    type_evidence:{kind:'owner_reviewed_own_record',source_record_id:'ridb:243218',field:'FacilityDescription',quote:'There are 39 campsites with water and electrical hookups'}});
+  const html=api.popupHTML(row);
+  assert.match(html,/This listing remains under review/);
+  assert.match(html,/Camping and this camping type are described in this facility’s own Recreation.gov record/);
+  assert.doesNotMatch(html,/record does not establish the camping type/);
+  assert.equal(row.properties.camping_classification,'published_pending_review');
+});
+
+test('a held published label states that the camping type remains unverified',()=>{
+  const {api}=harness(async()=>response({}));
+  const html=api.popupHTML(feature({id:'ridb:249902',name:'Wolf Gap Recreation Area',type:'established',fee_status:'unknown',
+    camping_classification:'published_pending_review',type_evidence:{kind:'held_published_label'}}));
+  assert.match(html,/The type shown is the label published before this review/);
+  assert.match(html,/Its camping type is unverified/);
+  assert.doesNotMatch(html,/Camping and this camping type are described/);
+});

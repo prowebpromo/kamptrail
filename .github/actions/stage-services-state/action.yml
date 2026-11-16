@@ -1,0 +1,51 @@
+name: Stage one bounded service state
+description: Import one state and retain its complete checkpoint or typed failure proof
+inputs:
+  state:
+    description: Exact Census state code
+    required: true
+  batch:
+    description: Caller run and head SHA binding
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v7.1.0
+      with:
+        python-version: '3.12'
+    - uses: actions/setup-node@v7.1.0
+      with:
+        node-version: '22'
+    - name: Install checksum-pinned native parser
+      shell: bash
+      run: python -m pip install --no-deps --require-hashes -r scripts/requirements-services.txt
+    - name: Verify bounded importer and immutable delivery
+      shell: bash
+      run: |
+        python -m unittest scripts/tests/test_services_import.py scripts/tests/test_national_services.py scripts/tests/test_services_recovery.py
+        node --test scripts/tests/services-builder.test.js
+    - name: Import one bounded complete state
+      shell: bash
+      env:
+        SERVICE_STATE: ${{ inputs.state }}
+        BATCH: ${{ inputs.batch }}
+      run: |
+        if python -u scripts/stage_services.py --regions "$SERVICE_STATE" --batch "$BATCH" --stage "$RUNNER_TEMP/stage" --scratch "$RUNNER_TEMP/public-pbf"; then
+          exit 0
+        else
+          status=$?
+        fi
+        if [[ "$status" -eq 75 ]]; then
+          echo "::notice::State $SERVICE_STATE deferred for bounded fresh-runner recovery after exhausted startup transport retries"
+          exit 0
+        fi
+        exit "$status"
+    - name: Keep state proof, including failure receipt
+      if: always()
+      uses: actions/upload-artifact@v7.0.2
+      with:
+        name: services-state-${{ inputs.state }}
+        overwrite: true
+        path: ${{ runner.temp }}/stage
+        if-no-files-found: error
+        retention-days: 14

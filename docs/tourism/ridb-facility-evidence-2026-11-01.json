@@ -1,0 +1,2211 @@
+{
+  "facilities": {
+    "10007101": {
+      "api_path": "/facilities/10007101",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10007101",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10007101",
+        "FacilityLatitude": 42.818212,
+        "FacilityLongitude": -109.562713,
+        "FacilityName": "Large Vehicle Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10007101",
+      "status": "ok"
+    },
+    "10048852": {
+      "api_path": "/facilities/10048852",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10048852",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10048852",
+        "FacilityLatitude": 39.522732,
+        "FacilityLongitude": -111.249677,
+        "FacilityName": "Miller Flat Reservoir Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10048852",
+      "status": "ok"
+    },
+    "10049041": {
+      "api_path": "/facilities/10049041",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10049041",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10049041",
+        "FacilityLatitude": 33.98959,
+        "FacilityLongitude": -82.4203,
+        "FacilityName": "Morrow Bridge and Midway Seasonal Camps",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10049041",
+      "status": "ok"
+    },
+    "10060062": {
+      "api_path": "/facilities/10060062",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10060062",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10060062",
+        "FacilityLatitude": 34.83333333,
+        "FacilityLongitude": -119.2041667,
+        "FacilityName": "Campo Alto Group Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10060062",
+      "status": "ok"
+    },
+    "10068183": {
+      "api_path": "/facilities/10068183",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10068183",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10068183",
+        "FacilityLatitude": 46.4835,
+        "FacilityLongitude": -86.6453806,
+        "FacilityName": "Little Duck Campsite on Grand Island",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10068183",
+      "status": "ok"
+    },
+    "10068990": {
+      "api_path": "/facilities/10068990",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10068990",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10068990",
+        "FacilityLatitude": 43.625972,
+        "FacilityLongitude": -115.134433,
+        "FacilityName": "Willow Creek Transfer Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10068990",
+      "status": "ok"
+    },
+    "10070265": {
+      "api_path": "/facilities/10070265",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10070265",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10070265",
+        "FacilityLatitude": 34.832222,
+        "FacilityLongitude": -83.626111,
+        "FacilityName": "Wildcat Creek Campground #2 Upper",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10070265",
+      "status": "ok"
+    },
+    "10072074": {
+      "api_path": "/facilities/10072074",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10072074",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10072074",
+        "FacilityLatitude": 47.61583333,
+        "FacilityLongitude": -112.7244444,
+        "FacilityName": "Home Gulch Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10072074",
+      "status": "ok"
+    },
+    "10072265": {
+      "api_path": "/facilities/10072265",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10072265",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10072265",
+        "FacilityLatitude": 48.77878,
+        "FacilityLongitude": -116.264,
+        "FacilityName": "Smith Lake Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10072265",
+      "status": "ok"
+    },
+    "10078445": {
+      "api_path": "/facilities/10078445",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10078445",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10078445",
+        "FacilityLatitude": 39.49194444,
+        "FacilityLongitude": -106.6588889,
+        "FacilityName": "Fulford Cave Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10078445",
+      "status": "ok"
+    },
+    "10078676": {
+      "api_path": "/facilities/10078676",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10078676",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10078676",
+        "FacilityLatitude": 46.099718,
+        "FacilityLongitude": -117.786291,
+        "FacilityName": "Godman Campground/Trailhead",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10078676",
+      "status": "ok"
+    },
+    "10078697": {
+      "api_path": "/facilities/10078697",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10078697",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10078697",
+        "FacilityLatitude": 47.158576,
+        "FacilityLongitude": -115.415957,
+        "FacilityName": "Conrad Crossing Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10078697",
+      "status": "ok"
+    },
+    "10134443": {
+      "api_path": "/facilities/10134443",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10134443",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10134443",
+        "FacilityLatitude": 47.309883,
+        "FacilityLongitude": -114.848297,
+        "FacilityName": "Muchwater Dispersed Campground and Recreation Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10134443",
+      "status": "ok"
+    },
+    "10134448": {
+      "api_path": "/facilities/10134448",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10134448",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10134448",
+        "FacilityLatitude": 47.354653,
+        "FacilityLongitude": -115.370753,
+        "FacilityName": "Deer Creek Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10134448",
+      "status": "ok"
+    },
+    "10134449": {
+      "api_path": "/facilities/10134449",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10134449",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10134449",
+        "FacilityLatitude": 47.326428,
+        "FacilityLongitude": -114.905233,
+        "FacilityName": "Peninsula Dispersed Campground and Recreation Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10134449",
+      "status": "ok"
+    },
+    "10278932": {
+      "api_path": "/facilities/10278932",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10278932",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10278932",
+        "FacilityLatitude": 44.80732,
+        "FacilityLongitude": -119.96704,
+        "FacilityName": "Muleshoe Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-10-05",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10278932",
+      "status": "ok"
+    },
+    "10344823": {
+      "api_path": "/facilities/10344823",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN NONELECTRIC": 1
+        },
+        "by_type_of_use": {
+          "Overnight": 1
+        },
+        "overnight": 1,
+        "total": 1
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "10344823",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "10344823",
+        "FacilityLatitude": 67.2536848,
+        "FacilityLongitude": -150.182928,
+        "FacilityName": "Coldfoot Cabin",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-06-17",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/10344823",
+      "status": "ok"
+    },
+    "233178": {
+      "api_path": "/facilities/233178",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN ELECTRIC": 1
+        },
+        "by_type_of_use": {
+          "Overnight": 1
+        },
+        "overnight": 1,
+        "total": 1
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "233178",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "233178",
+        "FacilityLatitude": 31.931233885,
+        "FacilityLongitude": -109.961709093,
+        "FacilityName": "SHAW HOUSE",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-09-11",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/233178",
+      "status": "ok"
+    },
+    "234149": {
+      "api_path": "/facilities/234149",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN NONELECTRIC": 1
+        },
+        "by_type_of_use": {
+          "Overnight": 1
+        },
+        "overnight": 1,
+        "total": 1
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "234149",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "234149",
+        "FacilityLatitude": 42.943699,
+        "FacilityLongitude": -122.8547,
+        "FacilityName": "PICKETT BUTTE LOOKOUT",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/234149",
+      "status": "ok"
+    },
+    "234159": {
+      "api_path": "/facilities/234159",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN NONELECTRIC": 1
+        },
+        "by_type_of_use": {
+          "Overnight": 1
+        },
+        "overnight": 1,
+        "total": 1
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "234159",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "234159",
+        "FacilityLatitude": 42.344,
+        "FacilityLongitude": -124.165,
+        "FacilityName": "SNOW CAMP LOOKOUT",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-07-07",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/234159",
+      "status": "ok"
+    },
+    "234185": {
+      "api_path": "/facilities/234185",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN NONELECTRIC": 1
+        },
+        "by_type_of_use": {
+          "Overnight": 1
+        },
+        "overnight": 1,
+        "total": 1
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "234185",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "234185",
+        "FacilityLatitude": 42.30056,
+        "FacilityLongitude": -120.15783,
+        "FacilityName": "DRAKE PEAK LOOKOUT",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/234185",
+      "status": "ok"
+    },
+    "234745": {
+      "api_path": "/facilities/234745",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN NONELECTRIC": 4
+        },
+        "by_type_of_use": {
+          "Overnight": 4
+        },
+        "overnight": 4,
+        "total": 4
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "234745",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "234745",
+        "FacilityLatitude": 39.8336111,
+        "FacilityLongitude": -109.9416667,
+        "FacilityName": "DESOLATION GRAY CANYONS SCREEN CABINS",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-06-27",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/234745",
+      "status": "ok"
+    },
+    "237148": {
+      "api_path": "/facilities/237148",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "237148",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "237148",
+        "FacilityLatitude": 48.9970333,
+        "FacilityLongitude": -115.16465,
+        "FacilityName": "Gateway Boat Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/237148",
+      "status": "ok"
+    },
+    "237191": {
+      "api_path": "/facilities/237191",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "237191",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "237191",
+        "FacilityLatitude": 48.835156,
+        "FacilityLongitude": -115.194631,
+        "FacilityName": "Camp 32",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/237191",
+      "status": "ok"
+    },
+    "237765": {
+      "api_path": "/facilities/237765",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "237765",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "237765",
+        "FacilityLatitude": 45.56779,
+        "FacilityLongitude": -116.497783,
+        "FacilityName": "Kirkwood Ranch",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/237765",
+      "status": "ok"
+    },
+    "240676": {
+      "api_path": "/facilities/240676",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "240676",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "240676",
+        "FacilityLatitude": 45.93763,
+        "FacilityLongitude": -115.62175,
+        "FacilityName": "Table Meadows Campground",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/240676",
+      "status": "ok"
+    },
+    "240871": {
+      "api_path": "/facilities/240871",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "240871",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "240871",
+        "FacilityLatitude": 30.998339,
+        "FacilityLongitude": -93.0146443,
+        "FacilityName": "Enduro Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/240871",
+      "status": "ok"
+    },
+    "240903": {
+      "api_path": "/facilities/240903",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "240903",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "240903",
+        "FacilityLatitude": 32.962,
+        "FacilityLongitude": -92.792,
+        "FacilityName": "Sugar Creek Hunter Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/240903",
+      "status": "ok"
+    },
+    "241301": {
+      "api_path": "/facilities/241301",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "241301",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "241301",
+        "FacilityLatitude": 34.7122167,
+        "FacilityLongitude": -90.6938167,
+        "FacilityName": "Bear Creek Lake Recreation Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/241301",
+      "status": "ok"
+    },
+    "243195": {
+      "api_path": "/facilities/243195",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "243195",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "243195",
+        "FacilityLatitude": 34.34,
+        "FacilityLongitude": -87.35,
+        "FacilityName": "McDougle Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/243195",
+      "status": "ok"
+    },
+    "243218": {
+      "api_path": "/facilities/243218",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "243218",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "243218",
+        "FacilityLatitude": 33.78408702,
+        "FacilityLongitude": -85.56203439,
+        "FacilityName": "Coleman Lake Recreation Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/243218",
+      "status": "ok"
+    },
+    "243219": {
+      "api_path": "/facilities/243219",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "243219",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "243219",
+        "FacilityLatitude": 33.72521825,
+        "FacilityLongitude": -85.60182112,
+        "FacilityName": "Pine Glen Recreation Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/243219",
+      "status": "ok"
+    },
+    "243702": {
+      "api_path": "/facilities/243702",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "243702",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "243702",
+        "FacilityLatitude": 44.754881,
+        "FacilityLongitude": -118.6923,
+        "FacilityName": "Head O' Boulder Forest Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/243702",
+      "status": "ok"
+    },
+    "244320": {
+      "api_path": "/facilities/244320",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "244320",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "244320",
+        "FacilityLatitude": 43.889444,
+        "FacilityLongitude": -85.94,
+        "FacilityName": "Bowman Lake Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/244320",
+      "status": "ok"
+    },
+    "244321": {
+      "api_path": "/facilities/244321",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "244321",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "244321",
+        "FacilityLatitude": 43.757958,
+        "FacilityLongitude": -85.900061,
+        "FacilityName": "Condon Lakes West",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/244321",
+      "status": "ok"
+    },
+    "244404": {
+      "api_path": "/facilities/244404",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "244404",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "244404",
+        "FacilityLatitude": 44.633085,
+        "FacilityLongitude": -84.509175,
+        "FacilityName": "Wakeley Lake Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/244404",
+      "status": "ok"
+    },
+    "245164": {
+      "api_path": "/facilities/245164",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "245164",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "245164",
+        "FacilityLatitude": 43.423767,
+        "FacilityLongitude": -115.132042,
+        "FacilityName": "Hunter Creek Transfer Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/245164",
+      "status": "ok"
+    },
+    "245165": {
+      "api_path": "/facilities/245165",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "245165",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "245165",
+        "FacilityLatitude": 43.727218,
+        "FacilityLongitude": -114.900558,
+        "FacilityName": "Bear Creek Transfer Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/245165",
+      "status": "ok"
+    },
+    "245273": {
+      "api_path": "/facilities/245273",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "245273",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "245273",
+        "FacilityLatitude": 44.162487,
+        "FacilityLongitude": -114.886628,
+        "FacilityName": "Buckhorn",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/245273",
+      "status": "ok"
+    },
+    "246536": {
+      "api_path": "/facilities/246536",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "246536",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "246536",
+        "FacilityLatitude": 43.875356,
+        "FacilityLongitude": -72.9137,
+        "FacilityName": "Bingo",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/246536",
+      "status": "ok"
+    },
+    "247835": {
+      "api_path": "/facilities/247835",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "247835",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "247835",
+        "FacilityLatitude": 34.23217194,
+        "FacilityLongitude": -93.74295328,
+        "FacilityName": "Daisy State Park",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/247835",
+      "status": "ok"
+    },
+    "247915": {
+      "api_path": "/facilities/247915",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "247915",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "247915",
+        "FacilityLatitude": 34.288295,
+        "FacilityLongitude": -83.904533,
+        "FacilityName": "River Forks",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/247915",
+      "status": "ok"
+    },
+    "247922": {
+      "api_path": "/facilities/247922",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "247922",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "247922",
+        "FacilityLatitude": 34.3895525,
+        "FacilityLongitude": -83.7419459,
+        "FacilityName": "Don Carter State Park",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/247922",
+      "status": "ok"
+    },
+    "247937": {
+      "api_path": "/facilities/247937",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "247937",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "247937",
+        "FacilityLatitude": 46.60428229,
+        "FacilityLongitude": -116.29919477,
+        "FacilityName": "Dworshak State Park- Three Meadows Group Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/247937",
+      "status": "ok"
+    },
+    "248072": {
+      "api_path": "/facilities/248072",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "248072",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "248072",
+        "FacilityLatitude": 41.777929,
+        "FacilityLongitude": -70.505148,
+        "FacilityName": "Scusset Beach State Reservation",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/248072",
+      "status": "ok"
+    },
+    "248261": {
+      "api_path": "/facilities/248261",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "248261",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "248261",
+        "FacilityLatitude": 34.6250312,
+        "FacilityLongitude": -95.32412,
+        "FacilityName": "Potato Hills Central",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/248261",
+      "status": "ok"
+    },
+    "248513": {
+      "api_path": "/facilities/248513",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "248513",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "248513",
+        "FacilityLatitude": 46.42412416,
+        "FacilityLongitude": -117.04347115,
+        "FacilityName": "Granite Lake Rv Park",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/248513",
+      "status": "ok"
+    },
+    "249627": {
+      "api_path": "/facilities/249627",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "249627",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "249627",
+        "FacilityLatitude": 34.219066,
+        "FacilityLongitude": -117.55283,
+        "FacilityName": "Joe Elliot Yellow Post Sites",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/249627",
+      "status": "ok"
+    },
+    "249642": {
+      "api_path": "/facilities/249642",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "249642",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "249642",
+        "FacilityLatitude": 34.150479,
+        "FacilityLongitude": -116.766367,
+        "FacilityName": "Coon Creek Yellow Post Sites",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/249642",
+      "status": "ok"
+    },
+    "249674": {
+      "api_path": "/facilities/249674",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "249674",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "249674",
+        "FacilityLatitude": 34.296807,
+        "FacilityLongitude": -117.59064,
+        "FacilityName": "Stockton Flats Yellow Post Sites",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/249674",
+      "status": "ok"
+    },
+    "249741": {
+      "api_path": "/facilities/249741",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "249741",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "249741",
+        "FacilityLatitude": 34.128422,
+        "FacilityLongitude": -117.005479,
+        "FacilityName": "Thomas Hunting Grounds Yellow Post Sites",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/249741",
+      "status": "ok"
+    },
+    "249752": {
+      "api_path": "/facilities/249752",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "249752",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "249752",
+        "FacilityLatitude": 34.183998,
+        "FacilityLongitude": -116.97729,
+        "FacilityName": "Clark's Ranch Yellow Post Site",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/249752",
+      "status": "ok"
+    },
+    "249902": {
+      "api_path": "/facilities/249902",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "249902",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "249902",
+        "FacilityLatitude": 38.924545,
+        "FacilityLongitude": -78.68909,
+        "FacilityName": "Wolf Gap Recreation Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/249902",
+      "status": "ok"
+    },
+    "251352": {
+      "api_path": "/facilities/251352",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN ELECTRIC": 1
+        },
+        "by_type_of_use": {
+          "Overnight": 1
+        },
+        "overnight": 1,
+        "total": 1
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "251352",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "251352",
+        "FacilityLatitude": 45.0763889,
+        "FacilityLongitude": -112.7902778,
+        "FacilityName": "Henneberry House",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-08-10",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/251352",
+      "status": "ok"
+    },
+    "251354": {
+      "api_path": "/facilities/251354",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN ELECTRIC": 1
+        },
+        "by_type_of_use": {
+          "Overnight": 1
+        },
+        "overnight": 1,
+        "total": 1
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "251354",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "251354",
+        "FacilityLatitude": 45.2405556,
+        "FacilityLongitude": -111.8713889,
+        "FacilityName": "Axolotl Cabin",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-07-28",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/251354",
+      "status": "ok"
+    },
+    "252494": {
+      "api_path": "/facilities/252494",
+      "campsites": {
+        "by_campsite_type": {
+          "CABIN NONELECTRIC": 15
+        },
+        "by_type_of_use": {
+          "Overnight": 15
+        },
+        "overnight": 15,
+        "total": 15
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "252494",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "252494",
+        "FacilityLatitude": 65.4274972,
+        "FacilityLongitude": -147.2433611,
+        "FacilityName": "White Mountains National Recreation Area - Alaska Cabins",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-08-03",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/252494",
+      "status": "ok"
+    },
+    "255188": {
+      "api_path": "/facilities/255188",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "255188",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "255188",
+        "FacilityLatitude": 44.37688,
+        "FacilityLongitude": -117.2388,
+        "FacilityName": "Spring Recreation Site",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-09-03",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/255188",
+      "status": "ok"
+    },
+    "255232": {
+      "api_path": "/facilities/255232",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "255232",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "255232",
+        "FacilityLatitude": 47.594722,
+        "FacilityLongitude": -116.859166,
+        "FacilityName": "Mica Bay Boater Park",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-05-14",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/255232",
+      "status": "ok"
+    },
+    "255239": {
+      "api_path": "/facilities/255239",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "255239",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "255239",
+        "FacilityLatitude": 46.4975,
+        "FacilityLongitude": -116.726944,
+        "FacilityName": "McKay's Bend Recreation Site",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-06-05",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/255239",
+      "status": "ok"
+    },
+    "255240": {
+      "api_path": "/facilities/255240",
+      "campsites": {
+        "by_campsite_type": {
+          "RV ELECTRIC": 16,
+          "TENT ONLY NONELECTRIC": 4
+        },
+        "by_type_of_use": {
+          "Overnight": 20
+        },
+        "overnight": 20,
+        "total": 20
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "255240",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "255240",
+        "FacilityLatitude": 46.502222,
+        "FacilityLongitude": -116.348055,
+        "FacilityName": "Pink House Recreation Site",
+        "FacilityTypeDescription": "Campground",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": true
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/255240",
+      "status": "ok"
+    },
+    "255262": {
+      "api_path": "/facilities/255262",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "255262",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "255262",
+        "FacilityLatitude": 43.59955,
+        "FacilityLongitude": -111.60732,
+        "FacilityName": "Wolf Flats Recreation Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-09-15",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/255262",
+      "status": "ok"
+    },
+    "256895": {
+      "api_path": "/facilities/256895",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "256895",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "256895",
+        "FacilityLatitude": 39.156677,
+        "FacilityLongitude": -109.108704,
+        "FacilityName": "Bitter Creek Overlook Camping Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/256895",
+      "status": "ok"
+    },
+    "257133": {
+      "api_path": "/facilities/257133",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "257133",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "257133",
+        "FacilityLatitude": 38.59855,
+        "FacilityLongitude": -109.289501,
+        "FacilityName": "Rock Castle Camping Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/257133",
+      "status": "ok"
+    },
+    "260547": {
+      "api_path": "/facilities/260547",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "260547",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "260547",
+        "FacilityLatitude": 44.739287,
+        "FacilityLongitude": -120.271366,
+        "FacilityName": "Priest Hole Recreation Site",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-09-04",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/260547",
+      "status": "ok"
+    },
+    "261695": {
+      "api_path": "/facilities/261695",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "261695",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "261695",
+        "FacilityLatitude": 42.815155,
+        "FacilityLongitude": -124.410274,
+        "FacilityName": "Edson Creek Camping",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/261695",
+      "status": "ok"
+    },
+    "262649": {
+      "api_path": "/facilities/262649",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "262649",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "262649",
+        "FacilityLatitude": 41.940763,
+        "FacilityLongitude": -109.0374,
+        "FacilityName": "North Table Rock Camping Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-10-13",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/262649",
+      "status": "ok"
+    },
+    "262654": {
+      "api_path": "/facilities/262654",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "262654",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "262654",
+        "FacilityLatitude": 42.45,
+        "FacilityLongitude": -108.86,
+        "FacilityName": "Pine Creek Camping Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/262654",
+      "status": "ok"
+    },
+    "262772": {
+      "api_path": "/facilities/262772",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "262772",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "262772",
+        "FacilityLatitude": 44.3725,
+        "FacilityLongitude": -103.47297,
+        "FacilityName": "Ft. Meade Horse Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/262772",
+      "status": "ok"
+    },
+    "262796": {
+      "api_path": "/facilities/262796",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "262796",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "262796",
+        "FacilityLatitude": 40.105909,
+        "FacilityLongitude": -124.068866,
+        "FacilityName": "Horse Mountain Primitive Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/262796",
+      "status": "ok"
+    },
+    "265204": {
+      "api_path": "/facilities/265204",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "265204",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "265204",
+        "FacilityLatitude": 35.377193,
+        "FacilityLongitude": -82.73869,
+        "FacilityName": "Wolf Ford Horse Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/265204",
+      "status": "ok"
+    },
+    "272101": {
+      "api_path": "/facilities/272101",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "272101",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "272101",
+        "FacilityLatitude": 39.686978,
+        "FacilityLongitude": -112.367053,
+        "FacilityName": "Jericho Campground and Picnic Area",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/272101",
+      "status": "ok"
+    },
+    "273835": {
+      "api_path": "/facilities/273835",
+      "campsites": {
+        "by_campsite_type": {},
+        "by_type_of_use": {},
+        "overnight": 0,
+        "total": 0
+      },
+      "campsites_rejected": {
+        "accepted_not_counted": 0,
+        "count": 0,
+        "reasons": {}
+      },
+      "decision": "pending",
+      "facility_id": "273835",
+      "fields": {
+        "Enabled": true,
+        "FacilityID": "273835",
+        "FacilityLatitude": 37.61342,
+        "FacilityLongitude": -120.05697,
+        "FacilityName": "North Fork Primitive Camp",
+        "FacilityTypeDescription": "Facility",
+        "LastUpdatedDate": "2026-02-25",
+        "Reservable": false
+      },
+      "retrieved_at": "2026-11-01T21:14:28Z",
+      "source_url": "https://www.recreation.gov/camping/campgrounds/273835",
+      "status": "ok"
+    }
+  },
+  "kind": "review evidence, not published data",
+  "requested": [
+    "237765",
+    "244404",
+    "245273",
+    "246536",
+    "247835",
+    "247915",
+    "247922",
+    "248072",
+    "248261",
+    "10049041",
+    "10068990",
+    "237148",
+    "240871",
+    "240903",
+    "241301",
+    "243195",
+    "243218",
+    "243702",
+    "244320",
+    "244321",
+    "245164",
+    "245165",
+    "249627",
+    "249642",
+    "249674",
+    "249741",
+    "249752",
+    "249902",
+    "255188",
+    "255232",
+    "255239",
+    "237191",
+    "243219",
+    "255262",
+    "260547",
+    "10007101",
+    "10048852",
+    "10060062",
+    "10068183",
+    "10070265",
+    "10072074",
+    "10072265",
+    "10078445",
+    "10078676",
+    "10078697",
+    "10134443",
+    "10134448",
+    "10134449",
+    "10278932",
+    "240676",
+    "247937",
+    "248513",
+    "256895",
+    "257133",
+    "261695",
+    "262649",
+    "262654",
+    "262772",
+    "262796",
+    "265204",
+    "272101",
+    "273835",
+    "10344823",
+    "233178",
+    "234149",
+    "234159",
+    "234185",
+    "234745",
+    "251352",
+    "251354",
+    "252494",
+    "255240"
+  ],
+  "retrieved_at": "2026-11-01T21:14:28Z",
+  "source": "Recreation.gov RIDB API v1",
+  "version": 1
+}
