@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-16T03:07:34.753Z",
-  "total_sites": 43935,
+  "generated": "2026-11-16T03:18:11.421Z",
+  "total_sites": 43933,
   "states": [
     {
       "state": "AK",
@@ -52,7 +52,7 @@
     },
     {
       "state": "ID",
-      "count": 2076
+      "count": 2075
     },
     {
       "state": "IL",
@@ -104,7 +104,7 @@
     },
     {
       "state": "MT",
-      "count": 1049
+      "count": 1048
     },
     {
       "state": "NC",
@@ -205,7 +205,7 @@
   ],
   "source": "saved-merged-snapshots",
   "version": "3.0",
-  "history_sha256": "9cc7adffdb98e5ec41129faee8d1b835bce9126f02d81a88fe9446c11781d5a2",
+  "history_sha256": "6adb17a73352555c431faa758f636bc004b089b0cb5df5368a574dfa182d2327",
   "source_sha256": {
     "data/campsites/AK_merged.geojson": "373c58e693e1f4b1bce4856f00a15df15a05ace03184f5a155d886fe6d2c98f1",
     "data/campsites/agency/AK.geojson": "6fe3e87358ceb75d87c61df2b89a442db4372ae6ecc23eb763282fd3f429614e",
@@ -214,10 +214,10 @@
     "data/campsites/AR_merged.geojson": "227a3e89926fe276985f8f44b7fabe7135533d6b8ba7d691c63bc16430e13ab5",
     "data/campsites/agency/AR.geojson": "63f9643c5a58c69e86abc62bb8f00aaf8bcbdcca0f0ff4cb382aa5eee2811e4c",
     "data/campsites/AZ_merged.geojson": "68a38f5123910aba18ac6c666679cbabdafefd80da0f46e44ce31f66e88c5241",
-    "data/campsites/agency/AZ.geojson": "76aba956bce8c7e80d91659a480a3081200b7c1e6cb60d86b6a6cf0d21a9b7b2",
+    "data/campsites/agency/AZ.geojson": "26b2054a8b55c6809beb1e6b958166cba33e0d3543bbe18a83e4c773c1aa13b9",
     "data/campsites/CA_merged.geojson": "3de02dea8af1974b17c10e97ca01464db68ef2a8bc1b0966c9c5585ae8a29d46",
     "data/campsites/agency/CA.geojson": "c523ab1a5036a112c1c69e5b72b5e78746ce0a7af56c9419a768814397a2b164",
-    "data/campsites/CO_merged.geojson": "3520ea48604888c254c6fc23de39d194099ce35b7465507609600699f51d7f40",
+    "data/campsites/CO_merged.geojson": "1caabbb7505459460f5704413df444d6a400d1688c28da08cb44eb399961f987",
     "data/campsites/agency/CO.geojson": "c5b349d752c38a2374aca810e58d91fe373dec2f16108b3403184d7bf7bd9122",
     "data/campsites/CT_merged.geojson": "0abc177579b697fba0611b4da9bcd72b44bebf591e5655236525309040ee62d9",
     "data/campsites/DE_merged.geojson": "f39cc72a93243793e85be976cd1e7bd999d99a364e8250c1020926a673498f3c",
@@ -227,7 +227,7 @@
     "data/campsites/agency/GA.geojson": "137f79eb59bf756ee47cc9095cd941a79a0a9a5c1bf70fdc8b0b687b394b8716",
     "data/campsites/HI_merged.geojson": "d5be6983f1508af72d46846dd856a452127fbf057c4e39bdffe7df2b7dd8f243",
     "data/campsites/IA_merged.geojson": "f480466fc01f539befe27319fc3411ceee85d64122fc65ab1bcd692b181a9e1d",
-    "data/campsites/ID_merged.geojson": "4b842d74fe4714c6b9529b50c173c4a125823a3469ba94167e30ee7b640bae4b",
+    "data/campsites/ID_merged.geojson": "b34b9450d7e2148ee3a556f46bba54f14f2d8e58cf0091a3574093e50e1307c2",
     "data/campsites/agency/ID.geojson": "abc86a5ac83e101e4125c140e2565c2b8801ae428c766dab3a72be36e8c7c345",
     "data/campsites/IL_merged.geojson": "7c5666128b26c723bfda8c1dd843e708d81d02ce62b5890b004f20637cea6393",
     "data/campsites/agency/IL.geojson": "a6e2952b1af4935e5340f8e038b5ce2a280495a2c8a9dcf6204f2cffd5d9b57a",
@@ -252,7 +252,7 @@
     "data/campsites/MS_merged.geojson": "489ccc2724c671c32b66de06c5ce58044f627152bf96e8f75de1cb367495f946",
     "data/campsites/agency/MS.geojson": "0782047d07bb1315fecb7462518f1ce50e343bbac3b3be74738bbd9d06adf5a5",
     "data/campsites/MT_merged.geojson": "c666304a1b0b49769d50848260465ff39368f4b851edd10934f20d6c54d2ccc3",
-    "data/campsites/agency/MT.geojson": "e7709edfb9a1cb38c5131d61159fde034f737bd2ba0dedf76d55a4142a1949a5",
+    "data/campsites/agency/MT.geojson": "5eb12e2844399a277bdc6fd1eac6d08512c34c62d8a7699284301ca951ceb132",
     "data/campsites/NC_merged.geojson": "97a61f2dc539b34775af226ef97200f0ed11ea5a32a20030c124bd85d572092e",
     "data/campsites/agency/NC.geojson": "a6e765bb0d26ca6c92afe0f53fd26f73f63b4024fcfbd424451fe1d6a2b26aa8",
     "data/campsites/ND_merged.geojson": "5a6cb754968803a12ef3bb32ce7ed446746f7b749d55f56d1469262e683fa401",
