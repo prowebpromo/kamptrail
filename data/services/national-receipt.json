@@ -1,0 +1,1636 @@
+{
+  "aggregate": {
+    "version": 1,
+    "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+    "regions": [
+      "AK",
+      "AL",
+      "AR",
+      "AZ",
+      "CA",
+      "CO",
+      "CT",
+      "DE",
+      "FL",
+      "GA",
+      "HI",
+      "IA",
+      "ID",
+      "IL",
+      "IN",
+      "KS",
+      "KY",
+      "LA",
+      "MA",
+      "MD",
+      "ME",
+      "MI",
+      "MN",
+      "MO",
+      "MS",
+      "MT",
+      "NC",
+      "ND",
+      "NE",
+      "NH",
+      "NJ",
+      "NM",
+      "NV",
+      "NY",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "RI",
+      "SC",
+      "SD",
+      "TN",
+      "TX",
+      "UT",
+      "VA",
+      "VT",
+      "WA",
+      "WI",
+      "WV",
+      "WY"
+    ],
+    "national_complete": true,
+    "snapshot_id": "8416a2f575a81d1c1f5fd4d9",
+    "total": 254782,
+    "shards": 1141,
+    "manifest_bytes": 350725,
+    "manifest_sha256": "39b92f1d6ce6909ca6c37e189c5c7310a3e8f3919dda74152cf93280b9bf19b2",
+    "source_files": {
+      "sources/AK.json": "ceb8a63040704ca677d4918d2b03d7767bec8a83bc3cbd32de57dfc92e7bb82b",
+      "sources/AL.json": "3e08f8dd00fb54d968d00a7e3c7deff34105608dedc57412a97ba929af55a69c",
+      "sources/AR.json": "2858a6fde101ac9bf708327d409e8228c251636fff666cc11acf32b1fa8a3504",
+      "sources/AZ.json": "483eba54c00887c36f89f9e424f6b779fb8c2c0161681b25676fec32df2da4ba",
+      "sources/CA.json": "b0941c6c63d4afc68399a3ebf6aa72e9c51bbe94d23667bdf7594bcf6193a627",
+      "sources/CO.json": "027df96882844778ca52fefc1a4132f55190e81b9bf028017ffbfe5fc904af40",
+      "sources/CT.json": "2968b7abc562dfd3dba88806423047dadb75c2955c2e34c8cb31651625708ed6",
+      "sources/DE.json": "2eb871e31430f5880e35f214a0a2c06c328e4ec23ac518885ab2ad01ee63b270",
+      "sources/FL.json": "eae5d838a2a67777d09c3c6de345674ff0c882608e2851af3851eacb020fb354",
+      "sources/GA.json": "74a9fdb576e933bacf08f2e329d4a6737d0496179fd8e8c0d4e0a41795107df8",
+      "sources/HI.json": "1fb7a93c0c7c191427727e722459a9544b5e7c6c60443445e2e52394ee55fb82",
+      "sources/IA.json": "61e6baec0badd919bba13dedfca0f5a9011f89e4762cdeee66ebaea848847a5c",
+      "sources/ID.json": "876983c68454ca4f8fdbb17c613ac9469ed28910a725c59172bdd6decf301926",
+      "sources/IL.json": "d5b10b99ea74ebd2649650cb3724be4c45b486c9b5bec309d151be8c9ff4fa65",
+      "sources/IN.json": "e70b79e82238776a0ab20e7a763bb51a2c5780648692f790079366fc4a822e69",
+      "sources/KS.json": "5de6908f5721db2bb7d87764f2006399af41a9532ed21660b06090e239c708ca",
+      "sources/KY.json": "1be564804ae6a0fa622754572b2df0047cfb8819e3b5f2cb8120cfe9a05838c9",
+      "sources/LA.json": "d5a42cdf605f7d8fca87b68dee63d863da2bfec048037264c9534746153b8731",
+      "sources/legacy.json": "d966e545bd97f0483ee38d332dd2729677aec2c88295cc845894f831ffcf2c5f",
+      "sources/MA.json": "c5900ab8fc05c4a5417ff682f02d657335dc4175529528440890af09d254d649",
+      "sources/MD.json": "6a926d60300bc4756ecadf2620cc5ddb5e432f37216579e59afd466b369f7013",
+      "sources/ME.json": "c052285702baeee51eb69c50a77aaad8d5f924d72e60ca4c9805b3fe3bd218ef",
+      "sources/MI.json": "85358c3f9291caa701410e2ac150edc7e874af54b340575da8980805b8a5e55b",
+      "sources/MN.json": "32d3bcfc63dc7381257f4c063f2536d296eb54bfdc585569aee55f56bf8460ff",
+      "sources/MO.json": "f8aa07ef206f671ac6933ffd37156f96802cf0138e723a2d90bcb76b7b1f2182",
+      "sources/MS.json": "8c5665ff9063762e5200c1599f709859957702bd778489fc5a2220c569f57860",
+      "sources/MT.json": "e6ebbc5d6cb0e3a06f519fed6cb1cf3cbe1d177ea2568ee670175bd2a70456aa",
+      "sources/NC.json": "37ebc38d81a89da2b13fa866e1a3597eddb12060334c1f31a3f335a864b0bd08",
+      "sources/ND.json": "2052e6e757256f94e5078e60ac5af059a9e34d66623920ab46d1d00bf0a1c47f",
+      "sources/NE.json": "dcea51727970192b8cfac4c0ffaa2ba90a12a8d7b62ec184174d00485e84c1d9",
+      "sources/NH.json": "eed9775cf6bcc0dcea09837475ffd882373bca0cc67e14923f7e3ac0ba83e35e",
+      "sources/NJ.json": "f497f4bb79efc72e05c0c796ec2facf2dcee9b8b4d92e9739cae1b380029ed38",
+      "sources/NM.json": "91078b91def4ba0ad57d2bb95a25a5ba967b89a3fe9753c07196419ff53fc60f",
+      "sources/NV.json": "425101d0f9ce5b76ef6dba13450ec36d5dc1be67d017bed01cbdb3fb980363fc",
+      "sources/NY.json": "3d0f6130df7e5b13e5fb37c6169f4d301c1303ccf10297c557ef346e9c916ad6",
+      "sources/OH.json": "1708cf5d8d188a99e087d21f8a83e6b60cc2838fd8d3efe0f9d20e0e96081355",
+      "sources/OK.json": "b0ac26b0566464d15e58759f5bf577767eb60d66ad0f02a3829c1f4f412a9939",
+      "sources/OR.json": "315488a058e51f3826992887e66ed8a16087c76d74229fdf0ecbe13f72d1822d",
+      "sources/PA.json": "3ec90bc35f2ca3b2d96561a5050dce5f60eaa9fd133871796e953a218ee697f2",
+      "sources/RI.json": "09f225de4f8bbc45d6deef826e3e598f89f3b150313f2b30d07a350daea6b4d1",
+      "sources/SC.json": "ac4f7e9bbfdcec634007759a5b01df9e716db38b3de6175416029a1a7ca37317",
+      "sources/SD.json": "85e7ea960ed1929896843f1ed945b275151425a26fdb0c03034f3d257e31d082",
+      "sources/TN.json": "d916fb35642372ab9c4491bea06b344dd273db5c0f829c0764b7d34330155ec8",
+      "sources/TX.json": "625213be3e5ef3c484fd93fe2bc23d40823fef437f0fd9721d7d8b55b0b43253",
+      "sources/UT.json": "054eb62c068e50825d8e7b64cb9a6f2fc8986088499094c9574109d4fd7504fe",
+      "sources/VA.json": "e2872aec610fb1dd401e2758246234855c2dd8172711a0954ca9e1d515341772",
+      "sources/VT.json": "8eb305adbe6e72595d7aa3b2d30fa558fe86702850c837ec8bdeda12270af98b",
+      "sources/WA.json": "a51aac4647c0a8c4cd2ffb37156f9bbb108ff182cd0cec1cbc7c14a5c0e9283d",
+      "sources/WI.json": "db078d46662bee35052fe144ba13f98a435e24be26bb0a5bd1737c75e65c58f8",
+      "sources/WV.json": "cdecb565d6ba13bc45e2500716710eb4f7940f59e62e68c5f014b35e8b8d2c46",
+      "sources/WY.json": "ffa552f1491c302a6babb1f8e9c52043741a8b1c5af11d1e413173a4964a6636"
+    },
+    "state_receipts": {
+      "AK": {
+        "version": 1,
+        "region": "AK",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T01:59:57Z",
+        "runtime_seconds": 41.269,
+        "accepted": 873,
+        "hashes": {
+          "source.json": "ceb8a63040704ca677d4918d2b03d7767bec8a83bc3cbd32de57dfc92e7bb82b",
+          "report.json": "e33d3ddd1afd9d57cedc3627b174af8529dc9c0cbfe7ff6bee20b05ce2f0e526"
+        }
+      },
+      "AL": {
+        "version": 1,
+        "region": "AL",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T01:59:55Z",
+        "runtime_seconds": 31.567,
+        "accepted": 4147,
+        "hashes": {
+          "source.json": "3e08f8dd00fb54d968d00a7e3c7deff34105608dedc57412a97ba929af55a69c",
+          "report.json": "8c5f50862e624453e5441833c24805f0673fcd03cd4f835935beb8236478baa4"
+        }
+      },
+      "AR": {
+        "version": 1,
+        "region": "AR",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T03:00:23Z",
+        "runtime_seconds": 36.275,
+        "accepted": 2489,
+        "hashes": {
+          "source.json": "2858a6fde101ac9bf708327d409e8228c251636fff666cc11acf32b1fa8a3504",
+          "report.json": "a6c3f5deaff05a3cc5dec1f623dac1e301086d7defab7d3b8d6fe7838317dd12"
+        }
+      },
+      "AZ": {
+        "version": 1,
+        "region": "AZ",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:05:57Z",
+        "runtime_seconds": 333.814,
+        "accepted": 5211,
+        "hashes": {
+          "source.json": "483eba54c00887c36f89f9e424f6b779fb8c2c0161681b25676fec32df2da4ba",
+          "report.json": "1c076bb6dd740c71a09c6c09810359327392a47ad94907728e03b91a424c6742"
+        }
+      },
+      "CA": {
+        "version": 1,
+        "region": "CA",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:10:55Z",
+        "runtime_seconds": 597.348,
+        "accepted": 21850,
+        "hashes": {
+          "source.json": "b0941c6c63d4afc68399a3ebf6aa72e9c51bbe94d23667bdf7594bcf6193a627",
+          "report.json": "86b675ecb1073d1d88a64f0671a21fc026220a19c6152123e1017556197f88a8"
+        }
+      },
+      "CO": {
+        "version": 1,
+        "region": "CO",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:09:04Z",
+        "runtime_seconds": 162.801,
+        "accepted": 4788,
+        "hashes": {
+          "source.json": "027df96882844778ca52fefc1a4132f55190e81b9bf028017ffbfe5fc904af40",
+          "report.json": "5d964dc8397271fb9bcb236548b59da932f6dd68c7274989ece8bf6e5fa0c8ec"
+        }
+      },
+      "CT": {
+        "version": 1,
+        "region": "CT",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:12:54Z",
+        "runtime_seconds": 202.36,
+        "accepted": 2422,
+        "hashes": {
+          "source.json": "2968b7abc562dfd3dba88806423047dadb75c2955c2e34c8cb31651625708ed6",
+          "report.json": "e70f17985b86556f844b1554525f2012598d15c15846e9355b12b13f383e3c81"
+        }
+      },
+      "DE": {
+        "version": 1,
+        "region": "DE",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:11:42Z",
+        "runtime_seconds": 18.009,
+        "accepted": 696,
+        "hashes": {
+          "source.json": "2eb871e31430f5880e35f214a0a2c06c328e4ec23ac518885ab2ad01ee63b270",
+          "report.json": "5584d5ef57cd75270272f2d4526cd75a7f634a4c5ce3f5eb821293287162a435"
+        }
+      },
+      "FL": {
+        "version": 1,
+        "region": "FL",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:16:55Z",
+        "runtime_seconds": 286.737,
+        "accepted": 13113,
+        "hashes": {
+          "source.json": "eae5d838a2a67777d09c3c6de345674ff0c882608e2851af3851eacb020fb354",
+          "report.json": "aca8290cd32cd14d22251069dd7b3e2086d86333339636694781c61f2d726721"
+        }
+      },
+      "GA": {
+        "version": 1,
+        "region": "GA",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:15:28Z",
+        "runtime_seconds": 126.661,
+        "accepted": 8673,
+        "hashes": {
+          "source.json": "74a9fdb576e933bacf08f2e329d4a6737d0496179fd8e8c0d4e0a41795107df8",
+          "report.json": "23476a5d9a1b61f706a1cfbdd488ef18e7b0e6c69f118b84ae36d328278ddda7"
+        }
+      },
+      "HI": {
+        "version": 1,
+        "region": "HI",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:16:04Z",
+        "runtime_seconds": 11.297,
+        "accepted": 924,
+        "hashes": {
+          "source.json": "1fb7a93c0c7c191427727e722459a9544b5e7c6c60443445e2e52394ee55fb82",
+          "report.json": "29a378ceb00e4e19b491ad76fdf3f5d57af2afa862653a22ec18055c54af886f"
+        }
+      },
+      "IA": {
+        "version": 1,
+        "region": "IA",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:17:20Z",
+        "runtime_seconds": 51.205,
+        "accepted": 3393,
+        "hashes": {
+          "source.json": "61e6baec0badd919bba13dedfca0f5a9011f89e4762cdeee66ebaea848847a5c",
+          "report.json": "6b47e378b21731ebf166852f940d910bfe2aa39cdcf726ecc10aebcc554ea10a"
+        }
+      },
+      "ID": {
+        "version": 1,
+        "region": "ID",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T03:00:24Z",
+        "runtime_seconds": 35.416,
+        "accepted": 1749,
+        "hashes": {
+          "source.json": "876983c68454ca4f8fdbb17c613ac9469ed28910a725c59172bdd6decf301926",
+          "report.json": "67e4684438644de8760f8ef71cb7f1644dfdbdb2c37a53d8dd85311bc88b6e92"
+        }
+      },
+      "IL": {
+        "version": 1,
+        "region": "IL",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:19:42Z",
+        "runtime_seconds": 120.338,
+        "accepted": 9112,
+        "hashes": {
+          "source.json": "d5b10b99ea74ebd2649650cb3724be4c45b486c9b5bec309d151be8c9ff4fa65",
+          "report.json": "0330c776bf04ef938c6d6ee04dc60aca3f0600b31064b5923ec7597496178309"
+        }
+      },
+      "IN": {
+        "version": 1,
+        "region": "IN",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:18:58Z",
+        "runtime_seconds": 53.276,
+        "accepted": 5341,
+        "hashes": {
+          "source.json": "e70b79e82238776a0ab20e7a763bb51a2c5780648692f790079366fc4a822e69",
+          "report.json": "e72b584d21794ba21255c74b3b89d1fd0a487e190bcf2ac155fbc4501112e29a"
+        }
+      },
+      "KS": {
+        "version": 1,
+        "region": "KS",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:20:09Z",
+        "runtime_seconds": 43.923,
+        "accepted": 2616,
+        "hashes": {
+          "source.json": "5de6908f5721db2bb7d87764f2006399af41a9532ed21660b06090e239c708ca",
+          "report.json": "fa4c09df06afdba402317bfa5b1e9515f813f7a0135047da1537283048f4cbac"
+        }
+      },
+      "KY": {
+        "version": 1,
+        "region": "KY",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:21:10Z",
+        "runtime_seconds": 61.379,
+        "accepted": 3394,
+        "hashes": {
+          "source.json": "1be564804ae6a0fa622754572b2df0047cfb8819e3b5f2cb8120cfe9a05838c9",
+          "report.json": "2b828db80a276941224f3153e4677a879444226f413eeee8d6421166bf4f10ee"
+        }
+      },
+      "LA": {
+        "version": 1,
+        "region": "LA",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:22:10Z",
+        "runtime_seconds": 96.302,
+        "accepted": 2901,
+        "hashes": {
+          "source.json": "d5a42cdf605f7d8fca87b68dee63d863da2bfec048037264c9534746153b8731",
+          "report.json": "ff23d5a4f600241525d842ac81fb16fecd5605d8ce3b3ef10ab23ea24b9b7ae3"
+        }
+      },
+      "MA": {
+        "version": 1,
+        "region": "MA",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:23:17Z",
+        "runtime_seconds": 97.841,
+        "accepted": 4031,
+        "hashes": {
+          "source.json": "c5900ab8fc05c4a5417ff682f02d657335dc4175529528440890af09d254d649",
+          "report.json": "283cd0780367bd9f69b412925f8160d7d01e0ba05e49bfb9cff531448ae6a8fc"
+        }
+      },
+      "MD": {
+        "version": 1,
+        "region": "MD",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:24:06Z",
+        "runtime_seconds": 92.437,
+        "accepted": 4565,
+        "hashes": {
+          "source.json": "6a926d60300bc4756ecadf2620cc5ddb5e432f37216579e59afd466b369f7013",
+          "report.json": "d9029d3b8114a51441a4980e47975c92407fd46837ef57e245d57efcd105ce4a"
+        }
+      },
+      "ME": {
+        "version": 1,
+        "region": "ME",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:24:18Z",
+        "runtime_seconds": 35.366,
+        "accepted": 1516,
+        "hashes": {
+          "source.json": "c052285702baeee51eb69c50a77aaad8d5f924d72e60ca4c9805b3fe3bd218ef",
+          "report.json": "69752edbf3b3f91935f649b5d4f98cae355423c73796fd02144f0c9bf316aaa5"
+        }
+      },
+      "MI": {
+        "version": 1,
+        "region": "MI",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:25:27Z",
+        "runtime_seconds": 58.802,
+        "accepted": 11639,
+        "hashes": {
+          "source.json": "85358c3f9291caa701410e2ac150edc7e874af54b340575da8980805b8a5e55b",
+          "report.json": "cd816b7f8bfb85dcac68fc3b629c2918849112c8803f1b48a0757fc2f4b70132"
+        }
+      },
+      "MN": {
+        "version": 1,
+        "region": "MN",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T03:03:16Z",
+        "runtime_seconds": 154.302,
+        "accepted": 4838,
+        "hashes": {
+          "source.json": "32d3bcfc63dc7381257f4c063f2536d296eb54bfdc585569aee55f56bf8460ff",
+          "report.json": "cc3de3b6aa6ef81dc8c87e4978047fd3ab8ba004b707ad882692e45bc9464b91"
+        }
+      },
+      "MO": {
+        "version": 1,
+        "region": "MO",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:26:16Z",
+        "runtime_seconds": 52.416,
+        "accepted": 4669,
+        "hashes": {
+          "source.json": "f8aa07ef206f671ac6933ffd37156f96802cf0138e723a2d90bcb76b7b1f2182",
+          "report.json": "e0bd4f4662c52f008a7b00a45d2cd871496fc0cedacf92f71abaa4ee51ef7542"
+        }
+      },
+      "MS": {
+        "version": 1,
+        "region": "MS",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:26:48Z",
+        "runtime_seconds": 53.829,
+        "accepted": 2239,
+        "hashes": {
+          "source.json": "8c5665ff9063762e5200c1599f709859957702bd778489fc5a2220c569f57860",
+          "report.json": "322193dd7ab02c091b7c7421d672cb4179f2c0a96f62580f3b2c2f1c6d9f300d"
+        }
+      },
+      "MT": {
+        "version": 1,
+        "region": "MT",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:27:02Z",
+        "runtime_seconds": 22.587,
+        "accepted": 1483,
+        "hashes": {
+          "source.json": "e6ebbc5d6cb0e3a06f519fed6cb1cf3cbe1d177ea2568ee670175bd2a70456aa",
+          "report.json": "92f0194cd84e0004959a166b123aef22fce7ba27294a6b6df8a9b6e8432d764f"
+        }
+      },
+      "NC": {
+        "version": 1,
+        "region": "NC",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:29:18Z",
+        "runtime_seconds": 125.164,
+        "accepted": 8416,
+        "hashes": {
+          "source.json": "37ebc38d81a89da2b13fa866e1a3597eddb12060334c1f31a3f335a864b0bd08",
+          "report.json": "16645b92f2cd1a149b426ff5141e09e9ceb249f3a401c4aef0134d08e02f499a"
+        }
+      },
+      "ND": {
+        "version": 1,
+        "region": "ND",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:28:14Z",
+        "runtime_seconds": 36.501,
+        "accepted": 825,
+        "hashes": {
+          "source.json": "2052e6e757256f94e5078e60ac5af059a9e34d66623920ab46d1d00bf0a1c47f",
+          "report.json": "8653d9073da8210639930c3b357323b9c24dde1958a79b6856e9c3f1303c5904"
+        }
+      },
+      "NE": {
+        "version": 1,
+        "region": "NE",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:28:58Z",
+        "runtime_seconds": 18.415,
+        "accepted": 1970,
+        "hashes": {
+          "source.json": "dcea51727970192b8cfac4c0ffaa2ba90a12a8d7b62ec184174d00485e84c1d9",
+          "report.json": "4d91596627b8efbb20f154c20a83f9b9a2f93ad7b048e70748242e53b002652f"
+        }
+      },
+      "NH": {
+        "version": 1,
+        "region": "NH",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:29:43Z",
+        "runtime_seconds": 21.279,
+        "accepted": 1631,
+        "hashes": {
+          "source.json": "eed9775cf6bcc0dcea09837475ffd882373bca0cc67e14923f7e3ac0ba83e35e",
+          "report.json": "0d23d1e447e2809d5301cc68cc461e3b37fd2ad9cde01491e07a5cdf6c1d8f0a"
+        }
+      },
+      "NJ": {
+        "version": 1,
+        "region": "NJ",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:30:26Z",
+        "runtime_seconds": 42.005,
+        "accepted": 5291,
+        "hashes": {
+          "source.json": "f497f4bb79efc72e05c0c796ec2facf2dcee9b8b4d92e9739cae1b380029ed38",
+          "report.json": "5b484cf638b24ace6b44cfa26d3f1406e69b816da4d3b57c7ee44259e765a58e"
+        }
+      },
+      "NM": {
+        "version": 1,
+        "region": "NM",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:30:53Z",
+        "runtime_seconds": 45.897,
+        "accepted": 2263,
+        "hashes": {
+          "source.json": "91078b91def4ba0ad57d2bb95a25a5ba967b89a3fe9753c07196419ff53fc60f",
+          "report.json": "57cd5cf72beee456f9488d75770b95fe104c4b3dbe26c8f0fa88b4e70653102a"
+        }
+      },
+      "NV": {
+        "version": 1,
+        "region": "NV",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T03:02:04Z",
+        "runtime_seconds": 72.042,
+        "accepted": 2430,
+        "hashes": {
+          "source.json": "425101d0f9ce5b76ef6dba13450ec36d5dc1be67d017bed01cbdb3fb980363fc",
+          "report.json": "6a2b5aed34307dc56922ec5f22bd6684dc1ed5618cdeab73efecbcc0a39dd3cd"
+        }
+      },
+      "NY": {
+        "version": 1,
+        "region": "NY",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:33:49Z",
+        "runtime_seconds": 149.687,
+        "accepted": 13758,
+        "hashes": {
+          "source.json": "3d0f6130df7e5b13e5fb37c6169f4d301c1303ccf10297c557ef346e9c916ad6",
+          "report.json": "21b3d7f6776cf388017029c8535be90f314beebd4bf49bf381a3ec8b8373b724"
+        }
+      },
+      "OH": {
+        "version": 1,
+        "region": "OH",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:34:20Z",
+        "runtime_seconds": 164.462,
+        "accepted": 9325,
+        "hashes": {
+          "source.json": "1708cf5d8d188a99e087d21f8a83e6b60cc2838fd8d3efe0f9d20e0e96081355",
+          "report.json": "a5a7bb03a9b291abfc899788deb29bcaff635517368df65508dff0e0a16d8107"
+        }
+      },
+      "OK": {
+        "version": 1,
+        "region": "OK",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:35:43Z",
+        "runtime_seconds": 86.507,
+        "accepted": 3469,
+        "hashes": {
+          "source.json": "b0ac26b0566464d15e58759f5bf577767eb60d66ad0f02a3829c1f4f412a9939",
+          "report.json": "af27bc8eca9ff9e3b0658f94285e1dddff4726e214965f70600a12a1a16d0345"
+        }
+      },
+      "OR": {
+        "version": 1,
+        "region": "OR",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:36:47Z",
+        "runtime_seconds": 120.888,
+        "accepted": 4005,
+        "hashes": {
+          "source.json": "315488a058e51f3826992887e66ed8a16087c76d74229fdf0ecbe13f72d1822d",
+          "report.json": "1b2feb3b41b39e86bd8076817df6c0f7496fb5f27557792e1df8ed25f62dd914"
+        }
+      },
+      "PA": {
+        "version": 1,
+        "region": "PA",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:38:44Z",
+        "runtime_seconds": 154.585,
+        "accepted": 9153,
+        "hashes": {
+          "source.json": "3ec90bc35f2ca3b2d96561a5050dce5f60eaa9fd133871796e953a218ee697f2",
+          "report.json": "bf254d67333aab36984532b473e27119f5454ed27d5d355eddd670925f84912f"
+        }
+      },
+      "RI": {
+        "version": 1,
+        "region": "RI",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T03:03:09Z",
+        "runtime_seconds": 39.464,
+        "accepted": 493,
+        "hashes": {
+          "source.json": "09f225de4f8bbc45d6deef826e3e598f89f3b150313f2b30d07a350daea6b4d1",
+          "report.json": "62988c0fb06764f7529d8aff2dc4402b556877fa9f890ddaf5b1b638481340e1"
+        }
+      },
+      "SC": {
+        "version": 1,
+        "region": "SC",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:39:26Z",
+        "runtime_seconds": 87.586,
+        "accepted": 4889,
+        "hashes": {
+          "source.json": "ac4f7e9bbfdcec634007759a5b01df9e716db38b3de6175416029a1a7ca37317",
+          "report.json": "ff56df7f84b842257489d5f44b0ac23485446beba99d8f314722e5dbbc77cc76"
+        }
+      },
+      "SD": {
+        "version": 1,
+        "region": "SD",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:39:33Z",
+        "runtime_seconds": 23.524,
+        "accepted": 1378,
+        "hashes": {
+          "source.json": "85e7ea960ed1929896843f1ed945b275151425a26fdb0c03034f3d257e31d082",
+          "report.json": "1c4eae610d392d9cd787d760b53917d1f6824851369ee9d9233f4e2b851fe8ca"
+        }
+      },
+      "TN": {
+        "version": 1,
+        "region": "TN",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:40:50Z",
+        "runtime_seconds": 55.622,
+        "accepted": 5368,
+        "hashes": {
+          "source.json": "d916fb35642372ab9c4491bea06b344dd273db5c0f829c0764b7d34330155ec8",
+          "report.json": "fd8f49e203a1bc3e2130f7f7ad38d2411c6ad38a450e7238ca7d34a4d3ce3999"
+        }
+      },
+      "TX": {
+        "version": 1,
+        "region": "TX",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:46:13Z",
+        "runtime_seconds": 371.484,
+        "accepted": 22658,
+        "hashes": {
+          "source.json": "625213be3e5ef3c484fd93fe2bc23d40823fef437f0fd9721d7d8b55b0b43253",
+          "report.json": "62fcecde10f8996b223e8df153ca37c166636ac926b99622f024e1c639c6b7a6"
+        }
+      },
+      "UT": {
+        "version": 1,
+        "region": "UT",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:41:56Z",
+        "runtime_seconds": 43.073,
+        "accepted": 2986,
+        "hashes": {
+          "source.json": "054eb62c068e50825d8e7b64cb9a6f2fc8986088499094c9574109d4fd7504fe",
+          "report.json": "5e56377c383b97252d57516117cb96040ddec2fe5e64b0f4e7dd95290ac16dbb"
+        }
+      },
+      "VA": {
+        "version": 1,
+        "region": "VA",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:45:33Z",
+        "runtime_seconds": 192.985,
+        "accepted": 8455,
+        "hashes": {
+          "source.json": "e2872aec610fb1dd401e2758246234855c2dd8172711a0954ca9e1d515341772",
+          "report.json": "3f9d6842d04fab046ec24ea64139ea7d0d776d7c42473f359b96e8b01faa1103"
+        }
+      },
+      "VT": {
+        "version": 1,
+        "region": "VT",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:46:27Z",
+        "runtime_seconds": 21.214,
+        "accepted": 1032,
+        "hashes": {
+          "source.json": "8eb305adbe6e72595d7aa3b2d30fa558fe86702850c837ec8bdeda12270af98b",
+          "report.json": "f11494a7410801f1a426c262d7661e876b779ed8635b07bbb00550e0593077c7"
+        }
+      },
+      "WA": {
+        "version": 1,
+        "region": "WA",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:49:02Z",
+        "runtime_seconds": 140.321,
+        "accepted": 7449,
+        "hashes": {
+          "source.json": "a51aac4647c0a8c4cd2ffb37156f9bbb108ff182cd0cec1cbc7c14a5c0e9283d",
+          "report.json": "21fe39d412e633daa2e5e6dcdfd2ee702bfb60b71bd353ddd9603fa661eb2f3a"
+        }
+      },
+      "WI": {
+        "version": 1,
+        "region": "WI",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:48:06Z",
+        "runtime_seconds": 73.421,
+        "accepted": 6024,
+        "hashes": {
+          "source.json": "db078d46662bee35052fe144ba13f98a435e24be26bb0a5bd1737c75e65c58f8",
+          "report.json": "0f49347749f914d3c11e41e77ec03d2ce1efec016fd29dbff2c56ad97c541720"
+        }
+      },
+      "WV": {
+        "version": 1,
+        "region": "WV",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:49:11Z",
+        "runtime_seconds": 39.922,
+        "accepted": 2067,
+        "hashes": {
+          "source.json": "cdecb565d6ba13bc45e2500716710eb4f7940f59e62e68c5f014b35e8b8d2c46",
+          "report.json": "3c34304c7d14dd43f02a62c609c9d4eb50ff11e6a7d2e6bdb670f3ad4be5b2ed"
+        }
+      },
+      "WY": {
+        "version": 1,
+        "region": "WY",
+        "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+        "registry_sha256": "7415f36abbd9fe35069ff9737e19a08058ae2419eac52cc7f9138acb0af06dee",
+        "finished_at": "2026-11-16T02:49:55Z",
+        "runtime_seconds": 18.017,
+        "accepted": 775,
+        "hashes": {
+          "source.json": "ffa552f1491c302a6babb1f8e9c52043741a8b1c5af11d1e413173a4964a6636",
+          "report.json": "dc90524b92d985862a9389b92929dc24fe0354d22d695133490894ca2ac83e61"
+        }
+      }
+    }
+  },
+  "promotion": {
+    "batch": "43789373796-3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+    "source_commit": "3d0f5f4d88832078f9d63a012ec7a6e9203aa5a5",
+    "snapshot_id": "8416a2f575a81d1c1f5fd4d9",
+    "states": {
+      "AK": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T01:59:28Z",
+        "sha256": "21d520929bcfa916807e4fb8a7753ed64a4b75dfef1afc921143519a008f2636",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "AL": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/alabama-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T01:59:32Z",
+        "sha256": "7e2b5fa8ecf617619427ba06892c8b9f449d7e630c2f71cade51f7735046b90b",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "AR": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/arkansas-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T03:00:08Z",
+        "sha256": "c58613aab29349b75b9223cc3e5dd4d3b63f163bbf2ad3ba2415e19c949da347",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "AZ": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:05:08Z",
+        "sha256": "6c5a645c02b41107bb900429dc56e826713f41390037dbed62dd706629d8e1f9",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "CA": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/california-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:08:51Z",
+        "sha256": "4f62b826b9475e8ae0dd8b34d21ff377e1309aa1db3bc60dbc4fb755dadc8dfd",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "CO": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/colorado-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:08:26Z",
+        "sha256": "e8e49dc1e9257e287533efe20d7b037bc1510efadd38b1616e8e6bdf245603a6",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "CT": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:12:27Z",
+        "sha256": "b30b8e24d37e20a342b1fe17fa75fe83ac2fd81371ca0ccf5179f384bae26c62",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "DE": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:11:35Z",
+        "sha256": "21ff56c56e7b6c193dc8c4115ecbc6fb1bcf5aaf8b79c50132ae15ca8443151b",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "FL": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/florida-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:15:43Z",
+        "sha256": "20b9bdff467e0e249cdedc00e6b29aaa0349daa7d65d891bda2134d695d85c80",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "GA": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:14:37Z",
+        "sha256": "de73eefa915a56bd8af42d669dc900e59057bfbe41a19ef0bea8284dd9591769",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "HI": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:15:59Z",
+        "sha256": "4bf300f060de28111b59303fac84b17a9c13c2cf4bfdd4dc55d9660fa681bdee",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "IA": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/iowa-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:16:56Z",
+        "sha256": "a3ea87e9ebdf7de8f5406134b0e9650a7bd9a4c6fc8261a178e7c5d8ddf5fa31",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "ID": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/idaho-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T03:00:07Z",
+        "sha256": "c7e909312c8577dfada3f962575ad8985719ce44c96412da4656aa4d1ba546ac",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "IL": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/illinois-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:19:07Z",
+        "sha256": "a3294d4dd6bd18c8f1cb768a1e4aa00ba7961623e8e72df74a1e7fa810804d04",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "IN": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:18:28Z",
+        "sha256": "6d45728aca0b3f12d93e3ad02ad6e87e4e63546178cf8de7f0c944916e8b602a",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "KS": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/kansas-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:19:52Z",
+        "sha256": "c483f316e4245aeb9786f242a018e6feeafbecd04f0e3f1f030cd47285f44fb7",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "KY": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/kentucky-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:20:45Z",
+        "sha256": "0d80c98c2e43cb1c9f9bd644e0f3283ab8ec149751afd185e3a358fc9f53c654",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "LA": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/louisiana-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:21:50Z",
+        "sha256": "9592ef3f782c5c4aa127887af04cbd10b59ead3e62956f3fe6f2af66a8088b05",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "MA": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:22:47Z",
+        "sha256": "3ed5282ba4e1bb27d98c55ca1130dcc313425ee23d4d073521f232b932e77b1d",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "MD": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:23:19Z",
+        "sha256": "95280b3da337d92c0d6b875ab9fc04bf54883001d707d9088074a9112860a240",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "ME": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/maine-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:24:03Z",
+        "sha256": "0928cd82b44deeb207e32d14f7bb745b6c597faa144cdd3812af7c29e7c49ea3",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "MI": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:24:54Z",
+        "sha256": "2dab034ffb953ceb7394308d6d118aea103a8441ece2c8c3bcad13ecfa26fd8c",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "MN": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/minnesota-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T03:02:48Z",
+        "sha256": "b08b5a3048b476ba0be153ee2dfe777a54c6ea9b5931d2d699102a4955dd27fb",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "MO": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/missouri-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:25:46Z",
+        "sha256": "17b16acb1953ad906207dfe13c70c798b047ae952baec5b13ab8d988a6c48cf0",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "MS": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/mississippi-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:26:33Z",
+        "sha256": "e1f9cb0fbb1201b9eaf6bd11a5059b5e83c6ea5b53a733ee8106691ea121d539",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "MT": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/montana-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:26:49Z",
+        "sha256": "ae5802e0f3ea0f6605fbe9b25ffa9a69f4e656b8514c71fe761041a17e9abb6f",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "NC": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:28:24Z",
+        "sha256": "c7c6b66281bd0ae5e62069bb59741962d5a6b2da934059fd32fca3fb7144c212",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "ND": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/north-dakota-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:27:58Z",
+        "sha256": "b5d8da7b16e8c964e5f107c92ef95d88e905a517c7486249a2f5465d0e926f35",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "NE": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/nebraska-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:28:47Z",
+        "sha256": "66fab8db3c7a4d8275aa02e21348f260acbf75bd633dcdd3c5331aee19b323b2",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "NH": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:29:32Z",
+        "sha256": "62457dd4fd72afc7f75b52edea6b7ba6761745fb1c7717e0632a9d3c100a3186",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "NJ": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:29:57Z",
+        "sha256": "9b45130dbe1b10504ba62803c0eecb5162e70d7f11f8847f29bf73d2a687d38d",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "NM": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/new-mexico-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:30:32Z",
+        "sha256": "e39f5edaf83c338eeecca9a3547541834f3ddd46117b23dc4523564a2a21b08e",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "NV": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T03:01:44Z",
+        "sha256": "761ef8116bd594c0272ade73fd45751811f6b860b20ccd575e812e2c187e15ee",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "NY": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:32:28Z",
+        "sha256": "36699843afcb0b23121b6abefb1c8de11ea14429b878b1099adbb4fa2dd7ea90",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "OH": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/ohio-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:33:31Z",
+        "sha256": "c54257a7763d6311cd7847932add30155fe53d99add81c56c378d049f180004e",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "OK": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/oklahoma-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:35:14Z",
+        "sha256": "28895f9e13c29e543b469ddbada6cde2a51b0d8aa2e1217bde60f9507b2e5c56",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "OR": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:36:17Z",
+        "sha256": "d7bd6596db9dcac642353014ea76dc7992cc718d11621c962ab2218b6b3a2d87",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "PA": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/pennsylvania-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:37:49Z",
+        "sha256": "12ddf8bef0e982fd9037d61ec5e9bdb314949634273d128df712c80808d6401c",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "RI": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T03:03:01Z",
+        "sha256": "32e1bd39d420d24b67374acc8b2558e434462451172b7a99f7964d86ad4f883b",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "SC": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/south-carolina-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:38:56Z",
+        "sha256": "2ac0d8a8a6828b6809a2e2d40e4fcf60510a10c40af25315738c5de64e5080e2",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "SD": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/south-dakota-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:39:23Z",
+        "sha256": "83e0794e071472af7dfcd152def0ef99b82fae27cfa5a6fb70150df2c682a2eb",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "TN": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/tennessee-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:40:25Z",
+        "sha256": "e5afe74984ce863a9e90644d4ee800d516e38c78c950ea08c3d1ace2738bb68c",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "TX": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/texas-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:44:22Z",
+        "sha256": "58dc3c111cf4eac45c36110926e0f88ad3e69d832db55eceedd870b703b5f85d",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "UT": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:41:39Z",
+        "sha256": "6bf8bee2738f636b8205647c8a6115c65de8a32148bd62b93c0d5dc6e18c9900",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "VA": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:44:47Z",
+        "sha256": "c1b8dde9f2b1f2fc7c21473750ccac8ebd8fba89681ec461c27a6b520e0a6fd4",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "VT": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/vermont-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:46:17Z",
+        "sha256": "249fbd60dd2ad6e65346e0292ebb785e6560a8736b18248dd773a169db559666",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "WA": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/washington-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:48:00Z",
+        "sha256": "17ca55fcad54273f6b48a201a1079fcd09f831e2ee9291f13366c853064806a5",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "WI": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/wisconsin-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:47:26Z",
+        "sha256": "44133d9f1ec0a2cac208e36db9c9f7c0620faaa538943d1ec96a1a4a90a9c7b3",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "WV": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/west-virginia-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:48:52Z",
+        "sha256": "bbc3348470263c6fd5d24644bb5226dda7e84fff97ced1957106f610e2b3b208",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      },
+      "WY": {
+        "kind": "geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us/wyoming-latest.osm.pbf",
+        "extract_timestamp": "2026-11-15T21:22:28Z",
+        "retrieved_at": "2026-11-16T02:49:45Z",
+        "sha256": "972e504717181dac82f5eff7313516fdd53ede9919706e1f234137050e386d9d",
+        "license": "ODbL-1.0",
+        "categories": [
+          "dump",
+          "water",
+          "lpg",
+          "showers",
+          "laundry",
+          "groceries",
+          "fuel"
+        ]
+      }
+    },
+    "identities": 254782,
+    "shards": 1141,
+    "manifest_bytes": 350725,
+    "oldest_extract": "2026-11-15T21:22:28Z",
+    "newest_extract": "2026-11-15T21:22:28Z",
+    "legacy_exact_identities": {
+      "also_in_state_extracts": 4524,
+      "absent_from_complete_state_extracts": 8,
+      "selected_legacy_rows": 0
+    }
+  }
+}
