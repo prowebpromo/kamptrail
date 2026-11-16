@@ -130,7 +130,7 @@ class NationalServicesTests(unittest.TestCase):
             clock=Clock();opener=unittest.mock.Mock()
             opener.open.side_effect=TimeoutError('initial status timeout')
             with patch('urllib.request.build_opener',return_value=opener), patch('import_services.time.monotonic',clock.monotonic), patch('import_services.time.sleep',clock.sleep):
-                with self.assertRaises(TimeoutError):services.download('RI',path)
+                with self.assertRaises(services.StartupTransportFailure):services.download('RI',path)
             self.assertEqual(opener.open.call_count,3)
             self.assertEqual(clock.pauses,[1,3])
             self.assertEqual(path.read_bytes(),b'last-good')
@@ -167,9 +167,9 @@ class NationalServicesTests(unittest.TestCase):
             failure = urllib.error.URLError(OSError(errno.ENETUNREACH, 'Network is unreachable'))
             opener.open.side_effect = failure
             with patch('urllib.request.build_opener', return_value=opener), patch('import_services.time.monotonic', clock.monotonic), patch('import_services.time.sleep', clock.sleep):
-                with self.assertRaises(urllib.error.URLError) as caught:
+                with self.assertRaises(services.StartupTransportFailure) as caught:
                     services.download('RI', path)
-            self.assertIs(caught.exception, failure)
+            self.assertIs(caught.exception.__cause__, failure)
             self.assertEqual(opener.open.call_count, 3)
             self.assertEqual(clock.pauses, [1, 3])
             self.assertEqual(path.read_bytes(), b'last-good')

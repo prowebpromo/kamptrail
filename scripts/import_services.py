@@ -13,6 +13,7 @@ import math
 import os
 import re
 import ssl
+import sys
 from pathlib import Path
 import tempfile
 import time
@@ -28,6 +29,11 @@ CATEGORIES = ('dump', 'water', 'lpg', 'showers', 'laundry', 'groceries', 'fuel')
 TAGS = ('amenity', 'tourism', 'sanitary_dump_station', 'waterway', 'drinking_water', 'fuel', 'fuel:lpg', 'shop', 'laundry', 'self_service', 'access', 'access:conditional', 'fee', 'charge', 'opening_hours', 'operator', 'brand', 'website', 'phone', 'wheelchair', 'shower')
 MAX_BYTES = 2 * 1024**3
 MAX_SECONDS = 30 * 60
+TEMPORARY_DOWNLOAD_EXIT = 75
+
+
+class StartupTransportFailure(Exception):
+    """Only exhausted whitelisted transport errors before a response was opened."""
 
 
 def utc_now():
@@ -107,7 +113,9 @@ def _open_download(request, region, deadline):
             if isinstance(exc, urllib.error.HTTPError) or isinstance(reason, ssl.SSLError) or not transient:
                 raise
             if delay is None:
-                raise
+                if time.monotonic() >= deadline:
+                    raise ValueError('PBF download budget exceeded') from exc
+                raise StartupTransportFailure('PBF startup transport failed after three attempts') from exc
             remaining = deadline - time.monotonic()
             if remaining <= 0:
                 raise ValueError('PBF download budget exceeded') from exc
@@ -340,5 +348,14 @@ def main():
     print(json.dumps({k: v for k, v in report.items() if k not in ('quarantine', 'samples')}, indent=2))
 
 
+def cli():
+    try:
+        main()
+    except StartupTransportFailure as exc:
+        print(f'{exc}: {exc.__cause__}', file=sys.stderr)
+        return TEMPORARY_DOWNLOAD_EXIT
+    return 0
+
+
 if __name__ == '__main__':
-    main()
+    sys.exit(cli())
