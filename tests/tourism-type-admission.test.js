@@ -302,3 +302,14 @@ test('a renamed reviewed own record remains pending Other while access negatives
     assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt({...changed.properties,...extra})]}).features.length,0,JSON.stringify(extra));
   }
 });
+
+test('a new accommodation heuristic cannot bypass a reviewed record changed-quote hold',()=>{
+  const changed=pt({...ridb,id:'ridb:10069432',facility_id:'10069432',name:'Kiwanis Cabin',type:'established',description:'A cabin with one bed.',source_retrieved_at:'2030-01-02T00:00:00Z'});
+  const options={siteDetails:{'10069432':{t:1}}};
+  for(const source of [changed,DQ.normalizeFeature(changed,options)]){
+    const p=DQ.cleanAndDedupeGeoJSON({features:[source]},options).features[0].properties;
+    assert.equal(p.type,'other');assert.equal(p.camping_classification,'published_pending_review');
+    assert.equal(p.type_evidence.kind,'owner_review_evidence_changed');assert.equal(p.kt_accommodation,undefined);
+  }
+  assert.equal(DQ.normalizeFeature(pt({...changed.properties,access:'private'}),options),null);
+});

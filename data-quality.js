@@ -430,7 +430,7 @@
     // Existing admission and own confirmed overnight camping do not determine the campsite type.
     const held = HELD_PUBLISHED_LABELS.get(p.id), novemberReview = NOVEMBER_REVIEWED_LABELS.get(p.id);
     const reviewed = raw.source === 'recreation.gov' && raw.id === p.id ? (novemberReview || OWNER_REVIEWED_LABELS.get(p.id)) : null;
-    if (reviewed && !classification.kt_accommodation) {
+    if (reviewed) {
       const ownText = reviewed.field === 'FacilityName' ? name : (borrowedWording ? '' : String(raw.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' '));
       const supported = reviewed.field === 'FacilityName' ? ownText === reviewed.quote : ownText.includes(reviewed.quote);
       const binding = {source:'Recreation.gov', source_record_id:p.id, field:reviewed.field, quote:reviewed.quote, retrieved_at:evidenceDate(raw.source_retrieved_at), ledger:novemberReview?'docs/tourism/decision-ledger-2026-11-15.json':'docs/tourism/decision-ledger-2026-11-01.json'};
@@ -443,6 +443,7 @@
       } else {
         // The reviewed wording changed or is gone: the listing returns to pending review, shown as Other.
         p.type = 'other';
+        delete p.kt_accommodation;
         p.camping_classification = 'published_pending_review';
         p.camping_evidence = 'owner_review_evidence_changed';
         p.type_evidence = {kind:'owner_review_evidence_changed', reviewed_label:reviewed.label, review:'pending', ...binding};
