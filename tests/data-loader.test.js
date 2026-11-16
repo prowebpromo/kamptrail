@@ -447,3 +447,12 @@ test('Spanish Forest Service statements keep the agency text in English and tran
   assert.match(html,/El registro del sitio del Servicio Forestal indica/);assert.match(html,/“Yes, drinking water is available from a hand pump”/);assert.match(html,/Normalizado: Agua potable indicada, bomba manual/);
   assert.match(html,/actualizado 2026-08-05/);assert.match(html,/Datos descargados 2026-10-31/);
 });
+
+test('a known own-record closure cannot become an open claim when later wording is missing',()=>{
+  const {api}=harness(async()=>response({}));
+  const row=feature({id:'ridb:233178',name:'SHAW HOUSE',type:'lodging',fee_status:'unknown',open_status:'open',
+    own_closure_notice:{status:'temporarily closed',notice_date:'2026-09-10',retrieved_at:'2026-10-29T02:47:24Z',current_record_retrieved_at:'2030-01-01T00:00:00Z',current_record_supports_notice:false}});
+  const html=api.popupHTML(row);
+  assert.match(html,/Earlier agency notice:/);assert.match(html,/temporarily closed/);assert.match(html,/Notice dated 2026-09-10/);
+  assert.match(html,/Current status is unverified/);assert.doesNotMatch(html,/Status \(agency\):/);assert.doesNotMatch(html,/Agency reports:/);
+});

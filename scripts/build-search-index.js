@@ -49,8 +49,10 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
       throw new Error(`${state} is not a GeoJSON FeatureCollection`);
     }
     const active = geojson.features.map(raw => History.filterActiveFeature(raw, history)).filter(Boolean);
-    for (const raw of quality.publicationCandidates(active,{state})) {
-      const feature = quality.normalizeFeature(raw, {state});
+    // Own overnight campsite records corroborate a Recreation.gov record's own facility type.
+    const options = {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})};
+    for (const raw of quality.publicationCandidates(active,options)) {
+      const feature = quality.normalizeFeature(raw, options);
       if (!feature) continue;
       if(siteDetails)quality.attachSiteDetails(feature,siteDetails);
       attachAmenities(feature);
@@ -62,7 +64,9 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     }
   }
 
-  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {})});
+  // Members of unclassified hosts stay withheld across state files.
+  const withheldMembers = quality.withheldMembers ? new Set(collections.flatMap(({state, geojson}) => [...quality.withheldMembers(geojson.features.map(raw=>History.filterActiveFeature(raw,history)).filter(Boolean), {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})})])) : null;
+  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {}), ...(withheldMembers ? {withheldMembers} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     attachAmenities(feature);

@@ -32,7 +32,7 @@
   }
   const labels = {
     fee:{free:'Reported free',conditional:'Free with conditions',paid:'Paid',unknown:'Fee unknown'},
-    type:{established:'Campground',dispersed:'Dispersed',backcountry:'Backcountry',parking:'Overnight parking',other:'Other / unspecified',spot:'This spot',service:'Services',imported:'Imported point'},
+    type:{established:'Campground',dispersed:'Dispersed',backcountry:'Backcountry',parking:'Overnight parking',lodging:'Lookout, cabin or other lodging',other:'Other / unspecified',spot:'This spot',service:'Services',imported:'Imported point'},
     amenity:{toilet:'Toilets',water:'Drinking water',dump:'Dump station',shower:'Showers',fire_ring:'Fire ring',picnic_table:'Picnic table'},
     rig:{tent:'Tents',trailer:'Trailers and caravans',rv:'RV'},
     hookup:{electric:'Electric',water:'Water',sewer:'Sewer'},

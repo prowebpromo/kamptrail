@@ -1,5 +1,17 @@
 /* Optional Spanish UI catalogue. */
 (function(global){'use strict';global.KampTrailI18nEs={version:'2.47.1',messages:{
+  "This previously listed location is under review. Its record does not establish the camping type at this point.": "Este lugar ya figuraba en el catálogo y está en revisión. La ficha no confirma el tipo de acampada en este punto.",
+  "This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again.": "La ficha propia de este lugar cambió después de revisar su tipo. Aparece como Otro hasta que se revise de nuevo.",
+  "Camping and this camping type are described in this facility’s own Recreation.gov record.": "La acampada y este tipo de acampada figuran en la propia ficha de Recreation.gov de la instalación.",
+  "Earlier agency notice:": "Aviso anterior de la agencia:",
+  "Current status is unverified. Confirm reopening with the operator.": "El estado actual no está verificado. Confirma la reapertura con el operador.",
+  " Notice dated {0}.": " Aviso con fecha {0}.",
+  "This one listing covers {0} cabins in the facility’s Recreation.gov record. The map point does not locate a particular cabin.": "Este único anuncio abarca {0} cabañas de la ficha de Recreation.gov de la instalación. El punto del mapa no ubica ninguna cabaña concreta.",
+  "This location is under review for removal from campsite search. Its own record does not establish camping. It stays listed until the review is decided.": "Este lugar está en revisión para retirarlo de la búsqueda de campings. Su propia ficha no confirma la acampada. Sigue en la lista hasta que se decida la revisión.",
+  "The type shown is the label published before this review.": "El tipo mostrado es la etiqueta publicada antes de esta revisión.",
+  "Camping is described in this facility’s own Recreation.gov record. Its camping type is unverified.": "La ficha de esta instalación en Recreation.gov describe la acampada. No se ha verificado el tipo de acampada.",
+  "the land manager": "el responsable del terreno",
+  "Lookout, cabin or other lodging": "Mirador, cabaña u otro alojamiento",
   "Listing history is unavailable. Reconnect and retry before opening campsite records.": "El historial de lugares no está disponible. Vuelve a conectarte e inténtalo de nuevo antes de abrir los registros.",
   "Historical listing": "Registro histórico",
   "Close historical listing": "Cerrar registro histórico",

@@ -22,11 +22,11 @@ test('snapshot merge keeps amenity tags and survey dates on the element that car
   const merged=merge(osm(1,{toilets:'no'}),osm(2,{toilets:'yes',drinking_water:'yes',shower:'yes',check_date:'2024-06-01','toilets:disposal':'pitlatrine',fee:'yes'}));
   assert.equal(merged.toilets,'no');for(const k of ['drinking_water','shower','check_date','toilets:disposal','fee'])assert.equal(merged[k],undefined,k);
   const e=merged.member_evidence.find(r=>r.source_record_id==='osm:node:2');
-  assert.deepEqual(e.fields,{fee:'yes',toilets:'yes',drinking_water:'yes',shower:'yes',check_date:'2024-06-01','toilets:disposal':'pitlatrine'});
+  assert.deepEqual(e.fields,{tourism:'camp_site',fee:'yes',toilets:'yes',drinking_water:'yes',shower:'yes',check_date:'2024-06-01','toilets:disposal':'pitlatrine'});
   assert.equal(e.source,'OpenStreetMap contributors');assert.equal(e.retrieved_at,'2026-10-29T02:53:12Z');assert.equal(e.source_url,'https://www.openstreetmap.org/node/2');
   // A Recreation.gov host owns no OSM tag at all.
   const host=merge(ridb(7),osm(3,{toilets:'yes',power_supply:'yes'}));
-  assert.equal(host.toilets,undefined);assert.equal(host.power_supply,undefined);assert.deepEqual(host.member_evidence[0].fields,{toilets:'yes',power_supply:'yes'});
+  assert.equal(host.toilets,undefined);assert.equal(host.power_supply,undefined);assert.deepEqual(host.member_evidence[0].fields,{tourism:'camp_site',toilets:'yes',power_supply:'yes'});
   // Membership and identity are unchanged by the guard.
   assert.deepEqual(host.source_ids,['ridb:7','osm:node:3']);assert.equal(host.id,'ridb:7');
   // The same element seen twice keeps its own tags, and separate records never union amenity lists.

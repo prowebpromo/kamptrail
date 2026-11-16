@@ -4,14 +4,16 @@ const Q=require('../../data-quality'),History=require('../../listing-history');
 const root=path.resolve(__dirname,'../..'),read=name=>JSON.parse(fs.readFileSync(path.join(root,name),'utf8'));
 let baseline,current;
 function assemble(collections,index,sidecars,history=null){
-  const input=[],preferredIds=new Set(index.map(row=>row.id)),previousHosts=new Map();
+  const input=[],withheldMembers=new Set(),preferredIds=new Set(index.map(row=>row.id)),previousHosts=new Map();
   for(const row of index)for(const id of row.legacy_ids)previousHosts.set(id,row.id);
   const attach=feature=>{Q.attachSiteDetails(feature,sidecars.siteDetails);Q.attachRIDBAmenities(feature,sidecars.ridbAmenities);Q.attachUSFSSiteAmenities(feature,sidecars.usfsAmenities);};
   for(const {state,geojson} of collections){
     const raw=history?geojson.features.map(f=>History.filterActiveFeature(f,history)).filter(Boolean):geojson.features;
-    for(const item of Q.publicationCandidates(raw,{state})){const feature=Q.normalizeFeature(item,{state});if(feature){attach(feature);input.push(feature);}}
+    const options={state,siteDetails:sidecars.siteDetails,amenityDetails:sidecars.ridbAmenities};
+    for(const id of Q.withheldMembers(raw,options))withheldMembers.add(id);
+    for(const item of Q.publicationCandidates(raw,options)){const feature=Q.normalizeFeature(item,options);if(feature){attach(feature);input.push(feature);}}
   }
-  const features=Q.cleanAndDedupeGeoJSON({features:input},{preferredIds,previousHosts}).features;features.forEach(attach);
+  const features=Q.cleanAndDedupeGeoJSON({features:input},{preferredIds,previousHosts,withheldMembers,siteDetails:sidecars.siteDetails,amenityDetails:sidecars.ridbAmenities}).features;features.forEach(attach);
   return new Map(features.map(feature=>[feature.properties.id,feature.properties]));
 }
 function frozenOwnership(){
