@@ -282,12 +282,23 @@ test('November 15 owner decision applies exactly 24 quote-bound types and preser
     const p=out(pt(props));assert.equal(p.type,r.label,r.id);assert.equal(p.camping_classification,'campsite',r.id);assert.equal(p.type_evidence.kind,'owner_reviewed_own_record',r.id);
     assert.equal(p.type_evidence.decision,'owner 2026-11-15');assert.equal(p.type_evidence.ledger,'docs/tourism/decision-ledger-2026-11-15.json');
     assert.equal(p.type_evidence.retrieved_at,props.source_retrieved_at,'research consultation is not the source retrieval date');
-    const changed={...props,description:'This exact record has changed.'};if(r.own_field==='FacilityName')changed.name=r.name+' revised';
+    const changed={...props,description:'This exact record has changed.'};if(r.own_field==='FacilityName')changed.name='Updated Facility Record';
     const pending=out(pt(changed));assert.equal(pending.type,'other',r.id);assert.equal(pending.camping_classification,'published_pending_review',r.id);
     assert.equal(pending.type_evidence.kind,'owner_review_evidence_changed',r.id);
   }
   for(const id of ['ridb:10076131','ridb:236715','ridb:252786','ridb:243702','ridb:249902']){
     const p=out(pt({...ridb,id,facility_id:id.slice(5),name:'Previously Listed Campground',type:'other'}));
     assert.equal(p.type,'established',id);assert.equal(p.type_evidence.kind,'held_published_label',id);
+  }
+});
+
+test('a renamed reviewed own record remains pending Other while access negatives still exclude it',()=>{
+  const changed=pt({...ridb,id:'ridb:10076892',facility_id:'10076892',name:'Ring Mill Recreation Area',type:'other',description:'The recreation area includes three camp sites.',source_retrieved_at:'2030-01-02T00:00:00Z'});
+  const rows=DQ.cleanAndDedupeGeoJSON({features:[changed]}).features;
+  assert.equal(rows.length,1);assert.equal(rows[0].properties.type,'other');assert.equal(rows[0].properties.camping_classification,'published_pending_review');
+  assert.equal(rows[0].properties.type_evidence.kind,'owner_review_evidence_changed');
+  for(const extra of [{access:'private'},{access:'no'},{access:'military'},{access_hold:{value:'private',source_record_id:'osm:node:99'}},{camping:'no'},{disused:'yes'}]){
+    assert.equal(DQ.normalizeFeature(pt({...changed.properties,...extra})),null,JSON.stringify(extra));
+    assert.equal(DQ.cleanAndDedupeGeoJSON({features:[pt({...changed.properties,...extra})]}).features.length,0,JSON.stringify(extra));
   }
 });

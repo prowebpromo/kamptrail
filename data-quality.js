@@ -430,7 +430,7 @@
     // Existing admission and own confirmed overnight camping do not determine the campsite type.
     const held = HELD_PUBLISHED_LABELS.get(p.id), novemberReview = NOVEMBER_REVIEWED_LABELS.get(p.id);
     const reviewed = raw.source === 'recreation.gov' && raw.id === p.id ? (novemberReview || OWNER_REVIEWED_LABELS.get(p.id)) : null;
-    if (reviewed && !classification.kt_accommodation && discoverable(p)) {
+    if (reviewed && !classification.kt_accommodation) {
       const ownText = reviewed.field === 'FacilityName' ? name : (borrowedWording ? '' : String(raw.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' '));
       const supported = reviewed.field === 'FacilityName' ? ownText === reviewed.quote : ownText.includes(reviewed.quote);
       const binding = {source:'Recreation.gov', source_record_id:p.id, field:reviewed.field, quote:reviewed.quote, retrieved_at:evidenceDate(raw.source_retrieved_at), ledger:novemberReview?'docs/tourism/decision-ledger-2026-11-15.json':'docs/tourism/decision-ledger-2026-11-01.json'};
