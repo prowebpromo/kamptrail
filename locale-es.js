@@ -1,6 +1,6 @@
 /* Optional Spanish UI catalogue. */
 (function(global){'use strict';global.KampTrailI18nEs={version:'2.48.0',messages:{
-  "This listing’s admission remains under review after a source refresh; its reviewed camping type is still supported by its own record.": "La admisión de este lugar sigue en revisión tras actualizar la fuente; su tipo de acampada revisado sigue respaldado por su propia ficha.",
+  "This listing remains under review. Its own source record still supports the camping type shown.": "Este lugar sigue en revisión. Su propia ficha de origen sigue respaldando el tipo de acampada mostrado.",
   "This previously listed location is under review. Its record does not establish the camping type at this point.": "Este lugar ya figuraba en el catálogo y está en revisión. La ficha no confirma el tipo de acampada en este punto.",
   "This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again.": "La ficha propia de este lugar cambió después de revisar su tipo. Aparece como Otro hasta que se revise de nuevo.",
   "Camping and this camping type are described in this facility’s own Recreation.gov record.": "La acampada y este tipo de acampada figuran en la propia ficha de Recreation.gov de la instalación.",

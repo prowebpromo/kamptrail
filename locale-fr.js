@@ -436,7 +436,7 @@
   "Backcountry": "Arrière-pays",
   "Overnight parking": "Stationnement de nuit",
   "Other / unspecified": "Autre / non précisé",
-  "This listing’s admission remains under review after a source refresh; its reviewed camping type is still supported by its own record.": "L’admission de ce lieu reste en cours d’examen après une actualisation de la source ; son type de camping examiné reste étayé par sa propre fiche.",
+  "This listing remains under review. Its own source record still supports the camping type shown.": "Ce lieu reste en cours d’examen. Sa propre fiche source étaye toujours le type de camping affiché.",
   "This previously listed location is under review. Its record does not establish the camping type at this point.": "Ce lieu déjà répertorié est en cours d’examen. Sa fiche ne confirme pas le type de camping à cet endroit.",
   "This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again.": "La fiche propre de ce lieu a changé après l’examen de son type. Il apparaît comme Autre jusqu’à un nouvel examen.",
   "Camping and this camping type are described in this facility’s own Recreation.gov record.": "Le camping et ce type de camping figurent dans la propre fiche Recreation.gov de l’installation.",

@@ -463,7 +463,7 @@ test('a refreshed admission hold does not contradict the still-supported own-rec
     camping_classification:'published_pending_review',camping_evidence:'previously_published_pending_adjudication',
     type_evidence:{kind:'owner_reviewed_own_record',source_record_id:'ridb:243218',field:'FacilityDescription',quote:'There are 39 campsites with water and electrical hookups'}});
   const html=api.popupHTML(row);
-  assert.match(html,/admission remains under review after a source refresh/);
+  assert.match(html,/This listing remains under review/);
   assert.match(html,/Camping and this camping type are described in this facility’s own Recreation.gov record/);
   assert.doesNotMatch(html,/record does not establish the camping type/);
   assert.equal(row.properties.camping_classification,'published_pending_review');
