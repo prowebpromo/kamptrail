@@ -1,2 +1,5 @@
 # Dataset manifests bind exact bytes; checkout must not translate line endings.
 data/** -text
+
+# Hash-bound research evidence must use identical bytes on Windows and CI.
+docs/tourism/official-source-review-2026-11-15.json text eol=lf

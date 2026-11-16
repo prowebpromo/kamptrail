@@ -6,7 +6,7 @@
   "owner_answer": "Apply the 24 supported classifications; retain 12 under review (Recommended)",
   "scope": "23 Campground classifications and Kiwanis Dispersed; 12 unresolved records retain their prior holds or pending Other labels. Prior admission decisions and four access holds remain unchanged.",
   "evidence_path": "docs/tourism/official-source-review-2026-11-15.json",
-  "evidence_sha256": "3ab4f532c29f28054b411b75c65be61044fd9dea52c56954641b6ae47e93d9ff",
+  "evidence_sha256": "5ec6e7afacd74bba484b9b17ad7262ccbaaa4370c8c292e66af49efd207398b0",
   "evidence_currentness": "Official public pages consulted through web.run on this date; tool may serve an indexed/cached version. Consulted date is not an API retrieval date or a publication date. Failed current pages are clearly separated from retained October evidence.",
   "records": [
     {
@@ -335,5 +335,7 @@
     "ridb:243195",
     "ridb:244320",
     "ridb:244321"
-  ]
+  ],
+  "evidence_original_bytes_sha256": "3ab4f532c29f28054b411b75c65be61044fd9dea52c56954641b6ae47e93d9ff",
+  "evidence_bytes": "Repository evidence uses deterministic LF line endings; JSON content is unchanged from the independently reviewed research artifact."
 }
