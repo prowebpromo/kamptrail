@@ -16,10 +16,14 @@ import sys
 import tempfile
 import time
 
-from import_services import ROOT, utc_now, validate_source_update
+from import_services import ROOT, TEMPORARY_DOWNLOAD_EXIT, utc_now, validate_source_update
 from services_regions import URLS, REGISTRY_PATH, validate_resolved_url
 
 MAX_SOURCE_BYTES = 512 * 1024**2
+
+
+class StartupImportFailure(subprocess.CalledProcessError):
+    """Exit 75 received specifically from the supervised importer process."""
 
 
 def digest(path):
@@ -71,7 +75,8 @@ def run_import(command):
     try:
         returncode = process.wait(timeout=62 * 60)
         if returncode:
-            raise subprocess.CalledProcessError(returncode, command)
+            error = StartupImportFailure if returncode == TEMPORARY_DOWNLOAD_EXIT else subprocess.CalledProcessError
+            raise error(returncode, command)
     finally:
         if process.poll() is None:
             process.terminate()
@@ -153,7 +158,15 @@ def stage_one(region, stage, scratch, batch, resume=True, reuse_download=False):
         (stage / f'{region}-failure.json').unlink(missing_ok=True)
         return 'staged'
     except BaseException as exc:
-        (stage / f'{region}-failure.json').write_text(json.dumps({'region': region, 'batch': batch, 'failed_at': utc_now(), 'error': str(exc), 'last_good_retained': destination.exists() or (ROOT / f'data/sources/services/{region}.json').is_file()}, indent=2) + '\n')
+        importer_exit = exc.returncode if isinstance(exc, subprocess.CalledProcessError) else None
+        failure_kind = 'startup_transport' if isinstance(exc, StartupImportFailure) else 'import_or_validation'
+        failure = {
+            'version': 1, 'region': region, 'batch': batch,
+            'registry_sha256': digest(REGISTRY_PATH), 'failed_at': utc_now(),
+            'error': str(exc), 'failure_kind': failure_kind, 'importer_exit': importer_exit,
+            'last_good_retained': destination.exists() or (ROOT / f'data/sources/services/{region}.json').is_file(),
+        }
+        (stage / f'{region}-failure.json').write_text(json.dumps(failure, indent=2) + '\n')
         raise
 
 
@@ -170,5 +183,14 @@ def main():
         print(region, stage_one(region, args.stage, args.scratch, args.batch, not args.refresh, args.reuse_download), flush=True)
 
 
+def cli():
+    try:
+        main()
+    except StartupImportFailure as exc:
+        print(f'Deferred startup transport failure: {exc}', file=sys.stderr)
+        return TEMPORARY_DOWNLOAD_EXIT
+    return 0
+
+
 if __name__ == '__main__':
-    main()
+    sys.exit(cli())
