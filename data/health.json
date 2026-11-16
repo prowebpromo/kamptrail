@@ -2,269 +2,269 @@
  "version": 1,
  "stale_after_days": 45,
  "run": {
-  "started": "2026-11-15T10:52:35.364Z",
+  "started": "2026-11-16T01:59:01.934Z",
   "counts": {
-   "fresh": 115,
-   "failed": 2
+   "fresh": 114,
+   "failed": 3
   }
  },
  "sources": {
   "ridb": {
    "scopes": {
     "AL": {
-     "last_attempt": "2026-11-15T10:52:36.931Z",
-     "last_success": "2026-11-15T10:52:36.931Z",
+     "last_attempt": "2026-11-16T01:59:02.863Z",
+     "last_success": "2026-11-16T01:59:02.863Z",
      "outcome": "fresh"
     },
     "AK": {
-     "last_attempt": "2026-11-15T10:53:29.786Z",
-     "last_success": "2026-11-15T10:53:29.786Z",
+     "last_attempt": "2026-11-16T01:59:39.405Z",
+     "last_success": "2026-11-16T01:59:39.405Z",
      "outcome": "fresh"
     },
     "AZ": {
-     "last_attempt": "2026-11-15T10:54:13.483Z",
-     "last_success": "2026-11-15T10:54:13.483Z",
+     "last_attempt": "2026-11-16T02:00:41.817Z",
+     "last_success": "2026-11-16T02:00:41.817Z",
      "outcome": "fresh"
     },
     "AR": {
-     "last_attempt": "2026-11-15T10:55:17.741Z",
-     "last_success": "2026-11-15T10:55:17.741Z",
+     "last_attempt": "2026-11-16T02:01:46.094Z",
+     "last_success": "2026-11-16T02:01:46.094Z",
      "outcome": "fresh"
     },
     "CA": {
-     "last_attempt": "2026-11-15T10:56:50.013Z",
-     "last_success": "2026-11-15T10:56:50.013Z",
+     "last_attempt": "2026-11-16T02:03:02.043Z",
+     "last_success": "2026-11-16T02:03:02.043Z",
      "outcome": "fresh"
     },
     "CO": {
-     "last_attempt": "2026-11-15T10:58:19.111Z",
-     "last_success": "2026-11-15T10:58:19.111Z",
+     "last_attempt": "2026-11-16T02:04:45.842Z",
+     "last_success": "2026-11-16T02:04:45.842Z",
      "outcome": "fresh"
     },
     "CT": {
-     "last_attempt": "2026-11-15T10:59:08.153Z",
-     "last_success": "2026-11-15T10:59:08.153Z",
+     "last_attempt": "2026-11-16T02:09:26.902Z",
+     "last_success": "2026-11-16T02:09:26.902Z",
      "outcome": "fresh"
     },
     "FL": {
-     "last_attempt": "2026-11-15T11:00:34.787Z",
-     "last_success": "2026-11-15T11:00:34.787Z",
+     "last_attempt": "2026-11-16T02:14:08.345Z",
+     "last_success": "2026-11-16T02:14:08.345Z",
      "outcome": "fresh"
     },
     "GA": {
-     "last_attempt": "2026-11-15T11:03:35.481Z",
-     "last_success": "2026-11-15T11:03:35.481Z",
+     "last_attempt": "2026-11-16T02:15:10.983Z",
+     "last_success": "2026-11-16T02:15:10.983Z",
      "outcome": "fresh"
     },
     "HI": {
-     "last_attempt": "2026-11-15T11:04:18.995Z",
-     "last_success": "2026-11-15T11:04:18.995Z",
+     "last_attempt": "2026-11-16T02:16:03.353Z",
+     "last_success": "2026-11-16T02:16:03.353Z",
      "outcome": "fresh"
     },
     "ID": {
-     "last_attempt": "2026-11-15T11:05:19.940Z",
-     "last_success": "2026-11-15T11:05:19.940Z",
+     "last_attempt": "2026-11-16T02:17:02.163Z",
+     "last_success": "2026-11-16T02:17:02.163Z",
      "outcome": "fresh"
     },
     "IL": {
-     "last_attempt": "2026-11-15T11:08:43.170Z",
-     "last_success": "2026-11-15T11:08:43.170Z",
+     "last_attempt": "2026-11-16T02:21:41.613Z",
+     "last_success": "2026-11-16T02:21:41.613Z",
      "outcome": "fresh"
     },
     "IN": {
-     "last_attempt": "2026-11-15T11:13:58.657Z",
-     "last_success": "2026-11-15T11:13:58.657Z",
+     "last_attempt": "2026-11-16T02:22:30.146Z",
+     "last_success": "2026-11-16T02:22:30.146Z",
      "outcome": "fresh"
     },
     "IA": {
-     "last_attempt": "2026-11-15T11:14:49.735Z",
-     "last_success": "2026-11-15T11:14:49.735Z",
+     "last_attempt": "2026-11-16T02:23:14.536Z",
+     "last_success": "2026-11-16T02:23:14.536Z",
      "outcome": "fresh"
     },
     "KS": {
-     "last_attempt": "2026-11-15T11:16:00.960Z",
-     "last_success": "2026-11-15T11:16:00.960Z",
+     "last_attempt": "2026-11-16T02:24:06.461Z",
+     "last_success": "2026-11-16T02:24:06.461Z",
      "outcome": "fresh"
     },
     "KY": {
-     "last_attempt": "2026-11-15T11:17:56.853Z",
-     "last_success": "2026-11-15T11:17:56.853Z",
+     "last_attempt": "2026-11-16T02:24:51.245Z",
+     "last_success": "2026-11-16T02:24:51.245Z",
      "outcome": "fresh"
     },
     "LA": {
-     "last_attempt": "2026-11-15T11:18:40.686Z",
-     "last_success": "2026-11-15T11:18:40.686Z",
+     "last_attempt": "2026-11-16T02:25:37.931Z",
+     "last_success": "2026-11-16T02:25:37.931Z",
      "outcome": "fresh"
     },
     "ME": {
-     "last_attempt": "2026-11-15T11:19:17.522Z",
-     "last_success": "2026-11-15T11:19:17.522Z",
+     "last_attempt": "2026-11-16T02:26:40.535Z",
+     "last_success": "2026-11-16T02:26:40.535Z",
      "outcome": "fresh"
     },
     "MD": {
-     "last_attempt": "2026-11-15T11:20:05.153Z",
-     "last_success": "2026-11-15T11:20:05.153Z",
+     "last_attempt": "2026-11-16T02:27:24.207Z",
+     "last_success": "2026-11-16T02:27:24.207Z",
      "outcome": "fresh"
     },
     "MA": {
-     "last_attempt": "2026-11-15T11:20:51.167Z",
-     "last_success": "2026-11-15T11:20:51.167Z",
+     "last_attempt": "2026-11-16T02:28:11.552Z",
+     "last_success": "2026-11-16T02:28:11.552Z",
      "outcome": "fresh"
     },
     "MI": {
-     "last_attempt": "2026-11-15T11:22:04.644Z",
-     "last_success": "2026-11-15T11:22:04.644Z",
+     "last_attempt": "2026-11-16T02:30:50.052Z",
+     "last_success": "2026-11-16T02:30:50.052Z",
      "outcome": "fresh"
     },
     "MN": {
-     "last_attempt": "2026-11-15T11:22:57.403Z",
-     "last_success": "2026-11-15T11:22:57.403Z",
+     "last_attempt": "2026-11-16T02:32:03.308Z",
+     "last_success": "2026-11-16T02:32:03.308Z",
      "outcome": "fresh"
     },
     "MS": {
-     "last_attempt": "2026-11-15T11:23:59.095Z",
-     "last_success": "2026-11-15T11:23:59.095Z",
+     "last_attempt": "2026-11-16T02:33:07.020Z",
+     "last_success": "2026-11-16T02:33:07.020Z",
      "outcome": "fresh"
     },
     "MO": {
-     "last_attempt": "2026-11-15T11:24:42.900Z",
-     "last_success": "2026-11-15T11:24:42.900Z",
+     "last_attempt": "2026-11-16T02:33:53.047Z",
+     "last_success": "2026-11-16T02:33:53.047Z",
      "outcome": "fresh"
     },
     "MT": {
-     "last_attempt": "2026-11-15T11:25:49.061Z",
-     "last_success": "2026-11-15T11:25:49.061Z",
+     "last_attempt": "2026-11-16T02:35:22.775Z",
+     "last_success": "2026-11-16T02:35:22.775Z",
      "outcome": "fresh"
     },
     "NE": {
-     "last_attempt": "2026-11-15T11:26:34.429Z",
-     "last_success": "2026-11-15T11:26:34.429Z",
+     "last_attempt": "2026-11-16T02:36:18.831Z",
+     "last_success": "2026-11-16T02:36:18.831Z",
      "outcome": "fresh"
     },
     "NV": {
-     "last_attempt": "2026-11-15T11:27:23.467Z",
-     "last_success": "2026-11-15T11:27:23.467Z",
+     "last_attempt": "2026-11-16T02:37:06.233Z",
+     "last_success": "2026-11-16T02:37:06.233Z",
      "outcome": "fresh"
     },
     "NH": {
-     "last_attempt": "2026-11-15T11:28:15.043Z",
-     "last_success": "2026-11-15T11:28:15.043Z",
+     "last_attempt": "2026-11-16T02:37:47.301Z",
+     "last_success": "2026-11-16T02:37:47.301Z",
      "outcome": "fresh"
     },
     "NJ": {
-     "last_attempt": "2026-11-15T11:29:58.531Z",
-     "last_success": "2026-11-15T11:29:58.531Z",
+     "last_attempt": "2026-11-16T02:38:44.757Z",
+     "last_success": "2026-11-16T02:38:44.757Z",
      "outcome": "fresh"
     },
     "NM": {
-     "last_attempt": "2026-11-15T11:30:52.192Z",
-     "last_success": "2026-11-15T11:30:52.192Z",
+     "last_attempt": "2026-11-16T02:39:34.716Z",
+     "last_success": "2026-11-16T02:39:34.716Z",
      "outcome": "fresh"
     },
     "NY": {
-     "last_attempt": "2026-11-15T11:31:37.259Z",
-     "last_success": "2026-11-15T11:31:37.259Z",
+     "last_attempt": "2026-11-16T02:40:25.880Z",
+     "last_success": "2026-11-16T02:40:25.880Z",
      "outcome": "fresh"
     },
     "NC": {
-     "last_attempt": "2026-11-15T11:32:50.345Z",
-     "last_success": "2026-11-15T11:32:50.345Z",
+     "last_attempt": "2026-11-16T02:41:29.606Z",
+     "last_success": "2026-11-16T02:41:29.606Z",
      "outcome": "fresh"
     },
     "ND": {
-     "last_attempt": "2026-11-15T11:34:04.266Z",
-     "last_success": "2026-11-15T11:34:04.266Z",
+     "last_attempt": "2026-11-16T02:42:22.609Z",
+     "last_success": "2026-11-16T02:42:22.609Z",
      "outcome": "fresh"
     },
     "OH": {
-     "last_attempt": "2026-11-15T11:34:55.542Z",
-     "last_success": "2026-11-15T11:34:55.542Z",
+     "last_attempt": "2026-11-16T02:43:02.978Z",
+     "last_success": "2026-11-16T02:43:02.978Z",
      "outcome": "fresh"
     },
     "OK": {
-     "last_attempt": "2026-11-15T11:36:14.870Z",
-     "last_success": "2026-11-15T11:36:14.870Z",
+     "last_attempt": "2026-11-16T02:43:55.533Z",
+     "last_success": "2026-11-16T02:43:55.533Z",
      "outcome": "fresh"
     },
     "OR": {
-     "last_attempt": "2026-11-15T11:37:14.251Z",
-     "last_success": "2026-11-15T11:37:14.251Z",
+     "last_attempt": "2026-11-16T02:49:38.229Z",
+     "last_success": "2026-11-16T02:49:38.229Z",
      "outcome": "fresh"
     },
     "PA": {
-     "last_attempt": "2026-11-15T11:38:07.691Z",
-     "last_success": "2026-11-15T11:38:07.691Z",
+     "last_attempt": "2026-11-16T02:50:32.397Z",
+     "last_success": "2026-11-16T02:50:32.397Z",
      "outcome": "fresh"
     },
     "SC": {
-     "last_attempt": "2026-11-15T11:39:54.087Z",
-     "last_success": "2026-11-15T11:39:54.087Z",
+     "last_attempt": "2026-11-16T02:52:07.396Z",
+     "last_success": "2026-11-16T02:52:07.396Z",
      "outcome": "fresh"
     },
     "SD": {
-     "last_attempt": "2026-11-15T11:44:00.359Z",
-     "last_success": "2026-11-15T11:44:00.359Z",
+     "last_attempt": "2026-11-16T02:53:03.819Z",
+     "last_success": "2026-11-16T02:53:03.819Z",
      "outcome": "fresh"
     },
     "TN": {
-     "last_attempt": "2026-11-15T11:44:39.794Z",
-     "last_success": "2026-11-15T11:44:39.794Z",
+     "last_attempt": "2026-11-16T02:53:52.518Z",
+     "last_success": "2026-11-16T02:53:52.518Z",
      "outcome": "fresh"
     },
     "TX": {
-     "last_attempt": "2026-11-15T11:45:39.300Z",
-     "last_success": "2026-11-15T11:45:39.300Z",
+     "last_attempt": "2026-11-16T02:59:06.676Z",
+     "last_success": "2026-11-16T02:59:06.676Z",
      "outcome": "fresh"
     },
     "UT": {
-     "last_attempt": "2026-11-15T11:47:08.031Z",
-     "last_success": "2026-11-15T11:47:08.031Z",
+     "last_attempt": "2026-11-16T03:00:28.223Z",
+     "last_success": "2026-11-16T03:00:28.223Z",
      "outcome": "fresh"
     },
     "VT": {
-     "last_attempt": "2026-11-15T11:47:53.961Z",
-     "last_success": "2026-11-15T11:47:53.961Z",
+     "last_attempt": "2026-11-16T03:01:30.916Z",
+     "last_success": "2026-11-16T03:01:30.916Z",
      "outcome": "fresh"
     },
     "VA": {
-     "last_attempt": "2026-11-15T11:48:49.158Z",
-     "last_success": "2026-11-15T11:48:49.158Z",
+     "last_attempt": "2026-11-16T03:02:16.379Z",
+     "last_success": "2026-11-16T03:02:16.379Z",
      "outcome": "fresh"
     },
     "WA": {
-     "last_attempt": "2026-11-15T11:49:56.698Z",
-     "last_success": "2026-11-15T11:49:56.698Z",
+     "last_attempt": "2026-11-16T03:03:41.681Z",
+     "last_success": "2026-11-16T03:03:41.681Z",
      "outcome": "fresh"
     },
     "WV": {
-     "last_attempt": "2026-11-15T11:51:01.683Z",
-     "last_success": "2026-11-15T11:51:01.683Z",
+     "last_attempt": "2026-11-16T03:04:49.757Z",
+     "last_success": "2026-11-16T03:04:49.757Z",
      "outcome": "fresh"
     },
     "WI": {
-     "last_attempt": "2026-11-15T11:52:02.980Z",
-     "last_success": "2026-11-15T11:52:02.980Z",
+     "last_attempt": "2026-11-16T03:05:49.931Z",
+     "last_success": "2026-11-16T03:05:49.931Z",
      "outcome": "fresh"
     },
     "WY": {
-     "last_attempt": "2026-11-15T11:53:06.652Z",
-     "last_success": "2026-11-15T11:53:06.652Z",
+     "last_attempt": "2026-11-16T03:06:47.504Z",
+     "last_success": "2026-11-16T03:06:47.504Z",
      "outcome": "fresh"
     },
     "DE": {
-     "last_attempt": "2026-11-15T10:59:49.679Z",
-     "last_success": "2026-11-15T10:59:49.679Z",
+     "last_attempt": "2026-11-16T02:10:16.825Z",
+     "last_success": "2026-11-16T02:10:16.825Z",
      "outcome": "fresh"
     },
     "RI": {
-     "last_attempt": "2026-11-15T11:38:49.922Z",
-     "last_success": "2026-11-15T11:38:49.922Z",
+     "last_attempt": "2026-11-16T02:51:31.070Z",
+     "last_success": "2026-11-16T02:51:31.070Z",
      "outcome": "fresh"
     }
    },
    "label": "Recreation.gov campgrounds",
-   "oldest_success": "2026-11-15T10:52:36.931Z",
-   "newest_success": "2026-11-15T11:53:06.652Z",
+   "oldest_success": "2026-11-16T01:59:02.863Z",
+   "newest_success": "2026-11-16T03:06:47.504Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 50
@@ -273,259 +273,259 @@
   "osm": {
    "scopes": {
     "AL": {
-     "last_attempt": "2026-11-15T10:53:12.318Z",
-     "last_success": "2026-11-15T10:53:12.318Z",
+     "last_attempt": "2026-11-16T01:59:26.272Z",
+     "last_success": "2026-11-16T01:59:26.272Z",
      "outcome": "fresh"
     },
     "AK": {
-     "last_attempt": "2026-11-15T10:54:00.974Z",
-     "last_success": "2026-11-15T10:54:00.974Z",
+     "last_attempt": "2026-11-16T02:00:31.936Z",
+     "last_success": "2026-11-16T02:00:31.936Z",
      "outcome": "fresh"
     },
     "AZ": {
-     "last_attempt": "2026-11-15T10:55:05.118Z",
-     "last_success": "2026-11-15T10:55:05.118Z",
+     "last_attempt": "2026-11-16T02:01:36.224Z",
+     "last_success": "2026-11-16T02:01:36.224Z",
      "outcome": "fresh"
     },
     "AR": {
-     "last_attempt": "2026-11-15T10:56:10.596Z",
-     "last_success": "2026-11-15T10:56:10.596Z",
+     "last_attempt": "2026-11-16T02:02:35.388Z",
+     "last_success": "2026-11-16T02:02:35.388Z",
      "outcome": "fresh"
     },
     "CA": {
-     "last_attempt": "2026-11-15T10:57:45.523Z",
-     "last_success": "2026-11-15T10:57:45.523Z",
+     "last_attempt": "2026-11-16T02:04:20.272Z",
+     "last_success": "2026-11-16T02:04:20.272Z",
      "outcome": "fresh"
     },
     "CO": {
-     "last_attempt": "2026-11-15T10:58:58.899Z",
+     "last_attempt": "2026-11-16T02:09:17.620Z",
      "last_success": "2026-11-15T10:58:58.899Z",
-     "outcome": "fresh"
+     "outcome": "failed"
     },
     "CT": {
-     "last_attempt": "2026-11-15T10:59:43.110Z",
-     "last_success": "2026-11-15T10:59:43.110Z",
+     "last_attempt": "2026-11-16T02:10:10.913Z",
+     "last_success": "2026-11-16T02:10:10.913Z",
      "outcome": "fresh"
     },
     "DE": {
-     "last_attempt": "2026-11-15T11:00:27.885Z",
-     "last_success": "2026-11-15T11:00:27.885Z",
+     "last_attempt": "2026-11-16T02:14:02.303Z",
+     "last_success": "2026-11-16T02:14:02.303Z",
      "outcome": "fresh"
     },
     "FL": {
-     "last_attempt": "2026-11-15T11:03:24.947Z",
-     "last_success": "2026-10-29T02:55:27.529Z",
-     "outcome": "failed"
+     "last_attempt": "2026-11-16T02:15:02.710Z",
+     "last_success": "2026-11-16T02:15:02.710Z",
+     "outcome": "fresh"
     },
     "GA": {
-     "last_attempt": "2026-11-15T11:04:11.947Z",
-     "last_success": "2026-11-15T11:04:11.947Z",
+     "last_attempt": "2026-11-16T02:15:56.987Z",
+     "last_success": "2026-11-16T02:15:56.987Z",
      "outcome": "fresh"
     },
     "HI": {
-     "last_attempt": "2026-11-15T11:04:56.274Z",
-     "last_success": "2026-11-15T11:04:56.274Z",
+     "last_attempt": "2026-11-16T02:16:45.777Z",
+     "last_success": "2026-11-16T02:16:45.777Z",
      "outcome": "fresh"
     },
     "ID": {
-     "last_attempt": "2026-11-15T11:08:33.629Z",
+     "last_attempt": "2026-11-16T02:21:33.600Z",
      "last_success": "2026-10-29T02:58:04.851Z",
      "outcome": "failed"
     },
     "IL": {
-     "last_attempt": "2026-11-15T11:13:51.664Z",
-     "last_success": "2026-11-15T11:13:51.664Z",
+     "last_attempt": "2026-11-16T02:22:23.882Z",
+     "last_success": "2026-11-16T02:22:23.882Z",
      "outcome": "fresh"
     },
     "IN": {
-     "last_attempt": "2026-11-15T11:14:42.863Z",
-     "last_success": "2026-11-15T11:14:42.863Z",
+     "last_attempt": "2026-11-16T02:23:08.361Z",
+     "last_success": "2026-11-16T02:23:08.361Z",
      "outcome": "fresh"
     },
     "IA": {
-     "last_attempt": "2026-11-15T11:15:51.541Z",
-     "last_success": "2026-11-15T11:15:51.541Z",
+     "last_attempt": "2026-11-16T02:23:58.533Z",
+     "last_success": "2026-11-16T02:23:58.533Z",
      "outcome": "fresh"
     },
     "KS": {
-     "last_attempt": "2026-11-15T11:17:47.765Z",
-     "last_success": "2026-11-15T11:17:47.765Z",
+     "last_attempt": "2026-11-16T02:24:43.657Z",
+     "last_success": "2026-11-16T02:24:43.657Z",
      "outcome": "fresh"
     },
     "KY": {
-     "last_attempt": "2026-11-15T11:18:33.931Z",
-     "last_success": "2026-11-15T11:18:33.931Z",
+     "last_attempt": "2026-11-16T02:25:31.751Z",
+     "last_success": "2026-11-16T02:25:31.751Z",
      "outcome": "fresh"
     },
     "LA": {
-     "last_attempt": "2026-11-15T11:19:10.798Z",
-     "last_success": "2026-11-15T11:19:10.798Z",
+     "last_attempt": "2026-11-16T02:26:34.454Z",
+     "last_success": "2026-11-16T02:26:34.454Z",
      "outcome": "fresh"
     },
     "ME": {
-     "last_attempt": "2026-11-15T11:19:58.056Z",
-     "last_success": "2026-11-15T11:19:58.056Z",
+     "last_attempt": "2026-11-16T02:27:17.918Z",
+     "last_success": "2026-11-16T02:27:17.918Z",
      "outcome": "fresh"
     },
     "MD": {
-     "last_attempt": "2026-11-15T11:20:44.244Z",
-     "last_success": "2026-11-15T11:20:44.244Z",
+     "last_attempt": "2026-11-16T02:28:05.289Z",
+     "last_success": "2026-11-16T02:28:05.289Z",
      "outcome": "fresh"
     },
     "MA": {
-     "last_attempt": "2026-11-15T11:21:54.931Z",
-     "last_success": "2026-11-15T11:21:54.931Z",
+     "last_attempt": "2026-11-16T02:30:42.206Z",
+     "last_success": "2026-11-16T02:30:42.206Z",
      "outcome": "fresh"
     },
     "MI": {
-     "last_attempt": "2026-11-15T11:22:45.127Z",
-     "last_success": "2026-11-15T11:22:45.127Z",
+     "last_attempt": "2026-11-16T02:31:53.375Z",
+     "last_success": "2026-11-16T02:31:53.375Z",
      "outcome": "fresh"
     },
     "MN": {
-     "last_attempt": "2026-11-15T11:23:44.956Z",
-     "last_success": "2026-11-15T11:23:44.956Z",
+     "last_attempt": "2026-11-16T02:32:52.329Z",
+     "last_success": "2026-11-16T02:32:52.329Z",
      "outcome": "fresh"
     },
     "MS": {
-     "last_attempt": "2026-11-15T11:24:33.680Z",
-     "last_success": "2026-11-15T11:24:33.680Z",
+     "last_attempt": "2026-11-16T02:33:45.178Z",
+     "last_success": "2026-11-16T02:33:45.178Z",
      "outcome": "fresh"
     },
     "MO": {
-     "last_attempt": "2026-11-15T11:25:26.234Z",
-     "last_success": "2026-11-15T11:25:26.234Z",
+     "last_attempt": "2026-11-16T02:35:06.388Z",
+     "last_success": "2026-11-16T02:35:06.388Z",
      "outcome": "fresh"
     },
     "MT": {
-     "last_attempt": "2026-11-15T11:26:27.099Z",
-     "last_success": "2026-11-15T11:26:27.099Z",
+     "last_attempt": "2026-11-16T02:36:12.131Z",
+     "last_success": "2026-11-16T02:36:12.131Z",
      "outcome": "fresh"
     },
     "NE": {
-     "last_attempt": "2026-11-15T11:27:16.773Z",
-     "last_success": "2026-11-15T11:27:16.773Z",
+     "last_attempt": "2026-11-16T02:36:59.968Z",
+     "last_success": "2026-11-16T02:36:59.968Z",
      "outcome": "fresh"
     },
     "NV": {
-     "last_attempt": "2026-11-15T11:28:07.376Z",
-     "last_success": "2026-11-15T11:28:07.376Z",
+     "last_attempt": "2026-11-16T02:37:40.325Z",
+     "last_success": "2026-11-16T02:37:40.325Z",
      "outcome": "fresh"
     },
     "NH": {
-     "last_attempt": "2026-11-15T11:29:51.323Z",
-     "last_success": "2026-11-15T11:29:51.323Z",
+     "last_attempt": "2026-11-16T02:38:38.702Z",
+     "last_success": "2026-11-16T02:38:38.702Z",
      "outcome": "fresh"
     },
     "NJ": {
-     "last_attempt": "2026-11-15T11:30:43.073Z",
-     "last_success": "2026-11-15T11:30:43.073Z",
+     "last_attempt": "2026-11-16T02:39:27.092Z",
+     "last_success": "2026-11-16T02:39:27.092Z",
      "outcome": "fresh"
     },
     "NM": {
-     "last_attempt": "2026-11-15T11:31:29.481Z",
-     "last_success": "2026-11-15T11:31:29.481Z",
+     "last_attempt": "2026-11-16T02:40:19.539Z",
+     "last_success": "2026-11-16T02:40:19.539Z",
      "outcome": "fresh"
     },
     "NY": {
-     "last_attempt": "2026-11-15T11:32:36.321Z",
-     "last_success": "2026-11-15T11:32:36.321Z",
+     "last_attempt": "2026-11-16T02:41:17.406Z",
+     "last_success": "2026-11-16T02:41:17.406Z",
      "outcome": "fresh"
     },
     "NC": {
-     "last_attempt": "2026-11-15T11:33:55.951Z",
-     "last_success": "2026-11-15T11:33:55.951Z",
+     "last_attempt": "2026-11-16T02:42:14.949Z",
+     "last_success": "2026-11-16T02:42:14.949Z",
      "outcome": "fresh"
     },
     "ND": {
-     "last_attempt": "2026-11-15T11:34:48.836Z",
-     "last_success": "2026-11-15T11:34:48.836Z",
+     "last_attempt": "2026-11-16T02:42:56.808Z",
+     "last_success": "2026-11-16T02:42:56.808Z",
      "outcome": "fresh"
     },
     "OH": {
-     "last_attempt": "2026-11-15T11:36:03.238Z",
-     "last_success": "2026-11-15T11:36:03.238Z",
+     "last_attempt": "2026-11-16T02:43:46.321Z",
+     "last_success": "2026-11-16T02:43:46.321Z",
      "outcome": "fresh"
     },
     "OK": {
-     "last_attempt": "2026-11-15T11:36:49.444Z",
-     "last_success": "2026-11-15T11:36:49.444Z",
+     "last_attempt": "2026-11-16T02:49:20.873Z",
+     "last_success": "2026-11-16T02:49:20.873Z",
      "outcome": "fresh"
     },
     "OR": {
-     "last_attempt": "2026-11-15T11:37:57.207Z",
-     "last_success": "2026-11-15T11:37:57.207Z",
+     "last_attempt": "2026-11-16T02:50:23.253Z",
+     "last_success": "2026-11-16T02:50:23.253Z",
      "outcome": "fresh"
     },
     "PA": {
-     "last_attempt": "2026-11-15T11:38:42.351Z",
-     "last_success": "2026-11-15T11:38:42.351Z",
+     "last_attempt": "2026-11-16T02:51:24.515Z",
+     "last_success": "2026-11-16T02:51:24.515Z",
      "outcome": "fresh"
     },
     "RI": {
-     "last_attempt": "2026-11-15T11:39:47.249Z",
-     "last_success": "2026-11-15T11:39:47.249Z",
+     "last_attempt": "2026-11-16T02:52:01.226Z",
+     "last_success": "2026-11-16T02:52:01.226Z",
      "outcome": "fresh"
     },
     "SC": {
-     "last_attempt": "2026-11-15T11:43:53.618Z",
-     "last_success": "2026-11-15T11:43:53.618Z",
+     "last_attempt": "2026-11-16T02:52:57.734Z",
+     "last_success": "2026-11-16T02:52:57.734Z",
      "outcome": "fresh"
     },
     "SD": {
-     "last_attempt": "2026-11-15T11:44:30.575Z",
-     "last_success": "2026-11-15T11:44:30.575Z",
+     "last_attempt": "2026-11-16T02:53:44.511Z",
+     "last_success": "2026-11-16T02:53:44.511Z",
      "outcome": "fresh"
     },
     "TN": {
-     "last_attempt": "2026-11-15T11:45:24.289Z",
-     "last_success": "2026-11-15T11:45:24.289Z",
+     "last_attempt": "2026-11-16T02:58:55.596Z",
+     "last_success": "2026-11-16T02:58:55.596Z",
      "outcome": "fresh"
     },
     "TX": {
-     "last_attempt": "2026-11-15T11:46:36.313Z",
-     "last_success": "2026-11-15T11:46:36.313Z",
+     "last_attempt": "2026-11-16T03:00:03.294Z",
+     "last_success": "2026-11-16T03:00:03.294Z",
      "outcome": "fresh"
     },
     "UT": {
-     "last_attempt": "2026-11-15T11:47:44.845Z",
-     "last_success": "2026-11-15T11:47:44.845Z",
+     "last_attempt": "2026-11-16T03:01:22.209Z",
+     "last_success": "2026-11-16T03:01:22.209Z",
      "outcome": "fresh"
     },
     "VT": {
-     "last_attempt": "2026-11-15T11:48:39.846Z",
-     "last_success": "2026-11-15T11:48:39.846Z",
+     "last_attempt": "2026-11-16T03:02:08.758Z",
+     "last_success": "2026-11-16T03:02:08.758Z",
      "outcome": "fresh"
     },
     "VA": {
-     "last_attempt": "2026-11-15T11:49:41.376Z",
-     "last_success": "2026-11-15T11:49:41.376Z",
+     "last_attempt": "2026-11-16T03:03:29.834Z",
+     "last_success": "2026-11-16T03:03:29.834Z",
      "outcome": "fresh"
     },
     "WA": {
-     "last_attempt": "2026-11-15T11:50:46.572Z",
-     "last_success": "2026-11-15T11:50:46.572Z",
+     "last_attempt": "2026-11-16T03:04:38.154Z",
+     "last_success": "2026-11-16T03:04:38.154Z",
      "outcome": "fresh"
     },
     "WV": {
-     "last_attempt": "2026-11-15T11:51:55.569Z",
-     "last_success": "2026-11-15T11:51:55.569Z",
+     "last_attempt": "2026-11-16T03:05:43.248Z",
+     "last_success": "2026-11-16T03:05:43.248Z",
      "outcome": "fresh"
     },
     "WI": {
-     "last_attempt": "2026-11-15T11:52:50.336Z",
-     "last_success": "2026-11-15T11:52:50.336Z",
+     "last_attempt": "2026-11-16T03:06:35.316Z",
+     "last_success": "2026-11-16T03:06:35.316Z",
      "outcome": "fresh"
     },
     "WY": {
-     "last_attempt": "2026-11-15T11:53:50.676Z",
-     "last_success": "2026-11-15T11:53:50.676Z",
+     "last_attempt": "2026-11-16T03:07:28.727Z",
+     "last_success": "2026-11-16T03:07:28.727Z",
      "outcome": "fresh"
     }
    },
    "label": "OpenStreetMap campsites",
-   "oldest_success": "2026-10-29T02:55:27.529Z",
-   "newest_success": "2026-11-15T11:53:50.676Z",
+   "oldest_success": "2026-10-29T02:58:04.851Z",
+   "newest_success": "2026-11-16T03:07:28.727Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 48,
@@ -535,14 +535,14 @@
   "usfs": {
    "scopes": {
     "US": {
-     "last_attempt": "2026-11-15T11:54:34.125Z",
-     "last_success": "2026-11-15T11:54:34.125Z",
+     "last_attempt": "2026-11-16T03:08:19.054Z",
+     "last_success": "2026-11-16T03:08:19.054Z",
      "outcome": "fresh"
     }
    },
    "label": "Forest Service recreation sites",
-   "oldest_success": "2026-11-15T11:54:34.125Z",
-   "newest_success": "2026-11-15T11:54:34.125Z",
+   "oldest_success": "2026-11-16T03:08:19.054Z",
+   "newest_success": "2026-11-16T03:08:19.054Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 1
@@ -551,14 +551,14 @@
   "blm": {
    "scopes": {
     "US": {
-     "last_attempt": "2026-11-15T11:54:36.369Z",
-     "last_success": "2026-11-15T11:54:36.369Z",
+     "last_attempt": "2026-11-16T03:08:22.009Z",
+     "last_success": "2026-11-16T03:08:22.009Z",
      "outcome": "fresh"
     }
    },
    "label": "BLM recreation sites",
-   "oldest_success": "2026-11-15T11:54:36.369Z",
-   "newest_success": "2026-11-15T11:54:36.369Z",
+   "oldest_success": "2026-11-16T03:08:22.009Z",
+   "newest_success": "2026-11-16T03:08:22.009Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 1
@@ -567,14 +567,14 @@
   "ridb_sites": {
    "scopes": {
     "US": {
-     "last_attempt": "2026-11-15T11:54:58.478Z",
-     "last_success": "2026-11-15T11:54:58.478Z",
+     "last_attempt": "2026-11-16T03:08:58.526Z",
+     "last_success": "2026-11-16T03:08:58.526Z",
      "outcome": "fresh"
     }
    },
    "label": "Recreation.gov site details",
-   "oldest_success": "2026-11-15T11:54:58.478Z",
-   "newest_success": "2026-11-15T11:54:58.478Z",
+   "oldest_success": "2026-11-16T03:08:58.526Z",
+   "newest_success": "2026-11-16T03:08:58.526Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 1
@@ -1014,97 +1014,98 @@
   "rest_areas": {
    "scopes": {
     "TX": {
-     "last_attempt": "2026-11-15T11:55:05.836Z",
-     "last_success": "2026-11-15T11:55:05.836Z",
+     "last_attempt": "2026-11-16T03:09:04.157Z",
+     "last_success": "2026-11-16T03:09:04.157Z",
      "outcome": "fresh"
     },
     "FL": {
-     "last_attempt": "2026-11-15T11:55:10.922Z",
-     "last_success": "2026-11-15T11:55:10.922Z",
+     "last_attempt": "2026-11-16T03:09:09.855Z",
+     "last_success": "2026-11-16T03:09:09.855Z",
      "outcome": "fresh"
     },
     "ID": {
-     "last_attempt": "2026-11-15T11:55:17.756Z",
-     "last_success": "2026-11-15T11:55:17.756Z",
+     "last_attempt": "2026-11-16T03:09:16.178Z",
+     "last_success": "2026-11-16T03:09:16.178Z",
      "outcome": "fresh"
     },
     "MT": {
-     "last_attempt": "2026-11-15T11:55:28.332Z",
-     "last_success": "2026-11-15T11:55:28.332Z",
+     "last_attempt": "2026-11-16T03:09:27.602Z",
+     "last_success": "2026-11-16T03:09:27.602Z",
      "outcome": "fresh"
     },
     "OH": {
-     "last_attempt": "2026-11-15T11:55:34.051Z",
-     "last_success": "2026-11-15T11:55:34.051Z",
+     "last_attempt": "2026-11-16T03:11:03.761Z",
+     "last_success": "2026-11-16T03:11:03.761Z",
      "outcome": "fresh"
     },
     "CA": {
-     "last_attempt": "2026-11-15T11:55:08.697Z",
-     "last_success": "2026-11-15T11:55:08.697Z",
+     "last_attempt": "2026-11-16T03:09:07.255Z",
+     "last_success": "2026-11-16T03:09:07.255Z",
      "outcome": "fresh"
     },
     "IA": {
-     "last_attempt": "2026-11-15T11:55:13.661Z",
-     "last_success": "2026-11-15T11:55:13.661Z",
+     "last_attempt": "2026-11-16T03:09:12.736Z",
+     "last_success": "2026-11-16T03:09:12.736Z",
      "outcome": "fresh"
     },
     "IN": {
-     "last_attempt": "2026-11-15T11:55:20.128Z",
-     "last_success": "2026-11-15T11:55:20.128Z",
+     "last_attempt": "2026-11-16T03:09:18.872Z",
+     "last_success": "2026-11-16T03:09:18.872Z",
      "outcome": "fresh"
     },
     "KS": {
-     "last_attempt": "2026-11-15T11:55:22.928Z",
-     "last_success": "2026-11-15T11:55:22.928Z",
+     "last_attempt": "2026-11-16T03:09:21.878Z",
+     "last_success": "2026-11-16T03:09:21.878Z",
      "outcome": "fresh"
     },
     "MI": {
-     "last_attempt": "2026-11-15T11:55:25.503Z",
-     "last_success": "2026-11-15T11:55:25.503Z",
+     "last_attempt": "2026-11-16T03:09:24.669Z",
+     "last_success": "2026-11-16T03:09:24.669Z",
      "outcome": "fresh"
     },
     "NV": {
-     "last_attempt": "2026-11-15T11:55:30.567Z",
+     "last_attempt": "2026-11-16T03:11:00.225Z",
      "last_success": "2026-11-15T11:55:30.567Z",
-     "outcome": "fresh"
+     "outcome": "failed"
     },
     "SD": {
-     "last_attempt": "2026-11-15T11:55:36.395Z",
-     "last_success": "2026-11-15T11:55:36.395Z",
+     "last_attempt": "2026-11-16T03:11:06.714Z",
+     "last_success": "2026-11-16T03:11:06.714Z",
      "outcome": "fresh"
     },
     "WA": {
-     "last_attempt": "2026-11-15T11:55:38.525Z",
-     "last_success": "2026-11-15T11:55:38.525Z",
+     "last_attempt": "2026-11-16T03:11:09.743Z",
+     "last_success": "2026-11-16T03:11:09.743Z",
      "outcome": "fresh"
     }
    },
    "label": "Official state rest-area locations",
-   "oldest_success": "2026-11-15T11:55:05.836Z",
-   "newest_success": "2026-11-15T11:55:38.525Z",
+   "oldest_success": "2026-11-15T11:55:30.567Z",
+   "newest_success": "2026-11-16T03:11:09.743Z",
    "never_succeeded": 0,
    "last_outcomes": {
-    "fresh": 13
+    "fresh": 12,
+    "failed": 1
    }
   },
   "usfs_sites": {
    "scopes": {
     "US": {
-     "last_attempt": "2026-11-15T11:55:02.496Z",
-     "last_success": "2026-11-15T11:55:02.496Z",
+     "last_attempt": "2026-11-16T03:09:01.202Z",
+     "last_success": "2026-11-16T03:09:01.202Z",
      "outcome": "fresh"
     }
    },
    "label": "Forest Service site water and restroom statements",
-   "oldest_success": "2026-11-15T11:55:02.496Z",
-   "newest_success": "2026-11-15T11:55:02.496Z",
+   "oldest_success": "2026-11-16T03:09:01.202Z",
+   "newest_success": "2026-11-16T03:09:01.202Z",
    "never_succeeded": 0,
    "last_outcomes": {
     "fresh": 1
    }
   }
  },
- "generated": "2026-11-15T15:39:56.059Z",
+ "generated": "2026-11-16T03:11:09.743Z",
  "services_run": {
   "started": "2026-10-30T19:35:28.712Z",
   "counts": {
