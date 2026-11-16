@@ -264,7 +264,6 @@
       },
       "properties": {
         "name": "West Fork Campground",
-        "tourism": "camp_site",
         "id": "ridb:274260",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -305,7 +304,8 @@
               "caravans": "yes",
               "fee": "yes",
               "internet_access": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -790,7 +790,6 @@
         "mobile_reception": "no",
         "name": "Black Bear Campground",
         "operator": "US Forest Service",
-        "tourism": "caravan_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6602&actid=29",
         "id": "ridb:249093",
         "source": "recreation.gov",
@@ -833,7 +832,8 @@
               "fee": "yes",
               "internet_access": "no",
               "power_supply": "no",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -1274,7 +1274,6 @@
       "properties": {
         "name": "QUARTZ CREEK CAMPGROUND",
         "operator": "U.S. Forest Service",
-        "tourism": "caravan_site",
         "id": "ridb:233909",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1313,7 +1312,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "fee": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -1674,7 +1674,6 @@
         "operator": "U.S. Bureau of Land Management",
         "phone": "+1 907 474 2200",
         "reservation": "no",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/cripple-creek-campground",
         "id": "ridb:274261",
         "source": "recreation.gov",
@@ -1717,7 +1716,8 @@
               "drinking_water": "yes",
               "fee": "yes",
               "sanitary_dump_station": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -2115,7 +2115,6 @@
       },
       "properties": {
         "name": "Bertha Creek Campground",
-        "tourism": "caravan_site",
         "id": "ridb:249080",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2147,7 +2146,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:230274150",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T10:54:00Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/230274150"
+          }
+        ]
       }
     },
     {
@@ -2233,7 +2244,8 @@
         "sources": [
           "recreation.gov"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "description_source_record_id": "ridb:233068"
       }
     },
     {
@@ -3513,7 +3525,6 @@
         "operator": "United States Forest Service",
         "phone": "+1-877-444-6777",
         "reservation": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232330",
         "wheelchair": "yes",
         "id": "ridb:232330",
@@ -3562,7 +3573,8 @@
               "group_only": "no",
               "internet_access": "no",
               "sanitary_dump_station": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -4926,7 +4938,6 @@
       },
       "properties": {
         "name": "Eagle Campground",
-        "tourism": "camp_site",
         "id": "ridb:14534",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4958,7 +4969,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1089802745",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T10:54:00Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1089802745"
+          }
+        ]
       }
     },
     {
@@ -5690,7 +5713,6 @@
         "operator": "United States Forest Service",
         "phone": "+1-877-444-6777",
         "reservation": "yes",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/232141",
         "id": "ridb:232141",
         "source": "recreation.gov",
@@ -5737,6 +5759,7 @@
               "sanitary_dump_station": "no",
               "tents": "yes",
               "toilets": "yes",
+              "tourism": "camp_site",
               "washing_machine": "no",
               "wood_available": "yes"
             },
@@ -7111,7 +7134,6 @@
         "operator": "U.S. Bureau of Land Management",
         "reservation": "no",
         "source": "recreation.gov",
-        "tourism": "caravan_site",
         "website": "https://www.recreation.gov/camping/poi/274259",
         "id": "ridb:274259",
         "schema_version": 3,
@@ -7148,7 +7170,8 @@
             "source_record_id": "osm:way:295165500",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "capacity": "18"
+              "capacity": "18",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -7464,7 +7487,7 @@
         "id": "ridb:262679",
         "schema_version": 3,
         "name": "North Fork Trail Shelter",
-        "type": null,
+        "type": "other",
         "cost": 0,
         "fee_status": "unknown",
         "fee_description": "",
@@ -8433,7 +8456,6 @@
         "mobile_reception": "no",
         "name": "WILLIWAW CAMPGROUND",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/chugach/recreation/camping-cabins/recarea/?recid=6604&actid=29",
         "id": "ridb:232324",
         "source": "recreation.gov",
@@ -8482,7 +8504,8 @@
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -9300,7 +9323,6 @@
       },
       "properties": {
         "name": "Five Mile Campground",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/visit/five-mile-campground",
         "id": "ridb:14536",
         "source": "recreation.gov",
@@ -9339,7 +9361,8 @@
             "source_record_id": "osm:way:1233897963",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -11381,7 +11404,8 @@
             "source_record_id": "osm:node:8934341496",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -17080,7 +17104,8 @@
               "drinking_water": "yes",
               "fee": "yes",
               "power_supply": "no",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -17646,7 +17671,8 @@
               "caravans": "no",
               "fee": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -17733,7 +17759,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -18731,7 +18758,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:10136140998",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T10:54:00Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/10136140998"
+          }
+        ]
       }
     },
     {
@@ -20216,7 +20255,8 @@
               "caravans": "no",
               "fee": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -20447,7 +20487,8 @@
               "sanitary_dump_station": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "no"
+              "toilets": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -20645,7 +20686,8 @@
               "sanitary_dump_station": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "no"
+              "toilets": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -22718,7 +22760,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:238162524",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T10:54:00Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/238162524"
+          }
+        ]
       }
     },
     {
@@ -28046,7 +28100,8 @@
               "sanitary_dump_station": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,
@@ -28064,7 +28119,8 @@
               "power_supply": "no",
               "sanitary_dump_station": "no",
               "shower": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:54:00Z",
             "source_updated_at": null,

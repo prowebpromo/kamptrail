@@ -183,7 +183,6 @@
         "dog": "leashed",
         "name": "Bird Creek Campground",
         "operator": "US Forest Service",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/htnf/recarea/?recid=65184",
         "id": "ridb:234209",
         "source": "recreation.gov",
@@ -224,7 +223,8 @@
               "capacity": "9",
               "drinking_water": "yes",
               "fee": "yes",
-              "horse": "no"
+              "horse": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:28:07Z",
             "source_updated_at": null,
@@ -372,7 +372,6 @@
         "name": "Lower Virginia Creek Primitive Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:243885",
         "schema_version": 3,
@@ -404,7 +403,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333791880",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333791880"
+          }
+        ]
       }
     },
     {
@@ -634,7 +645,6 @@
         "addr:street": "Moenkopi Road",
         "name": "Red Rock Canyon Campground",
         "operator": "Bureau of Land Managment",
-        "tourism": "camp_site",
         "website": "https://www.blm.gov/nv/st/en/fo/lvfo/blm_programs/blm_special_areas/red_rock_nca/recreation/red_rock_campground.html",
         "id": "ridb:250877",
         "source": "recreation.gov",
@@ -677,7 +687,8 @@
               "fee": "yes",
               "internet_access": "no",
               "internet_access:fee": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:28:07Z",
             "source_updated_at": null,
@@ -780,22 +791,11 @@
         ]
       },
       "properties": {
-        "cost": null,
-        "dog": "leashed",
-        "name": "TIMBER CREEK CAMPGROUND",
-        "operator": "USDA Forest Service",
-        "tourism": "camp_site",
-        "website": "https://www.fs.usda.gov/recarea/htnf/recarea/?recid=65534",
         "id": "ridb:234208",
-        "source": "recreation.gov",
         "schema_version": 3,
-        "source_url": "https://www.recreation.gov/camping/campgrounds/234208",
-        "source_retrieved_at": "2026-11-15T11:27:23Z",
-        "source_ids": [
-          "ridb:234208",
-          "osm:way:1236096005"
-        ],
+        "name": "TIMBER CREEK CAMPGROUND",
         "type": "established",
+        "cost": null,
         "fee_status": "unknown",
         "fee_description": "",
         "field_provenance": {
@@ -810,24 +810,16 @@
         "rig_friendly": [],
         "road_difficulty": null,
         "state": "NV",
+        "source": "recreation.gov",
         "facility_id": "234208",
         "description": "<h2>Overview</h2>\nTimber Creek Campground is located in Duck Creek Basin, high on the Schell Creek Range, in eastern Nevada. It sits at an elevation of 8,500 feet, approximately 25 miles from the small city of Ely. Visitors to the area enjoy hiking, horseback riding, fishing and off-road vehicle riding, among other activities.<h2>Recreation</h2>\n<p>Timber Creek is a perennial stream with rainbow and brook trout fishing. The High Schells Wilderness can be accessed from a trailhead located a half-mile up the road from the campground. </p>\n<p><br><br>The 30-mile Success Loop Scenic Drive is located in the Duck Creek Basin with views of the surrounding high desert and mountain terrain. </p>\n\n<p>Access to the Ranger OHV Trail is located below the campground and offers recreational opportunities for OHVs, horseback, mountain bikes and hiking. </p>\n<h2>Facilities</h2>\n<p>The campground has five group campsites, which serve varying sizes of groups between 25-100 people. Some sites require a short walk from the parking area, on a bridge over Timber Creek, to access the site pad.<br><br><br><br>All sites have picnic and serving tables, a campfire ring and a grill. Vault toilets and drinking water is provided. This is a \"pack it in, pack it out\" site, with no trash collection service.</p>\n<h2>Natural Features</h2>\n<p>The campground is situated in a dense forest of Engelmann spruce, aspen and white fir trees, which offers partial shade and beautiful fall color. Timber Creek flows past the campground. High Schells Wilderness sits immediately ajacent to the campground and has multiple peaks greater than 11,000 ft. in elevation. </p>\n\n<h2>Nearby Attractions</h2>\nWard Charcoal Ovens State Park is a few miles southeast of Ely, providing an opportunity to see interesting historic stone ovens and hike an interpretive trail. The Northern Nevada Railway in Ely has a museum and offers train rides.<br/><br/>\nCave Lake State Park is a few miles south of Duck Creek Basin along the Success Loop Road.",
-        "sources": [
-          "recreation.gov",
-          "openstreetmap"
+        "source_url": "https://www.recreation.gov/camping/campgrounds/234208",
+        "source_retrieved_at": "2026-11-15T11:27:23Z",
+        "source_ids": [
+          "ridb:234208"
         ],
-        "data_conflicts": [],
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1236096005",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "fee": "yes"
-            },
-            "retrieved_at": "2026-11-15T11:28:07Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1236096005"
-          }
+        "sources": [
+          "recreation.gov"
         ]
       }
     },
@@ -1431,7 +1423,6 @@
       "properties": {
         "name": "Centerville Flat Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "id": "ridb:243975",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1463,7 +1454,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2378462846",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2378462846"
+          }
+        ]
       }
     },
     {
@@ -2617,7 +2620,8 @@
             "source_record_id": "osm:node:4343825487",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:28:07Z",
             "source_updated_at": null,
@@ -2805,7 +2809,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:1711384487",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/1711384487"
+          }
+        ]
       }
     },
     {
@@ -7357,7 +7373,8 @@
             "fields": {
               "internet_access": "wlan",
               "power_supply": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:28:07Z",
             "source_updated_at": null,
@@ -9347,7 +9364,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:332569238",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/332569238"
+          }
+        ]
       }
     },
     {
@@ -9480,7 +9509,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:894045528",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/894045528"
+          }
+        ]
       }
     },
     {
@@ -10987,7 +11028,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8379914916",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8379914916"
+          },
+          {
+            "source_record_id": "osm:node:8379951225",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8379951225"
+          }
+        ]
       }
     },
     {
@@ -14303,7 +14366,8 @@
             "source_record_id": "osm:node:10742641694",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:28:07Z",
             "source_updated_at": null,
@@ -17648,13 +17712,15 @@
               "caravans": "no",
               "fee": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:28:07Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/1493721329"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:way:1493721329"
       }
     },
     {
@@ -19843,7 +19909,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:42486325",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/42486325"
+          }
+        ]
       }
     },
     {
@@ -21969,7 +22047,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:139343557",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/139343557"
+          }
+        ]
       }
     },
     {
@@ -27243,7 +27333,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:496554839",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:28:07Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/496554839"
+          }
+        ]
       }
     },
     {
@@ -30149,7 +30251,8 @@
               "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:28:07Z",
             "source_updated_at": null,
@@ -35822,6 +35925,38 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -114.6318198,
+          39.4011562
+        ]
+      },
+      "properties": {
+        "cost": "10 USD",
+        "dog": "leashed",
+        "fee": "yes",
+        "name": "Timber Creek Campground",
+        "operator": "USDA Forest Service",
+        "tourism": "camp_site",
+        "website": "https://www.fs.usda.gov/recarea/htnf/recarea/?recid=65534",
+        "osm_id": 1236096005,
+        "osm_type": "way",
+        "id": "osm:way:1236096005",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1236096005",
+        "source_retrieved_at": "2026-11-15T11:28:07Z",
+        "source_ids": [
+          "osm:way:1236096005"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -114.6926079,
           39.1917707
         ]
@@ -41454,7 +41589,8 @@
             "source_record_id": "osm:way:1559023869",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:28:07Z",
             "source_updated_at": null,
@@ -41820,6 +41956,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 19,
+  "duplicatesRemoved": 18,
   "invalidRemoved": 0
 }

@@ -605,7 +605,6 @@
         "operator:type": "military",
         "operator:wikidata": "Q1049334",
         "source_ref": "https://www.recreation.gov/camping/campgrounds/232662?tab=info",
-        "tourism": "camp_site",
         "website": "https://www.swl.usace.army.mil/Missions/Recreation/Arkansas-River/Arkansas-River-Recreation/",
         "id": "ridb:232662",
         "source": "recreation.gov",
@@ -638,7 +637,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1442811091",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T10:56:10Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1442811091"
+          }
+        ]
       }
     },
     {
@@ -1114,7 +1125,6 @@
       },
       "properties": {
         "name": "LAKE WEDINGTON",
-        "tourism": "caravan_site",
         "id": "ridb:234586",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1156,7 +1166,8 @@
               "fee": "10.00",
               "internet_access": "no",
               "sanitary_dump_station": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -3487,7 +3498,6 @@
       "properties": {
         "name": "Ozark Campground",
         "operator": "US National Park Service",
-        "tourism": "camp_site",
         "id": "ridb:233120",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3525,7 +3535,8 @@
             "source_record_id": "osm:node:4285104560",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "capacity": "31"
+              "capacity": "31",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -4343,7 +4354,6 @@
       },
       "properties": {
         "name": "Daisy State Park",
-        "tourism": "camp_site",
         "id": "ridb:247835",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -4353,7 +4363,7 @@
           "ridb:247835",
           "osm:way:941066426"
         ],
-        "type": null,
+        "type": "other",
         "cost": null,
         "fee_status": "unknown",
         "fee_description": "",
@@ -4375,7 +4385,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:941066426",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T10:56:10Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/941066426"
+          }
+        ]
       }
     },
     {
@@ -5239,7 +5261,8 @@
               "access": "yes",
               "caravans": "yes",
               "fee": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -9769,7 +9792,8 @@
               "check_date": "2025-03-08",
               "fee": "yes",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -9784,7 +9808,8 @@
               "check_date": "2025-03-08",
               "fee": "yes",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -10238,7 +10263,8 @@
               "picnic_table": "yes",
               "static_caravans": "no",
               "tents": "yes",
-              "toilets": "no"
+              "toilets": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -10258,7 +10284,8 @@
               "picnic_table": "yes",
               "static_caravans": "no",
               "tents": "yes",
-              "toilets": "no"
+              "toilets": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -10374,7 +10401,8 @@
               "picnic_table": "yes",
               "static_caravans": "no",
               "tents": "yes",
-              "toilets": "no"
+              "toilets": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -10394,7 +10422,8 @@
               "picnic_table": "yes",
               "static_caravans": "no",
               "tents": "yes",
-              "toilets": "no"
+              "toilets": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -10414,7 +10443,8 @@
               "picnic_table": "yes",
               "static_caravans": "no",
               "tents": "yes",
-              "toilets": "no"
+              "toilets": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -10434,7 +10464,8 @@
               "picnic_table": "yes",
               "static_caravans": "no",
               "tents": "yes",
-              "toilets": "no"
+              "toilets": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -12099,7 +12130,8 @@
               "internet_access:fee": "no",
               "power_supply": "yes",
               "sanitary_dump_station": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -14093,7 +14125,8 @@
             "fields": {
               "capacity": "22",
               "caravans": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -14105,7 +14138,8 @@
             "fields": {
               "capacity": "16",
               "caravans": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,
@@ -14162,7 +14196,8 @@
             "fields": {
               "capacity": "22",
               "caravans": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T10:56:10Z",
             "source_updated_at": null,

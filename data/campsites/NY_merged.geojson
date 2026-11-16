@@ -99,7 +99,6 @@
         "opening_hours": "closed",
         "operator": "National Park Service",
         "reservation": "required",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234715",
         "id": "ridb:234715",
         "source": "recreation.gov",
@@ -141,7 +140,8 @@
               "backcountry": "no",
               "caravans": "no",
               "group_only": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -290,7 +290,6 @@
         "nudism": "no",
         "operator": "United States Forest Service",
         "reservation": "required",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/234476",
         "id": "ridb:234476",
         "source": "recreation.gov",
@@ -333,7 +332,8 @@
               "capacity": "40",
               "drinking_water": "no",
               "group_only": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -860,7 +860,49 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:419914201",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/419914201"
+          },
+          {
+            "source_record_id": "osm:node:419914203",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/419914203"
+          },
+          {
+            "source_record_id": "osm:node:419914206",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/419914206"
+          },
+          {
+            "source_record_id": "osm:node:419914209",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/419914209"
+          }
+        ]
       }
     },
     {
@@ -2956,7 +2998,8 @@
               "capacity:persons": "7",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -2970,7 +3013,8 @@
               "capacity:persons": "6",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -2984,7 +3028,8 @@
               "capacity:persons": "7",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -3046,7 +3091,8 @@
               "capacity:persons": "3",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -3060,7 +3106,8 @@
               "capacity:persons": "4",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -3074,7 +3121,8 @@
               "capacity:persons": "6",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -3088,7 +3136,8 @@
               "capacity:persons": "6",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -3355,7 +3404,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2096240777",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2096240777"
+          }
+        ]
       }
     },
     {
@@ -3900,7 +3961,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2369594502",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2369594502"
+          },
+          {
+            "source_record_id": "osm:node:2369594509",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2369594509"
+          }
+        ]
       }
     },
     {
@@ -4826,7 +4909,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2919407611",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2919407611"
+          }
+        ]
       }
     },
     {
@@ -4918,7 +5013,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2926844376",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2926844376"
+          }
+        ]
       }
     },
     {
@@ -5729,7 +5836,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "internet_access": "no",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -5777,7 +5885,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:9951726961",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9951726961"
+          }
+        ]
       }
     },
     {
@@ -7330,7 +7450,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:6022140078",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6022140078"
+          }
+        ]
       }
     },
     {
@@ -10549,7 +10681,8 @@
               "capacity:persons": "7",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -10563,7 +10696,8 @@
               "capacity:persons": "4",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -10608,7 +10742,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4624059377",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4624059377"
+          },
+          {
+            "source_record_id": "osm:node:4624059378",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4624059378"
+          }
+        ]
       }
     },
     {
@@ -10647,7 +10803,19 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4829675211",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4829675211"
+          }
+        ]
       }
     },
     {
@@ -10994,7 +11162,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1450872400",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1450872400"
+          }
+        ]
       }
     },
     {
@@ -11840,7 +12020,8 @@
             "source_record_id": "osm:node:5145798121",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "check_date": "2024-09-01"
+              "check_date": "2024-09-01",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -13694,7 +13875,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "drinking_water": "yes",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -15987,7 +16169,8 @@
             "source_record_id": "osm:node:6956355945",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -15997,7 +16180,8 @@
             "source_record_id": "osm:node:6956355946",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -16469,7 +16653,8 @@
             "source_record_id": "osm:node:7556835566",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -16480,7 +16665,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "backcountry": "yes",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -17177,7 +17363,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7678668389",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7678668389"
+          },
+          {
+            "source_record_id": "osm:node:7678668390",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7678668390"
+          }
+        ]
       }
     },
     {
@@ -17624,7 +17832,8 @@
             "source_record_id": "osm:node:7717710115",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -18387,7 +18596,8 @@
             "source_record_id": "osm:node:7814282969",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -18925,7 +19135,8 @@
               "caravans": "no",
               "fee": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -19995,7 +20206,8 @@
             "source_record_id": "osm:node:7947257248",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -20046,7 +20258,8 @@
             "source_record_id": "osm:node:7947257252",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -20423,7 +20636,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -20435,7 +20649,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -20447,7 +20662,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -20750,7 +20966,8 @@
             "source_record_id": "osm:node:8330277163",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -20802,7 +21019,8 @@
             "source_record_id": "osm:node:8330277165",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -20854,7 +21072,8 @@
             "source_record_id": "osm:node:8330277167",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -21568,7 +21787,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "power_supply": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -22027,7 +22247,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:8917829391",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8917829391"
+          }
+        ]
       }
     },
     {
@@ -22785,7 +23017,8 @@
             "source_record_id": "osm:node:9127012274",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -23006,7 +23239,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -23767,7 +24001,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -24306,7 +24541,8 @@
             "source_record_id": "osm:way:964648648",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -28343,7 +28579,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -28998,7 +29235,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -29057,7 +29295,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -29069,7 +29308,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -29324,7 +29564,8 @@
               "capacity:persons": "4",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -30240,7 +30481,8 @@
             "source_record_id": "osm:node:10937759051",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -33620,7 +33862,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11339272949",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11339272949"
+          }
+        ]
       }
     },
     {
@@ -33744,7 +33998,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11339272954",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11339272954"
+          },
+          {
+            "source_record_id": "osm:node:11339272955",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11339272955"
+          }
+        ]
       }
     },
     {
@@ -33811,7 +34087,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11339272958",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11339272958"
+          }
+        ]
       }
     },
     {
@@ -34947,7 +35235,79 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11606797839",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11606797839"
+          },
+          {
+            "source_record_id": "osm:node:11606797840",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11606797840"
+          },
+          {
+            "source_record_id": "osm:node:11606797841",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11606797841"
+          },
+          {
+            "source_record_id": "osm:node:11606797842",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11606797842"
+          },
+          {
+            "source_record_id": "osm:node:11606797843",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11606797843"
+          },
+          {
+            "source_record_id": "osm:node:11611814197",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11611814197"
+          },
+          {
+            "source_record_id": "osm:node:11611814198",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11611814198"
+          }
+        ]
       }
     },
     {
@@ -38670,7 +39030,8 @@
             "source_record_id": "osm:node:12087350796",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -38680,7 +39041,8 @@
             "source_record_id": "osm:node:12087350797",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -38732,7 +39094,8 @@
             "source_record_id": "osm:node:12087370592",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -38742,7 +39105,8 @@
             "source_record_id": "osm:node:12087370593",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -39272,7 +39636,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12149820896",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12149820896"
+          }
+        ]
       }
     },
     {
@@ -39329,7 +39705,8 @@
               "capacity": "1",
               "internet_access": "no",
               "internet_access:fee": "no",
-              "sanitary_dump_station": "no"
+              "sanitary_dump_station": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -39498,7 +39875,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "amenity": "shelter",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -39671,7 +40049,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -39682,7 +40061,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "permit",
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -40184,7 +40564,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12832808938",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12832808938"
+          }
+        ]
       }
     },
     {
@@ -40471,7 +40863,8 @@
               "capacity:persons": "4",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -40530,7 +40923,8 @@
               "capacity:persons": "4",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -40720,7 +41114,8 @@
               "capacity:persons": "4",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -40734,7 +41129,8 @@
               "capacity:persons": "4",
               "caravans": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41083,7 +41479,8 @@
             "source_record_id": "osm:node:13055177115",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41191,7 +41588,8 @@
             "source_record_id": "osm:node:13055177119",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41201,7 +41599,8 @@
             "source_record_id": "osm:node:13055177120",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41308,7 +41707,8 @@
             "source_record_id": "osm:node:13055177124",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41360,7 +41760,8 @@
             "source_record_id": "osm:node:13055177127",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41370,7 +41771,8 @@
             "source_record_id": "osm:node:13055177129",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41421,7 +41823,8 @@
             "source_record_id": "osm:node:13055177130",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41507,7 +41910,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41565,7 +41969,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41623,7 +42028,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -41715,7 +42121,8 @@
             "fields": {
               "access": "yes",
               "backcountry": "yes",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -47176,7 +47583,8 @@
             "source_record_id": "osm:way:29747657",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "restricted"
+              "access": "restricted",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -56824,7 +57232,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:79181813",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/79181813"
+          }
+        ]
       }
     },
     {
@@ -62530,7 +62950,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:850546469",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/850546469"
+          }
+        ]
       }
     },
     {
@@ -66341,7 +66773,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:545688435",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/545688435"
+          }
+        ]
       }
     },
     {
@@ -70060,7 +70504,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:846792176",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/846792176"
+          }
+        ]
       }
     },
     {
@@ -70267,7 +70723,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:849298366",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/849298366"
+          },
+          {
+            "source_record_id": "osm:way:849298379",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/849298379"
+          }
+        ]
       }
     },
     {
@@ -70335,7 +70813,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:849625582",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/849625582"
+          },
+          {
+            "source_record_id": "osm:way:849625583",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/849625583"
+          }
+        ]
       }
     },
     {
@@ -71018,7 +71518,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:850347780",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/850347780"
+          }
+        ]
       }
     },
     {
@@ -71087,7 +71599,39 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:850347784",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/850347784"
+          },
+          {
+            "source_record_id": "osm:way:850347796",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/850347796"
+          },
+          {
+            "source_record_id": "osm:way:850347797",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/850347797"
+          }
+        ]
       }
     },
     {
@@ -71155,7 +71699,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:850546468",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/850546468"
+          }
+        ]
       }
     },
     {
@@ -71194,7 +71750,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:850676671",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/850676671"
+          }
+        ]
       }
     },
     {
@@ -73455,7 +74023,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "access": "customers",
-              "fee": "no"
+              "fee": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -74687,7 +75256,8 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -74862,7 +75432,8 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -74882,7 +75453,8 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -74963,7 +75535,8 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -74983,7 +75556,8 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -75110,7 +75684,8 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -75191,13 +75766,15 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/977966073"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:way:977966073"
       }
     },
     {
@@ -75271,7 +75848,8 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -75351,13 +75929,15 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "yes",
-              "toilets:disposal": "pitlatrine"
+              "toilets:disposal": "pitlatrine",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/977966076"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:way:977966076"
       }
     },
     {
@@ -78008,10 +78588,21 @@
         "description": "",
         "member_evidence": [
           {
+            "source_record_id": "osm:way:1062744165",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1062744165"
+          },
+          {
             "source_record_id": "osm:way:1062961186",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -78021,7 +78612,8 @@
             "source_record_id": "osm:way:1062961187",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -78031,7 +78623,8 @@
             "source_record_id": "osm:way:1062961197",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -78041,7 +78634,8 @@
             "source_record_id": "osm:way:1062961198",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -78178,7 +78772,8 @@
             "source_record_id": "osm:way:1062961188",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -79546,7 +80141,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1124977128",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1124977128"
+          }
+        ]
       }
     },
     {
@@ -83576,7 +84183,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "capacity:caravans": "64",
-              "capacity:tents": "6"
+              "capacity:tents": "6",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -84831,7 +85439,8 @@
             "source_record_id": "osm:way:1258822661",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:32:36Z",
             "source_updated_at": null,
@@ -89126,7 +89735,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1534046298",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:32:36Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1534046298"
+          }
+        ]
       }
     },
     {

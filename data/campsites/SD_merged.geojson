@@ -644,7 +644,6 @@
         "addr:city": "Rochford",
         "addr:state": "SD",
         "name": "Black Fox Campground",
-        "tourism": "camp_site",
         "id": "ridb:253807",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -685,7 +684,8 @@
               "charge": "16 USD",
               "drinking_water": "no",
               "fee": "yes",
-              "toilets": "vault"
+              "toilets": "vault",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:44:30Z",
             "source_updated_at": null,
@@ -1521,7 +1521,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:6537191886",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:44:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6537191886"
+          }
+        ]
       }
     },
     {
@@ -1933,7 +1945,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2569151063",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:44:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2569151063"
+          }
+        ]
       }
     },
     {
@@ -1971,7 +1995,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2573981457",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:44:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2573981457"
+          }
+        ]
       }
     },
     {
@@ -2186,7 +2222,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2619319315",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:44:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2619319315"
+          }
+        ]
       }
     },
     {
@@ -4048,7 +4096,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:241878514",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:44:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/241878514"
+          }
+        ]
       }
     },
     {
@@ -4168,7 +4228,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1319940391",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:44:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1319940391"
+          }
+        ]
       }
     },
     {
@@ -8947,7 +9019,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1390211297",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:44:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1390211297"
+          }
+        ]
       }
     },
     {
@@ -9585,7 +9669,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1530037700",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:44:30Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1530037700"
+          }
+        ]
       }
     },
     {

@@ -307,7 +307,6 @@
       "properties": {
         "description": "<h2>Overview</h2>\nMorris Hill is a peaceful, rustic campground for groups of family and friends. The family campground is a family-friendly destination perched on a ridge above Lake Moomaw. Kids can have fun at the playground while older generations sit back and relax in the shade. The group sites accommodate up the 25 guests with space for up to eight tents.  Campers can enjoy the wonders of camping with simple pleasures like s'mores on the campfire, berry picking in the woods, and watching for waterfowl and wildlife like deer. The convenient location near Lake Moomaw and sandy swim beaches, a fishing pier, boat ramp, and hiking and biking trails makes Morris Hill a popular spot. <h2>Recreation</h2>\nAn inviting swimming beach at Coles Point attracts many visitors. About less than a mile from the campground is a fishing pier where anglers seek brown and rainbow trout, bass and crappie. Back Creek is also nice for trout fishing. Hikers enjoy the Morris Hill Bike Trail and Fortney Loop Trail.<h2>Facilities</h2>\nFamily Campground: Most sites will fit any size RV. Campsite amenities include flush toilets, hot showers, a playground and drinking water. Group Sites: There is no water or electricity.  Two fully accessible vault toilets, picnic tables and a group grill are on each group site. Coles Point Boat Ramp, the nearest boat ramp to Morris, is less than two miles away.<h2>Natural Features</h2>\nThe campground sits on a ridge overlooking Lake Moomaw. It is about a half-mile from the south end of the lake. Lake Moomaw, which flows from the Jackson River, is a cold-water 2,530-acre lake with an inviting swimming beach. \n<br/><br/>\nMorris Hill is part of the George Washington and Jefferson National Forests which spans across Virginia and parts of West Virginia and Kentucky. These forests protect 40 species of trees that are mostly Appalachian hardwood and mixed pine-hardwood forests, 60 species of mammals and 200 species of birds.\n<h2>Nearby Attractions</h2>\nHead downstream of the Jackson River for fly fishing, canoeing, rafting and kayaking. A half hour east of the lake is Hot Springs, Virginia, a quaint village known as a rural resort town.\n<h2>Charges & Cancellations</h2>\n<p>Due to Covid-19 restrictions group camping will not be open this season. We apologize for any inconvenience. Please visit www.cdc.gov for the latest information on the virus. </p>\n",
         "name": "MORRIS HILL CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:232161",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -345,7 +344,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "capacity": "58",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -364,23 +364,9 @@
         ]
       },
       "properties": {
-        "dog": "leashed",
-        "name": "OAK RIDGE CAMPGROUND",
-        "opening_hours": "Mar-Nov",
-        "operator": "National Park Service",
-        "operator:wikipedia": "en:National Park Service",
-        "reservation": "required",
-        "tourism": "camp_site",
-        "website": "https://www.nps.gov/prwi/planyourvisit/oakridge.htm",
         "id": "ridb:233379",
-        "source": "recreation.gov",
         "schema_version": 3,
-        "source_url": "https://www.recreation.gov/camping/campgrounds/233379",
-        "source_retrieved_at": "2026-11-15T11:48:48Z",
-        "source_ids": [
-          "ridb:233379",
-          "osm:way:266761488"
-        ],
+        "name": "OAK RIDGE CAMPGROUND",
         "type": "established",
         "cost": null,
         "fee_status": "unknown",
@@ -397,35 +383,16 @@
         "rig_friendly": [],
         "road_difficulty": null,
         "state": "VA",
+        "source": "recreation.gov",
         "facility_id": "233379",
         "description": "<h2>Overview</h2>\n<p>Oak Ridge Campground is a 100-site, wooded campground located in Prince William Forest Park, 35 miles (56 km) southwest of Washington, DC. The park's land was set aside during the Great Depression, and in 1935 the Civilian Conservation Corps (CCC) began restoring the previously over-farmed acreage, converting it to recreational lands for public use. The CCC built trails, dams and cabins, making the park a wonderful place for recreation and relaxation. Large group camping is not permitted at Oak Ridge Campground. Please read the need to know section for additional information.</p><h2>Recreation</h2>\n<p>The park offers many <a href=\"https://www.nps.gov/prwi/planyourvisit/things2do.htm\" rel=\"nofollow\">Things to Do</a> including hiking, biking, orienteering and fishing. Hikers enjoy exploring the park's 37 miles (60 km) of foot trails.</p><p>The <a href=\"https://www.nps.gov/prwi/planyourvisit/southvalleytrail.htm\" rel=\"nofollow\">South Valley,</a> <a href=\"https://www.nps.gov/prwi/planyourvisit/moretrails.htm\" rel=\"nofollow\">Oak Ridge</a> and <a href=\"https://www.nps.gov/prwi/planyourvisit/farmstoforestexttrail.htm\" rel=\"nofollow\">Farms to Forest</a> Trails all begin at the campground entrance.</p><p>Bicyclists will find <a href=\"https://www.nps.gov/prwi/planyourvisit/bicycling.htm\" rel=\"nofollow\">On and Off Road Biking</a> on 21 miles (34 km) of paved roads within the park, including the 12-mile (19 km) Scenic Drive. Minimal traffic and a 25 m.p.h. (40 kph) speed limit make this a popular biking route. A 3-mile (5 km), family-friendly paved bike lane leads to the campground. Mountain biking is also available on 10 miles (16 km) of gravel fire roads.</p><p>The park boasts also 30 <a href=\"https://www.nps.gov/prwi/planyourvisit/orienteering.htm\" rel=\"nofollow\">orienteering</a> courses with picturesque settings. Orienteering is a 19th century Scandinavian sport primarily used as military training. The courses were developed in 1972 and continue to provide hours of entertainment and exploration for park visitors.</p><p>Approximately 18 miles (29 km) of streams and two small lakes are open to the public for <a href=\"https://www.nps.gov/prwi/planyourvisit/fishing.htm\" rel=\"nofollow\">fishing.</a> The water quality of Quantico Creek supports numerous fish species and other aquatic life. The most common fish species are bluegill, pumpkinseed, largemouth bass and channel catfish.</p><h2>Facilities</h2>\n<p>The campground is open March through November and accommodates tents, RVs and trailers. </p><p>Recreational vehicles may not exceed 32 feet in length (9.75 m) and 12 feet (3.7 m) in height. Trailers and fifth wheels are limited to 26 feet (7.9 m) in length and 12 feet (3.6 m) in height. </p><p>Each site has a picnic table, grill, lantern post and parking spur. Each loop has restrooms with sinks and flush toilets. Loop B also has showers. A and C unit comfort stations close down at the first part of November for winterizing. Loop B comfort station is open till the camp closure the first of December.</p><h2>Natural Features</h2>\n<p>Oak Ridge Campground is located in Prince William Forest Park, which preserves approximately 15,000 acres (6070 ha) including a major portion of the Quantico Creek watershed. The area is the largest example of a piedmont forest ecosystem, the piedmont being the geographic plateau between the Appalachian Mountains and the Atlantic coast. The park represents one of the largest parcels of undeveloped land in the area and is the National Park Service's third largest unit in Virginia.</p><p>Various geological outcroppings, winding creeks, gently rolling slopes and man-made lakes make wonderful destinations for any adventurous visitor. </p><p>The park is home to many <a href=\"https://www.nps.gov/prwi/learn/nature/animals.htm\" rel=\"nofollow\">animals</a> including 46 species of mammals, 22 species of amphibians, 25 species of reptiles, more than 129 species of birds, 26 species of fish and an unknown number of invertebrates.</p><p>More than 900 <a href=\"https://www.nps.gov/prwi/learn/nature/plants.htm\" rel=\"nofollow\">plant</a> species exist in Prince William Forest Park, from the smallest wildflower to the tallest tree. From tree bark in winter, wildflowers in spring, canopy cover in summer and autumn colors in fall, Prince William Forest Park offers beautiful scenery year-round.</p>\n<h2>Nearby Attractions</h2>\n<p>Prince William Forest Park is centrally located, with easy access to all of the attractions the Northern Virginia and Washington, D.C., area have to offer. From the park entrance, the <a href=\"https://www.usmcmuseum.com/\" rel=\"nofollow\">National Museum of the Marine Corps</a> and the main gate of the United States Marine Corps Base Quantico are just a mile (1.6 km) away.  </p><p>The park is located directly between historic <a href=\"https://www.nps.gov/frsp/index.htm\" rel=\"nofollow\">Fredericksburg and Spotsylvania National Military Park</a> and <a href=\"https://www.nps.gov/mana/index.htm\" rel=\"nofollow\">Manassas National Battlefield Park.</a></p>",
-        "sources": [
-          "recreation.gov",
-          "openstreetmap"
+        "source_url": "https://www.recreation.gov/camping/campgrounds/233379",
+        "source_retrieved_at": "2026-11-15T11:48:48Z",
+        "source_ids": [
+          "ridb:233379"
         ],
-        "data_conflicts": [],
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:266761488",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "access": "permit",
-              "capacity:pitches": "67",
-              "capacity:tents": "33",
-              "caravans": "yes",
-              "charge": "26 USD/day",
-              "drinking_water": "yes",
-              "fee": "yes",
-              "group_only": "no",
-              "internet_access": "no",
-              "laundry_service": "no",
-              "shower": "yes",
-              "tents": "yes"
-            },
-            "retrieved_at": "2026-11-15T11:49:41Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/266761488"
-          }
+        "sources": [
+          "recreation.gov"
         ]
       }
     },
@@ -442,7 +409,6 @@
         "name": "HURRICANE CAMPGROUND",
         "opening_hours": "Apr 15-Oct 31 07:00-22:00",
         "operator": "United States Department of Agriculture",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/gwj/recreation/camping-cabins/recarea/?recid=73771&actid=29",
         "id": "ridb:233308",
         "source": "recreation.gov",
@@ -489,7 +455,8 @@
               "group_only": "no",
               "shower": "yes",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -1474,23 +1441,9 @@
         ]
       },
       "properties": {
-        "name": "MATHEWS ARM CAMPGROUND",
-        "operator": "National Park Service",
-        "operator:short": "NPS",
-        "operator:type": "public",
-        "operator:wikidata": "Q308439",
-        "operator:wikipedia": "en:National Park Service",
-        "tourism": "camp_site",
-        "website": "https://www.nps.gov/shen/planyourvisit/mathews-arm-campground.htm",
         "id": "ridb:232432",
-        "source": "recreation.gov",
         "schema_version": 3,
-        "source_url": "https://www.recreation.gov/camping/campgrounds/232432",
-        "source_retrieved_at": "2026-11-15T11:48:48Z",
-        "source_ids": [
-          "ridb:232432",
-          "osm:way:224194057"
-        ],
+        "name": "MATHEWS ARM CAMPGROUND",
         "type": "established",
         "cost": null,
         "fee_status": "unknown",
@@ -1507,37 +1460,16 @@
         "rig_friendly": [],
         "road_difficulty": null,
         "state": "VA",
+        "source": "recreation.gov",
         "facility_id": "232432",
         "description": "<h2>Overview</h2>\nSecluded in the thick trees and rolling hills of the Shenandoah National Park, Mathews Arm Campground is the ideal spot for a camping getaway.<h2>Recreation</h2>\nShenandoah National Park has over 500 miles of trails, including 101 miles of the Appalachian Trail. Some trails lead to a waterfall or viewpoint while others wind deep into the forests and wilderness. \n<br/><br/>\nMathews Arm Campground is located near Overall Run Falls, which, at 93 feet, has the highest drop of all the falls in Shenandoah National Park. A moderately difficult hiking trail, which leads to the falls, is accessible from the campground. Once at the falls, visitors can enjoy views of the entire Shenandoah Valley and Massanutten Mountain.\n<br/><br/>\nWildlife viewing is a also a popular pastime, with black bears, wild turkey, deer, birds and countless other animals abundant across the park.\n<br/><br/>\nThe campground is located right off of Milepost 22 on the famous Skyline Drive, which runs 105 miles north and south along the crest of the Blue Ridge Mountains. Stunning views are available from any of the 75 scenic overlooks.<h2>Facilities</h2>\n<p>Mathews Arm is a family-oriented campground, offering plenty of open spaces in the nearly 166 available campsites. All sites include a place for a tent or RV, a fire ring and picnic area. The campground also offers amenities like flush toilets, drinking water and one dump station, which create a comfortable camping experience. There are no showers in this campground.</p>\n<h2>Natural Features</h2>\nShenandoah National Park includes 300 square miles of the Blue Ridge Mountains in the southern Appalachians. The park rises above the Virginia Piedmont to its east and the Shenandoah Valley to its west.\n<h2>Nearby Attractions</h2>\n<p>Elkwallow Wayside is located just two miles away, offering camping supplies, a limited menu restaurant, prepared sandwiches, beverages, souvenirs, and more.<br> <br>Two visitor centers are located along Skyline Drive. Dickey Ridge Visitor Center, 18 miles North, and The Harry F Byrd Sr. Visitor Center, 29 miles South.</p>\n<p>Bookstores, restaurants and exhibits are scattered throughout the Shenandoah National Park.<a href=\"https://www.nps.gov/shen/index.htm\" rel=\"nofollow\">Click here for more information.</a> </p>\n\n<h2>Contact Info</h2>\nThis location is staffed. Please call (540) 986-4175 to speak with local staff.<h2>Charges & Cancellations</h2>\n<p><strong>Changing Reservations:  </strong></p>\n<p>There is no change fee if a visitor extends or shortens a reservation, as long as the change includes dates from the original reservation. Additionally, there is no change fee if the visitor wants to switch sites that are the same price with the same reservation dates in the same facility.  </p>\n<p>If a visitor wants to switch dates that are entirely outside of the original reservation dates, there is a $10 change fee.  </p>\n<p>If a reservation is made that includes dates beyond the maximum booking window, that reservation cannot be changed until 18 days have passed from the original booking date.  </p>\n<p>Once a reservation date has begun, visitors cannot change a reservation using the online system or through the Call Center. Onsite staff will assist with changes or cancellations.   </p>\n<p><strong>Cancellations: </strong> </p>\n<p>Visitors may cancel their reservation prior to arrival both on-line and through the call center. A $10 service fee will be withheld from any refund for a cancellation.  </p>\n<p>A visitor who cancels a reservation the day before or on the day of arrival will pay a $10.00 service fee AND forfeit the first night's approved rate including tax and applicable add-on. Cancellations for a one-night reservation will forfeit the entire amount paid and will not be subject to an additional service fee.  </p>\n<p>Visitors who cancel a group overnight facility reservation less than 14 days prior to arrival date will pay a $10 service fee AND forfeit the first night’s rate.   </p>\n<p><strong>No-Shows: </strong> </p>\n<p>A no-show visitor is one who does not arrive at a campground and does not cancel the reservation by check-out time on the day after the scheduled arrival date. Staff will hold a campsite until check-out time on the day following the arrival date.  </p>\n<p>No-shows are assessed $20.00 service fee and forfeit the first night's rate, taxes and applicable add-on for a campsite.   </p>\n<p><strong>Early Departures: </strong> </p>\n<p>Visitors are requested to notify staff at the facility if they depart early to allow others to use the site.  </p>\n<p>If the visitor chooses to depart early, they may forfeit the approved rate and applicable tax and applicable add-on for the day of departure. If a visitor departs prior to the scheduled check-out date, they may be eligible for a partial refund. Visitors may notify the Recreation.gov call center to request a refund of remaining unused nights. If a visitor requests a refund for an early departure after the facility check-out time (12 noon) has passed, the visitor will not be refunded for that night and is eligible for a refund on any additional nights that will not be used.   </p>\n<p><strong>Refunds:  </strong></p>\n<p>Visitors may submit a refund request through their Recreation.gov profile within 7 days of the end date of their reservation. Visitors may also initiate a refund request through the call center at any time after their reservation has ended.  </p>\n<p>Refunds for debit or credit card payments will be issued as a credit to the original bank or credit card used to pay.  </p>\n<p>For check or cash purchases, Recreation.gov will mail a Treasury check for refunds of cash, check, or money order payments to the address associated with the reservation. Treasury check refunds may take up to 6-8 weeks to arrive.  </p>\n<p>In the event of an emergency closure, the Recreation.gov team or facility manager will refund all fees and will attempt to notify you using the contact information within the Recreation.gov visitor profile. </p>\n",
-        "sources": [
-          "recreation.gov",
-          "openstreetmap"
+        "source_url": "https://www.recreation.gov/camping/campgrounds/232432",
+        "source_retrieved_at": "2026-11-15T11:48:48Z",
+        "source_ids": [
+          "ridb:232432"
         ],
-        "data_conflicts": [],
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:224194057",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "backcountry": "no",
-              "capacity:caravans": "165",
-              "capacity:pitches": "165",
-              "capacity:tents": "165",
-              "caravans": "yes",
-              "drinking_water": "yes",
-              "fee": "yes",
-              "group_only": "no",
-              "internet_access": "no",
-              "sanitary_dump_station": "yes",
-              "shower": "no",
-              "static_caravans": "no",
-              "tents": "yes",
-              "toilets": "yes"
-            },
-            "retrieved_at": "2026-11-15T11:49:41Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/224194057"
-          }
+        "sources": [
+          "recreation.gov"
         ]
       }
     },
@@ -1552,7 +1484,6 @@
       },
       "properties": {
         "name": "STEEL BRIDGE CAMPGROUND",
-        "tourism": "camp_site",
         "wikidata": "Q35056203",
         "id": "ridb:251909",
         "source": "recreation.gov",
@@ -1585,7 +1516,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5902470930",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5902470930"
+          }
+        ]
       }
     },
     {
@@ -2069,7 +2012,6 @@
         "operator:wikipedia": "en:National Park Service",
         "reservation": "required",
         "smoking": "outside",
-        "tourism": "camp_site",
         "website": "https://www.recreation.gov/camping/campgrounds/10007130?tab=campsites",
         "id": "ridb:10007130",
         "source": "recreation.gov",
@@ -2116,7 +2058,8 @@
               "group_only": "no",
               "internet_access": "no",
               "static_caravans": "no",
-              "tents": "no"
+              "tents": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -2353,7 +2296,6 @@
         "note": "Open Season: April 15 to October 31 Restrictions: No horses. Closest Towns: Speedwell, VA Water: Drinking water available April 15 to October 31. Restroom: Vault toilets",
         "operator": "George Washington & Jefferson National Forests,Mount Rogers National Recreation Area",
         "phone": "+1-800-628-7202",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/gwj/recarea/?recid=73661",
         "wikidata": "Q49479463",
         "id": "ridb:249858",
@@ -2365,7 +2307,7 @@
           "ridb:249858",
           "osm:node:356571169"
         ],
-        "type": null,
+        "type": "other",
         "cost": null,
         "fee_status": "unknown",
         "fee_description": "",
@@ -2386,7 +2328,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:356571169",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/356571169"
+          }
+        ]
       }
     },
     {
@@ -2453,7 +2407,6 @@
         "operator": "National Park Service",
         "phone": "+1 540 999 3500",
         "reservation": "yes",
-        "tourism": "camp_site",
         "website": "https://www.nps.gov/shen/planyourvisit/loft-mountain-campground.htm",
         "id": "ridb:232433",
         "source": "recreation.gov",
@@ -2501,7 +2454,8 @@
               "internet_access": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -2817,7 +2771,6 @@
         "description": "<h2>Overview</h2>\nRaccoon Branch Campground, nestled at the base of Dickey Knob, offers scenic mountain views, hiking trail access from campsites and cool mountain streams. Campers can access Dickey Creek and the Raccoon Branch from the campground. The most notable time to visit is fall, when the trees boast gorgeous fall foliage. \n<br/><br/>\nWith a location just 11 miles from Interstate 81, the beautiful campground is easily reached by drivers heading out from one of the surrounding cities. <h2>Recreation</h2>\nThe beautiful Dickey Knob Trail takes hikers through a Wilderness to the top of Dickey Knob for spectacular views of Sugar Grove and Rye Valley. The creek provides a setting for wading and fishing.<h2>Facilities</h2>\n<p>Every site accommodates RV or tent camping and five campsites have electric hookups. Perks of the campground include flush toilets, drinking water, paved roads and spurs and a dump station.  There are no showers.   A volunteer host is onsite to welcome visitors and offer advice on the region.</p>\n<h2>Natural Features</h2>\nThe campground is at an elevation of 2,880 ft., along a large grassy area, surrounded by pines, hardwoods and rhododendrons. Perched in the Appalachian Mountains, Raccoon Branch is part of the Mount Rogers National Recreation Area, a 200,000-acre stretch of designated wilderness areas. \n<h2>Nearby Attractions</h2>\nHike the Appalachian Trail, which extends more than 2,175 miles throughout the Appalachian Mountains across 14 states. The trail was designated as the first National Scenic Trail.   The Virginia Creeper Trail, Hungry Mother State Park and Grayson Highlands State Park are nearby.",
         "name": "RACCOON BRANCH CAMPGROUND",
         "operator": "Mount Rogers National Recreation Area",
-        "tourism": "camp_site",
         "id": "ridb:234574",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -2855,7 +2808,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "capacity": "20",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -3671,7 +3625,8 @@
               "internet_access": "no",
               "shower": "yes",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -3689,7 +3644,8 @@
               "internet_access": "no",
               "shower": "yes",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -3707,7 +3663,8 @@
               "internet_access": "no",
               "shower": "yes",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -3725,7 +3682,8 @@
               "internet_access": "no",
               "shower": "yes",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -6644,7 +6602,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:4214585816",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/4214585816"
+          }
+        ]
       }
     },
     {
@@ -7007,7 +6977,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "backcountry": "yes",
-              "capacity:persons": "4"
+              "capacity:persons": "4",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -7018,7 +6989,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "backcountry": "yes",
-              "capacity:persons": "4"
+              "capacity:persons": "4",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -7073,7 +7045,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "backcountry": "yes",
-              "capacity:persons": "4"
+              "capacity:persons": "4",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -7084,7 +7057,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "backcountry": "yes",
-              "capacity:persons": "4"
+              "capacity:persons": "4",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -9947,7 +9921,8 @@
               "backcountry": "yes",
               "caravans": "no",
               "group_only": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -10875,7 +10850,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1576339557",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1576339557"
+          }
+        ]
       }
     },
     {
@@ -10938,7 +10925,8 @@
               "internet_access": "no",
               "shower": "yes",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -17326,7 +17314,8 @@
               "internet_access": "yes",
               "internet_access:fee": "customers",
               "power_supply": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -18368,7 +18357,8 @@
               "internet_access": "no",
               "static_caravans": "no",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -18910,7 +18900,8 @@
             "source_record_id": "osm:way:216869132",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -18920,7 +18911,8 @@
             "source_record_id": "osm:way:216869135",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "private"
+              "access": "private",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -18981,6 +18973,53 @@
         "source_retrieved_at": "2026-11-15T11:49:41Z",
         "source_ids": [
           "osm:way:216869150"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.2968949,
+          38.7638443
+        ]
+      },
+      "properties": {
+        "backcountry": "no",
+        "capacity:caravans": "165",
+        "capacity:pitches": "165",
+        "capacity:tents": "165",
+        "caravans": "yes",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "group_only": "no",
+        "internet_access": "no",
+        "name": "Matthews Arm Campground",
+        "operator": "National Park Service",
+        "operator:short": "NPS",
+        "operator:type": "public",
+        "operator:wikidata": "Q308439",
+        "operator:wikipedia": "en:National Park Service",
+        "sanitary_dump_station": "yes",
+        "shower": "no",
+        "static_caravans": "no",
+        "tents": "yes",
+        "toilets": "yes",
+        "tourism": "camp_site",
+        "website": "https://www.nps.gov/shen/planyourvisit/mathews-arm-campground.htm",
+        "osm_id": 224194057,
+        "osm_type": "way",
+        "id": "osm:way:224194057",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/224194057",
+        "source_retrieved_at": "2026-11-15T11:49:41Z",
+        "source_ids": [
+          "osm:way:224194057"
         ],
         "sources": [
           "openstreetmap"
@@ -19298,6 +19337,51 @@
         "source_retrieved_at": "2026-11-15T11:49:41Z",
         "source_ids": [
           "osm:way:263153854"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4177346,
+          38.5993455
+        ]
+      },
+      "properties": {
+        "access": "permit",
+        "capacity:pitches": "67",
+        "capacity:tents": "33",
+        "caravans": "yes",
+        "charge": "26 USD/day",
+        "dog": "leashed",
+        "drinking_water": "yes",
+        "fee": "yes",
+        "group_only": "no",
+        "internet_access": "no",
+        "laundry_service": "no",
+        "name": "Oak Ridge Campground",
+        "opening_hours": "Mar-Nov",
+        "operator": "National Park Service",
+        "operator:wikipedia": "en:National Park Service",
+        "reservation": "required",
+        "shower": "yes",
+        "tents": "yes",
+        "tourism": "camp_site",
+        "website": "https://www.nps.gov/prwi/planyourvisit/oakridge.htm",
+        "osm_id": 266761488,
+        "osm_type": "way",
+        "id": "osm:way:266761488",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/266761488",
+        "source_retrieved_at": "2026-11-15T11:49:41Z",
+        "source_ids": [
+          "osm:way:266761488"
         ],
         "sources": [
           "openstreetmap"
@@ -23114,7 +23198,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:615564139",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/615564139"
+          }
+        ]
       }
     },
     {
@@ -23179,7 +23275,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:615564140",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/615564140"
+          }
+        ]
       }
     },
     {
@@ -24051,7 +24159,8 @@
               "power_supply": "no",
               "shower": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -24073,7 +24182,8 @@
               "sanitary_dump_station": "yes",
               "shower": "yes",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -25504,13 +25614,15 @@
               "fee": "yes",
               "power_supply": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
             "source_url": "https://www.openstreetmap.org/way/744170055"
           }
-        ]
+        ],
+        "description_source_record_id": "osm:way:744170055"
       }
     },
     {
@@ -26425,7 +26537,8 @@
               "caravans": "yes",
               "fee": "yes",
               "sanitary_dump_station": "customers",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -29890,7 +30003,8 @@
             "source_record_id": "osm:way:941483571",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -29900,7 +30014,8 @@
             "source_record_id": "osm:way:941483572",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -31879,7 +31994,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1069086414",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1069086414"
+          }
+        ]
       }
     },
     {
@@ -32245,7 +32372,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1085735834",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1085735834"
+          }
+        ]
       }
     },
     {
@@ -34882,7 +35021,49 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1160698367",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1160698367"
+          },
+          {
+            "source_record_id": "osm:way:1160698368",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1160698368"
+          },
+          {
+            "source_record_id": "osm:way:1160698369",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1160698369"
+          },
+          {
+            "source_record_id": "osm:way:1160698370",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1160698370"
+          }
+        ]
       }
     },
     {
@@ -34948,7 +35129,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1160758318",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1160758318"
+          },
+          {
+            "source_record_id": "osm:way:1160758319",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1160758319"
+          }
+        ]
       }
     },
     {
@@ -35013,7 +35216,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1160760420",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1160760420"
+          }
+        ]
       }
     },
     {
@@ -35144,7 +35359,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "internet_access": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -36393,7 +36609,8 @@
             "source_record_id": "osm:way:1390989443",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -36957,7 +37174,8 @@
               "openfire": "yes",
               "picnic_table": "yes",
               "tents": "no",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -37419,7 +37637,8 @@
             "fields": {
               "caravans": "no",
               "group_only": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -37429,7 +37648,8 @@
             "source_record_id": "osm:way:1560919175",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -40393,7 +40613,8 @@
             "source_record_id": "osm:way:1499197178",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:49:41Z",
             "source_updated_at": null,
@@ -41767,7 +41988,39 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:9877391",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/9877391"
+          },
+          {
+            "source_record_id": "osm:relation:9877392",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/9877392"
+          },
+          {
+            "source_record_id": "osm:relation:9877393",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/9877393"
+          }
+        ]
       }
     },
     {
@@ -41834,7 +42087,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:9877551",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/9877551"
+          }
+        ]
       }
     },
     {
@@ -41872,7 +42137,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:9877553",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:49:41Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/9877553"
+          }
+        ]
       }
     },
     {
@@ -42984,6 +43261,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 53,
+  "duplicatesRemoved": 51,
   "invalidRemoved": 0
 }

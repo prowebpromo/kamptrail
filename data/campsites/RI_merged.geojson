@@ -164,7 +164,20 @@
         "data_conflicts": [],
         "field_provenance": {
           "cost": "unknown"
-        }
+        },
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:43440566",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:39:47Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/43440566"
+          }
+        ],
+        "description_source_record_id": "osm:way:43440566"
       }
     },
     {

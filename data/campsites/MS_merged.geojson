@@ -854,7 +854,6 @@
         "motor_vehicle": "yes",
         "name": "Dub Patton Campground",
         "operator": "US Army Corps of Engineers",
-        "tourism": "camp_site",
         "id": "ridb:233492",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -896,7 +895,8 @@
               "fee": "yes",
               "internet_access": "no",
               "openfire": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:24:33Z",
             "source_updated_at": null,

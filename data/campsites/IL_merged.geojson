@@ -516,7 +516,6 @@
       },
       "properties": {
         "name": "LITHIA SPRINGS",
-        "tourism": "camp_site",
         "id": "ridb:233539",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -548,7 +547,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12668854455",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12668854455"
+          }
+        ]
       }
     },
     {
@@ -603,22 +614,9 @@
         ]
       },
       "properties": {
-        "cabins": "no",
-        "contact:phone": "+1-618-594-4410",
-        "contact:website": "https://www.recreation.gov/camping/campgrounds/233483",
-        "name": "Dam West Campground",
-        "operator": "US Army Corps of Engineers",
-        "permanent_camping": "no",
-        "tourism": "caravan_site",
         "id": "ridb:233483",
-        "source": "recreation.gov",
         "schema_version": 3,
-        "source_url": "https://www.recreation.gov/camping/campgrounds/233483",
-        "source_retrieved_at": "2026-11-15T11:08:42Z",
-        "source_ids": [
-          "ridb:233483",
-          "osm:way:1108044726"
-        ],
+        "name": "Dam West Campground",
         "type": "established",
         "cost": null,
         "fee_status": "unknown",
@@ -635,31 +633,16 @@
         "rig_friendly": [],
         "road_difficulty": null,
         "state": "IL",
+        "source": "recreation.gov",
         "facility_id": "233483",
         "description": "<h2>Overview</h2>\n<p>Dam West Campground is a recreation area situated on the southern shore of Carlyle Lake, a prime getaway for city-dwellers and families. Located 50 miles east of St. Louis, the area offers the peaceful retreat of a small town combined with the grandeur of Illinois' largest man-made lake.</p>\n<h2>Recreation</h2>\n<p>Dam West Campground provides fun both on the water and on shore. Boat ramps and courtesy docks are provided, and the vast lake allows for plenty of water sports. Fishing is a popular pastime, and the lake offers year-round varieties of fish such as bluegill, crappie, channel catfish, flathead catfish, white bass, largemouth bass, freshwater drum, carp and walleye. There is an on-site playground and plenty of open space for children to play, as well as an amphitheater for educational programs. A multi-use biking and walking trail is located a short drive away at the dam.</p>\n<h2>Facilities</h2>\n<p>Dam West Campground contains 109 reservable campsites. It provides modern amenities and access to a marina and boat storage facility. The adjacent Dam West Spillway and Dam West Day Use Area offer additional recreational opportunities. Visitors can also walk or bike across the dam to the Dam East facilities and McNair Group Area.</p>\n<h2>Natural Features</h2>\n<p>Created in 1967, the 26,000-acre lake is recognized as one of the nation's top ten inland sailing lakes and hosts several annual races and regattas. <br></p>\n<p>Carlyle Lake is home to an array of wildlife that can be seen throughout the year. Its waters and shores are a resting spot for migratory waterfowl and other birds. There are six established Watchable Wildlife Sites with viewing towers open to the public around the lake.</p>\n\n<h2>Nearby Attractions</h2>\n<p>The Carlyle Lake Visitor Center, located in the Dam West Recreation Area, has information available and nature exhibits on display, including a 215-gallon aquarium with native fish.</p>\n<h2>Charges & Cancellations</h2>\n<p><strong>Camping No Show - </strong>Camping no-show customers who do not arrive at the campground or group facility by check-out time the day after arrival or does not cancel the reservation by check out time on the day after the scheduled arrival date will be assessed a $20.00 service fee and forfeit their reservation. If the no-show service fee is greater than the reservation amount, the customer will not be charged any additional service fees.</p>\n<p><strong>Cancellations -</strong> A customer who cancels a reservation the day before or on the day of arrival will pay a $10.00 service fee AND forfeit the first night's use fee (not to exceed the total paid for the original reservation). Cancellations for a one-night reservation will forfeit the entire amount paid and will not be subject to an additional service fee.</p>\n",
-        "sources": [
-          "recreation.gov",
-          "openstreetmap"
+        "source_url": "https://www.recreation.gov/camping/campgrounds/233483",
+        "source_retrieved_at": "2026-11-15T11:08:42Z",
+        "source_ids": [
+          "ridb:233483"
         ],
-        "data_conflicts": [],
-        "member_evidence": [
-          {
-            "source_record_id": "osm:way:1108044726",
-            "source": "OpenStreetMap contributors",
-            "fields": {
-              "capacity": "109",
-              "caravans": "yes",
-              "fee": "yes",
-              "internet_access": "wlan",
-              "power_supply": "yes",
-              "sanitary_dump_station": "yes",
-              "tents": "yes",
-              "water_point": "yes"
-            },
-            "retrieved_at": "2026-11-15T11:13:51Z",
-            "source_updated_at": null,
-            "source_url": "https://www.openstreetmap.org/way/1108044726"
-          }
+        "sources": [
+          "recreation.gov"
         ]
       }
     },
@@ -928,7 +911,6 @@
         "camp_site:reservations": "no",
         "name": "Camp Cadiz Campground",
         "phone:ranger": "+1-618-253-7114",
-        "tourism": "camp_site",
         "website": "https://www.fs.usda.gov/recarea/shawnee/recreation/horseriding-camping/recarea/?recid=10682&actid=30",
         "id": "ridb:244060",
         "source": "recreation.gov",
@@ -969,7 +951,8 @@
             "fields": {
               "access": "yes",
               "capacity": "8",
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -1597,7 +1580,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2150567042",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2150567042"
+          }
+        ]
       }
     },
     {
@@ -2190,7 +2185,8 @@
             "source_record_id": "osm:way:297391808",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "capacity": "7"
+              "capacity": "7",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -3670,7 +3666,8 @@
             "source_record_id": "osm:way:1272558231",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -3826,7 +3823,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5462671733",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5462671733"
+          }
+        ]
       }
     },
     {
@@ -3893,7 +3902,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5462671736",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5462671736"
+          }
+        ]
       }
     },
     {
@@ -4567,7 +4588,8 @@
             "source": "OpenStreetMap contributors",
             "fields": {
               "backcountry": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -5807,7 +5829,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7982594978",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7982594978"
+          }
+        ]
       }
     },
     {
@@ -5852,7 +5886,8 @@
             "source_record_id": "osm:node:7450817347",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -6200,7 +6235,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:7982604793",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/7982604793"
+          }
+        ]
       }
     },
     {
@@ -9545,7 +9592,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12564276771",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12564276771"
+          }
+        ]
       }
     },
     {
@@ -10854,7 +10913,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:relation:17932631",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/17932631"
+          }
+        ]
       }
     },
     {
@@ -10892,7 +10963,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:759883374",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/759883374"
+          }
+        ]
       }
     },
     {
@@ -11583,7 +11666,8 @@
             "fields": {
               "caravans": "yes",
               "fee": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -11748,7 +11832,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:12710088766",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/12710088766"
+          }
+        ]
       }
     },
     {
@@ -11876,7 +11972,8 @@
             "source_record_id": "osm:node:13228026363",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -11886,7 +11983,8 @@
             "source_record_id": "osm:node:13228026364",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -12460,7 +12558,8 @@
             "source_record_id": "osm:way:1025289930",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "access": "yes"
+              "access": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -13498,7 +13597,8 @@
             "source_record_id": "osm:way:253726099",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "internet_access": "no"
+              "internet_access": "no",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -14354,7 +14454,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:329792265",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/329792265"
+          }
+        ]
       }
     },
     {
@@ -14816,7 +14928,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:461203884",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/461203884"
+          }
+        ]
       }
     },
     {
@@ -18683,7 +18807,8 @@
             "source_record_id": "osm:way:932194370",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "fee": "yes"
+              "fee": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -19213,7 +19338,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1559086398",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1559086398"
+          }
+        ]
       }
     },
     {
@@ -20133,6 +20270,46 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -89.3589735,
+          38.6309569
+        ]
+      },
+      "properties": {
+        "cabins": "no",
+        "capacity": "109",
+        "caravans": "yes",
+        "contact:phone": "+1-618-594-4410",
+        "contact:website": "https://www.recreation.gov/camping/campgrounds/233483",
+        "fee": "yes",
+        "internet_access": "wlan",
+        "name": "Dam West Campground",
+        "operator": "US Army Corps of Engineers",
+        "permanent_camping": "no",
+        "power_supply": "yes",
+        "sanitary_dump_station": "yes",
+        "tents": "yes",
+        "tourism": "caravan_site",
+        "water_point": "yes",
+        "osm_id": 1108044726,
+        "osm_type": "way",
+        "id": "osm:way:1108044726",
+        "source": "openstreetmap",
+        "schema_version": 3,
+        "source_url": "https://www.openstreetmap.org/way/1108044726",
+        "source_retrieved_at": "2026-11-15T11:13:51Z",
+        "source_ids": [
+          "osm:way:1108044726"
+        ],
+        "sources": [
+          "openstreetmap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -89.3570841,
           38.6353173
         ]
@@ -20289,7 +20466,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1150497895",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1150497895"
+          }
+        ]
       }
     },
     {
@@ -21896,7 +22085,8 @@
             "source_record_id": "osm:way:1310004329",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -23407,7 +23597,8 @@
             "fields": {
               "fee": "yes",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -24964,7 +25155,8 @@
             "source_record_id": "osm:way:1537354721",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -24974,7 +25166,8 @@
             "source_record_id": "osm:way:1537354727",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:13:51Z",
             "source_updated_at": null,
@@ -25019,7 +25212,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1537354732",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1537354732"
+          },
+          {
+            "source_record_id": "osm:relation:21086759",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:13:51Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/relation/21086759"
+          }
+        ]
       }
     },
     {
@@ -26705,6 +26920,6 @@
       }
     }
   ],
-  "duplicatesRemoved": 32,
+  "duplicatesRemoved": 31,
   "invalidRemoved": 0
 }

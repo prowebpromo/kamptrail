@@ -228,7 +228,6 @@
         "operator": "USFS",
         "reservation": "no",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1975&actid=29",
         "id": "ridb:257351",
@@ -277,7 +276,8 @@
               "sanitary_dump_station": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -300,7 +300,6 @@
         "operator": "USFS",
         "reservation": "required",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.recreation.gov/camping/campgrounds/251437",
         "id": "ridb:251437",
@@ -342,7 +341,8 @@
               "caravans": "yes",
               "drinking_water": "yes",
               "fee": "yes",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -362,7 +362,6 @@
       },
       "properties": {
         "name": "Rocky Point Campground",
-        "tourism": "camp_site",
         "id": "ridb:248175",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -394,7 +393,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:11769788020",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/11769788020"
+          }
+        ]
       }
     },
     {
@@ -410,7 +421,6 @@
         "name": "La Sombra Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:241360",
         "schema_version": 3,
@@ -442,7 +452,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493737",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493737"
+          }
+        ]
       }
     },
     {
@@ -458,7 +480,6 @@
         "name": "Las Petacas Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:241361",
         "schema_version": 3,
@@ -490,7 +511,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493739",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493739"
+          }
+        ]
       }
     },
     {
@@ -800,7 +833,6 @@
         "name": "New Canyon Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253563",
         "schema_version": 3,
@@ -832,7 +864,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333697992",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333697992"
+          }
+        ]
       }
     },
     {
@@ -894,7 +938,6 @@
         "reservation": "no",
         "sites": "3",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1994&actid=29",
         "id": "ridb:257404",
@@ -943,7 +986,8 @@
               "sanitary_dump_station": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "vault"
+              "toilets": "vault",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -961,7 +1005,8 @@
               "sanitary_dump_station": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "vault"
+              "toilets": "vault",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -982,7 +1027,6 @@
       "properties": {
         "name": "Fourth of July Campground",
         "operator": "USFS",
-        "tourism": "camp_site",
         "id": "ridb:253557",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1014,7 +1058,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1430461164",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1430461164"
+          }
+        ]
       }
     },
     {
@@ -1114,7 +1170,6 @@
         "name": "FIELD TRACT CAMPGROUND",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:273758",
         "schema_version": 3,
@@ -1146,7 +1201,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333697969",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333697969"
+          }
+        ]
       }
     },
     {
@@ -1330,7 +1397,6 @@
         "name": "Johnson Mesa Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:271519",
         "schema_version": 3,
@@ -1362,7 +1428,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493732",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493732"
+          }
+        ]
       }
     },
     {
@@ -1505,7 +1583,6 @@
         "name": "El Caso I-IV Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:271991",
         "schema_version": 3,
@@ -1537,7 +1614,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493712",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493712"
+          }
+        ]
       }
     },
     {
@@ -1553,7 +1642,6 @@
         "name": "Junebug Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:241366",
         "schema_version": 3,
@@ -1585,7 +1673,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493733",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493733"
+          }
+        ]
       }
     },
     {
@@ -1641,7 +1741,6 @@
       },
       "properties": {
         "name": "Ojo Redondo Campground",
-        "tourism": "camp_site",
         "id": "ridb:10023205",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -1654,7 +1753,7 @@
         ],
         "operator": "USFS",
         "uuid": "sonora_20130605",
-        "type": null,
+        "type": "other",
         "cost": null,
         "fee_status": "unknown",
         "fee_description": "",
@@ -1676,7 +1775,29 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493786",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493786"
+          },
+          {
+            "source_record_id": "osm:node:9908061317",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/9908061317"
+          }
+        ]
       }
     },
     {
@@ -1818,7 +1939,6 @@
         "name": "Links Tract Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:249174",
         "schema_version": 3,
@@ -1850,7 +1970,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493740",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493740"
+          }
+        ]
       }
     },
     {
@@ -1992,7 +2124,6 @@
         "name": "Bosque Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253603",
         "schema_version": 3,
@@ -2024,7 +2155,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333697951",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333697951"
+          }
+        ]
       }
     },
     {
@@ -2082,7 +2225,6 @@
         "name": "La Bobita Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:241375",
         "schema_version": 3,
@@ -2114,7 +2256,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493736",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493736"
+          }
+        ]
       }
     },
     {
@@ -2173,7 +2327,6 @@
         "name": "Piñon Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:257361",
         "schema_version": 3,
@@ -2205,7 +2358,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493789",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493789"
+          }
+        ]
       }
     },
     {
@@ -2263,7 +2428,6 @@
         "name": "Red Cloud Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253634",
         "schema_version": 3,
@@ -2295,7 +2459,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493794",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493794"
+          }
+        ]
       }
     },
     {
@@ -2315,7 +2491,6 @@
         "parking": "yes",
         "reservation": "no",
         "surface": "dirt",
-        "tourism": "camp_site",
         "website": "https://www.nps.gov/places/gumo_chosa_campground_blm.htm",
         "id": "ridb:10278188",
         "source": "recreation.gov",
@@ -2326,7 +2501,7 @@
           "ridb:10278188",
           "osm:node:9170786474"
         ],
-        "type": null,
+        "type": "other",
         "cost": 0,
         "fee_status": "free",
         "fee_description": "No Fees",
@@ -2366,6 +2541,7 @@
               "shower": "no",
               "tents": "yes",
               "toilets": "no",
+              "tourism": "camp_site",
               "waste_basket": "yes"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
@@ -2598,7 +2774,6 @@
         "name": "McGaffey Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253529",
         "schema_version": 3,
@@ -2630,7 +2805,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493767",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493767"
+          }
+        ]
       }
     },
     {
@@ -2817,7 +3004,6 @@
         "operator": "USFS",
         "reservation": "no",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1984&actid=29",
         "id": "ridb:10078442",
@@ -2828,7 +3014,7 @@
           "ridb:10078442",
           "osm:way:747965972"
         ],
-        "type": null,
+        "type": "other",
         "cost": null,
         "fee_status": "unknown",
         "fee_description": "",
@@ -2866,7 +3052,8 @@
               "sanitary_dump_station": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -3054,7 +3241,6 @@
       },
       "properties": {
         "name": "SAN ANTONIO CAMPGROUND",
-        "tourism": "camp_site",
         "id": "ridb:233390",
         "source": "recreation.gov",
         "schema_version": 3,
@@ -3089,7 +3275,29 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493802",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493802"
+          },
+          {
+            "source_record_id": "osm:node:8735428630",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/8735428630"
+          }
+        ]
       }
     },
     {
@@ -3109,7 +3317,6 @@
         "operator": "USFS",
         "reservation": "no",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "website": "https://www.fs.usda.gov/recarea/gila/recreation/camping-cabins/recarea/?recid=1990&actid=29",
         "id": "ridb:257396",
@@ -3157,7 +3364,8 @@
               "sanitary_dump_station": "no",
               "shower": "no",
               "tents": "yes",
-              "toilets": "yes"
+              "toilets": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -3179,7 +3387,6 @@
         "name": "Mills Canyon Rim Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:253552",
         "schema_version": 3,
@@ -3211,7 +3418,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2332493783",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2332493783"
+          }
+        ]
       }
     },
     {
@@ -3354,7 +3573,6 @@
         "name": "Kingston Campground",
         "operator": "USFS",
         "source": "recreation.gov",
-        "tourism": "camp_site",
         "uuid": "sonora_20130605",
         "id": "ridb:257416",
         "schema_version": 3,
@@ -3386,7 +3604,19 @@
           "recreation.gov",
           "openstreetmap"
         ],
-        "data_conflicts": []
+        "data_conflicts": [],
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:2333697977",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/2333697977"
+          }
+        ]
       }
     },
     {
@@ -3526,7 +3756,8 @@
             "fields": {
               "fee": "yes",
               "internet_access": "wlan",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -8660,7 +8891,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1167424230",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1167424230"
+          }
+        ]
       }
     },
     {
@@ -9228,7 +9471,8 @@
             "source_record_id": "osm:node:13253442548",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -9601,7 +9845,8 @@
             "source_record_id": "osm:node:2442094073",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "group_only": "yes"
+              "group_only": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -10632,7 +10877,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:702119226",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/702119226"
+          }
+        ]
       }
     },
     {
@@ -11638,7 +11895,39 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:5555546237",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/5555546237"
+          },
+          {
+            "source_record_id": "osm:node:6944059880",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6944059880"
+          },
+          {
+            "source_record_id": "osm:node:6944113587",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/6944113587"
+          }
+        ]
       }
     },
     {
@@ -11817,7 +12106,8 @@
               "internet_access": "wlan",
               "internet_access:fee": "no",
               "power_supply": "yes",
-              "sanitary_dump_station": "yes"
+              "sanitary_dump_station": "yes",
+              "tourism": "caravan_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -15318,7 +15608,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:1165191830",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/1165191830"
+          }
+        ]
       }
     },
     {
@@ -16221,7 +16523,8 @@
             "source_record_id": "osm:node:12119213220",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16231,7 +16534,8 @@
             "source_record_id": "osm:node:12119213221",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16241,7 +16545,8 @@
             "source_record_id": "osm:node:12119213223",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16251,7 +16556,8 @@
             "source_record_id": "osm:node:12119213224",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16305,7 +16611,8 @@
             "source_record_id": "osm:node:12119213232",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16315,7 +16622,8 @@
             "source_record_id": "osm:node:12119213234",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16325,7 +16633,8 @@
             "source_record_id": "osm:node:12119213236",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16335,7 +16644,8 @@
             "source_record_id": "osm:node:12119213239",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16386,7 +16696,8 @@
             "source_record_id": "osm:node:12119213241",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16443,7 +16754,8 @@
             "source_record_id": "osm:node:12119227837",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16453,7 +16765,8 @@
             "source_record_id": "osm:node:12119227838",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16463,7 +16776,8 @@
             "source_record_id": "osm:node:12119227839",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16473,7 +16787,8 @@
             "source_record_id": "osm:node:12119227841",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16483,7 +16798,8 @@
             "source_record_id": "osm:node:12119227842",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16493,7 +16809,8 @@
             "source_record_id": "osm:node:12119227843",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -16503,7 +16820,8 @@
             "source_record_id": "osm:node:12119227845",
             "source": "OpenStreetMap contributors",
             "fields": {
-              "backcountry": "yes"
+              "backcountry": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -18028,7 +18346,8 @@
               "fee": "yes",
               "group_only": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -18569,7 +18888,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:node:13900287501",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/node/13900287501"
+          }
+        ]
       }
     },
     {
@@ -18840,7 +19171,29 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:26698219",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/26698219"
+          },
+          {
+            "source_record_id": "osm:way:26698220",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/26698220"
+          }
+        ]
       }
     },
     {
@@ -19552,7 +19905,8 @@
               "caravans": "yes",
               "fee": "yes",
               "static_caravans": "no",
-              "tents": "no"
+              "tents": "no",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,
@@ -21806,7 +22160,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:680628576",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "caravan_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/680628576"
+          }
+        ]
       }
     },
     {
@@ -24337,7 +24703,19 @@
         "field_provenance": {
           "cost": "unknown"
         },
-        "description": ""
+        "description": "",
+        "member_evidence": [
+          {
+            "source_record_id": "osm:way:966234561",
+            "source": "OpenStreetMap contributors",
+            "fields": {
+              "tourism": "camp_site"
+            },
+            "retrieved_at": "2026-11-15T11:31:29Z",
+            "source_updated_at": null,
+            "source_url": "https://www.openstreetmap.org/way/966234561"
+          }
+        ]
       }
     },
     {
@@ -28836,7 +29214,8 @@
               "fee": "yes",
               "group_only": "no",
               "static_caravans": "no",
-              "tents": "yes"
+              "tents": "yes",
+              "tourism": "camp_site"
             },
             "retrieved_at": "2026-11-15T11:31:29Z",
             "source_updated_at": null,

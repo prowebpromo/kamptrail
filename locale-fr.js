@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.47.1', messages:{
+  global.KampTrailI18nFr = {version:'2.48.0', messages:{
   "Listing history is unavailable. Reconnect and retry before opening campsite records.": "L’historique des lieux est indisponible. Reconnectez-vous et réessayez avant d’ouvrir les fiches.",
   "Historical listing": "Fiche historique",
   "Close historical listing": "Fermer la fiche historique",
