@@ -1,5 +1,6 @@
 /* Optional Spanish UI catalogue. */
 (function(global){'use strict';global.KampTrailI18nEs={version:'2.48.0',messages:{
+  "This listing’s admission remains under review after a source refresh; its reviewed camping type is still supported by its own record.": "La admisión de este lugar sigue en revisión tras actualizar la fuente; su tipo de acampada revisado sigue respaldado por su propia ficha.",
   "This previously listed location is under review. Its record does not establish the camping type at this point.": "Este lugar ya figuraba en el catálogo y está en revisión. La ficha no confirma el tipo de acampada en este punto.",
   "This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again.": "La ficha propia de este lugar cambió después de revisar su tipo. Aparece como Otro hasta que se revise de nuevo.",
   "Camping and this camping type are described in this facility’s own Recreation.gov record.": "La acampada y este tipo de acampada figuran en la propia ficha de Recreation.gov de la instalación.",
@@ -8,6 +9,7 @@
   " Notice dated {0}.": " Aviso con fecha {0}.",
   "This one listing covers {0} cabins in the facility’s Recreation.gov record. The map point does not locate a particular cabin.": "Este único anuncio abarca {0} cabañas de la ficha de Recreation.gov de la instalación. El punto del mapa no ubica ninguna cabaña concreta.",
   "This location is under review for removal from campsite search. Its own record does not establish camping. It stays listed until the review is decided.": "Este lugar está en revisión para retirarlo de la búsqueda de campings. Su propia ficha no confirma la acampada. Sigue en la lista hasta que se decida la revisión.",
+  "The type shown is the label published before this review. Its camping type is unverified.": "El tipo mostrado es la etiqueta publicada antes de esta revisión. Su tipo de acampada no está verificado.",
   "The type shown is the label published before this review.": "El tipo mostrado es la etiqueta publicada antes de esta revisión.",
   "Camping is described in this facility’s own Recreation.gov record. Its camping type is unverified.": "La ficha de esta instalación en Recreation.gov describe la acampada. No se ha verificado el tipo de acampada.",
   "the land manager": "el responsable del terreno",

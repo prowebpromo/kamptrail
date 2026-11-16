@@ -456,3 +456,24 @@ test('a known own-record closure cannot become an open claim when later wording 
   assert.match(html,/Earlier agency notice:/);assert.match(html,/temporarily closed/);assert.match(html,/Notice dated 2026-09-10/);
   assert.match(html,/Current status is unverified/);assert.doesNotMatch(html,/Status \(agency\):/);assert.doesNotMatch(html,/Agency reports:/);
 });
+
+test('a refreshed admission hold does not contradict the still-supported own-record type',()=>{
+  const {api}=harness(async()=>response({}));
+  const row=feature({id:'ridb:243218',name:'Coleman Lake Recreation Area',type:'established',fee_status:'unknown',
+    camping_classification:'published_pending_review',camping_evidence:'previously_published_pending_adjudication',
+    type_evidence:{kind:'owner_reviewed_own_record',source_record_id:'ridb:243218',field:'FacilityDescription',quote:'There are 39 campsites with water and electrical hookups'}});
+  const html=api.popupHTML(row);
+  assert.match(html,/admission remains under review after a source refresh/);
+  assert.match(html,/Camping and this camping type are described in this facility’s own Recreation.gov record/);
+  assert.doesNotMatch(html,/record does not establish the camping type/);
+  assert.equal(row.properties.camping_classification,'published_pending_review');
+});
+
+test('a held published label states that the camping type remains unverified',()=>{
+  const {api}=harness(async()=>response({}));
+  const html=api.popupHTML(feature({id:'ridb:249902',name:'Wolf Gap Recreation Area',type:'established',fee_status:'unknown',
+    camping_classification:'published_pending_review',type_evidence:{kind:'held_published_label'}}));
+  assert.match(html,/The type shown is the label published before this review/);
+  assert.match(html,/Its camping type is unverified/);
+  assert.doesNotMatch(html,/Camping and this camping type are described/);
+});

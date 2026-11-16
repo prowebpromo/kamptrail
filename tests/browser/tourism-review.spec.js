@@ -1,5 +1,5 @@
 const {test,expect}=require('@playwright/test');
-// Owner decisions of 2026-11-01 (08:16 and 20:24 ET) for the tourism admission candidate (docs/TOURISM_TYPE_ADMISSION_CANDIDATE.md).
+// Owner decisions of November 1 and November 15, 2026; see docs/TOURISM_INTEGRATION_2026-11-15.md.
 // Run against a rebuilt candidate catalogue. In English the popup prints the raw type value (pre-existing on main). Each case opens the real app at #site=<id>, by canonical and legacy id.
 const CASES=[
   {id:'ridb:10069432',via:['ridb:10069432'],name:'Kiwanis Campground',type:'dispersed',not:['label published before this review']},
@@ -25,30 +25,29 @@ for(const [label,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{w
   test.describe(`tourism review popups (${label})`,()=>{
     test.use({serviceWorkers:'block',viewport,isMobile:label==='mobile',hasTouch:label==='mobile'});
     test.setTimeout(900000);
-    test('each reviewed listing opens by canonical and legacy id with its decided type and notices',async({browser})=>{
-      // A fresh page per case keeps the loaded catalogue small, as a visitor opening one shared link would have it.
-      for(const c of CASES){
+    for(const c of CASES)test(`${c.name}: canonical and legacy IDs retain the decided type and notices`,async({browser})=>{
+      // Isolate each exact listing so one failure cannot hide the remaining ownership checks.
       const context=await browser.newContext({serviceWorkers:'block',viewport,isMobile:label==='mobile',hasTouch:label==='mobile'}),page=await context.newPage();
-      await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:{}})}));
-      await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:-10,lng:-140,zoom:9})));
-      await page.goto('/');
-      await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='published');
-      for(const id of c.via){
-        await page.evaluate(id=>{location.hash='';location.hash='site='+encodeURIComponent(id);},id);
-        await expect.poll(()=>page.evaluate(()=>document.querySelector('.leaflet-popup-content h2')?.textContent||''),{timeout:60000,message:id}).toBe(c.name);
-        const text=await page.evaluate(()=>document.querySelector('.leaflet-popup-content').textContent.replace(/\s+/g,' '));
-        expect(text,id).toContain('Type: '+c.type);
-        for(const s of c.has||[])expect(text,id).toContain(s);
-        for(const s of c.not||[])expect(text,id).not.toContain(s);
-        expect(await page.evaluate(()=>location.hash),id).toBe('#site='+encodeURIComponent(id));
-        expect(await page.evaluate(id=>KampTrailData.getCampsiteById(id)?.properties.id,id),id).toBe(c.id);
-        // The popup fits the viewport (no horizontal overflow on mobile).
-        const box=await page.locator('.leaflet-popup-content-wrapper').boundingBox();
-        expect(box.width,id).toBeLessThanOrEqual(viewport.width);
-        await page.evaluate(()=>window.map?.closePopup?.());
-      }
-      await context.close();
-      }
+      try{
+        await page.route('**/api/community-discovery.php*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({ok:true,version:1,revision:'1',checked_at:new Date().toISOString(),next_after:null,sites:{}})}));
+        await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:-10,lng:-140,zoom:9})));
+        await page.goto('/');
+        await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='published');
+        for(const id of c.via){
+          await page.evaluate(id=>{location.hash='';location.hash='site='+encodeURIComponent(id);},id);
+          await expect.poll(()=>page.evaluate(()=>document.querySelector('.leaflet-popup-content h2')?.textContent||''),{timeout:60000,message:id}).toBe(c.name);
+          const text=await page.evaluate(()=>document.querySelector('.leaflet-popup-content').textContent.replace(/\s+/g,' '));
+          expect(text,id).toContain('Type: '+c.type);
+          for(const s of c.has||[])expect(text,id).toContain(s);
+          for(const s of c.not||[])expect(text,id).not.toContain(s);
+          expect(await page.evaluate(()=>location.hash),id).toBe('#site='+encodeURIComponent(id));
+          expect(await page.evaluate(id=>KampTrailData.getCampsiteById(id)?.properties.id,id),id).toBe(c.id);
+          // The popup fits the viewport (no horizontal overflow on mobile).
+          const box=await page.locator('.leaflet-popup-content-wrapper').boundingBox();
+          expect(box.width,id).toBeLessThanOrEqual(viewport.width);
+          await page.evaluate(()=>window.map?.closePopup?.());
+        }
+      }finally{await context.close();}
     });
   });
 }
