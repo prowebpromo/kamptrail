@@ -53,8 +53,7 @@ jobs:
 
   state:
     needs: plan
-    # Keep the public-extract importer on an explicitly validated runner image.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 75
     strategy:
       fail-fast: false
@@ -75,6 +74,12 @@ jobs:
         run: |
           python -m unittest scripts/tests/test_services_import.py scripts/tests/test_national_services.py
           node --test scripts/tests/services-builder.test.js
+      - name: Diagnose public extract connectivity without reading a body
+        timeout-minutes: 3
+        continue-on-error: true
+        env:
+          SERVICE_STATE: ${{ matrix.state }}
+        run: python -u scripts/diagnose_service_network.py "$SERVICE_STATE"
       - name: Import one bounded complete state
         env:
           SERVICE_STATE: ${{ matrix.state }}
