@@ -249,17 +249,23 @@
     if(state.usfsDetails)DataQuality.attachUSFSSiteAmenities(f,state.usfsDetails);
   }
   function rebuildCatalogue(){
-    const input=[];
-    for(const code of [...stateInputs.keys()].sort())for(const f of stateInputs.get(code)){attachSidecars(f);input.push(f);}
-    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},identityOptions());
+    const input=[],withheldMembers=new Set();
+    for(const code of [...stateInputs.keys()].sort()){
+      const cached=stateInputs.get(code);
+      for(const id of cached.withheld)withheldMembers.add(id);
+      for(const f of cached.rows){attachSidecars(f);input.push(f);}
+    }
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{...identityOptions(),withheldMembers});
     state.allCampsites=cleaned.features.map(activeFeature).filter(Boolean);
     for(const f of state.allCampsites){attachSidecars(f);shownIds.add(f.properties.id);}
     attachLoadedElevations();
   }
-  function setStateInput(features,stateCode) {
-    const incoming=DataQuality.publicationCandidates(features.map(activeFeature).filter(Boolean),{state:stateCode}).map(raw=>DataQuality.normalizeFeature(raw,{state:stateCode})).filter(Boolean);
-    incoming.forEach(f=>{f.properties.forecastStates=[stateCode];});
-    stateInputs.set(stateCode,incoming);
+  function setStateInput(features,stateCode){
+    features=features.map(activeFeature).filter(Boolean);
+    const options={state:stateCode,siteDetails:state.siteDetails,amenityDetails:state.amenityDetails};
+    const rows=DataQuality.publicationCandidates(features,options).map(raw=>DataQuality.normalizeFeature(raw,options)).filter(Boolean);
+    for(const f of rows)f.properties.forecastStates=[stateCode];
+    stateInputs.set(stateCode,{rows,withheld:DataQuality.withheldMembers(features,options)});
   }
   function mergeLoaded(features,stateCode) {
     setStateInput(features,stateCode);
@@ -508,7 +514,9 @@
   function popup(site) {
     const p=site.properties,[lng,lat]=site.geometry.coordinates;
     const status=typeof p.open_status==='string'?p.open_status.trim().toLowerCase():'';
-    const closure=['closed','temporarily closed'].includes(status)?status:null;
+    // A reviewed dated closure notice in the facility's own record outranks a member's open status (owner decision 2026-11-01).
+    const ownClosure=p.own_closure_notice&&['closed','temporarily closed'].includes(p.own_closure_notice.status)?p.own_closure_notice:null;
+    const closure=ownClosure?ownClosure.status:['closed','temporarily closed'].includes(status)?status:null;
     // Rig and amenity provenance debt (2.34.0): operator and website may be inherited from a merged record and are
     // not yet guarded. The popup never shows operator. source_url is normalized from the listing's own record and is
     // set for every published listing, so the inherited website below is never reached. tests/rig-ownership.test.js pins this.
@@ -519,7 +527,7 @@
       <h2 style="margin:0 0 8px;font-size:15px">${esc(p.name)}</h2>
       ${p.record_override?.note?'<p class="kt-record-scope">'+esc(t(p.record_override.note))+'</p>':''}
       ${p.record_override?.state_applied?`<div class="kt-fine"><a href="${esc(safeUrl(p.record_override.source_url))}" target="_blank" rel="noopener noreferrer">${t('State correction source')}</a> · ${esc(p.record_override.checked_at)}</div>`:''}
-      ${closure?`<div class="kt-closure-notice"><strong>${t("Agency reports:")} ${esc(closure)}.</strong> ${t("Confirm reopening with the operator.")}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
+      ${closure?`<div class="kt-closure-notice"><strong>${ownClosure?.current_record_supports_notice===false?t("Earlier agency notice:"):t("Agency reports:")} ${esc(closure)}.</strong> ${ownClosure?.current_record_supports_notice===false?t("Current status is unverified. Confirm reopening with the operator."):t("Confirm reopening with the operator.")}${ownClosure?.notice_date?t(" Notice dated {0}.", {"0":(esc(ownClosure.notice_date))}):''}${p.season?t(" Season reported: {0}.", {"0":(esc(p.season))}):''}</div>`:''}
       <div><strong>${t("Cost:")}</strong> ${esc(costText(p))}${p.fee_evidence?` <span class="kt-muted">(${esc(p.fee_evidence)})</span>`:''}</div>
       ${p.fee_text?`<div class="kt-fee-evidence"><span class="kt-muted">${esc(p.fee_source||t("Source"))}${p.fee_checked?t(", imported {0}", {"0":(esc(p.fee_checked))}):''}:</span> “${esc(p.fee_text.length>220?p.fee_text.slice(0,217)+'…':p.fee_text)}”</div>`:''}
       ${p.fee_status==='free'||p.fee_status==='conditional'?`<div class="kt-fine">${t("This is the camping fee only. Entrance fees, passes, permits, or reservation charges may still apply.")}</div>`:''}
@@ -529,6 +537,10 @@
       ${p.stay_limit?`<div><strong>${t("Stay limit:")}</strong> ${esc(p.stay_limit)}</div>`:''}
       ${p.reservable?`<div class="kt-fine">${t("Reservable on Recreation.gov. Reservation charges may apply. That alone does not show the camping fee.")}</div>`:''}
       <div><strong>${t("Type:")}</strong> ${esc(p.record_override?.scope==='management_area'?t('Management area'):uiLabel('type',p.type))}</div>
+      ${p.type==='lodging'&&p.kt_accommodation==='cabins'&&p.ridb_overnight_sites>1?'<p class="kt-fine kt-multi-cabin">'+esc(t("This one listing covers {0} cabins in the facility’s Recreation.gov record. The map point does not locate a particular cabin.", {"0":String(p.ridb_overnight_sites)}))+'</p>':''}
+      ${p.camping_evidence==='owner_review_evidence_changed'?'<p class="kt-fine kt-review-changed">'+esc(t("This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again."))+'</p>':p.camping_evidence==='proposed_withdrawal_pending_review'?'<p class="kt-fine kt-pending-withdrawal">'+esc(t("This location is under review for removal from campsite search. Its own record does not establish camping. It stays listed until the review is decided."))+'</p>':p.camping_classification==='published_pending_review'?'<p class="kt-fine">'+esc(p.type_evidence?.kind==='owner_reviewed_own_record'&&p.type!=='other'?t("This listing remains under review. Its own source record still supports the camping type shown."):t("This previously listed location is under review. Its record does not establish the camping type at this point."))+'</p>':''}
+      ${p.type_evidence?.kind==='held_published_label'?'<p class="kt-fine kt-held-label">'+esc(t("The type shown is the label published before this review. Its camping type is unverified."))+'</p>':''}
+      ${p.camping_evidence==='reviewed_own_facility_record'||p.type_evidence?.kind==='owner_reviewed_own_record'?'<p class="kt-fine">'+esc(p.type_evidence?.kind==='owner_reviewed_own_record'&&p.type!=='other'?t("Camping and this camping type are described in this facility’s own Recreation.gov record."):t("Camping is described in this facility’s own Recreation.gov record. Its camping type is unverified."))+'</p>':''}
       <div><strong>GPS:</strong> <span class="kt-coordinates">${lat.toFixed(5)}, ${lng.toFixed(5)}</span></div>
       ${window.KampTrailForecast?.active(window.kamptrailFilters)?`<p class="kt-forecast-evidence kt-fine">${esc(window.KampTrailForecast.describe(site,window.kamptrailFilters))}</p>`:''}
       <div class="kt-elevation-evidence">${esc(DataQuality.elevationText(site,window.kamptrailFilters?.elevationUnit||'ft'))}</div>
@@ -674,7 +686,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.47.1',
+    version:'2.48.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -689,7 +701,7 @@
       // Optional evidence must not delay the map when its request is slow or unavailable.
       // Sidecar evidence attaches before deduplication, as in the index build, so arrival rebuilds.
       loadAmenityDetails().then(()=>{
-        if(state.amenityDetails&&stateInputs.size)rebuildCatalogue();
+        if(state.amenityDetails&&stateInputs.size){for(const code of stateInputs.keys())setStateInput(stateFeatures(code),code);rebuildCatalogue();}
         updateMarkers();
       });
       loadUSFSSiteDetails().then(()=>{

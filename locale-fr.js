@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.47.1', messages:{
+  global.KampTrailI18nFr = {version:'2.48.0', messages:{
   "Listing history is unavailable. Reconnect and retry before opening campsite records.": "L’historique des lieux est indisponible. Reconnectez-vous et réessayez avant d’ouvrir les fiches.",
   "Historical listing": "Fiche historique",
   "Close historical listing": "Fermer la fiche historique",
@@ -436,6 +436,20 @@
   "Backcountry": "Arrière-pays",
   "Overnight parking": "Stationnement de nuit",
   "Other / unspecified": "Autre / non précisé",
+  "This listing remains under review. Its own source record still supports the camping type shown.": "Ce lieu reste en cours d’examen. Sa propre fiche source étaye toujours le type de camping affiché.",
+  "This previously listed location is under review. Its record does not establish the camping type at this point.": "Ce lieu déjà répertorié est en cours d’examen. Sa fiche ne confirme pas le type de camping à cet endroit.",
+  "This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again.": "La fiche propre de ce lieu a changé après l’examen de son type. Il apparaît comme Autre jusqu’à un nouvel examen.",
+  "Camping and this camping type are described in this facility’s own Recreation.gov record.": "Le camping et ce type de camping figurent dans la propre fiche Recreation.gov de l’installation.",
+  "Earlier agency notice:": "Avis antérieur de l’agence :",
+  "Current status is unverified. Confirm reopening with the operator.": "L’état actuel n’est pas vérifié. Confirmez la réouverture auprès du gestionnaire.",
+  " Notice dated {0}.": " Avis daté du {0}.",
+  "This one listing covers {0} cabins in the facility’s Recreation.gov record. The map point does not locate a particular cabin.": "Cette fiche unique couvre {0} cabanes de l’enregistrement Recreation.gov de l’installation. Le point sur la carte ne situe pas une cabane précise.",
+  "This location is under review for removal from campsite search. Its own record does not establish camping. It stays listed until the review is decided.": "Ce lieu est en cours d’examen en vue de son retrait de la recherche de campings. Sa propre fiche ne confirme pas le camping. Il reste répertorié jusqu’à la décision.",
+  "The type shown is the label published before this review. Its camping type is unverified.": "Le type affiché est celui publié avant cet examen. Son type de camping n’est pas vérifié.",
+  "The type shown is the label published before this review.": "Le type affiché est celui publié avant cet examen.",
+  "Camping is described in this facility’s own Recreation.gov record. Its camping type is unverified.": "La fiche de ce site sur Recreation.gov décrit le camping. Le type de camping reste à vérifier.",
+  "the land manager": "le gestionnaire du terrain",
+  "Lookout, cabin or other lodging": "Tour de guet, cabane ou autre hébergement",
   "Approximate terrain elevation": "Altitude approximative du terrain",
   "Elevation units": "Unités d’altitude",
   "Feet (ft)": "Pieds (ft)",
