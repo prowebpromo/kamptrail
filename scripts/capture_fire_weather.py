@@ -15,6 +15,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
+from functools import partial
 
 ALERTS_URL = 'https://api.weather.gov/alerts/active'
 EVENTS = ('Red Flag Warning', 'Fire Weather Watch')
@@ -24,7 +25,13 @@ MAX_ZONES = 60
 MAX_BYTES = 8_000_000
 
 
-def fetch_json(url, opener=urllib.request.urlopen, retries=2):
+def fetch_json(url, opener=urllib.request.urlopen, retries=2, backoff_seconds=2):
+    """Retry transient failures with bounded exponential backoff.
+
+    Zone requests retain the short default budget. The active-alert snapshot
+    gets a longer recovery window in main, without multiplying that budget
+    across up to 60 zone requests.
+    """
     request = urllib.request.Request(url, headers={'User-Agent': USER_AGENT, 'Accept': 'application/geo+json'})
     for attempt in range(retries + 1):
         try:
@@ -33,10 +40,19 @@ def fetch_json(url, opener=urllib.request.urlopen, retries=2):
             if len(body) > MAX_BYTES:
                 raise ValueError('response too large')
             return json.loads(body)
-        except (urllib.error.URLError, TimeoutError, ValueError):
+        except (urllib.error.URLError, TimeoutError, ValueError) as error:
+            # HTTPError is a URLError too. Do not retry bad requests or denied
+            # access, but allow throttling, request timeouts and server errors.
+            if isinstance(error, urllib.error.HTTPError):
+                error.close()
+                if error.code not in (408, 429) and not 500 <= error.code < 600:
+                    raise
             if attempt == retries:
+                print(f'NWS request failed after {attempt + 1} attempts: {url}: {error}', file=sys.stderr)
                 raise
-            time.sleep(2 * (attempt + 1))
+            delay = min(60, backoff_seconds * (2 ** attempt))
+            print(f'NWS request attempt {attempt + 1}/{retries + 1} failed: {url}: {error}; retrying in {delay}s', file=sys.stderr)
+            time.sleep(delay)
 
 
 def fire_alerts(collection):
@@ -74,13 +90,15 @@ def zone_file_name(url):
     return urllib.parse.urlparse(url).path.strip('/').replace('/', '_') + '.json'
 
 
-def main(argv=None, fetch=fetch_json):
+def main(argv=None, fetch=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--out', required=True)
     args = parser.parse_args(argv)
     retrieved = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     url = ALERTS_URL + '?' + urllib.parse.urlencode({'event': ','.join(EVENTS)})
-    alerts = fire_alerts(fetch(url))
+    fetch_alerts = fetch or partial(fetch_json, retries=5, backoff_seconds=5)
+    fetch_zone = fetch or fetch_json
+    alerts = fire_alerts(fetch_alerts(url))
     os.makedirs(args.out, exist_ok=True)
     if not alerts:
         with open(os.path.join(args.out, 'summary.json'), 'w', encoding='utf-8') as f:
@@ -92,7 +110,7 @@ def main(argv=None, fetch=fetch_json):
     saved = 0
     for zone in zones:
         try:
-            data = fetch(zone)
+            data = fetch_zone(zone)
         except Exception as error:  # record the failure, keep going
             print(f'zone failed {zone}: {error}', file=sys.stderr)
             continue
