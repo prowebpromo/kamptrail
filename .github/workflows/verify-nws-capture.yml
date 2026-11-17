@@ -1,0 +1,31 @@
+name: Verify NWS capture recovery
+on:
+  push:
+    branches: [verify/nws-fire-weather-retries]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 6cefbe0075d923dd71e83bf12c6202526c829f2e
+          persist-credentials: false
+      - name: Verify exact fix and regression cases
+        run: |
+          test "$(git rev-parse HEAD)" = "6cefbe0075d923dd71e83bf12c6202526c829f2e"
+          python3 -m unittest discover -s scripts/tests -p test_capture_fire_weather.py -v
+      - name: Capture active fire-weather alerts
+        run: |
+          python3 scripts/capture_fire_weather.py --out "$RUNNER_TEMP/fire-weather"
+          cat "$RUNNER_TEMP/fire-weather/summary.json"
+      - name: Keep verification evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: nws-capture-verification
+          path: ${{ runner.temp }}/fire-weather
+          retention-days: 30
+          if-no-files-found: warn
