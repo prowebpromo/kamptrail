@@ -28,7 +28,7 @@ To check the previous seven days, `scripts/check_fire_weather_window.py` queried
 
 | Event | HTTP | Pages | Alerts |
 |---|---|---|---|
-| Small Craft Advisory (control) | 200 ×6 | 6 | 2,404, including Cancel and Update messages |
+| Small Craft Advisory (control) | 200 x6 | 6 | 2,404, including Cancel and Update messages |
 | Red Flag Warning | 200 | 1 | 0 |
 | Fire Weather Watch | 200 | 1 | 0 |
 
@@ -45,3 +45,13 @@ One manual exploratory request to `api.weather.gov`, made from the development w
 - It was a single request.
 - No repository file, script, workflow or saved artifact contains the address. A search of the repo, all worktrees and the saved request outputs on 2026-10-31 found none.
 - Every scripted request uses a project URL as its contact, for example `KampTrail fire-weather fixture capture (https://kamptrail.com)`.
+
+## NWS 503 recovery, 2026-11-17
+
+[Scheduled run 44126078179](https://github.com/prowebpromo/kamptrail/actions/runs/44126078179) exhausted the original three attempts against the active-alert endpoint with HTTP 503. A manual rerun also received HTTP 503. The original retry waits totaled only six seconds.
+
+The active-alert snapshot now gets six attempts with waits of 5, 10, 20, 40 and 60 seconds. Each request retains its 30-second timeout and 8 MB response limit. Zone fetches keep their original three-attempt budget with 2- and 4-second waits. Logs identify each failed request, attempt and retry delay. HTTP 408, 429 and 5xx responses can retry. Other HTTP errors fail immediately.
+
+A persistent outage still fails the capture. It never produces a successful zero-alert summary. The output format, event filters, zone cap and artifact policy are unchanged. This change improves recovery from brief service failures. It cannot make an unavailable NWS endpoint return data.
+
+Validation: `python -m unittest discover -s scripts/tests -p test_capture_fire_weather.py -v` passes 14 tests, including 503 recovery after the old retry limit, exhausted retries, permanent HTTP errors, transient errors, timeouts, response limits, distinct alert/zone budgets and no false zero-alert result. CI and live workflow verification are recorded in the pull request.
