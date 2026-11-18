@@ -582,8 +582,25 @@ def publish(api, manifest, raw, files, now, source_sha):
     projected = sum(entry['size'] for entry in assets.values()) + sum(len(data) for name, data in additions.items() if name not in assets)
     require(projected + len(raw) <= MAX_REMOTE_BYTES and len(set(assets) | set(additions) | set(POINTERS)) <= MAX_ASSETS, 'remote_quota')
     protected = {item[0]['snapshot_id'] for item in pointers.values()}
+    # A newly uploaded file can remain unavailable by its public filename after
+    # the short HTTP retries. Finish staging the generation, then retry only
+    # those reads before any pointer or idempotent-success decision.
+    pending_visibility = []
     for name, data in additions.items():
-        ensure_asset(api, release['id'], assets, name, data, allow_starter=sid not in protected, draft=draft)
+        try:
+            ensure_asset(api, release['id'], assets, name, data, allow_starter=sid not in protected, draft=draft)
+        except PublishError as error:
+            if draft or str(error) != 'public_asset_unavailable_404':
+                raise
+            pending_visibility.append(name)
+    if pending_visibility:
+        validate_manifest(raw, max(now, api.clock()))
+        print(f'Rechecking {len(pending_visibility)} forecast assets after public download returned 404.', file=sys.stderr)
+        api.sleep(30)
+        validate_manifest(raw, max(now, api.clock()))
+        for name in pending_visibility:
+            data = additions[name]
+            require(api.public(name, len(data)) == data, 'public_asset_verification_failed')
     validate_manifest(raw, max(now, api.clock()))
     if already_current and not draft:
         return {'snapshot_id': sid, 'status': 'unchanged', 'deleted_assets': deleted,

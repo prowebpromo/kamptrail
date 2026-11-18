@@ -239,6 +239,61 @@ class PublicationTests(unittest.TestCase):
         self.assertTrue(all(self.api.bodies[name] == self.old[1] for name in p.POINTERS))
         self.assertFalse(any(item[0] == 'DELETE' for item in self.api.log))
 
+    def test_delayed_public_files_are_verified_once_more_before_pointer_changes(self):
+        state = self.new[0]['states']['MN']['asset']
+        manifest = f'forecast-v1-{self.new[0]["snapshot_id"]}-manifest.json'
+        reads = {state: 0, manifest: 0}
+        original = self.api.public
+
+        def public(name, limit):
+            if name in reads:
+                reads[name] += 1
+                self.assertTrue(all(self.api.bodies[slot] == self.old[1] for slot in p.POINTERS))
+                if reads[name] == 1:
+                    raise p.PublishError('public_asset_unavailable_404')
+                self.assertIn(manifest, self.api.entries)
+            return original(name, limit)
+
+        self.api.public = public
+        self.assertEqual(self.publish()['status'], 'published')
+        self.assertEqual(reads, {state: 2, manifest: 2})
+        self.assertEqual(self.api.delays, [30])
+        for name in reads:
+            self.assertEqual(self.api.log.count(('UPLOAD', name)), 1)
+
+    def test_failed_public_readback_preserves_both_pointer_ids(self):
+        for outcome in ('missing', 'corrupt', 'forbidden', 'expired'):
+            with self.subTest(outcome=outcome):
+                api = self.api = FakeGitHub()
+                api.seed(self.old)
+                name = self.new[0]['states']['MN']['asset']
+                original = api.public
+                pointer_ids = [api.entries[slot]['id'] for slot in p.POINTERS]
+                reads = []
+
+                def public(asset_name, limit):
+                    if asset_name != name:
+                        return original(asset_name, limit)
+                    reads.append(asset_name)
+                    if outcome == 'forbidden':
+                        raise p.PublishError('public_asset_unavailable_403')
+                    if outcome == 'corrupt' and len(reads) == 2:
+                        return b'x' * len(self.new[2][name])
+                    raise p.PublishError('public_asset_unavailable_404')
+
+                api.public = public
+                if outcome == 'expired':
+                    api.sleep = lambda delay: setattr(api, 'now', NOW + 7200)
+                reasons = {'missing': 'public_asset_unavailable_404', 'corrupt': 'public_asset_verification_failed',
+                           'forbidden': 'public_asset_unavailable_403', 'expired': 'stale_forecast'}
+                with self.assertRaisesRegex(p.PublishError, reasons[outcome]):
+                    self.publish()
+                self.assertEqual(len(reads), 2 if outcome in ('missing', 'corrupt') else 1)
+                self.assertEqual([api.entries[slot]['id'] for slot in p.POINTERS], pointer_ids)
+                self.assertEqual(api.log.count(('UPLOAD', name)), 1)
+                if outcome == 'forbidden':
+                    self.assertEqual(api.delays, [])
+
     def test_pointer_upload_failure_leaves_other_valid_and_can_resume(self):
         self.api.fail_upload = 'current-a.json'
         with self.assertRaisesRegex(p.PublishError, 'simulated'):
