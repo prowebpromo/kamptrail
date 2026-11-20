@@ -11,11 +11,12 @@ const CAMPER_CACHE = `${PREFIX}camper-discovery-v1`;
 const ELEVATION_CACHE = `${PREFIX}elevation-v1`;
 const SERVICES_CACHE = `${PREFIX}services-v2`;
 const ROUTE_CACHE = `${PREFIX}routes-v1`;
+const PACKED_CACHE = `${PREFIX}fcc-packed-v1`;
 const COVERAGE_CACHE = `${PREFIX}fcc-tiles-v1`;
 const CLEARANCE_CACHE = `${PREFIX}clearance-v1`;
 const SHELL = [
   './','index.html','provider-config.json','locale.js','shell.js','consent-analytics.js','consent-controls.js','analytics-bootstrap.js','analytics-settings.js','beta.js','map-loader.js','app.js','app.css','data/places-us.json','manifest.json','brand-mark.svg','apple-touch-icon.png','favicon-32.png','icon-192.png','icon-512.png','icon-maskable-192.png','icon-maskable-512.png','og.png',
-  'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
+  'vendor/fcc-pmtiles/reader.js','vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
   'listing-history.js','data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','carrier-coverage.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','how-to.html','updates.html','tools.html','guides.html','plan.html','about.html','record-overrides.js','resources.css','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js'
@@ -27,7 +28,7 @@ self.addEventListener('install',event=>event.waitUntil((async()=>{
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
   const keys=await caches.keys();
-  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==LOCALE_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE && key!==SERVICES_CACHE && key!==COVERAGE_CACHE && key!==CLEARANCE_CACHE).map(key=>caches.delete(key)));
+  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==LOCALE_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE && key!==SERVICES_CACHE && key!==COVERAGE_CACHE && key!==PACKED_CACHE && key!==CLEARANCE_CACHE).map(key=>caches.delete(key)));
   await self.clients.claim();
 })()));
 self.addEventListener('fetch',event=>{

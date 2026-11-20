@@ -19,8 +19,14 @@
     const time = Date.parse(value + 'T00:00:00Z');
     return Number.isFinite(time) && new Date(time).toISOString().slice(0, 10) === value ? time : NaN;
   }
+  function validBounds(b) {
+    if (!Array.isArray(b) || b.length !== 4 || !b.every(Number.isFinite)) return false;
+    const [w,s,e,n] = b;
+    return -180 <= w && w < e && e <= 180 && -85.052 <= s && s < n && n <= 85.052;
+  }
+  function footprints(region) { return region.footprints || [region.bounds]; }
   function validManifest(m, now = Date.now()) {
-    if (!m || m.schema !== 1 || typeof m.release !== 'string' || !/^[a-z0-9][a-z0-9-]{0,63}$/.test(m.release)) return false;
+    if (!m || ![1,2].includes(m.schema) || typeof m.release !== 'string' || !/^[a-z0-9][a-z0-9-]{0,63}$/.test(m.release)) return false;
     const asOf = day(m.asOf), retrieved = day(m.retrievedAt);
     if (!(asOf <= retrieved && retrieved <= now) ||
         typeof m.technology !== 'string' || !m.technology.trim() || m.technology.length > 75 ||
@@ -34,12 +40,17 @@
       const areas = new Set();
       return carrier.regions.every(region => {
         if (!region || typeof region.id !== 'string' || !/^[A-Z]{2}(?:-[A-Za-z0-9]+)?$/.test(region.id) ||
-            areas.has(region.id) || !Array.isArray(region.bounds) || region.bounds.length !== 4 ||
-            !region.bounds.every(Number.isFinite)) return false;
+            areas.has(region.id)) return false;
+        const packed = region.archive !== undefined;
+        if (packed && (m.schema !== 2 || region.archive?.format !== 'pmtiles-v3' ||
+            !Number.isSafeInteger(region.archive.bytes) || region.archive.bytes < 127 ||
+            region.archive.bytes > 2 ** 40 || !/^[0-9a-f]{64}$/.test(region.archive.sha256))) return false;
+        if (!packed && !validBounds(region.bounds)) return false;
+        if (region.footprints && (!packed || !Array.isArray(region.footprints) ||
+            !region.footprints.length || region.footprints.length > 8 || !region.footprints.every(validBounds))) return false;
+        if (packed && !region.footprints && !validBounds(region.bounds)) return false;
         areas.add(region.id);
-        const [w,s,e,n] = region.bounds;
-        return -180 <= w && w < e && e <= 180 && -85.052 <= s && s < n && n <= 85.052 &&
-          Number.isInteger(region.minZoom) && Number.isInteger(region.maxZoom) &&
+        return Number.isInteger(region.minZoom) && Number.isInteger(region.maxZoom) &&
           region.minZoom >= 0 && region.minZoom <= region.maxZoom && region.maxZoom <= 19;
       });
     });
@@ -108,6 +119,28 @@
       if (priority.indexOf(state) > priority.indexOf(result)) result = state;
     }
     return result;
+  }
+  function archiveTiles(L, reader, options) {
+    const ArchiveLayer = L.TileLayer.extend({
+      createTile(coords, done) {
+        const image = document.createElement('img'), cancel = new AbortController();
+        image.alt = ''; image.role = 'presentation'; image.ktCancel = cancel;
+        reader().then(read => read(coords,cancel.signal)).then(blob => {
+          if (cancel.signal.aborted) return;
+          image.ktObjectURL = URL.createObjectURL(blob);
+          image.onload = () => { if (!cancel.signal.aborted) done(null,image); };
+          image.onerror = () => { if (!cancel.signal.aborted) done(Error('Coverage PNG unavailable'),image); };
+          image.src = image.ktObjectURL;
+        }).catch(() => { if (!cancel.signal.aborted) done(Error('Coverage tile unavailable'),image); });
+        return image;
+      }
+    });
+    const layer = new ArchiveLayer('',options);
+    layer.on('tileunload',({tile}) => {
+      tile.ktCancel?.abort(); tile.onload = tile.onerror = null;
+      if (tile.ktObjectURL) URL.revokeObjectURL(tile.ktObjectURL);
+    });
+    return layer;
   }
   function init(map, layerControl) {
     const doc = global.document, L = global.L;
@@ -195,21 +228,36 @@
       label.after(areaLabel);
       for (const region of carrier.regions) {
         areas.add(new Option(regionName(region), region.id));
-        const [w,s,e,n] = region.bounds;
-        const layer = L.tileLayer(tileTemplate(m, carrier, region), {
-          bounds:[[s,w],[n,e]], noWrap:true, minZoom:region.minZoom, maxNativeZoom:region.maxZoom,
-          maxZoom:19, opacity:0.55, updateWhenIdle:true, keepBuffer:0, className:'kt-coverage-tiles'
-        });
-        const tiles = new Map();
-        const key = e => [e.coords.z,e.coords.x,e.coords.y].join('/');
-        layer.on('tileloadstart', e => tiles.set(key(e), {state:'loading',image:e.tile}));
-        layer.on('tileload', e => {
-          tiles.set(key(e), {state:e.tile.naturalWidth === 256 && e.tile.naturalHeight === 256 ? 'ready' : 'unavailable',image:e.tile});
-          render();
-        });
-        layer.on('tileerror', e => { tiles.set(key(e), {state:'unavailable',image:e.tile}); render(); });
-        layer.on('tileunload', e => { if (tiles.get(key(e))?.image === e.tile) tiles.delete(key(e)); });
-        entries.push({region,tiles,layer}); layer.addTo(map);
+        let reader;
+        if (region.archive) {
+          const url = new URL(ROOT + [m.release,carrier.id,region.id+'.pmtiles'].join('/'),doc.baseURI);
+          url.searchParams.set('sha256',region.archive.sha256);
+          const moduleURL = new URL('vendor/fcc-pmtiles/reader.js',doc.baseURI).href;
+          // Start the lazy import only when Leaflet actually requests a visible tile.
+          let pending;
+          reader = () => {
+            pending ||= import(moduleURL).then(mod => mod.openCoverageArchive(url.href,region,new URL('./',doc.baseURI).href));
+            return pending;
+          };
+        }
+        for (const bounds of footprints(region)) {
+          const [w,s,e,n] = bounds;
+          const options = {
+            bounds:[[s,w],[n,e]], noWrap:true, minZoom:region.minZoom, maxNativeZoom:region.maxZoom,
+            maxZoom:19, opacity:0.55, updateWhenIdle:true, keepBuffer:0, className:'kt-coverage-tiles'
+          };
+          const layer = reader ? archiveTiles(L,reader,options) : L.tileLayer(tileTemplate(m,carrier,region),options);
+          const tiles = new Map();
+          const key = e => [e.coords.z,e.coords.x,e.coords.y].join('/');
+          layer.on('tileloadstart', e => tiles.set(key(e), {state:'loading',image:e.tile}));
+          layer.on('tileload', e => {
+            tiles.set(key(e), {state:e.tile.naturalWidth === 256 && e.tile.naturalHeight === 256 ? 'ready' : 'unavailable',image:e.tile});
+            render();
+          });
+          layer.on('tileerror', e => { tiles.set(key(e), {state:'unavailable',image:e.tile}); render(); });
+          layer.on('tileunload', e => { if (tiles.get(key(e))?.image === e.tile) tiles.delete(key(e)); });
+          entries.push({region:{...region,bounds},tiles,layer}); layer.addTo(map);
+        }
       }
       map.getContainer().append(mark);
       readout.hidden = false;

@@ -8,11 +8,37 @@ permissions:
   actions: read
 jobs:
   qualify:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
     steps:
-      - name: Verify upstream reader distribution
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14624603962'
+          run-id: '44728742813'
+          github-token: ${{ github.token }}
+          path: data/fcc-coverage
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14624298332'
+          run-id: '44727106921'
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/fcc-original-xyz
+          merge-multiple: true
+      - name: Install locked JavaScript tools
+        run: npm ci --no-audit --no-fund
+      - name: Compare all native RI PNGs and test mobile and desktop range rendering
+        env:
+          FCC_PACKED_DIR: data/fcc-coverage
+          FCC_XYZ_DIR: ${{ runner.temp }}/fcc-original-xyz
         run: |
-          npm view pmtiles@4.5.0 dist.integrity
-          npm view fflate@0.8.2 dist.integrity
-          npm view pmtiles@4.5.0 dependencies --json
+          node scripts/serve.js > "$RUNNER_TEMP/fcc-client-server.log" 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..30}; do if curl --silent --fail http://127.0.0.1:8765/data/fcc-coverage/manifest.json >/dev/null; then break; fi; sleep .2; done
+          node --test tests/carrier-coverage.test.js scripts/tests/fcc-packed-reader.test.mjs
+          node scripts/acceptance/fcc-packed-browser.cjs

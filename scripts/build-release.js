@@ -8,6 +8,9 @@ const files=['googled752656373e8ed52.html','consent-analytics.js','consent-contr
   require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/build-rest-policies.js')],{cwd:root,stdio:'inherit'});
   await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
   for(const file of files){await fs.mkdir(path.dirname(path.join(out,file)),{recursive:true});await fs.copyFile(path.join(root,file),path.join(out,file));}
+  await fs.mkdir(path.join(out,'vendor','fcc-pmtiles'), {recursive:true});
+  await fs.writeFile(path.join(out,'vendor','fcc-pmtiles','reader.js'),await require('./build-fcc-reader.js')());
+  await fs.copyFile(path.join(root,'integrations','fcc-pmtiles','LICENSES.txt'),path.join(out,'vendor','fcc-pmtiles','LICENSES.txt'));
   for(const dir of ['leaflet','markercluster'])await fs.cp(path.join(root,'vendor',dir),path.join(out,'vendor',dir),{recursive:true});
   await fs.cp(path.join(root,'media','how-to'),path.join(out,'media','how-to'),{recursive:true});
   await fs.mkdir(path.join(out,'data','campsites'),{recursive:true});
