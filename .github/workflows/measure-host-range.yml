@@ -1,0 +1,42 @@
+name: Check live static byte ranges
+on:
+  push:
+    branches: [measure/fcc-national-footprint]
+    paths: ['.github/workflows/measure-host-range.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Verify one public range response
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import urllib.error, urllib.request
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, *args, **kwargs):
+                  return None
+          asset = 'vendor/leaflet/leaflet.js'
+          source = Path(asset).read_bytes()
+          req = urllib.request.Request('https://kamptrail.com/' + asset, headers={'Range':'bytes=0-31','Accept-Encoding':'identity','User-Agent':'KampTrail static release check'})
+          try:
+              res = urllib.request.build_opener(NoRedirect()).open(req, timeout=30)
+          except urllib.error.HTTPError as error:
+              res=error
+          with res:
+              body=res.read(33)
+              print('url',res.geturl(),'status',res.status,'bodySampleBytes',len(body),'sourceBytes',len(source))
+              for key in ('Content-Range','Content-Encoding','Content-Length','Accept-Ranges','Cache-Control','Vary'):
+                  print(key,res.headers.get(key))
+              match=body==source[:32]
+              print('Matches first 32 source bytes:',match)
+              assert res.status==206 and res.headers.get('Content-Range')==f'bytes 0-31/{len(source)}'
+              assert res.headers.get('Content-Encoding','identity').lower()=='identity' and match
+          PY
