@@ -52,10 +52,21 @@ async function setCenter(page, p) {
     window.map.stop();
     window.map.setView([lat,lon],zoom,{animate:false,pan:{animate:false},zoom:{animate:false}});
   }, p);
-  await page.waitForFunction(({lon,lat,zoom}) => {
-    const c=map.getCenter(),a=map.project(c,zoom), b=map.project([lat,lon],zoom);
-    return map.getZoom()===zoom && Math.abs(a.x-b.x)<=1 && Math.abs(a.y-b.y)<=1;
-  },p,{timeout:8000});
+  await waitForMove(page,p,'source witness');
+}
+async function waitForMove(page, target, action) {
+  try {
+    await page.waitForFunction(({lon,lat,zoom})=>{
+      const actual=map.project(map.getCenter(),zoom), desired=map.project([lat,lon],zoom);
+      return map.getZoom()===zoom && !map._animatingZoom && !map._panAnim?._inProgress &&
+        Math.abs(actual.x-desired.x)<=1.1 && Math.abs(actual.y-desired.y)<=1.1;
+    },target,{timeout:12_000});
+  } catch(error) {
+    const current=await page.evaluate(()=>({center:map.getCenter(),zoom:map.getZoom(),moving:!!map._animatingZoom,
+      panning:!!map._panAnim?._inProgress,selected:document.querySelector('.kt-coverage-picker select')?.value,
+      readout:document.querySelector('#fcc-coverage-readout')?.textContent}));
+    throw Error('Map navigation mismatch '+JSON.stringify({action,target,current}),{cause:error});
+  }
 }
 async function assertStatus(page, value) {
   await page.waitForFunction(([selector,expected]) =>
@@ -148,7 +159,15 @@ async function upgrade(mode, manifest) {
       const areaWidget=page.getByRole('combobox',{name:'Published coverage area'});
       const availableRegions=await areaWidget.locator('option').evaluateAll(es=>es.map(e=>e.value).filter(Boolean).sort());
       assert.deepEqual(availableRegions,requiredRegions,'Published area choices');
+      const region=manifest.carriers.find(p=>p.id===carrier).regions.find(r=>r.id===c.region);
+      const intended=await page.evaluate(r=>{
+        const [w,s,e,n]=r.bounds,b=L.latLngBounds([s,w],[n,e]);
+        return {lat:(s+n)/2,lon:(e+w)/2,
+          zoom:Math.max(r.minZoom,Math.min(r.maxZoom,map.getBoundsZoom(b,false,[30,30])))};
+      },region);
       await areaWidget.selectOption(c.region);
+      await waitForMove(page,intended,'published area '+c.region);
+      console.error('Verified region navigation', mode,carrier,c.region,intended);
       await setCenter(page,c.witnesses.covered);
       const coveredResult = await page.locator('#fcc-coverage-readout').innerText();
       assert.match(coveredResult,/4G LTE/); assert.match(coveredResult,/outdoor stationary/i);
