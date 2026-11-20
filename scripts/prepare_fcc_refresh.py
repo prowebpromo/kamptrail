@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare the raw provider archives for the reviewed Rhode Island release."""
+"""Prepare the raw provider archives for the reviewed New York and Rhode Island release."""
 import argparse
 import datetime as dt
 import hashlib
@@ -11,7 +11,7 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-REGIONS = {"RI": "44"}
+REGIONS = {"NY": "36", "RI": "44"}
 PROVIDERS = {"att": ("130077", "AT&T"), "t-mobile": ("130403", "T-Mobile"),
              "verizon": ("131425", "Verizon")}
 BOUNDARY = "https://www2.census.gov/geo/tiger/TIGER2025/STATE/tl_2025_us_state.zip"
