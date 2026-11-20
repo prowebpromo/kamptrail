@@ -84,10 +84,21 @@ def run():
     if rows: print("Field names",sorted(rows[0]))
     ri=[r for r in rows if str(r.get("state_fips","")).zfill(2)=="44" or str(r.get("state_name","")).lower()=="rhode island"]
     print("RI provider listings",json.dumps([show(r) for r in ri if str(r.get("technology_code"))=="400"]),flush=True)
-    choices=[r for r in ri if str(r.get("technology_code"))=="400" and r.get("subcategory")=="Raw Coverage" and "verizon" in str(r.get("provider_name","")).lower()]
-    if len(choices)!=1:
-        raise SystemExit("No unambiguous RI Verizon raw LTE dataset.")
-    rid=int(choices[0]["file_id"])
+    raw=[r for r in rows if r.get("category")=="Provider" and r.get("subcategory")=="Raw Coverage" and str(r.get("technology_code"))=="400" and r.get("technology_type")=="Mobile Broadband"]
+    providers=["130077","130403","131425"]
+    target=[r for r in raw if str(r.get("provider_id")) in providers]
+    from collections import Counter
+    print("Nationwide raw LTE totals by provider", [(p,sum(1 for r in target if str(r["provider_id"])==p), sum(int(r["record_count"]) for r in target if str(r["provider_id"])==p)) for p in providers])
+    print("Carrier count by US state FIPS", dict(sorted(Counter(r["state_fips"] for r in target).items())),flush=True)
+    print("Most feature-heavy inputs", sorted([(int(r["record_count"]),r["provider_name"],r["state_fips"]) for r in target],reverse=True)[:6])
+    selections=[r for r in target if r["state_fips"]=="44"]
+    if len(selections)!=3 or {str(r["provider_id"]) for r in selections}!=set(providers):
+        raise SystemExit("Incomplete RI provider set.")
+    for row in selections:
+        inspect_archive(row,date)
+
+def inspect_archive(row,date):
+    rid=int(row["file_id"])
     with tempfile.TemporaryDirectory() as tmp:
         folder=Path(tmp)
         archive=folder / "fcc.zip"
@@ -100,7 +111,7 @@ def run():
                 if length>LIMIT: raise SystemExit("Archive exceeds verification limit.")
                 h.update(block)
                 f.write(block)
-        print("Archive validation", "file_id",rid,"filing",date,"bytes",length,"sha256",h.hexdigest(),flush=True)
+        print("Archive validation", "file_id",rid,"filing",date,"provider",row["provider_id"],"bytes",length,"sha256",h.hexdigest(),flush=True)
         with zipfile.ZipFile(archive) as z:
             infos=z.infolist()
             print("Archive inventory", [(i.filename,i.file_size) for i in infos[:20]])
