@@ -117,6 +117,18 @@
     const select = doc.createElement('select'), label = doc.createElement('label');
     label.className = 'kt-coverage-picker';
     label.append(t('FCC mobile coverage'), select);
+    const areas = doc.createElement('select'), areaLabel = doc.createElement('label');
+    areaLabel.className = 'kt-coverage-area';
+    areaLabel.append(t('Published coverage area'), areas);
+    areas.addEventListener('change', () => {
+      const region = entries.find(entry => entry.region.id === areas.value)?.region;
+      if (!region) return;
+      const [w,s,e,n] = region.bounds;
+      const bounds = L.latLngBounds([s,w],[n,e]);
+      const zoom = Math.max(region.minZoom, Math.min(region.maxZoom, map.getBoundsZoom(bounds, false, [30,30])));
+      map.setView(bounds.getCenter(), zoom);
+      areas.value = '';
+    });
     const details = doc.createElement('span'), legend = doc.createElement('span'), center = doc.createElement('span');
     center.setAttribute('role', 'status');
     const mark = doc.createElement('span');
@@ -131,8 +143,11 @@
     legend.className = 'kt-coverage-key';
     const source = doc.createElement('a');
     source.href = 'https://broadbandmap.fcc.gov/'; source.target = '_blank'; source.rel = 'noopener';
-    source.textContent = t('FCC National Broadband Map');
-    readout.replaceChildren(details, source, legend, center);
+    source.textContent = t('Map layer based on FCC BDC.');
+    source.title = t('FCC National Broadband Map');
+    const boundarySource = doc.createElement('span');
+    boundarySource.textContent = t('State boundaries: U.S. Census Bureau.');
+    readout.replaceChildren(details, source, boundarySource, legend, center);
     const canvas = doc.createElement('canvas');
     canvas.width = canvas.height = 1;
     let ctx, data, entries = [], generation = 0, storage;
@@ -164,9 +179,13 @@
       previous.forEach(entry => entry.layer.remove());
       mark.remove();
       readout.hidden = true;
+      areaLabel.remove();
       const m = data?.value, carrier = m?.carriers.find(c => c.id === select.value);
       if (!carrier) return;
+      areas.replaceChildren(new Option(t('Go to area…'), ''));
+      label.after(areaLabel);
       for (const region of carrier.regions) {
+        areas.add(new Option(region.id, region.id));
         const [w,s,e,n] = region.bounds;
         const layer = L.tileLayer(tileTemplate(m, carrier, region), {
           bounds:[[s,w],[n,e]], noWrap:true, minZoom:region.minZoom, maxNativeZoom:region.maxZoom,

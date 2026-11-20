@@ -496,7 +496,7 @@ body{height:auto;min-height:100%;padding:18px 16px 0;background:#eaf0e7}
 #kt-analytics-settings button:focus-visible,#kt-analytics-settings>summary:focus-visible{outline:3px solid #a86d00;outline-offset:3px}
 
 .kt-coverage-picker{border-top:1px solid #c4cdc6;margin-top:6px;padding-top:6px;gap:8px}
-.kt-coverage-picker select{min-height:36px}
+.kt-coverage-area{gap:8px}.kt-coverage-picker select,.kt-coverage-area select{min-height:36px}
 .kt-coverage-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:9px;height:9px;border:2px solid #fff;outline:1px solid #122b38;border-radius:50%;pointer-events:none;z-index:480}
 .kt-coverage-tiles{image-rendering:pixelated}
 #fcc-coverage-readout:not([hidden]){display:flex;align-items:center;flex-wrap:wrap;gap:4px 12px;padding:8px 12px;background:#f2f6f8;color:#183c4b;font-size:.88rem}

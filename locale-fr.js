@@ -2147,6 +2147,10 @@
   "Saved copy, not current.": "Copie enregistrée, non actualisée.",
   "Older filing, not current.": "Déclaration ancienne, non actualisée.",
   "Outdoor stationary": "À l’extérieur, en position fixe",
-  "{carrier} · {technology} · {environment} · FCC filing {date}.": "{carrier} · {technology} · {environment} · Données déclarées à la FCC au {date}."
+  "{carrier} · {technology} · {environment} · FCC filing {date}.": "{carrier} · {technology} · {environment} · Données déclarées à la FCC au {date}.",
+  "Published coverage area": "Zone de couverture publiée",
+  "Go to area…": "Aller à la zone…",
+  "Map layer based on FCC BDC.": "Couche cartographique fondée sur la collecte de données à haut débit de la FCC.",
+  "State boundaries: U.S. Census Bureau.": "Limites des États : Bureau du recensement des États-Unis."
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

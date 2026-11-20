@@ -33,5 +33,7 @@ test('published carrier maps load on selection, classify the center and preserve
   await select.selectOption('t-mobile'); await expect(out).toContainText('Map center: coverage tile unavailable.');
   await page.evaluate(()=>map.setView([37,-110],12,{animate:false}));
   await expect(out).toContainText('Map center: no published data here.');
+  await page.getByRole('combobox',{name:'Published coverage area'}).selectOption('RI');
+  await expect.poll(()=>page.evaluate(()=>map.getCenter().lng)).toBeCloseTo(-71.5,1);
   await select.selectOption(''); await expect(out).toBeHidden();
 });
