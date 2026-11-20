@@ -1,0 +1,18 @@
+name: Verify FCC packed tile reader
+on:
+  push:
+    branches: [prototype/fcc-pmtiles-client]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Verify upstream reader distribution
+        run: |
+          npm view pmtiles@4.5.0 dist.integrity
+          npm view fflate@0.8.2 dist.integrity
+          npm view pmtiles@4.5.0 dependencies --json
