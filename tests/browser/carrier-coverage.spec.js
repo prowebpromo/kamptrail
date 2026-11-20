@@ -28,6 +28,8 @@ test('published carrier maps load on selection, classify the center and preserve
   const select=page.getByRole('combobox',{name:'FCC mobile coverage'}), out=page.locator('#fcc-coverage-readout');
   await expect(select).toHaveValue(''); await expect(out).toBeHidden(); expect(carrierRequests).toEqual([]);
   await select.selectOption('att'); await expect(out).toContainText('Map center: modeled coverage.');
+  await expect(out).toContainText('Published areas: Rhode Island.');
+  await expect(out).toContainText('at least 5 Mbps down and 1 Mbps up. Signal inside your RV may differ.');
   await expect(out).toContainText('Older filing, not current.'); expect([...new Set(carrierRequests)]).toEqual(['att']);
   await select.selectOption('verizon'); await expect(out).toContainText('Map center: no modeled coverage.');
   await select.selectOption('t-mobile'); await expect(out).toContainText('Map center: coverage tile unavailable.');

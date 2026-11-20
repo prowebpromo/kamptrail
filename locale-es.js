@@ -2150,5 +2150,9 @@
   "Published coverage area": "Área de cobertura publicada",
   "Go to area…": "Ir al área…",
   "Map layer based on FCC BDC.": "Capa basada en la recopilación de datos de banda ancha de la FCC.",
-  "State boundaries: U.S. Census Bureau.": "Límites estatales: Oficina del Censo de EE. UU."
+  "State boundaries: U.S. Census Bureau.": "Límites estatales: Oficina del Censo de EE. UU.",
+  "Published areas: {areas}.": "Áreas publicadas: {areas}.",
+  "Published areas: {count}.": "Áreas publicadas: {count}.",
+  "Outdoor LTE model: at least 5 Mbps down and 1 Mbps up. Signal inside your RV may differ.": "Modelo LTE al aire libre: al menos 5 Mbps de descarga y 1 Mbps de subida. La señal dentro de tu vehículo recreativo puede variar.",
+  "Signal inside your RV may differ from this model.": "La señal dentro de tu vehículo recreativo puede diferir de este modelo."
 }};})(typeof window !== 'undefined' ? window : globalThis);

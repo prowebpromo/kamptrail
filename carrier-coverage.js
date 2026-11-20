@@ -148,6 +148,9 @@
     const boundarySource = doc.createElement('span');
     boundarySource.textContent = t('State boundaries: U.S. Census Bureau.');
     readout.replaceChildren(details, source, boundarySource, legend, center);
+    const scope = doc.createElement('span'), assumption = doc.createElement('span');
+    details.after(scope, assumption);
+    const regionName = region => global.KampTrailStateNames?.[region.id] || (region.id === 'DC' ? 'District of Columbia' : region.id);
     const canvas = doc.createElement('canvas');
     canvas.width = canvas.height = 1;
     let ctx, data, entries = [], generation = 0, storage;
@@ -182,10 +185,16 @@
       areaLabel.remove();
       const m = data?.value, carrier = m?.carriers.find(c => c.id === select.value);
       if (!carrier) return;
+      scope.textContent = carrier.regions.length <= 3
+        ? t('Published areas: {areas}.', {areas:carrier.regions.map(regionName).join(', ')})
+        : t('Published areas: {count}.', {count:carrier.regions.length});
+      assumption.textContent = /^4G LTE\b/i.test(m.technology) && /outdoor/i.test(m.environment)
+        ? t('Outdoor LTE model: at least 5 Mbps down and 1 Mbps up. Signal inside your RV may differ.')
+        : t('Signal inside your RV may differ from this model.');
       areas.replaceChildren(new Option(t('Go to area…'), ''));
       label.after(areaLabel);
       for (const region of carrier.regions) {
-        areas.add(new Option(region.id, region.id));
+        areas.add(new Option(regionName(region), region.id));
         const [w,s,e,n] = region.bounds;
         const layer = L.tileLayer(tileTemplate(m, carrier, region), {
           bounds:[[s,w],[n,e]], noWrap:true, minZoom:region.minZoom, maxNativeZoom:region.maxZoom,
