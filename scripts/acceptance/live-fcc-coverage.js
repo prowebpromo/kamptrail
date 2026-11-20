@@ -50,7 +50,10 @@ async function select(page, value) {
 async function setCenter(page, p) {
   await page.evaluate(({lon,lat,zoom}) => {
     window.map.stop();
-    window.map.setView([lat,lon],zoom,{animate:false,pan:{animate:false},zoom:{animate:false}});
+    window.map.setView([lat,lon],zoom,{animate:false,reset:true});
+    const actual=window.map.project(window.map.getCenter(),zoom).floor();
+    const expected=window.map.project([lat,lon],zoom).floor();
+    if(!actual.equals(expected)) throw Error('Coverage sample moved to another native pixel');
   }, p);
   await waitForMove(page,p,'source witness');
 }

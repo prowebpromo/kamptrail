@@ -1,7 +1,7 @@
 name: Preview real FCC tiles and old PWA upgrade
 on:
   push:
-    branches: [verify/fcc-carrier-acceptance]
+    branches: [verify/fcc-release-2490-native-center]
     paths: ['.github/workflows/fcc-preview-acceptance.yml','scripts/acceptance/fcc-preview-check.json']
 permissions:
   contents: read
