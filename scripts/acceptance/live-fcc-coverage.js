@@ -48,11 +48,44 @@ async function select(page, value) {
   await widget.selectOption(value);
 }
 async function setCenter(page, p) {
-  await page.evaluate(({lon,lat,zoom}) => window.map.setView([lat,lon],zoom,{animate:false}), p);
+  await page.evaluate(({lon,lat,zoom}) => {
+    window.map.stop();
+    window.map.setView([lat,lon],zoom,{animate:false,pan:{animate:false},zoom:{animate:false}});
+  }, p);
+  await page.waitForFunction(({lon,lat,zoom}) => {
+    const c=map.getCenter(),a=map.project(c,zoom), b=map.project([lat,lon],zoom);
+    return map.getZoom()===zoom && Math.abs(a.x-b.x)<=1 && Math.abs(a.y-b.y)<=1;
+  },p,{timeout:8000});
 }
 async function assertStatus(page, value) {
   await page.waitForFunction(([selector,expected]) =>
     document.querySelector(selector)?.textContent === expected,[status,expectedText[value]],{timeout:45_000});
+}
+async function combinedAt(page, manifest, carrier, witness) {
+  return page.evaluate(async ({manifest,carrier,w})=>{
+    const entries=[];
+    for(const r of manifest.carriers.find(c=>c.id===carrier).regions){
+      const [west,south,east,north]=r.bounds;
+      if(w.lon<west||w.lon>east||w.lat<south||w.lat>north) continue;
+      const z=Math.min(w.zoom,r.maxZoom), size=256*2**z, lat=w.lat*Math.PI/180;
+      const px=Math.floor((w.lon+180)/360*size),py=Math.floor((1-Math.asinh(Math.tan(lat))/Math.PI)/2*size);
+      const path=[manifest.release,carrier,r.id,z,Math.floor(px/256),Math.floor(py/256)+'.png'].join('/');
+      const response=await fetch(new URL('data/fcc-coverage/'+path,document.baseURI));
+      if(!response.ok) throw Error('Missing expected published tile: '+path);
+      const bmp=await createImageBitmap(await response.blob()),canvas=document.createElement('canvas');
+      canvas.width=canvas.height=1;
+      const cx=canvas.getContext('2d');
+      cx.drawImage(bmp,px%256,py%256,1,1,0,0,1,1);bmp.close();
+      const rgba=[...cx.getImageData(0,0,1,1).data];
+      let state='invalid';
+      if(rgba[3]===0) state='missing';
+      if(rgba.join(',')==='24,96,176,255') state='covered';
+      if(rgba.join(',')==='112,112,112,255') state='uncovered';
+      if(state==='invalid') throw Error('Unknown pixel palette '+path+' '+rgba);
+      entries.push({region:r.id,state,path});
+    }
+    return {entries,expected:entries.some(e=>e.state==='covered')?'covered':entries.some(e=>e.state==='uncovered')?'uncovered':'missing'};
+  },{manifest,carrier,w:witness});
 }
 async function storedIds(page) {
   return page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')).map(s=>s.id));
@@ -124,13 +157,22 @@ async function upgrade(mode, manifest) {
       assert.ok(coveredResult.includes(filing)||coveredResult.includes(manifest.asOf),'Correct FCC filing date for selected carrier');
       for(const [expected,w] of Object.entries(c.witnesses)) {
         await setCenter(page,w);
-        await assertStatus(page,expected);
+        const joint=await combinedAt(page,manifest,carrier,w);
+        const native=joint.entries.find(e=>e.region===c.region)?.state || 'missing';
+        assert.equal(native,expected,'Source witness no longer matches original region at '+JSON.stringify(w));
+        try { await assertStatus(page,joint.expected); }
+        catch(error) {
+          const ui=await page.evaluate(({selector,zoom})=>({status:document.querySelector(selector)?.textContent,
+            center:map.getCenter(),projectedCenter:map.project(map.getCenter(),zoom),zoom:map.getZoom(),
+            images:[...document.querySelectorAll('.kt-coverage-tiles img')].map(i=>[i.src,i.naturalWidth])}),{selector:status,zoom:w.zoom});
+          throw Error('Coverage disagreement '+JSON.stringify({mode,region:c.region,carrier,expected,w,joint,ui}),{cause:error});
+        }
         if(expected!=='missing') {
           const uri=endpoint('data/fcc-coverage/'+w.tile);
           await page.waitForFunction(href=>[...document.querySelectorAll('.kt-coverage-tiles img')]
             .some(img=>img.currentSrc===href&&img.complete&&img.naturalWidth===256),uri,{timeout:35_000});
         }
-        sampled.push([c.region,carrier,expected,w.lon,w.lat]);
+        sampled.push([c.region,carrier,expected,w.lon,w.lat,joint.expected,joint.entries.map(e=>[e.region,e.state])]);
       }
     }
     // Quebec City lies beyond both qualified U.S. state boundaries.
