@@ -1,6 +1,38 @@
 # FCC carrier coverage — access checkpoint
 
-Checked 2026-10-28. No carrier layer is shipped yet.
+## November 20, 2026
+
+The Public Map Data API accepted the existing account credentials on `https://broadbandmap.fcc.gov/api/public/map/`. Two GitHub Actions checks returned nine availability dates. The earlier 403 came from `bdc.fcc.gov`.
+
+- [Authenticated host comparison](https://github.com/prowebpromo/kamptrail/actions/runs/44724487961)
+- [Repeat on the corrected host](https://github.com/prowebpromo/kamptrail/actions/runs/44724791558)
+
+A [live state-file download](https://github.com/prowebpromo/kamptrail/actions/runs/44725420857) returned the June 30, 2026 Rhode Island 4G LTE GeoPackage (FCC file 1885503). It contains 37,248 WGS84 polygons with technology, minimum speeds, modeled environment and H3 cell ID. The statewide archive contains no provider ID. Carrier layers must use provider-specific records.
+
+The owner's [October 29 review of the FCC's License and Attribution notice](https://github.com/prowebpromo/kamptrail/blob/93d46ca5184a3a5562c2470b96c6c61670f9a3db/docs/FCC_COVERAGE_ACCESS.md) distinguished BDC availability data from the separately restricted CostQuest Location Fabric.
+
+The private worker in `scripts/fcc_download.py` supports `check`, `list` and `download` with the owner-only directory documented in [FCC credential entry](FCC_CREDENTIAL_ENTRY.md). Run `list` with `--as-of YYYY-MM-DD` first, then `download` with the same date and a `--file-id` from that catalog. The default catalog is `Provider`. Use `--category State` on both commands for state files. Each successful download writes a ZIP and a provenance record with its source URL, filing date, retrieval timestamp and SHA-256. The worker is excluded from the web release.
+
+## New York and Rhode Island mobile coverage
+
+KampTrail uses each carrier's raw mobile availability polygons and the 2025 Census TIGER/Line boundaries of the two published states. Outdoor stationary LTE includes FCC environment codes 0 and 1 with technology 400 and minimum speeds of 5 Mbps down and 1 Mbps up. The state boundary includes coastal waters. A gray pixel indicates no modeled LTE coverage at this map resolution inside the published area. Outside the published states, the result is unknown. Camper reports remain separate.
+
+| State | Carrier | FCC provider ID | FCC file ID | Source polygons |
+| --- | --- | --- | --- | ---: |
+| New York | AT&T | 130077 | 1890539 | 1,525,930 |
+| New York | T-Mobile | 130403 | 1890598 | 2,844 |
+| New York | Verizon | 131425 | 1890752 | 195,286 |
+| Rhode Island | AT&T | 130077 | 1890550 | 34,136 |
+| Rhode Island | T-Mobile | 130403 | 1890613 | 146 |
+| Rhode Island | Verizon | 131425 | 1890751 | 7,289 |
+
+All six files represent June 30, 2026. Source counts measure how providers divided their geometry and cannot be used to compare coverage area. The [archive verification](https://github.com/prowebpromo/kamptrail/actions/runs/44725966726) records the original hashes. The [first integrated qualification](https://github.com/prowebpromo/kamptrail/actions/runs/44727106921) built 60 viewport tiles and checked their classifications against the raw source and state boundary.
+
+The [New York build](https://github.com/prowebpromo/kamptrail/actions/runs/44727609435) rendered 1,710 tiles. The [two-state qualification](https://github.com/prowebpromo/kamptrail/actions/runs/44728454427) runs the same independent native-vector checks for all six carrier/state combinations.
+
+The latest manifest is served at `data/fcc-coverage/manifest.json`. Its region entries record the filing, source file, provider, archive hash, Census boundary and zoom range. The refresh runs monthly and retains the previous validated generation. A failed download, incomplete region or source mismatch prevents a new generation from replacing the existing one. Enlarge the reviewed geographic scope only after checking the new source against its state boundary and deployed capacity.
+
+## Historical checkpoint, October 28, 2026
 
 The FCC public map's download page returned Access Denied in this browser, including one reload. No attempt was made to evade that restriction. The documented public-data API requires an FCC user account. No FCC account/API credentials were available in this session, and redistribution/usage conditions for the intended mobile datasets have not been verified.
 

@@ -48,7 +48,7 @@ for (const viewport of [{width:1440,height:1000},{width:390,height:844}]) {
       expect((await new AxeBuilder({page}).include('.kt-home-hero').include('#beta-testing').include('#about-chuck').include('#beta-faq').analyze()).violations).toEqual([]);
       await page.locator('.kt-legal-nav').getByRole('link',{name:'What’s new',exact:true}).click();
       await expect(page.getByRole('heading', {name:'What’s new',exact:true})).toBeVisible();
-      await expect(page.getByRole('region', {name:'Current beta limitations'})).toContainText('Carrier coverage overlays are unavailable.');
+      await expect(page.getByRole('region', {name:'Current beta limitations'})).toContainText('outdoor 4G LTE in New York and Rhode Island.');
       await page.getByRole('link', {name:'Help test KampTrail',exact:true}).click();
       await expect(page.locator('#feedback-panel')).toBeVisible();await expect(page.locator('#beta-testing')).toBeHidden();
     });

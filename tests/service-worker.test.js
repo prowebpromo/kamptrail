@@ -1,7 +1,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
 function worker(fetcher) {
   const handlers={},stores=new Map();
-  const caches={async open(name){if(!stores.has(name))stores.set(name,new Map());const s=stores.get(name);return {async match(request){return s.get(typeof request==='string'?request:request.url)?.clone();},async put(request,response){s.set(typeof request==='string'?request:request.url,response.clone());},async addAll(){}};},async keys(){return [...stores.keys()];},async delete(key){return stores.delete(key);}};
+  const caches={async open(name){if(!stores.has(name))stores.set(name,new Map());const s=stores.get(name);return {async match(request){return s.get(typeof request==='string'?request:request.url)?.clone();},async put(request,response){s.set(typeof request==='string'?request:request.url,response.clone());},async keys(){return [...s.keys()].map(key=>new Request(key));},async delete(request){return s.delete(typeof request==='string'?request:request.url);},async addAll(){}};},async keys(){return [...stores.keys()];},async delete(key){return stores.delete(key);}};
   const context={URL,Response,Request,AbortSignal,caches,fetch:fetcher,self:{registration:{scope:'https://example.test/kamptrail/'},location:{origin:'https://example.test'},addEventListener:(event,handler)=>handlers[event]=handler,skipWaiting:async()=>{},clients:{claim:async()=>{}}}};
   vm.createContext(context);vm.runInContext(fs.readFileSync('service-worker.js','utf8'),context);
   return {handlers,stores,caches};
@@ -197,4 +197,27 @@ test('missing or stale safety module stops app initialization through the versio
   const window=Object.fromEntries(names.map(name=>[name,{version:current}]));assert.equal(vm.runInNewContext(expression,{window}),false);
   delete window.KampTrailSafety;assert.equal(vm.runInNewContext(expression,{window}),true);window.KampTrailSafety={version:'old'};assert.equal(vm.runInNewContext(expression,{window}),true);
   assert.match(source.slice(source.indexOf(line),source.indexOf('const dataDialog')),/return;/);
+});
+
+test('only versioned valid FCC tiles are cached and retained for offline use', async () => {
+  const base='https://example.test/kamptrail/data/fcc-coverage/';
+  const bytes=Buffer.alloc(33); [0x89504e47,0x0d0a1a0a,13,0x49484452,256,256].forEach((n,i)=>bytes.writeUInt32BE(n,i*4));
+  let online=true, calls=0;
+  const w=worker(async request=>{
+    ++calls;
+    if(!online)throw Error('offline');
+    if(request.url.endsWith('/9.png'))return new Response('upstream error',{status:404});
+    return new Response(bytes,{headers:{'Content-Type':request.url.endsWith('/7.png')?'text/html':'image/png'}});
+  });
+  const request=path=>{let response;w.handlers.fetch({request:new Request(base+path),respondWith:value=>response=value});return response;};
+  assert.equal(request('manifest.json'),undefined);
+  assert.equal(request('private/file.zip'),undefined);
+  const tile='2024-06-30-r1/att/RI/8/3/4.png';
+  assert.equal((await request(tile)).status,200);
+  assert.equal((await request(tile.replace('/4.png','/7.png'))).status,502);
+  assert.equal((await request(tile.replace('/4.png','/9.png'))).status,404);
+  online=false;
+  assert.deepEqual(Buffer.from(await (await request(tile)).arrayBuffer()),bytes);
+  assert.equal(calls,3);
+  assert.equal((await request(tile.replace('/4.png','/9.png'))).status,503);
 });

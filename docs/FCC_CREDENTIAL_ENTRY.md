@@ -18,8 +18,7 @@ root. It requires the pre-created owner-only directory, refuses symlinks/insecur
 permissions, writes a mode-600 temporary file and atomically replaces the target.
 Both required fields replace the existing pair together. The existing PHP/database
 configuration is unchanged. The page confirms only a successful private save;
-**saving is not an FCC authentication test**. Downloads and coverage rendering are
-separate work in draft PR #77.
+**saving is not an FCC authentication test**. See [FCC coverage access](FCC_COVERAGE_ACCESS.md) for the private downloader and the authenticated host check.
 
 CI's PHP integration test checks unauthenticated reads/writes, moderator session
 reuse, CSRF, origin, missing/invalid fields, no secret values in HTML, mode-600
