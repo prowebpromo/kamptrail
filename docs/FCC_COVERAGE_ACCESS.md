@@ -1,6 +1,19 @@
 # FCC carrier coverage — access checkpoint
 
-Checked 2026-10-28. No carrier layer is shipped yet.
+## November 20, 2026
+
+The Public Map Data API accepted the existing account credentials on `https://broadbandmap.fcc.gov/api/public/map/`. Two GitHub Actions checks returned nine availability dates. The earlier 403 came from `bdc.fcc.gov`.
+
+- [Authenticated host comparison](https://github.com/prowebpromo/kamptrail/actions/runs/44724487961)
+- [Repeat on the corrected host](https://github.com/prowebpromo/kamptrail/actions/runs/44724791558)
+
+A [live state-file download](https://github.com/prowebpromo/kamptrail/actions/runs/44725420857) returned the June 30, 2026 Rhode Island 4G LTE GeoPackage (FCC file 1885503). It contains 37,248 WGS84 polygons with technology, minimum speeds, modeled environment and H3 cell ID. The statewide archive contains no provider ID. Carrier layers must use provider-specific records.
+
+The owner's [October 29 review of the FCC's License and Attribution notice](https://github.com/prowebpromo/kamptrail/blob/93d46ca5184a3a5562c2470b96c6c61670f9a3db/docs/FCC_COVERAGE_ACCESS.md) distinguished BDC availability data from the separately restricted CostQuest Location Fabric.
+
+The private worker in `scripts/fcc_download.py` supports `check`, `list` and `download` with the owner-only directory documented in [FCC credential entry](FCC_CREDENTIAL_ENTRY.md). Run `list` with `--as-of YYYY-MM-DD` first, then `download` with the same date and a `--file-id` from that catalog. The default catalog is `Provider`. Use `--category State` on both commands for state files. Each successful download writes a ZIP and a provenance record with its source URL, filing date, retrieval timestamp and SHA-256. The worker is excluded from the web release.
+
+## Historical checkpoint, October 28, 2026
 
 The FCC public map's download page returned Access Denied in this browser, including one reload. No attempt was made to evade that restriction. The documented public-data API requires an FCC user account. No FCC account/API credentials were available in this session, and redistribution/usage conditions for the intended mobile datasets have not been verified.
 
