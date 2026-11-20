@@ -1,0 +1,137 @@
+name: Verify original national FCC qualification artifacts
+
+on:
+  push:
+    branches: ['verify/fcc-us-receipt-20261120']
+    paths: ['.github/workflows/verify-national-fcc-receipts.yml']
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  verify:
+    if: github.event.before == 'eb268acd0894aac2f5f49402f0579debd5f6beab'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out original data producer
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: producer
+          ref: a7899c4d6552f75fe79764c83bf01ae29f5f9453
+          persist-credentials: false
+      - name: Check out tested manifest assembler
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: assembler
+          ref: eb268acd0894aac2f5f49402f0579debd5f6beab
+          persist-credentials: false
+      - name: Download original fcc-catalog-plan
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: 44733379666
+          artifact-ids: 14628085574
+          merge-multiple: true
+          path: ${{ runner.temp }}/frozen-plan
+      - name: Download original fcc-packed-lane-0
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: 44733379666
+          artifact-ids: 14628942571
+          merge-multiple: true
+          path: ${{ runner.temp }}/lanes/fcc-packed-lane-0
+      - name: Download original fcc-packed-lane-3
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: 44733379666
+          artifact-ids: 14629727207
+          merge-multiple: true
+          path: ${{ runner.temp }}/lanes/fcc-packed-lane-3
+      - name: Download original fcc-packed-lane-2
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: 44733379666
+          artifact-ids: 14630027441
+          merge-multiple: true
+          path: ${{ runner.temp }}/lanes/fcc-packed-lane-2
+      - name: Download original fcc-packed-lane-1
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: 44733379666
+          artifact-ids: 14631570259
+          merge-multiple: true
+          path: ${{ runner.temp }}/lanes/fcc-packed-lane-1
+      - name: Revalidate the frozen plan with its exact original producer
+        working-directory: producer
+        env:
+          GITHUB_SHA_ORIGINAL: a7899c4d6552f75fe79764c83bf01ae29f5f9453
+        run: |
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA_ORIGINAL"
+          GITHUB_SHA="$GITHUB_SHA_ORIGINAL" PYTHONPATH=scripts python3 - "$RUNNER_TEMP/frozen-plan/plan.json" <<'PY'
+          from pathlib import Path
+          import sys
+          import qualify_fcc_national as q
+          plan = q.verify_plan(Path(sys.argv[1]))
+          assert plan["asOf"] == "2026-06-30" and plan["scope"] == "US"
+          assert len(plan["lanes"]) == 4 and sum(map(len, plan["lanes"])) == 152
+          assert {(m["region"], m["carrier"]) for m in plan["missing"]} == {("AK", "t-mobile")}
+          print("Verified original producer commit, all eight components, catalog plan and nationwide source inventory.")
+          PY
+      - name: Validate all source receipts and complete packed binary set
+        working-directory: assembler
+        run: |
+          test "$(git rev-parse HEAD)" = "eb268acd0894aac2f5f49402f0579debd5f6beab"
+          python3 -m unittest discover -s scripts/tests -p 'test_qualify_fcc_national.py'
+          PYTHONPATH=scripts python3 - "$RUNNER_TEMP" <<'PY'
+          from pathlib import Path
+          import collections, json, sys
+          import qualify_fcc_national as q
+          tmp = Path(sys.argv[1])
+          plan = q.read(tmp/"frozen-plan"/"plan.json")
+          out = tmp/"qualified"
+          q.assemble(plan, tmp/"lanes", out, tmp/"staged")
+          result = q.read(out/"qualification.json")
+          manifest = q.read(out/"manifest.json")
+          rows = result["shards"]
+          assert len(rows) == 152 and result["packedBytes"] == 149495162
+          staged = tmp/"staged"/manifest["release"]
+          for row in rows:
+              blob = staged/row["carrier"]/(row["region"] + ".pmtiles")
+              assert q.file_hash(blob) == row["pmtilesSHA256"]
+          checks = collections.Counter()
+          carriers = {}
+          for record in rows:
+              checks.update(record["spatial"]["matches"])
+              subtotal = carriers.setdefault(record["carrier"], {"archives":0,"bytes":0,"records":0})
+              subtotal["archives"] += 1
+              subtotal["bytes"] += record["pmtilesBytes"]
+              subtotal["records"] += record["records"]
+          summary = {
+              "release":result["release"], "archives":len(rows),
+              "statesAndDC":len({r["region"] for r in rows}), "asOf":result["asOf"],
+              "packedBytes":result["packedBytes"], "sourceZipBytes":sum(r["sourceBytes"] for r in rows),
+              "expandedSourceBytes":sum(r["expandedBytes"] for r in rows),
+              "records":sum(r["records"] for r in rows), "carriers":carriers,
+              "largestPacked":max((r["pmtilesBytes"],r["region"],r["carrier"]) for r in rows),
+              "largestSource":max((r["sourceBytes"],r["region"],r["carrier"]) for r in rows),
+              "minimumRecordedFreeBytes":min(r["freeBytesWithQualifiedSource"] for r in rows),
+              "independentNativePixelMatches":dict(checks), "absent":result["explicitlyMissing"],
+              "manifestBytes":(out/"manifest.json").stat().st_size, "originalDataRun":44733379666,
+              "producerCommit":"a7899c4d6552f75fe79764c83bf01ae29f5f9453", "assemblerCommit":"eb268acd0894aac2f5f49402f0579debd5f6beab"
+          }
+          q.write(out/"summary.json",summary)
+          print("NATIONAL-CAPACITY "+json.dumps(summary, sort_keys=True))
+          PY
+      - name: Retain compact verified manifest, qualification receipts and capacity report
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: verified-national-fcc-manifest
+          path: ${{ runner.temp }}/qualified
+          if-no-files-found: error
+          retention-days: 14
