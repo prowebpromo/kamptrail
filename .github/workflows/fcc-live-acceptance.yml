@@ -50,9 +50,8 @@ jobs:
           CHROMIUM_PATH: /usr/bin/google-chrome
           EXPECTED_SHA: ${{ steps.pins.outputs.commit }}
         run: |
-          mapfile -t reports < <(find qualified -name 'acceptance.json')
-          test "${#reports[@]}" -eq 1
-          node scripts/acceptance/live-fcc-coverage.js "${reports[0]}" | tee live-fcc-coverage.json
+          test -s qualified/fcc-acceptance.json
+          node scripts/acceptance/live-fcc-coverage.js qualified/fcc-acceptance.json | tee live-fcc-coverage.json
           jq -e '.result=="PASS"' live-fcc-coverage.json
       - if: steps.pins.outputs.check != ''
         uses: actions/upload-artifact@v7.0.2
