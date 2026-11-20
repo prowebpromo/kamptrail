@@ -1,26 +1,9 @@
-# Prototype-only: this dispatch entry reuses a path registered on main. Never merge
-# this file over the production FCC publisher. Every job below has read access only.
-name: Qualify national FCC carrier archives
+# A single reviewed fast-forward qualifies all US states and DC. This workflow
+# never deploys or requests repository write permission.
+name: One-time US FCC carrier coverage qualification
 on:
-  workflow_call:
-    inputs:
-      scope:
-        required: true
-        type: string
-    secrets:
-      FCC_USERNAME:
-        required: true
-      FCC_TOKEN:
-        required: true
-  workflow_dispatch:
-    inputs:
-      scope:
-        description: 'One uppercase state abbreviation (or DC). US explicitly qualifies all 50 states and DC.'
-        type: string
-        default: 'NY'
-        required: true
   push:
-    branches: [trial/fcc-national-ak]
+    branches: [once/fcc-national-20261120]
 
 permissions:
   contents: read
@@ -31,7 +14,7 @@ concurrency:
 
 jobs:
   plan:
-    if: github.repository == 'prowebpromo/kamptrail' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/work/fcc-national-qualification') || (github.event_name == 'push' && github.ref == 'refs/heads/trial/fcc-national-ak'))
+    if: github.repository == 'prowebpromo/kamptrail' && github.event_name == 'push' && github.ref == 'refs/heads/once/fcc-national-20261120' && github.event.before == '0bb50cf74cee3ed25a8f09e201591f1d851f1cdb'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     outputs:
@@ -39,7 +22,12 @@ jobs:
       artifact: ${{ steps.artifact.outputs.artifact-id }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with: {persist-credentials: false}
+        with: {persist-credentials: false, fetch-depth: 2}
+      - name: Verify all qualification source bytes against the approved commit
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD^)" = "0bb50cf74cee3ed25a8f09e201591f1d851f1cdb"
+          test -z "$(git diff --name-only HEAD^ HEAD -- scripts)"
       - run: |
           sudo apt-get -qq update
           sudo apt-get -qq install --no-install-recommends python3-fiona
@@ -47,8 +35,7 @@ jobs:
       - name: Freeze one filing, provider catalog, Census boundary and fair worker slots
         id: plan
         env:
-          # Push cannot choose the US bulk path.
-          SCOPE: ${{ github.event_name == 'workflow_dispatch' && inputs.scope || 'AK' }}
+          SCOPE: US
           FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
           FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
         run: /usr/bin/python3 scripts/qualify_fcc_national.py plan --scope "$SCOPE" --output "$RUNNER_TEMP/fcc-plan"
@@ -118,6 +105,20 @@ jobs:
           path: ${{ runner.temp }}/lanes${{ needs.plan.outputs.lanes == '[0]' && '/fcc-packed-lane-0' || '' }}
       - name: Verify every expected archive and record missing catalog pairs
         run: python3 scripts/qualify_fcc_national.py assemble --plan "$RUNNER_TEMP/fcc-plan/plan.json" --lanes "$RUNNER_TEMP/lanes" --output "$RUNNER_TEMP/qualified"
+      - name: Record nationwide coverage, capacity and source evidence
+        shell: bash
+        run: |
+          python3 - "$RUNNER_TEMP/qualified/qualification.json" <<'PY'
+          import json, sys
+          q=json.load(open(sys.argv[1]))
+          rows=q["shards"]
+          summary={"release":q["release"],"scope":q["scope"],"archives":len(rows),"statesAndDC":len({r["region"] for r in rows}),"nativeRecords":sum(r["records"] for r in rows),"packedBytes":q["packedBytes"],"sourceZipBytes":sum(r["sourceBytes"] for r in rows),"largestPacked":max((r["pmtilesBytes"],r["region"],r["carrier"]) for r in rows),"largestRaw":max((r["sourceBytes"],r["region"],r["carrier"]) for r in rows),"absent":q["explicitlyMissing"],"statesByCarrier":{c:sum(r["carrier"]==c for r in rows) for c in sorted({r["carrier"] for r in rows})}}
+          matches={}
+          for row in rows:
+              for category,count in row["spatial"]["matches"].items(): matches[category]=matches.get(category,0)+count
+          summary["independentNativePixelChecks"]=matches
+          print("NATIONAL-CAPACITY "+json.dumps(summary,sort_keys=True))
+          PY
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: fcc-national-qualification
