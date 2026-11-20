@@ -146,6 +146,7 @@
     let serviceTimer;
     map.on('moveend',()=>{st.serviceAbort?.abort();++st.serviceSequence;clearTimeout(serviceTimer);serviceTimer=setTimeout(()=>loadServices(),180);});
     const control = L.control.layers(Object.fromEntries(Object.entries(bases).map(([name,layer])=>[t(name),layer])), Object.fromEntries(Object.entries(st.overlays).map(([name,layer])=>[t(name),layer])), {position: 'topright', collapsed: true}).addTo(map);
+    window.KampTrailCoverage?.init(map, control);
     const container = control.getContainer();
     // Visual and keyboard order agree; hiding later panels never moves this picker.
     const corner = container.parentNode;
@@ -174,5 +175,5 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.48.0', init, openSpot, loadServices, showRestAreas:()=>{const l=st.overlays['Official rest areas'];if(st.map&&l&&!st.map.hasLayer(l))l.addTo(st.map);}, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  window.KampTrailLayers = {version: '2.49.0', init, openSpot, loadServices, showRestAreas:()=>{const l=st.overlays['Official rest areas'];if(st.map&&l&&!st.map.hasLayer(l))l.addTo(st.map);}, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();
