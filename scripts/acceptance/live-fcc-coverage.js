@@ -109,8 +109,8 @@ async function upgrade(mode, manifest) {
       const coveredResult = await page.locator('#fcc-coverage-readout').innerText();
       assert.match(coveredResult,/4G LTE/); assert.match(coveredResult,/outdoor stationary/i);
       assert.equal(await page.locator('#fcc-coverage-readout a').getAttribute('href'),'https://broadbandmap.fcc.gov/');
-      const imagePeriod=manifest.asOf.split('-')[0];
-      assert.ok(coveredResult.includes(imagePeriod));
+      const filing = new Date(manifest.asOf+'T00:00:00Z').toLocaleDateString('en-US',{timeZone:'UTC'});
+      assert.ok(coveredResult.includes(filing)||coveredResult.includes(manifest.asOf),'Correct FCC filing date for selected carrier');
       for(const [expected,w] of Object.entries(c.witnesses)) {
         await setCenter(page,w);
         await assertStatus(page,expected);
@@ -135,7 +135,8 @@ async function upgrade(mode, manifest) {
     await assertStatus(page,'covered');
     const offline=await page.locator('#fcc-coverage-readout').innerText();
     assert.match(offline,/Offline copy, not current\./);
-    assert.ok(offline.includes(manifest.asOf.slice(0,4)));
+    const filing = new Date(manifest.asOf+'T00:00:00Z').toLocaleDateString('en-US',{timeZone:'UTC'});
+    assert.ok(offline.includes(filing)||offline.includes(manifest.asOf),'Correct filing date remains visible offline');
     assert.deepEqual(await storedIds(page),previous.storedIds);
     await context.setOffline(false);
     return {mode,previousRelease:previous.source_commit,savedIds:previous.storedIds,
@@ -190,6 +191,6 @@ async function failureCases(manifest) {
   const controlledFailureCases=await failureCases(manifest);
   await checkRelease();
   assert.equal((await getJSON('data/fcc-coverage/manifest.json')).release,manifest.release);
-  const result={result:'PASS',release,dataRelease:manifest.release,filingDate:manifest.asOf,assets,runs,controlledFailureCases};
+  const result={result:'PASS',release,dataRelease:manifest.release,filingDate:manifest.asOf,sourceChecks:report.checks,assets,runs,controlledFailureCases};
   console.log(JSON.stringify(result,null,2));
 })().catch(e=>{console.error(e);process.exitCode=1;});
