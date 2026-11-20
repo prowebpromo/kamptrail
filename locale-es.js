@@ -2129,5 +2129,22 @@
   "National clearance data unavailable; outside Rhode Island this view is unknown.": "Datos nacionales de gálibo no disponibles; fuera de Rhode Island esta vista es desconocida.",
   "{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown.": "{count} candidatos de gálibo en la vista: {conflicts} en conflicto con la altura de tu vehículo, {unresolved} por verificar o desconocidos.",
   "{count} visitor reports.": "{count} informes de visitantes.",
-  "First {count} visitor reports; more are not shown.": "Primeros {count} informes de visitantes; hay más que no se muestran."
+  "First {count} visitor reports; more are not shown.": "Primeros {count} informes de visitantes; hay más que no se muestran.",
+  "FCC mobile coverage": "Cobertura móvil de la FCC",
+  "FCC National Broadband Map": "Mapa Nacional de Banda Ancha de la FCC",
+  "Modeled coverage": "Cobertura modelada",
+  "No modeled coverage": "Sin cobertura modelada",
+  "No data": "Sin datos",
+  "Off": "Desactivada",
+  "Map center: modeled coverage.": "Centro del mapa: cobertura modelada.",
+  "Map center: no modeled coverage.": "Centro del mapa: sin cobertura modelada.",
+  "Map center: no published data here.": "Centro del mapa: no hay datos publicados en este punto.",
+  "Map center: coverage tile unavailable.": "Centro del mapa: el mapa de cobertura no está disponible en este punto.",
+  "Loading coverage at the map center…": "Cargando la cobertura en el centro del mapa…",
+  "Zoom in to see coverage at the map center.": "Acerca el mapa para ver la cobertura en el centro.",
+  "Offline copy, not current.": "Copia sin conexión, sin actualizar.",
+  "Saved copy, not current.": "Copia guardada, sin actualizar.",
+  "Older filing, not current.": "Informe antiguo, sin actualizar.",
+  "Outdoor stationary": "Al aire libre, en un punto fijo",
+  "{carrier} · {technology} · {environment} · FCC filing {date}.": "{carrier} · {technology} · {environment} · Datos declarados a la FCC el {date}."
 }};})(typeof window !== 'undefined' ? window : globalThis);

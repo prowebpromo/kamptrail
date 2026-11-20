@@ -146,6 +146,7 @@
     let serviceTimer;
     map.on('moveend',()=>{st.serviceAbort?.abort();++st.serviceSequence;clearTimeout(serviceTimer);serviceTimer=setTimeout(()=>loadServices(),180);});
     const control = L.control.layers(Object.fromEntries(Object.entries(bases).map(([name,layer])=>[t(name),layer])), Object.fromEntries(Object.entries(st.overlays).map(([name,layer])=>[t(name),layer])), {position: 'topright', collapsed: true}).addTo(map);
+    window.KampTrailCoverage?.init(map, control);
     const container = control.getContainer();
     // Visual and keyboard order agree; hiding later panels never moves this picker.
     const corner = container.parentNode;
