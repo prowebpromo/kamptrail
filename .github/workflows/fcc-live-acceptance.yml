@@ -1,0 +1,61 @@
+name: Verify live FCC coverage and saved sessions
+on:
+  push:
+    branches: [verify/fcc-carrier-acceptance]
+    paths: ['.github/workflows/fcc-live-acceptance.yml','scripts/acceptance/fcc-release-check.json']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - id: pins
+        run: |
+          config=scripts/acceptance/fcc-release-check.json
+          echo "baseline=$(jq -er '.baselineRun' "$config")" >> "$GITHUB_OUTPUT"
+          echo "check=$(jq -r '.checkRun // ""' "$config")" >> "$GITHUB_OUTPUT"
+          echo "name=$(jq -r '.checkArtifact // ""' "$config")" >> "$GITHUB_OUTPUT"
+          echo "commit=$(jq -r '.expectedCommit // ""' "$config")" >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v5
+        with:
+          name: fcc-upgrade-baseline
+          run-id: ${{ steps.pins.outputs.baseline }}
+          github-token: ${{ github.token }}
+          path: baseline
+      - run: |
+          mkdir fcc-profiles
+          tar -xzf baseline/fcc-upgrade-baseline.tar.gz -C fcc-profiles
+      - if: steps.pins.outputs.check == ''
+        env:
+          CHROMIUM_PATH: /usr/bin/google-chrome
+          BASELINE_ONLY: '1'
+        run: node scripts/acceptance/live-fcc-coverage.js
+      - if: steps.pins.outputs.check != ''
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ steps.pins.outputs.name }}
+          run-id: ${{ steps.pins.outputs.check }}
+          github-token: ${{ github.token }}
+          path: qualified
+      - if: steps.pins.outputs.check != ''
+        env:
+          CHROMIUM_PATH: /usr/bin/google-chrome
+          EXPECTED_SHA: ${{ steps.pins.outputs.commit }}
+        run: |
+          mapfile -t reports < <(find qualified -name 'acceptance.json')
+          test "${#reports[@]}" -eq 1
+          node scripts/acceptance/live-fcc-coverage.js "${reports[0]}" | tee live-fcc-coverage.json
+          jq -e '.result=="PASS"' live-fcc-coverage.json
+      - if: steps.pins.outputs.check != ''
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: live-fcc-coverage
+          path: live-fcc-coverage.json
