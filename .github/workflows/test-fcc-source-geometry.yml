@@ -1,0 +1,17 @@
+name: Test FCC source geometry at the antimeridian
+on:
+  push:
+    branches: [prototype/fcc-national-geometry-qa]
+    paths: ['.github/workflows/test-fcc-source-geometry.yml','scripts/acceptance/check-fcc-tiles.py','scripts/tests/test_fcc_source_acceptance.py']
+permissions:
+  contents: read
+jobs:
+  geometry:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends python3-fiona python3-shapely python3-pyproj python3-pil
+          /usr/bin/python3 -m unittest discover -s scripts/tests -p test_fcc_source_acceptance.py -v
