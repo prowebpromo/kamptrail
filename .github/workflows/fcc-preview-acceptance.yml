@@ -19,6 +19,7 @@ jobs:
           echo "candidate=$(jq -er '.candidate' "$config")" >> "$GITHUB_OUTPUT"
           echo "check=$(jq -er '.checkRun' "$config")" >> "$GITHUB_OUTPUT"
           echo "attempt=$(jq -er '.attempt' "$config")" >> "$GITHUB_OUTPUT"
+          echo "regions=$(jq -r '.regions // "RI"' "$config")" >> "$GITHUB_OUTPUT"
       - if: steps.pins.outputs.candidate != ''
         uses: actions/checkout@v7.0.1
         with:
@@ -62,6 +63,7 @@ jobs:
         env:
           EXPECTED_SHA: ${{ steps.pins.outputs.candidate }}
           CHROMIUM_PATH: /usr/bin/google-chrome
+          EXPECTED_REGIONS: ${{ steps.pins.outputs.regions }}
           BASE: http://127.0.0.1:8765
         run: |
           test "$(git -C candidate rev-parse HEAD)" = "$EXPECTED_SHA"
