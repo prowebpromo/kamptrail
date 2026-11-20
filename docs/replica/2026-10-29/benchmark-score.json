@@ -1,0 +1,334 @@
+{
+  "feature_score": 80.8,
+  "counted": 59,
+  "must_have_done": 13,
+  "must_have_total": 13,
+  "by_area": [
+    {
+      "area": "other",
+      "score": 25.0,
+      "features": 2
+    },
+    {
+      "area": "amenities",
+      "score": 57.1,
+      "features": 4
+    },
+    {
+      "area": "filters",
+      "score": 62.5,
+      "features": 10
+    },
+    {
+      "area": "layers",
+      "score": 72.7,
+      "features": 7
+    },
+    {
+      "area": "ugc",
+      "score": 77.8,
+      "features": 6
+    },
+    {
+      "area": "trips",
+      "score": 82.4,
+      "features": 9
+    },
+    {
+      "area": "place",
+      "score": 90.0,
+      "features": 10
+    },
+    {
+      "area": "map",
+      "score": 100.0,
+      "features": 8
+    },
+    {
+      "area": "offline",
+      "score": 100.0,
+      "features": 3
+    }
+  ],
+  "missing": [
+    {
+      "feature": "Cell carrier coverage overlay",
+      "area": "layers",
+      "priority": "should",
+      "clone": "no",
+      "notes": "No public overlay. Private credential intake deployed; server authentication/access denied; FCC support request submitted. Real download, geometry validation and publication remain unfinished."
+    },
+    {
+      "feature": "Overnight parking places (Walmart truck stops rest areas)",
+      "area": "amenities",
+      "priority": "should",
+      "clone": "partial",
+      "notes": "Type filter exists; few records"
+    },
+    {
+      "feature": "Place detail: amenities list",
+      "area": "place",
+      "priority": "should",
+      "clone": "partial",
+      "notes": "Shown when source reports them"
+    },
+    {
+      "feature": "Laundry showers groceries gas facilities",
+      "area": "amenities",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Not in current POI data"
+    },
+    {
+      "feature": "Low clearance hazards",
+      "area": "amenities",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Needs clearance dataset"
+    },
+    {
+      "feature": "Filter by cell signal",
+      "area": "filters",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Needs coverage data"
+    },
+    {
+      "feature": "Filter by crowds noise shade safety",
+      "area": "filters",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Moderation backend exists. These structured fields, aggregates and discovery workflows are not implemented; text reviews do not satisfy this row."
+    },
+    {
+      "feature": "Filter by elevation",
+      "area": "filters",
+      "priority": "could",
+      "clone": "no",
+      "notes": ""
+    },
+    {
+      "feature": "Filter by minimum rating",
+      "area": "filters",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Live filter panel has no rating control. Published popup averages are not integrated into the discovery index."
+    },
+    {
+      "feature": "Filter by road difficulty",
+      "area": "filters",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Internal filter property exists, but the live panel has no control and adequate approach-road difficulty evidence is absent. MVUM designation is not difficulty."
+    },
+    {
+      "feature": "Filter by weather forecast",
+      "area": "filters",
+      "priority": "could",
+      "clone": "no",
+      "notes": ""
+    },
+    {
+      "feature": "Fire weather and smoke layers",
+      "area": "layers",
+      "priority": "could",
+      "clone": "no",
+      "notes": "NOAA smoke/fire tiles possible"
+    },
+    {
+      "feature": "Multi-language (es fr)",
+      "area": "other",
+      "priority": "could",
+      "clone": "no",
+      "notes": ""
+    },
+    {
+      "feature": "Place detail: seasonal sub-scores",
+      "area": "place",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Moderation backend exists. These structured fields, aggregates and discovery workflows are not implemented; text reviews do not satisfy this row."
+    },
+    {
+      "feature": "Rig profile",
+      "area": "trips",
+      "priority": "could",
+      "clone": "no",
+      "notes": ""
+    },
+    {
+      "feature": "Route elevation chart",
+      "area": "trips",
+      "priority": "could",
+      "clone": "no",
+      "notes": ""
+    },
+    {
+      "feature": "Route settings rig height avoid highways",
+      "area": "trips",
+      "priority": "could",
+      "clone": "no",
+      "notes": ""
+    },
+    {
+      "feature": "Overnight allowed voting",
+      "area": "ugc",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Moderation backend exists. These structured fields, aggregates and discovery workflows are not implemented; text reviews do not satisfy this row."
+    },
+    {
+      "feature": "Review sub-scores and cell signal reports",
+      "area": "ugc",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Moderation backend exists. These structured fields, aggregates and discovery workflows are not implemented; text reviews do not satisfy this row."
+    },
+    {
+      "feature": "Leave No Trace / respect the land guidance",
+      "area": "other",
+      "priority": "could",
+      "clone": "partial",
+      "notes": "Agency stay-limit and land rules in spot check"
+    }
+  ],
+  "skipped": [
+    {
+      "feature": "Turn-by-turn navigation",
+      "area": "trips",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Native app only in original; hand off to Google/Apple Maps"
+    },
+    {
+      "feature": "Accounts and profiles",
+      "area": "social",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "No-account design is a deliberate choice"
+    },
+    {
+      "feature": "Friends DMs groups forum events",
+      "area": "social",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "A deliberate scope exclusion. A new community can be built; the original community, accounts and content cannot be transferred without authorization."
+    },
+    {
+      "feature": "Notifications",
+      "area": "social",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Tied to social features"
+    },
+    {
+      "feature": "Donations and partners",
+      "area": "other",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Business model item not a user feature"
+    },
+    {
+      "feature": "Product guides and backpack",
+      "area": "other",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Affiliate content belongs on Boondock or Bust"
+    }
+  ],
+  "extras": [
+    {
+      "feature": "Export / import trip (GPX)",
+      "area": "trips",
+      "priority": "could",
+      "clone": "yes",
+      "notes": "Export waypoints+route, import waypoints and tracks"
+    },
+    {
+      "feature": "Offline map tile download",
+      "area": "offline",
+      "priority": "could",
+      "clone": "yes",
+      "notes": "Saved USGS Topo areas exist. New deployment retains offline tests. Original download implementation not established, so this row remains excluded from the frozen parity scope."
+    },
+    {
+      "feature": "About the data / transparency",
+      "area": "other",
+      "priority": "could",
+      "clone": "yes",
+      "notes": "2.4.2 corrected source feeds, water, offline imagery and domain migration guidance; excluded quality goal."
+    },
+    {
+      "feature": "Land manager lookup with agency stay-limit guidance",
+      "area": "layers",
+      "priority": "should",
+      "clone": "yes",
+      "notes": "No claim of exclusive FreeRoam gap: archived user feedback also describes map-point manager lookup. Additional agency-rule presentation is the KampTrail-specific part."
+    },
+    {
+      "feature": "Fee status with source wording (free, conditional, paid, unknown)",
+      "area": "filters",
+      "priority": "should",
+      "clone": "yes",
+      "notes": "USFS and BLM fee descriptions, OSM fee tags, RIDB fee text"
+    },
+    {
+      "feature": "Fee context and negation safeguards",
+      "area": "quality",
+      "priority": "must",
+      "clone": "yes",
+      "notes": "2.4.2 camping-fee context, negation and ancillary-service regressions; excluded quality goal, not an original-feature absence claim."
+    },
+    {
+      "feature": "Joint site suitability evidence",
+      "area": "quality",
+      "priority": "must",
+      "clone": "yes",
+      "notes": "2.4.2 joint length/equipment/hookup signatures, reused by route discovery; excluded quality goal."
+    },
+    {
+      "feature": "Per-source freshness and degraded refresh status",
+      "area": "operations",
+      "priority": "should",
+      "clone": "yes",
+      "notes": "Source/state attempt and last-success outcomes feed the About freshness table; all-failed runs are visibly degraded; excluded quality goal."
+    },
+    {
+      "feature": "Account-light correction status for campers",
+      "area": "quality",
+      "priority": "should",
+      "clone": "yes",
+      "notes": "First-party proposal, moderation, status lookup and audit history; excluded quality goal."
+    },
+    {
+      "feature": "MVUM coverage gaps and seasonal source context",
+      "area": "access",
+      "priority": "should",
+      "clone": "yes",
+      "notes": "Unit coverage and entry date, vehicle/season fields, source links and dated cached-view fallback; excluded quality goal."
+    },
+    {
+      "feature": "Predicted versus observed carrier evidence",
+      "area": "connectivity",
+      "priority": "should",
+      "clone": "no",
+      "notes": "No modeled coverage or structured camper signal observations published; FCC access denied. Separate predictions and observations in future work."
+    },
+    {
+      "feature": "Domain migration and portable saved-stop guidance",
+      "area": "operations",
+      "priority": "should",
+      "clone": "yes",
+      "notes": "Origin-specific GPX migration guidance and fresh offline-download guidance in About; excluded quality goal."
+    },
+    {
+      "feature": "Offline area readiness checklist",
+      "area": "offline",
+      "priority": "should",
+      "clone": "partial",
+      "notes": "Separate cached tiles, listings and name index remain; automated offline checks pass but a cold real-phone readiness workflow has not been verified; excluded quality goal."
+    }
+  ],
+  "problems": [],
+  "overall": 80.8
+}
