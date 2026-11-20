@@ -20,7 +20,7 @@ import tempfile
 import urllib.error
 import urllib.request
 
-BASE = 'https://bdc.fcc.gov/api/public/map/'
+BASE = 'https://broadbandmap.fcc.gov/api/public/map/'
 ROOT = Path(__file__).resolve().parents[1]
 LIMIT = 2 * 1024**3
 
