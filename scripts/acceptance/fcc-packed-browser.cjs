@@ -18,20 +18,24 @@ const origin='http://127.0.0.1:8765';
         if(url.pathname.startsWith('/data/fcc-coverage/')&&url.pathname.endsWith('.png'))xyz++;
       });
       page.on('pageerror',e=>errors.push(e.message));
+      page.on('console',m=>{if(m.text().startsWith('packed-test '))console.log(m.text());});
       await page.addInitScript(pt=>localStorage.setItem('kt_last_position',JSON.stringify({lat:pt[0],lng:pt[1],zoom:10})),points.covered);
       await page.goto(origin+'/?source=pwa',{waitUntil:'domcontentloaded'});
-      await page.evaluate(()=>navigator.serviceWorker.ready);await page.waitForFunction(()=>!!navigator.serviceWorker.controller);
+      await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:45000});
       await page.waitForFunction(()=>window.map&&document.querySelector('.kt-coverage-picker select'));
       const select=page.getByRole('combobox',{name:'FCC mobile coverage'}), output=page.locator('#fcc-coverage-readout'), status=output.locator('[role=status]');
       const open=async()=>{await page.locator('#map').scrollIntoViewIfNeeded();await page.getByRole('button',{name:'Map layers',exact:true}).focus();await page.getByRole('button',{name:'Map layers',exact:true}).press('Enter');};
       const move=point=>page.evaluate(pt=>window.map.setView(pt,10,{animate:false}),point);
+      await page.evaluate(()=>window.map.on('layeradd',event=>{if(event.layer.options?.className==='kt-coverage-tiles'){let count=0;event.layer.on('tileerror',e=>{if(count++<2)console.log('packed-test tile error: '+String(e.error?.message||e.error));});}}));
       await open();
       for(const id of ['att','verizon','t-mobile']){
+        console.log('Checking online carrier',width,id);
         await select.selectOption(id);await move(points.covered);await expect(status).toHaveText('Map center: modeled coverage.',{timeout:15000});
         await move(points[id]);await expect(status).toHaveText('Map center: no modeled coverage.',{timeout:15000});
         await move(points.missing);await expect(status).toHaveText('Map center: no published data here.',{timeout:15000});
       }
       await select.selectOption('att');await move(points.covered);await expect(status).toHaveText('Map center: modeled coverage.');
+      console.log('Checking offline reload',width,'prior requests',rangeCount,wrong);
       await context.setOffline(true);
       await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.map&&document.querySelector('.kt-coverage-picker select'));
       await open();await select.selectOption('att');await move(points.covered);

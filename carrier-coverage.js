@@ -131,7 +131,7 @@
           image.onload = () => { if (!cancel.signal.aborted) done(null,image); };
           image.onerror = () => { if (!cancel.signal.aborted) done(Error('Coverage PNG unavailable'),image); };
           image.src = image.ktObjectURL;
-        }).catch(() => { if (!cancel.signal.aborted) done(Error('Coverage tile unavailable'),image); });
+        }).catch(error => { if (!cancel.signal.aborted) done(error,image); });
         return image;
       }
     });
