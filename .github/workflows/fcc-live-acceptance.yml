@@ -9,7 +9,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 22
+    timeout-minutes: 32
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.1.0
@@ -52,6 +52,21 @@ jobs:
           EXPECTED_SHA: ${{ steps.pins.outputs.commit }}
         run: |
           test -s qualified/fcc-acceptance.json
+          target_release="$(jq -er '.release' qualified/fcc-acceptance.json)"
+          for attempt in $(seq 1 42); do
+            marker=$(date +%s)
+            live=$(curl -fsS --max-time 15 "https://kamptrail.com/release.json?release-check=$marker" | jq -r '.source_commit // empty') || live=''
+            if [ "$live" = "$EXPECTED_SHA" ]; then
+              generation=$(curl -fsS --max-time 15 "https://kamptrail.com/data/fcc-coverage/manifest.json?release-check=$marker" | jq -r '.release // empty') || generation=''
+              if [ "$generation" = "$target_release" ]; then
+                echo "Production serves release $live with FCC generation $generation"
+                break
+              fi
+            fi
+            echo "Waiting for Hostinger; public release is $live"
+            if [ "$attempt" = 42 ]; then exit 1; fi
+            sleep 35
+          done
           node scripts/acceptance/live-fcc-coverage.js qualified/fcc-acceptance.json | tee live-fcc-coverage.json
           jq -e '.result=="PASS"' live-fcc-coverage.json
       - if: steps.pins.outputs.check != ''
