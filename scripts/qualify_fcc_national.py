@@ -301,6 +301,18 @@ def acquire(plan_path,num,out):
     require(not failures,"Incomplete lane: preserved completed witnesses, no release possible.")
 
 
+FCC_CREDIT = "Source: FCC National Broadband Map, provider-reported mobile availability. State boundaries: U.S. Census Bureau."
+FCC_ALASKA_CREDIT = "Map layer based on FCC BDC. Boundaries: U.S. Census Bureau."
+
+
+def display_model(records):
+    models={(r["format"],r["environment"]) for r in records}
+    require(models=={("4G LTE","Outdoor stationary")},"Inconsistent radio technology or modeled environment.")
+    credits={r["attribution"] for r in records}
+    require(credits and credits<={FCC_CREDIT,FCC_ALASKA_CREDIT},"Unrecognized source attribution.")
+    return "4G LTE","Outdoor stationary",FCC_CREDIT if FCC_CREDIT in credits else FCC_ALASKA_CREDIT
+
+
 def assemble(profile,lanes_root,output,materialize=None):
     entries={}
     for lane in profile["lanes"]:
@@ -341,17 +353,14 @@ def assemble(profile,lanes_root,output,materialize=None):
                          "expandedBytes":r["expanded"],"pmtilesBytes":blob["bytes"],"pmtilesSHA256":blob["sha256"],
                          "records":audit["records"],"downloadSeconds":r["downloadSeconds"],"qualifySeconds":r["qualifySeconds"],
                          "initialFreeBytes":r["initialFreeBytes"],"freeBytesWithQualifiedSource":r["freeBytesWithQualifiedSource"],
-                         "spatial":audit})
+                         "sourceAttribution":r["attribution"],"spatial":audit})
             observed.add(key);lane_size+=blob["bytes"]
         require(observed==expected and lane_size==result["bytes"] and lane_size<=LANE_OUTPUT_LIMIT,"Incomplete archive set.")
         require({x.relative_to(work/"archives").as_posix() for x in (work/"archives").rglob("*") if x.is_file()}==
                 {f"{c}/{s}.pmtiles" for c,s in expected},"Unexpected or absent lane binary.")
         total+=lane_size
     require(set(members)==set(entries),"Missing eligible public data.")
-    model_credits={(r["format"],r["environment"],r["attribution"]) for r,_ in members.values()}
-    require(len(model_credits)==1,"Inconsistent model, environment or attribution.")
-    tech,env,credit=model_credits.pop()
-    require(tech=="4G LTE" and env=="Outdoor stationary","Unexpected model.")
+    tech,env,credit=display_model([r for r,_ in members.values()])
     carriers=[]
     for carrier in sorted(PROVIDERS):
         regions=[members[key][0]["metadata"] for key in sorted(members) if key[0]==carrier]

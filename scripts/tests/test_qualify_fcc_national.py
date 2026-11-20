@@ -59,6 +59,13 @@ class QualificationTests(unittest.TestCase):
             r=Resp(b"abc");r.headers={"Content-Length":"4"}
             with self.assertRaises(ValueError): q.bounded_copy(r,path,9)
 
+    def test_known_alaska_credit_and_standard_credit_share_one_display_credit(self):
+        r={"format":"4G LTE","environment":"Outdoor stationary","attribution":q.FCC_CREDIT}
+        self.assertEqual(q.display_model([r,{**r,"attribution":q.FCC_ALASKA_CREDIT}])[-1],q.FCC_CREDIT)
+        self.assertEqual(q.display_model([{**r,"attribution":q.FCC_ALASKA_CREDIT}])[-1],q.FCC_ALASKA_CREDIT)
+        with self.assertRaises(ValueError): q.display_model([r,{**r,"format":"5G"}])
+        with self.assertRaises(ValueError): q.display_model([r,{**r,"attribution":"different publisher"}])
+
     def test_aggregate_verifies_route_receipt_hash_and_complete_pairs(self):
         with tempfile.TemporaryDirectory() as tmp:
             d=Path(tmp); work=d/"lanes/fcc-packed-lane-0"
@@ -69,7 +76,7 @@ class QualificationTests(unittest.TestCase):
                   "boundary":{"sha256":bound},"archive":{"format":"pmtiles-v3","bytes":128,"sha256":q.file_hash(pm)}}
             item={"region":"NY","id":"att","recordCount":29,"fileId":fid,"sourceFile":"record","providerId":"130077"}
             receipt={"carrier":"att","region":"NY","asOf":"2026-06-30","retrievedAt":"2026-11-20","planId":"sample","fileId":fid,
-                     "format":"4G LTE","environment":"Outdoor stationary","attribution":"FCC BDC","sourceSha256":sha,"metadata":meta,
+                     "format":"4G LTE","environment":"Outdoor stationary","attribution":q.FCC_CREDIT,"sourceSha256":sha,"metadata":meta,
                      "sourceRelease":"from-builder","bytes":230,"expanded":650,"downloadSeconds":1,"qualifySeconds":1,
                      "initialFreeBytes":999,"freeBytesWithQualifiedSource":799,
                      "spatial":{"region":"NY","carrier":"att","fileId":fid,"sourceSHA256":sha,"records":29,"matches":{"covered":2}}}
