@@ -62,7 +62,7 @@ jobs:
         env:
           EXPECTED_SHA: ${{ steps.pins.outputs.candidate }}
           CHROMIUM_PATH: /usr/bin/google-chrome
-          BASE: http://127.0.0.1:8765/
+          BASE: http://127.0.0.1:8765
         run: |
           test "$(git -C candidate rev-parse HEAD)" = "$EXPECTED_SHA"
           jq -en --arg sha "$EXPECTED_SHA" '{source_commit:$sha}' > candidate/dist/kamptrail/release.json
