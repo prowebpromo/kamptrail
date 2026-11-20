@@ -20,6 +20,7 @@ test('reference PNG bytes from each real FCC regional archive are identical to t
     const url=base+rel+'.pmtiles?sha256='+region.archive.sha256;
     const fetcher=async (input,init)=>{const r=await fetch(input,init);assert.equal(r.status,206);assert.match(init.headers.Range,/^bytes=\d+-\d+$/);ranges++;return r;};
     const read=openCoverageArchive(url,region,base,{fetcher});
+    await assert.rejects(()=>read({z:region.minZoom,x:0,y:0}),/Absent or invalid/);
     for(const entry of await fs.readdir(originalRegion,{recursive:true})){
       if(!entry.endsWith('.png'))continue;
       const [z,x,y]=entry.slice(0,-4).split(path.sep).map(Number);

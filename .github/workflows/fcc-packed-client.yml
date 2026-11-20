@@ -31,8 +31,14 @@ jobs:
           merge-multiple: true
       - name: Install locked JavaScript tools
         run: npm ci --no-audit --no-fund
+      - name: Build the ordinary release package with the first-party reader
+        run: |
+          node scripts/build-release.js
+          mkdir -p dist/kamptrail/data/fcc-coverage
+          cp -a data/fcc-coverage/. dist/kamptrail/data/fcc-coverage/
       - name: Compare all native RI PNGs and test mobile and desktop range rendering
         env:
+          KAMPTRAIL_SERVE_DIR: dist/kamptrail
           FCC_PACKED_DIR: data/fcc-coverage
           FCC_XYZ_DIR: ${{ runner.temp }}/fcc-original-xyz
         run: |
@@ -41,4 +47,21 @@ jobs:
           trap 'kill "$pid" 2>/dev/null || true' EXIT
           for i in {1..30}; do if curl --silent --fail http://127.0.0.1:8765/data/fcc-coverage/manifest.json >/dev/null; then break; fi; sleep .2; done
           node --test tests/carrier-coverage.test.js scripts/tests/fcc-packed-reader.test.mjs
+          node scripts/acceptance/fcc-packed-browser.cjs
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14625393648'
+          run-id: '44729042998'
+          github-token: ${{ github.token }}
+          path: dist/kamptrail/data/fcc-coverage
+          merge-multiple: true
+      - name: Check both Alaska footprints and the intervening gap
+        env:
+          KAMPTRAIL_SERVE_DIR: dist/kamptrail
+          FCC_TEST_REGION: AK
+        run: |
+          node scripts/serve.js > "$RUNNER_TEMP/fcc-client-ak.log" 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..30}; do if curl --silent --fail http://127.0.0.1:8765/data/fcc-coverage/manifest.json >/dev/null; then break; fi; sleep .2; done
           node scripts/acceptance/fcc-packed-browser.cjs

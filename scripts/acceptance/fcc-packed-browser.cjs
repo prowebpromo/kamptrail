@@ -5,6 +5,7 @@ const points={covered:[42.007978804701,-71.75239562988281],missing:[42.007978804
   verizon:[41.635459840527126,-71.74278259277344]};
 const origin='http://127.0.0.1:8765';
 (async()=>{
+  const alaska = process.env.FCC_TEST_REGION === 'AK';
   const browser=await chromium.launch({headless:true, ...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH}: {})});
   try {
     for(const [width,height] of [[1366,900],[390,844]]){
@@ -19,7 +20,7 @@ const origin='http://127.0.0.1:8765';
       });
       page.on('pageerror',e=>errors.push(e.message));
       page.on('console',m=>{if(m.text().startsWith('packed-test '))console.log(m.text());});
-      await page.addInitScript(pt=>localStorage.setItem('kt_last_position',JSON.stringify({lat:pt[0],lng:pt[1],zoom:10})),points.covered);
+      await page.addInitScript(pt=>localStorage.setItem('kt_last_position',JSON.stringify({lat:pt[0],lng:pt[1],zoom:10})),alaska ? [53,0] : points.covered);
       await page.goto(origin+'/?source=pwa',{waitUntil:'domcontentloaded'});
       await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:45000});
       await page.waitForFunction(()=>window.map&&document.querySelector('.kt-coverage-picker select'));
@@ -33,6 +34,24 @@ const origin='http://127.0.0.1:8765';
       },point);
       await page.evaluate(()=>window.map.on('layeradd',event=>{if(event.layer.options?.className==='kt-coverage-tiles'){let count=0;event.layer.on('tileerror',e=>{if(count++<2)console.log('packed-test tile error: '+String(e.error?.message||e.error));});}}));
       await open();
+      if(alaska){
+        await expect(select.locator('option')).toHaveCount(3);
+        await move([53,0]);
+        for(const id of ['verizon','att']){
+          await select.selectOption(id);
+          await expect(status).toHaveText('Map center: no published data here.');
+        }
+        if(rangeCount!==0)throw Error('Range requested for gap outside Alaska footprints');
+        for(const [id,west] of [['verizon',[58.25859131025997,-134.2961883544922]],['att',[58.81480837943604,-134.9993133544922]]]){
+          await select.selectOption(id);
+          await move(west);await expect(status).toHaveText('Map center: modeled coverage.',{timeout:15000});
+          await move([69.84127843782623,-163.1256866455078]);await expect(status).toHaveText('Map center: no modeled coverage.',{timeout:15000});
+          await move([53.04657961401141,172.99415588378906]);await expect(status).toHaveText('Map center: no modeled coverage.',{timeout:15000});
+        }
+        if(!rangeCount||wrong.length||xyz||errors.length)throw Error(JSON.stringify({width,rangeCount,wrong,xyz,errors}));
+        console.log(JSON.stringify({region:'AK',width,height,rangeCount,responseBytes,westCovered:2,westUncovered:2,eastUncovered:2,gapRangeRequests:0,xyzRequests:xyz}));
+        await context.close();continue;
+      }
       for(const id of ['att','verizon','t-mobile']){
         console.log('Checking online carrier',width,id);
         await select.selectOption(id);await move(points.covered);await expect(status).toHaveText('Map center: modeled coverage.',{timeout:15000});
