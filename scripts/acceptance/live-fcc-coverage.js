@@ -19,7 +19,9 @@ const expectedText = {
   covered:'Map center: modeled coverage.', uncovered:'Map center: no modeled coverage.',
   missing:'Map center: no published data here.', unavailable:'Map center: coverage tile unavailable.'
 };
-const lookup = new Map((report?.checks || []).filter(c=>c.region==='RI').map(c=>[c.carrier,c]));
+const requiredRegions = (process.env.EXPECTED_REGIONS || 'RI').split(',').sort();
+const sources = (report?.checks || []).filter(c=>requiredRegions.includes(c.region));
+const anchor = () => sources.find(c=>c.region==='RI' && c.carrier==='att').witnesses.covered;
 const endpoint = url => new URL(url, base).href;
 const sha = buf => crypto.createHash('sha256').update(buf).digest('hex');
 const browserOptions = { ...(process.env.CHROMIUM_PATH && {executablePath:process.env.CHROMIUM_PATH}),
@@ -58,10 +60,13 @@ async function storedIds(page) {
 async function confirmAssets(manifest) {
   assert.equal(report.release,manifest.release);
   assert.equal(report.asOf,manifest.asOf);
-  assert.deepEqual([...lookup.keys()].sort(),['att','t-mobile','verizon']);
+  const pairs = requiredRegions.flatMap(r=>['att','t-mobile','verizon'].map(c=>r+'/'+c));
+  assert.deepEqual(sources.map(c=>c.region+'/'+c.carrier).sort(),pairs.sort());
+  assert.deepEqual([...new Set(manifest.carriers.flatMap(c=>c.regions.map(r=>r.id)))].sort(),requiredRegions);
   const checked=new Set();
-  for (const [carrier,c] of lookup) {
-    const source=manifest.carriers.find(x=>x.id===carrier).regions.find(r=>r.id==='RI').source;
+  for (const c of sources) {
+    const carrier=c.carrier;
+    const source=manifest.carriers.find(x=>x.id===carrier).regions.find(r=>r.id===c.region).source;
     assert.equal(source.sha256,c.sourceSHA256);
     assert.equal(String(source.fileId),String(c.fileId));
     for(const w of Object.values(c.witnesses)) {
@@ -103,9 +108,15 @@ async function upgrade(mode, manifest) {
     assert.equal(await page.locator(picker).inputValue(),'','Overlay must start off');
     assert.equal(await page.locator('#fcc-coverage-readout').isVisible(),false);
     assert.deepEqual((await page.locator(picker+' option').evaluateAll(els=>els.map(o=>o.value))).sort(),['','att','t-mobile','verizon']);
-    for(const [carrier,c] of lookup) {
+    for(const c of sources) {
+      const carrier=c.carrier;
       await setCenter(page,c.witnesses.covered);
       await select(page,carrier);
+      const areaWidget=page.getByRole('combobox',{name:'Published coverage area'});
+      const availableRegions=await areaWidget.locator('option').evaluateAll(es=>es.map(e=>e.value).filter(Boolean).sort());
+      assert.deepEqual(availableRegions,requiredRegions,'Published area choices');
+      await areaWidget.selectOption(c.region);
+      await setCenter(page,c.witnesses.covered);
       const coveredResult = await page.locator('#fcc-coverage-readout').innerText();
       assert.match(coveredResult,/4G LTE/); assert.match(coveredResult,/outdoor stationary/i);
       assert.equal(await page.locator('#fcc-coverage-readout a').getAttribute('href'),'https://broadbandmap.fcc.gov/');
@@ -119,13 +130,13 @@ async function upgrade(mode, manifest) {
           await page.waitForFunction(href=>[...document.querySelectorAll('.kt-coverage-tiles img')]
             .some(img=>img.currentSrc===href&&img.complete&&img.naturalWidth===256),uri,{timeout:35_000});
         }
-        sampled.push([carrier,expected,w.lon,w.lat]);
+        sampled.push([c.region,carrier,expected,w.lon,w.lat]);
       }
     }
-    // Return outside the pilot far from Rhode Island.
-    await setCenter(page,{lat:42.65,lon:-73.75,zoom:10});
+    // Quebec City lies beyond both qualified U.S. state boundaries.
+    await setCenter(page,{lat:46.82,lon:-71.22,zoom:10});
     await assertStatus(page,'missing');
-    const first=lookup.get('att').witnesses.covered;
+    const first=anchor();
     await setCenter(page,first); await select(page,'att'); await assertStatus(page,'covered');
     await page.evaluate(()=>navigator.serviceWorker.ready);
     await context.setOffline(true);
@@ -163,7 +174,7 @@ async function failureCases(manifest) {
           assert.equal(await page.locator(picker).count(),0);
         }else{
           await waitForPicker(page);
-          await setCenter(page,lookup.get('att').witnesses.covered);
+          await setCenter(page,anchor());
           await select(page,'att');
           await assertStatus(page,kind==='tileFailure'?'unavailable':'covered');
           if(kind==='oldFiling') assert.match(await page.locator('#fcc-coverage-readout').innerText(),/Older filing, not current\./);
