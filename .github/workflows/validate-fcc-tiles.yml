@@ -1,0 +1,36 @@
+name: Validate FCC coverage tiles
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/build_fcc_tiles.py'
+      - 'scripts/tests/test_fcc_tiles.py'
+      - '.github/workflows/validate-fcc-tiles.yml'
+  push:
+    branches: [feat/fcc-coverage-tiles]
+    paths:
+      - 'scripts/build_fcc_tiles.py'
+      - 'scripts/tests/test_fcc_tiles.py'
+      - '.github/workflows/validate-fcc-tiles.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  spatial-fixture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install distribution GDAL
+        run: |
+          if ! /usr/bin/python3 -c 'from osgeo import gdal; import numpy'; then
+            sudo apt-get -qq update
+            sudo apt-get -qq install --no-install-recommends python3-gdal
+          fi
+      - name: Run real GeoPackage to PNG integration fixture
+        run: |
+          /usr/bin/python3 -c 'from osgeo import gdal; import numpy'
+          /usr/bin/python3 scripts/tests/test_fcc_tiles.py -v
