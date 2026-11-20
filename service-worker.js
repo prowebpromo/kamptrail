@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v93';
+const VERSION = 'kt-v94';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -11,13 +11,14 @@ const CAMPER_CACHE = `${PREFIX}camper-discovery-v1`;
 const ELEVATION_CACHE = `${PREFIX}elevation-v1`;
 const SERVICES_CACHE = `${PREFIX}services-v2`;
 const ROUTE_CACHE = `${PREFIX}routes-v1`;
+const COVERAGE_CACHE = `${PREFIX}fcc-tiles-v1`;
 const CLEARANCE_CACHE = `${PREFIX}clearance-v1`;
 const SHELL = [
   './','index.html','provider-config.json','locale.js','shell.js','consent-analytics.js','consent-controls.js','analytics-bootstrap.js','analytics-settings.js','beta.js','map-loader.js','app.js','app.css','data/places-us.json','manifest.json','brand-mark.svg','apple-touch-icon.png','favicon-32.png','icon-192.png','icon-512.png','icon-maskable-192.png','icon-maskable-512.png','og.png',
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
-  'listing-history.js','data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','how-to.html','updates.html','tools.html','guides.html','plan.html','about.html','record-overrides.js','resources.css','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js'
+  'listing-history.js','data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','carrier-coverage.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','how-to.html','updates.html','tools.html','guides.html','plan.html','about.html','record-overrides.js','resources.css','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js'
 ];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
@@ -26,13 +27,22 @@ self.addEventListener('install',event=>event.waitUntil((async()=>{
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
   const keys=await caches.keys();
-  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==LOCALE_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE && key!==SERVICES_CACHE && key!==CLEARANCE_CACHE).map(key=>caches.delete(key)));
+  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==LOCALE_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE && key!==SERVICES_CACHE && key!==COVERAGE_CACHE && key!==CLEARANCE_CACHE).map(key=>caches.delete(key)));
   await self.clients.claim();
 })()));
 self.addEventListener('fetch',event=>{
   const request=event.request,url=new URL(request.url);
   // Moderation status and photos must never outlive a removal in an offline cache.
   if(url.origin===self.location.origin && url.pathname.includes('/api/'))return;
+  // The page revalidates the FCC catalogue. Only versioned, same-origin raster tiles may be saved.
+  const coverageRoot = new URL('data/fcc-coverage/', self.registration.scope).href;
+  if (url.href.startsWith(coverageRoot)) {
+    const relative = url.href.slice(coverageRoot.length);
+    if (request.method === 'GET' && /^[a-z0-9][a-z0-9-]{0,63}\/(?:verizon|att|t-mobile)\/[A-Z]{2}(?:-[A-Za-z0-9]+)?\/\d{1,2}\/\d+\/\d+\.png$/.test(relative)) {
+      event.respondWith(coverageTile(request));
+    }
+    return;
+  }
   // Official rest-area source evidence is revalidated by its loader, never shell-pinned.
   if(url.href.startsWith(new URL('data/rest-areas/',self.registration.scope).href))return;
   // Only the height-tag loader caches its validated, explicitly dated pilot.
@@ -60,6 +70,39 @@ self.addEventListener('fetch',event=>{
   }
   if(/\.(js|css|png|svg|webp|jpg|jpeg|ico|json)$/.test(url.pathname))event.respondWith(asset(request));
 });
+let coverageWrites = Promise.resolve();
+async function coverageTile(request) {
+  let cache;
+  try {
+    cache = await caches.open(COVERAGE_CACHE);
+    const saved = await cache.match(request);
+    if (saved) return saved;
+  } catch {}
+  let response;
+  try { response = await fetch(request); } catch { return new Response('', {status:503}); }
+  if (!response.ok) return response;
+  const maxBytes = 320 * 1024;
+  if (!/^image\/png(?:;|$)/i.test(response.headers.get('Content-Type') || '') ||
+      Number(response.headers.get('Content-Length')) > maxBytes) return new Response('', {status:502});
+  const bytes = await response.arrayBuffer();
+  const view = new DataView(bytes);
+  if (bytes.byteLength < 33 || bytes.byteLength > maxBytes ||
+      view.getUint32(0) !== 0x89504e47 || view.getUint32(4) !== 0x0d0a1a0a ||
+      view.getUint32(12) !== 0x49484452 || view.getUint32(16) !== 256 || view.getUint32(20) !== 256) {
+    return new Response('', {status:502});
+  }
+  const tile = new Response(bytes, {headers:{'Content-Type':'image/png'}});
+  if (cache) {
+    // Tile loads finish concurrently. Serialize eviction so the limit also holds during rapid pans.
+    coverageWrites = coverageWrites.then(async () => {
+      await cache.put(request, tile.clone());
+      const keys = await cache.keys();
+      await Promise.all(keys.slice(0, Math.max(0, keys.length - 256)).map(key => cache.delete(key)));
+    }).catch(() => {});
+    await coverageWrites;
+  }
+  return tile;
+}
 async function optionalLocale(request){
   const cache=await caches.open(LOCALE_CACHE),saved=await cache.match(request);
   if(saved)return saved;

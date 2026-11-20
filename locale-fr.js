@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.48.0', messages:{
+  global.KampTrailI18nFr = {version:'2.49.0', messages:{
   "Listing history is unavailable. Reconnect and retry before opening campsite records.": "L’historique des lieux est indisponible. Reconnectez-vous et réessayez avant d’ouvrir les fiches.",
   "Historical listing": "Fiche historique",
   "Close historical listing": "Fermer la fiche historique",
@@ -179,7 +179,7 @@
   "Current beta limitations": "Limites actuelles de la bêta",
   "Campsite and service coverage varies. Source dates describe records, not a recent field inspection. Confirm current conditions with the operator.": "La couverture des lieux de camping et des services varie. Les dates des sources décrivent les données, pas une inspection récente sur place. Confirmez les conditions actuelles auprès de l’exploitant.",
   "Routes use car routing. RV dimensions and clearance warnings do not guarantee safe passage.": "Les itinéraires utilisent un calcul pour voitures. Les dimensions du véhicule et les avertissements de dégagement ne garantissent pas un passage sûr.",
-  "Carrier coverage overlays are unavailable. Dated camper signal reports and external coverage links are separate information.": "Les couches de couverture des opérateurs sont indisponibles. Les signalements datés des campeurs et les liens externes de couverture sont des informations distinctes.",
+  "The FCC coverage layer starts with outdoor 4G LTE in Rhode Island. Camper signal reports show what visitors experienced on their visit date.": "La couche de couverture de la FCC présente d’abord la 4G LTE en extérieur au Rhode Island. Les signalements des campeurs indiquent la réception constatée le jour de leur visite.",
   "Saved stops stay on this device and browser. Offline use requires preparation and available browser storage.": "Les étapes enregistrées restent sur cet appareil et ce navigateur. L’utilisation hors ligne nécessite une préparation et du stockage disponible dans le navigateur.",
   "What we need help testing": "Ce que nous souhaitons tester avec vous",
   "Try finding a familiar place, checking its details, saving a stop, and finding it again after reloading. Tell us where you get stuck and what information you need before deciding to visit.": "Cherchez un endroit connu, vérifiez ses détails, enregistrez une étape et retrouvez-la après avoir rechargé la page. Dites-nous où vous bloquez et de quelles informations vous avez besoin avant de décider de vous y rendre.",
@@ -2130,6 +2130,31 @@
   "National clearance data unavailable; outside Rhode Island this view is unknown.": "Données nationales de dégagement indisponibles; hors du Rhode Island, cette vue est inconnue.",
   "{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown.": "{count} candidats de dégagement dans la vue : {conflicts} en conflit avec la hauteur de votre véhicule, {unresolved} à vérifier ou inconnus.",
   "{count} visitor reports.": "{count} signalements de visiteurs.",
-  "First {count} visitor reports; more are not shown.": "Les {count} premiers signalements de visiteurs; d’autres ne sont pas affichés."
+  "First {count} visitor reports; more are not shown.": "Les {count} premiers signalements de visiteurs; d’autres ne sont pas affichés.",
+  "FCC mobile coverage": "Couverture mobile de la FCC",
+  "FCC National Broadband Map": "Carte nationale du haut débit de la FCC",
+  "Modeled coverage": "Couverture modélisée",
+  "No modeled coverage": "Aucune couverture modélisée",
+  "No data": "Aucune donnée",
+  "Off": "Désactivée",
+  "Map center: modeled coverage.": "Centre de la carte : couverture modélisée.",
+  "Map center: no modeled coverage.": "Centre de la carte : aucune couverture modélisée.",
+  "Map center: no published data here.": "Centre de la carte : aucune donnée publiée ici.",
+  "Map center: coverage tile unavailable.": "Centre de la carte : tuile de couverture indisponible.",
+  "Loading coverage at the map center…": "Chargement de la couverture au centre de la carte…",
+  "Zoom in to see coverage at the map center.": "Rapprochez la carte pour voir la couverture au centre.",
+  "Offline copy, not current.": "Copie hors ligne, non actualisée.",
+  "Saved copy, not current.": "Copie enregistrée, non actualisée.",
+  "Older filing, not current.": "Déclaration ancienne, non actualisée.",
+  "Outdoor stationary": "À l’extérieur, en position fixe",
+  "{carrier} · {technology} · {environment} · FCC filing {date}.": "{carrier} · {technology} · {environment} · Données déclarées à la FCC au {date}.",
+  "Published coverage area": "Zone de couverture publiée",
+  "Go to area…": "Aller à la zone…",
+  "Map layer based on FCC BDC.": "Couche cartographique fondée sur la collecte de données à haut débit de la FCC.",
+  "State boundaries: U.S. Census Bureau.": "Limites des États : Bureau du recensement des États-Unis.",
+  "Published areas: {areas}.": "Zones publiées : {areas}.",
+  "Published areas: {count}.": "Zones publiées : {count}.",
+  "Outdoor LTE model: at least 5 Mbps down and 1 Mbps up. Signal inside your RV may differ.": "Modèle LTE à l’extérieur : au moins 5 Mbit/s en réception et 1 Mbit/s en envoi. Le signal dans votre VR peut varier.",
+  "Signal inside your RV may differ from this model.": "Le signal dans votre VR peut différer de cette modélisation."
 }};
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1,5 +1,5 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.48.0',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.49.0',messages:{
   "This listing remains under review. Its own source record still supports the camping type shown.": "Este lugar sigue en revisión. Su propia ficha de origen sigue respaldando el tipo de acampada mostrado.",
   "This previously listed location is under review. Its record does not establish the camping type at this point.": "Este lugar ya figuraba en el catálogo y está en revisión. La ficha no confirma el tipo de acampada en este punto.",
   "This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again.": "La ficha propia de este lugar cambió después de revisar su tipo. Aparece como Otro hasta que se revise de nuevo.",
@@ -191,7 +191,7 @@
   "Current beta limitations": "Limitaciones actuales de la beta",
   "Campsite and service coverage varies. Source dates describe records, not a recent field inspection. Confirm current conditions with the operator.": "La cobertura de campamentos y servicios varía. Las fechas de las fuentes describen los registros, no una inspección reciente. Confirma las condiciones actuales con el operador.",
   "Routes use car routing. RV dimensions and clearance warnings do not guarantee safe passage.": "Las rutas usan un planificador para automóviles. Las dimensiones del vehículo y las advertencias de altura no garantizan un paso seguro.",
-  "Carrier coverage overlays are unavailable. Dated camper signal reports and external coverage links are separate information.": "Las capas de cobertura de operadores no están disponibles. Los informes fechados de señal de los campistas y los enlaces externos de cobertura son información aparte.",
+  "The FCC coverage layer starts with outdoor 4G LTE in Rhode Island. Camper signal reports show what visitors experienced on their visit date.": "La capa de cobertura de la FCC comienza con 4G LTE al aire libre en Rhode Island. Los informes de los campistas describen la señal que tuvieron el día de su visita.",
   "Saved stops stay on this device and browser. Offline use requires preparation and available browser storage.": "Las paradas guardadas permanecen en este dispositivo y navegador. El uso sin conexión requiere preparación y almacenamiento disponible en el navegador.",
   "What we need help testing": "Qué necesitamos ayudarte a probar",
   "Try finding a familiar place, checking its details, saving a stop, and finding it again after reloading. Tell us where you get stuck and what information you need before deciding to visit.": "Busca un lugar conocido, revisa sus detalles, guarda una parada y vuelve a encontrarla después de cargar la página. Dinos dónde te atascas y qué información necesitas antes de decidir visitarlo.",
@@ -2129,5 +2129,30 @@
   "National clearance data unavailable; outside Rhode Island this view is unknown.": "Datos nacionales de gálibo no disponibles; fuera de Rhode Island esta vista es desconocida.",
   "{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown.": "{count} candidatos de gálibo en la vista: {conflicts} en conflicto con la altura de tu vehículo, {unresolved} por verificar o desconocidos.",
   "{count} visitor reports.": "{count} informes de visitantes.",
-  "First {count} visitor reports; more are not shown.": "Primeros {count} informes de visitantes; hay más que no se muestran."
+  "First {count} visitor reports; more are not shown.": "Primeros {count} informes de visitantes; hay más que no se muestran.",
+  "FCC mobile coverage": "Cobertura móvil de la FCC",
+  "FCC National Broadband Map": "Mapa Nacional de Banda Ancha de la FCC",
+  "Modeled coverage": "Cobertura modelada",
+  "No modeled coverage": "Sin cobertura modelada",
+  "No data": "Sin datos",
+  "Off": "Desactivada",
+  "Map center: modeled coverage.": "Centro del mapa: cobertura modelada.",
+  "Map center: no modeled coverage.": "Centro del mapa: sin cobertura modelada.",
+  "Map center: no published data here.": "Centro del mapa: no hay datos publicados en este punto.",
+  "Map center: coverage tile unavailable.": "Centro del mapa: el mapa de cobertura no está disponible en este punto.",
+  "Loading coverage at the map center…": "Cargando la cobertura en el centro del mapa…",
+  "Zoom in to see coverage at the map center.": "Acerca el mapa para ver la cobertura en el centro.",
+  "Offline copy, not current.": "Copia sin conexión, sin actualizar.",
+  "Saved copy, not current.": "Copia guardada, sin actualizar.",
+  "Older filing, not current.": "Informe antiguo, sin actualizar.",
+  "Outdoor stationary": "Al aire libre, en un punto fijo",
+  "{carrier} · {technology} · {environment} · FCC filing {date}.": "{carrier} · {technology} · {environment} · Datos declarados a la FCC el {date}.",
+  "Published coverage area": "Área de cobertura publicada",
+  "Go to area…": "Ir al área…",
+  "Map layer based on FCC BDC.": "Capa basada en la recopilación de datos de banda ancha de la FCC.",
+  "State boundaries: U.S. Census Bureau.": "Límites estatales: Oficina del Censo de EE. UU.",
+  "Published areas: {areas}.": "Áreas publicadas: {areas}.",
+  "Published areas: {count}.": "Áreas publicadas: {count}.",
+  "Outdoor LTE model: at least 5 Mbps down and 1 Mbps up. Signal inside your RV may differ.": "Modelo LTE al aire libre: al menos 5 Mbps de descarga y 1 Mbps de subida. La señal dentro de tu vehículo recreativo puede variar.",
+  "Signal inside your RV may differ from this model.": "La señal dentro de tu vehículo recreativo puede diferir de este modelo."
 }};})(typeof window !== 'undefined' ? window : globalThis);

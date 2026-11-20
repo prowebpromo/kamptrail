@@ -24,7 +24,7 @@ The catalogue combines Recreation.gov, USFS, BLM and OpenStreetMap source record
 
 ## Remaining work
 
-Modeled FCC coverage is blocked on actual provider access. Enforced RV-restriction routing, wider service/permission evidence and community/media depth remain separate packages. Accounts/social messaging, cross-device synchronization, notifications, native navigation and full video uploads are not implemented. Versioned features in this source tree are not evidence of deployment; release and live-verification gates remain in [the active parity queue](docs/replica/parity-queue.md). Existing historical parity scores do not establish current full-product parity.
+The FCC mobile coverage layer starts with Rhode Island. In Map layers, select AT&T, T-Mobile or Verizon and choose the published area. The map displays provider-modeled outdoor 4G LTE at 5 Mbps down and 1 Mbps up. Coverage outside a published area is unknown. See the [source files, refresh and qualification evidence](docs/FCC_COVERAGE_ACCESS.md). Enforced RV-restriction routing, wider service/permission evidence and community/media depth remain separate packages. Accounts/social messaging, cross-device synchronization, notifications, native navigation and full video uploads are not implemented. Versioned features in this source tree are not evidence of deployment; release and live-verification gates remain in [the active parity queue](docs/replica/parity-queue.md). Existing historical parity scores do not establish current full-product parity.
 
 The [rig and route-terrain contract](docs/RIG_TERRAIN_CONTRACT_2.17.md) describes local profile data, explicit coordinate disclosure, bounded sampling, private server caches and offline limits.
 

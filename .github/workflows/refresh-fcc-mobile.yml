@@ -1,0 +1,84 @@
+name: Refresh FCC mobile coverage
+
+on:
+  schedule:
+    - cron: '41 7 10 * *'
+  workflow_dispatch:
+  push:
+    branches: [main, pilot/fcc-mobile-qualification]
+    paths:
+      - '.github/workflows/refresh-fcc-mobile.yml'
+      - 'scripts/prepare_fcc_refresh.py'
+      - 'scripts/fcc_download.py'
+      - 'scripts/build_fcc_tiles.py'
+      - 'scripts/publish_fcc_tiles.py'
+      - 'scripts/acceptance/check-fcc-tiles.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kamptrail-fcc-mobile-data
+  cancel-in-progress: false
+
+jobs:
+  qualify:
+    if: github.repository == 'prowebpromo/kamptrail' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/pilot/fcc-mobile-qualification')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    outputs:
+      artifact: ${{ steps.tiles.outputs.artifact-id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Install Ubuntu geospatial readers and independent acceptance tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends python3-gdal python3-numpy python3-fiona python3-pyproj python3-shapely python3-pil
+      - name: Check publication and retention safeguards
+        run: /usr/bin/python3 -m unittest discover -s scripts/tests -p 'test_fcc_refresh.py'
+      - name: Retrieve the latest authorized provider source files
+        env:
+          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
+        run: /usr/bin/python3 scripts/prepare_fcc_refresh.py --work "$RUNNER_TEMP/fcc-input"
+      - name: Build complete viewport tiles
+        run: /usr/bin/python3 scripts/build_fcc_tiles.py --plan "$RUNNER_TEMP/fcc-input/plan.json" --output "$RUNNER_TEMP/fcc-output"
+      - name: Check coverage against the downloaded provider geometry and state boundary
+        run: |
+          /usr/bin/python3 scripts/acceptance/check-fcc-tiles.py --plan "$RUNNER_TEMP/fcc-input/plan.json" --input "$RUNNER_TEMP/fcc-output" --output "$RUNNER_TEMP/fcc-acceptance.json"
+          /usr/bin/python3 scripts/publish_fcc_tiles.py validate "$RUNNER_TEMP/fcc-output"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: fcc-mobile-acceptance-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/fcc-acceptance.json
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        id: tiles
+        with:
+          name: fcc-mobile-tiles-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/fcc-output
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: qualify
+    if: github.repository == 'prowebpromo/kamptrail' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.qualify.outputs.artifact }}
+          path: ${{ runner.temp }}/tiles
+          merge-multiple: true
+      - name: Atomically move the public data ref after all files validate
+        run: python3 scripts/publish_fcc_tiles.py publish "$RUNNER_TEMP/tiles"

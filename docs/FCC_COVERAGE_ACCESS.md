@@ -13,6 +13,20 @@ The owner's [October 29 review of the FCC's License and Attribution notice](http
 
 The private worker in `scripts/fcc_download.py` supports `check`, `list` and `download` with the owner-only directory documented in [FCC credential entry](FCC_CREDENTIAL_ENTRY.md). Run `list` with `--as-of YYYY-MM-DD` first, then `download` with the same date and a `--file-id` from that catalog. The default catalog is `Provider`. Use `--category State` on both commands for state files. Each successful download writes a ZIP and a provenance record with its source URL, filing date, retrieval timestamp and SHA-256. The worker is excluded from the web release.
 
+## Rhode Island mobile coverage
+
+KampTrail uses each carrier's raw mobile availability polygons and the 2025 Census TIGER/Line state boundary. Outdoor stationary LTE includes FCC environment codes 0 and 1 with technology 400 and minimum speeds of 5 Mbps down and 1 Mbps up. The state boundary includes coastal waters. A gray pixel indicates no modeled LTE coverage at this map resolution inside the published area. Outside the state, the result is unknown. Camper reports remain separate.
+
+| Carrier | FCC provider ID | FCC file ID | Source polygons |
+| --- | --- | --- | ---: |
+| AT&T | 130077 | 1890550 | 34,136 |
+| T-Mobile | 130403 | 1890613 | 146 |
+| Verizon | 131425 | 1890751 | 7,289 |
+
+All three files represent June 30, 2026. Source counts measure how providers divided their geometry and cannot be used to compare coverage area. The [archive verification](https://github.com/prowebpromo/kamptrail/actions/runs/44725966726) records the original hashes. The [first integrated qualification](https://github.com/prowebpromo/kamptrail/actions/runs/44727106921) built 60 viewport tiles and checked their classifications against the raw source and state boundary.
+
+The latest manifest is served at `data/fcc-coverage/manifest.json`. Its region entries record the filing, source file, provider, archive hash, Census boundary and zoom range. The refresh runs monthly and retains the previous validated generation. A failed download, incomplete region or source mismatch prevents a new generation from replacing the existing one. Enlarge the reviewed geographic scope only after checking the new source against its state boundary and deployed capacity.
+
 ## Historical checkpoint, October 28, 2026
 
 The FCC public map's download page returned Access Denied in this browser, including one reload. No attempt was made to evade that restriction. The documented public-data API requires an FCC user account. No FCC account/API credentials were available in this session, and redistribution/usage conditions for the intended mobile datasets have not been verified.
