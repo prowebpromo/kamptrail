@@ -1,0 +1,59 @@
+name: Read Alaska state-side map witnesses
+on:
+  push:
+    branches: [prototype/fcc-regional-pmtiles]
+    paths: ['.github/workflows/read-fcc-ak-witnesses.yml']
+permissions: {contents: read, actions: read}
+jobs:
+  pixels:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - name: Install pinned PMTiles writer and reader
+        run: |
+          python3 -m pip install --target "$RUNNER_TEMP/pmdeps" --only-binary=:all: --no-deps --require-hashes -r scripts/requirements-fcc-pmtiles.txt
+          echo "PYTHONPATH=$RUNNER_TEMP/pmdeps" >> "$GITHUB_ENV"
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14625393648'
+          run-id: '44729042998'
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/packed
+          merge-multiple: true
+      - run: |
+          /usr/bin/python3 -c 'from PIL import Image' || (sudo apt-get -qq update && sudo apt-get -qq install --no-install-recommends python3-pil)
+          /usr/bin/python3 - <<'PY'
+          import io, json, math, os
+          from pathlib import Path
+          from PIL import Image, ImageFilter
+          from pmtiles.reader import MmapSource, all_tiles
+          root=Path(os.environ["RUNNER_TEMP"])/"packed"
+          m=json.loads((root/"manifest.json").read_text())
+          for carrier in m["carriers"]:
+              slug=carrier["id"]
+              info=carrier["regions"][0]
+              results={}
+              zmax=info["maxZoom"]
+              with (root/m["release"]/slug/"AK.pmtiles").open("rb") as f:
+                  for (z,x,y),raw in all_tiles(MmapSource(f)):
+                      if z!=zmax: continue
+                      hemi="east" if x>=2**(z-1) else "west"
+                      if all((hemi,k) in results for k in (1,2)): continue
+                      with Image.open(io.BytesIO(raw)) as image:
+                          counts={key for _,key in image.getcolors()}
+                          for key in (1,2):
+                              if key not in counts or (hemi,key) in results: continue
+                              # Look for an interior 3x3 square, falling back to an exact center of a one-pixel thin area.
+                              mask=Image.frombytes("L",image.size,bytes(255 if p==key else 0 for p in image.getdata()))
+                              core=mask.filter(ImageFilter.MinFilter(3))
+                              candidate=core if core.getbbox() else mask
+                              left,top,right,bottom=candidate.getbbox()
+                              coords=next((i,j) for j in range(top,bottom) for i in range(left,right) if candidate.getpixel((i,j)))
+                              px,py=coords
+                              lon=(x+(px+.5)/256)*360/2**z-180
+                              lat=math.degrees(math.atan(math.sinh(math.pi*(1-2*(y+(py+.5)/256)/2**z))))
+                              results[(hemi,key)]=dict(longitude=lon,latitude=lat,tile=[z,x,y],pixel=[px,py],interior=bool(core.getbbox()))
+              print("WITNESSES",slug,json.dumps({a+"-"+("covered" if b==2 else "gray"):v for (a,b),v in results.items()},separators=(",",":")))
+                    PY
