@@ -1,0 +1,41 @@
+name: Verify packed Rhode Island carrier archives
+on:
+  push:
+    branches: [prototype/fcc-regional-pmtiles]
+    paths: ['scripts/pack_fcc_tiles.py', 'scripts/requirements-fcc-pmtiles.txt', 'scripts/check_fcc_pack_http.py', 'scripts/acceptance/fcc-range-server.go', '.github/workflows/check-fcc-packed-ri.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  regional:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - name: Install pinned PMTiles writer and reader
+        run: |
+          python3 -m pip install --target "$RUNNER_TEMP/pmdeps" --only-binary=:all: --no-deps --require-hashes -r scripts/requirements-fcc-pmtiles.txt
+          echo "PYTHONPATH=$RUNNER_TEMP/pmdeps" >> "$GITHUB_ENV"
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14624298332'
+          run-id: '44727106921'
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/xyz
+          merge-multiple: true
+      - name: Pack, byte-verify and read real tiles using HTTP ranges
+        run: |
+          python3 scripts/pack_fcc_tiles.py --xyz "$RUNNER_TEMP/xyz" --output "$RUNNER_TEMP/pmout"
+          go build -o "$RUNNER_TEMP/rangesrv" scripts/acceptance/fcc-range-server.go
+          "$RUNNER_TEMP/rangesrv" "$RUNNER_TEMP/pmout" > "$RUNNER_TEMP/range-origin" &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..40}; do test -s "$RUNNER_TEMP/range-origin" && break; sleep .1; done
+          python3 scripts/check_fcc_pack_http.py --origin "$(cat "$RUNNER_TEMP/range-origin")" --packed "$RUNNER_TEMP/pmout" --xyz "$RUNNER_TEMP/xyz"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: derived-fcc-pmtiles-ri
+          path: ${{ runner.temp }}/pmout
+          retention-days: 3
+          if-no-files-found: error
