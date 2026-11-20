@@ -1,0 +1,84 @@
+name: Preview real FCC tiles and old PWA upgrade
+on:
+  push:
+    branches: [verify/fcc-carrier-acceptance]
+    paths: ['.github/workflows/fcc-preview-acceptance.yml','scripts/acceptance/fcc-preview-check.json']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - id: pins
+        run: |
+          config=scripts/acceptance/fcc-preview-check.json
+          if ! test -f "$config"; then exit 0; fi
+          echo "candidate=$(jq -er '.candidate' "$config")" >> "$GITHUB_OUTPUT"
+          echo "check=$(jq -er '.checkRun' "$config")" >> "$GITHUB_OUTPUT"
+          echo "attempt=$(jq -er '.attempt' "$config")" >> "$GITHUB_OUTPUT"
+      - if: steps.pins.outputs.candidate != ''
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ steps.pins.outputs.candidate }}
+          path: candidate
+          persist-credentials: false
+      - if: steps.pins.outputs.candidate != ''
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: 61832ac7124c2bc323f250a129ffadf86ec106c9
+          path: previous
+          persist-credentials: false
+      - if: steps.pins.outputs.candidate != ''
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - if: steps.pins.outputs.candidate != ''
+        name: Build the pinned candidate static package
+        run: |
+          npm ci
+          cd candidate
+          npm ci
+          npm run build
+      - if: steps.pins.outputs.candidate != ''
+        uses: actions/download-artifact@v5
+        with:
+          name: fcc-mobile-tiles-${{ steps.pins.outputs.check }}-${{ steps.pins.outputs.attempt }}
+          run-id: ${{ steps.pins.outputs.check }}
+          github-token: ${{ github.token }}
+          path: candidate/dist/kamptrail/data/fcc-coverage
+      - if: steps.pins.outputs.candidate != ''
+        uses: actions/download-artifact@v5
+        with:
+          name: fcc-mobile-acceptance-${{ steps.pins.outputs.check }}-${{ steps.pins.outputs.attempt }}
+          run-id: ${{ steps.pins.outputs.check }}
+          github-token: ${{ github.token }}
+          path: qualified
+      - if: steps.pins.outputs.candidate != ''
+        name: Upgrade from the prior release and validate genuine candidate data
+        env:
+          EXPECTED_SHA: ${{ steps.pins.outputs.candidate }}
+          CHROMIUM_PATH: /usr/bin/google-chrome
+          BASE: http://127.0.0.1:8765/
+        run: |
+          test "$(git -C candidate rev-parse HEAD)" = "$EXPECTED_SHA"
+          jq -en --arg sha "$EXPECTED_SHA" '{source_commit:$sha}' > candidate/dist/kamptrail/release.json
+          ln -s "$PWD/previous" serving
+          KAMPTRAIL_SERVE_DIR="$PWD/serving" node candidate/scripts/serve.js > /tmp/kt-preview-http.log 2>&1 &
+          web_pid=$!
+          trap 'kill "$web_pid" 2>/dev/null || true' EXIT
+          curl --retry 5 --retry-connrefused --retry-delay 1 -fsS "$BASE/release.json" > /tmp/before.json
+          node scripts/acceptance/capture-fcc-upgrade.js
+          ln -s "$PWD/candidate/dist/kamptrail" next-serving
+          mv -Tf next-serving serving
+          curl -fsS "$BASE/release.json" | jq -e --arg sha "$EXPECTED_SHA" '.source_commit==$sha'
+          node scripts/acceptance/live-fcc-coverage.js qualified/fcc-acceptance.json | tee fcc-preview-acceptance.json
+          jq -e '.result=="PASS"' fcc-preview-acceptance.json
+      - if: steps.pins.outputs.candidate != ''
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: fcc-preview-acceptance
+          path: fcc-preview-acceptance.json
