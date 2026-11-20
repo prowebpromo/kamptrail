@@ -2130,6 +2130,27 @@
   "National clearance data unavailable; outside Rhode Island this view is unknown.": "Données nationales de dégagement indisponibles; hors du Rhode Island, cette vue est inconnue.",
   "{count} clearance candidates in view: {conflicts} conflict with your rig height, {unresolved} need checking or unknown.": "{count} candidats de dégagement dans la vue : {conflicts} en conflit avec la hauteur de votre véhicule, {unresolved} à vérifier ou inconnus.",
   "{count} visitor reports.": "{count} signalements de visiteurs.",
-  "First {count} visitor reports; more are not shown.": "Les {count} premiers signalements de visiteurs; d’autres ne sont pas affichés."
+  "First {count} visitor reports; more are not shown.": "Les {count} premiers signalements de visiteurs; d’autres ne sont pas affichés.",
+  "FCC mobile coverage": "Couverture mobile de la FCC",
+  "FCC National Broadband Map": "Carte nationale du haut débit de la FCC",
+  "Modeled coverage": "Couverture modélisée",
+  "No modeled coverage": "Aucune couverture modélisée",
+  "No data": "Aucune donnée",
+  "Off": "Désactivée",
+  "Map center: modeled coverage.": "Centre de la carte : couverture modélisée.",
+  "Map center: no modeled coverage.": "Centre de la carte : aucune couverture modélisée.",
+  "Map center: no published data here.": "Centre de la carte : aucune donnée publiée ici.",
+  "Map center: coverage tile unavailable.": "Centre de la carte : tuile de couverture indisponible.",
+  "Loading coverage at the map center…": "Chargement de la couverture au centre de la carte…",
+  "Zoom in to see coverage at the map center.": "Rapprochez la carte pour voir la couverture au centre.",
+  "Offline copy, not current.": "Copie hors ligne, non actualisée.",
+  "Saved copy, not current.": "Copie enregistrée, non actualisée.",
+  "Older filing, not current.": "Déclaration ancienne, non actualisée.",
+  "Outdoor stationary": "À l’extérieur, en position fixe",
+  "{carrier} · {technology} · {environment} · FCC filing {date}.": "{carrier} · {technology} · {environment} · Données déclarées à la FCC au {date}.",
+  "Published coverage area": "Zone de couverture publiée",
+  "Go to area…": "Aller à la zone…",
+  "Map layer based on FCC BDC.": "Couche cartographique fondée sur la collecte de données à haut débit de la FCC.",
+  "State boundaries: U.S. Census Bureau.": "Limites des États : Bureau du recensement des États-Unis."
 }};
 })(typeof window !== 'undefined' ? window : globalThis);
