@@ -251,7 +251,7 @@ def package(repo,destination):
 if __name__ == "__main__":
     parser=argparse.ArgumentParser(description=__doc__)
     ops=parser.add_subparsers(dest="action",required=True)
-    for action in ("validate","publish","package","validate-packed","publish-packed"):
+    for action in ("validate","publish","package","validate-packed","publish-packed","measure-packed"):
         op=ops.add_parser(action)
         op.add_argument("path",type=Path)
         if action.endswith("-packed"):
@@ -263,6 +263,8 @@ if __name__ == "__main__":
     import sys
     if args.action=="rollback-packed":
         packed.edit(sys.modules[__name__],ROOT,"rollback",expected=args.from_release,target=None if args.to=="legacy" else args.to)
+    elif args.action=="measure-packed":
+        print(json.dumps(packed.measure(sys.modules[__name__],ROOT,args.path.resolve(),args.qualification.resolve()),sort_keys=True))
     elif args.action=="publish-packed":
         packed.edit(sys.modules[__name__],ROOT,"publish",path=args.path.resolve(),report=args.qualification.resolve())
     elif args.action=="validate-packed":

@@ -110,6 +110,8 @@ def qualify(legacy,ri,ri_evidence,aggregate,lane):
         unexpected.unlink()
         assert v1.remote_head(repo)==first
         regional=lambda:v2.edit(v1,repo,"publish",path=candidate,report=report,expected_scope="AK")
+        predicted=v2.measure(v1,repo,candidate,report)
+        assert v1.remote_head(repo)==first
         regional()
         head_a=v1.remote_head(repo)
         regional();assert v1.remote_head(repo)==head_a
@@ -118,7 +120,9 @@ def qualify(legacy,ri,ri_evidence,aggregate,lane):
         assert v2.read(site/"manifest-v2.json")==m
         for item in (legacy/v1_id).rglob("*.png"):
             assert (site/item.relative_to(legacy)).read_bytes()==item.read_bytes()
-        print("Real NY/RI XYZ plus Alaska packs",filesum(site),"files/bytes; data Git tree",v1.inspect_tree_entries(repo,head_a),flush=True)
+        assert predicted["fitsCurrentByteLimits"] and (predicted["packagedFiles"],predicted["packagedBytes"])==filesum(site)
+        assert predicted["retainedTreeBytes"]==v1.inspect_tree_entries(repo,head_a)
+        print("Measured real NY/RI XYZ plus Alaska packs before writing",predicted,flush=True)
 
         # A deliberately changed display attribution creates a distinct QA generation with identical real archive bytes.
         m2=copy.deepcopy(m);m2["attribution"]=m2["attribution"]+" (qualification fixture B)"
@@ -126,6 +130,7 @@ def qualify(legacy,ri,ri_evidence,aggregate,lane):
         (candidate/original).rename(candidate/b);write(candidate/"manifest.json",m2)
         q2=copy.deepcopy(q);q2["release"]=b;write(report,q2)
         with patch.object(v1,"MAX_BYTES",q["packedBytes"]):
+            assert not v2.measure(v1,repo,candidate,report)["fitsCurrentByteLimits"]
             require_failure(regional,"capacity")
         assert v1.remote_head(repo)==head_a
         regional()

@@ -257,7 +257,8 @@ def edit(core,repo,action,*,path=None,report=None,expected_scope="US",expected=N
     with tempfile.TemporaryDirectory() as tmp:
         work=Path(tmp)
         with core.checked_tree(repo,head,work) as (checkout,old,legacy_scopes,_):
-            state=inspect(checkout,core.MAX_BYTES)
+            packed_state=checkout/FAMILY/"state.json"
+            state=read(packed_state) if packed_state.exists() else {"active":None,"generations":[],"quarantined":[]}
             active=state["active"];gens=state["generations"]
             env={**os.environ,"GIT_INDEX_FILE":str(work/"index"),"GIT_AUTHOR_NAME":"github-actions[bot]",
                  "GIT_COMMITTER_NAME":"github-actions[bot]","GIT_AUTHOR_EMAIL":"41898282+github-actions[bot]@users.noreply.github.com",
@@ -313,3 +314,44 @@ def package(checkout,destination,legacy_ids):
         shutil.copytree(root/g,destination/g)
     if state["active"]:
         shutil.copyfile(root/"manifests"/(state["active"]+".json"),destination/"manifest-v2.json")
+
+
+def measure(core,repo,path,report):
+    """Read the candidate and live data tree; report space required without writing the data ref."""
+    m,scopes,q=candidate(path,report,len(STATES)*len(PROVIDERS)*MAX_PACK)
+    head=core.remote_head(repo)
+    require(head,"No legacy data release available to measure")
+    with tempfile.TemporaryDirectory() as tmp:
+        with core.checked_tree(repo,head,Path(tmp)) as (checkout,legacy,_,_):
+            oldroot=checkout/FAMILY
+            state=read(oldroot/"state.json") if oldroot.exists() else {"active":None,"generations":[],"quarantined":[]}
+            release=m["release"]
+            require(release not in state["quarantined"],"Proposed release is quarantined")
+            legacy_rows=[(p.relative_to(checkout),p.stat().st_size) for p in checkout.rglob("*") if p.is_file()
+                         and p.relative_to(checkout).parts[0] not in {".git",FAMILY}]
+            git_bytes=sum(n for _,n in legacy_rows)
+            site_bytes=sum(n for p,n in legacy_rows if p.parts[0]!="manifests")
+            site_count=sum(p.parts[0]!="manifests" for p,_ in legacy_rows)
+            same=release==state["active"]
+            keep=list(state["generations"]) if same else [release]+([state["active"] or state["generations"][0]] if state["generations"] else [])
+            require(len(keep)==len(set(keep)), "Candidate is already an inactive retained release")
+            for g in keep:
+                if g==release and not same:
+                    content=q["packedBytes"]
+                    manifest_size=(path/"manifest.json").stat().st_size
+                    receipt_size=len(canonical(q))+1
+                    count=len(scopes)
+                else:
+                    files=[p for p in (oldroot/g).rglob("*.pmtiles")]
+                    content=sum(p.stat().st_size for p in files)
+                    count=len(files)
+                    manifest_size=(oldroot/"manifests"/(g+".json")).stat().st_size
+                    receipt_size=(oldroot/"receipts"/(g+".json")).stat().st_size
+                git_bytes+=content+manifest_size+receipt_size
+                site_bytes+=content+(manifest_size if g==release else 0)
+                site_count+=count+(1 if g==release else 0)
+            git_bytes+=len(canonical({**state,"active":release,"generations":keep}))+1
+            return {"release":release,"generationBytes":q["packedBytes"],"archives":len(scopes),
+                    "dataRef":head,"packagedFiles":site_count,"packagedBytes":site_bytes,"retainedTreeBytes":git_bytes,
+                    "generationLimitBytes":core.MAX_BYTES,"retainedLimitBytes":2*core.MAX_BYTES+2*1024**2,
+                    "fitsCurrentByteLimits":q["packedBytes"]<=core.MAX_BYTES and git_bytes<=2*core.MAX_BYTES+2*1024**2}
