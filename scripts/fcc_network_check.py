@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
-"""Compare the two FCC Public Map API hosts for support ticket 64052."""
+"""One-request FCC Public Map Data API check from a CI runner.
+
+Sends a single GET to listAsOfDates with the documented username and
+hash_value headers and an honest User-Agent. Prints only the UTC time,
+HTTP status and declared response format. Never prints credentials,
+response headers or bodies. Standard library only.
+"""
 import json
 import os
-import re
 import sys
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
-from html import unescape
 
-MAP_HOST = "broadbandmap.fcc.gov"
-PREVIOUS_HOST = "bdc.fcc.gov"
-PATH = "/api/public/map/listAsOfDates"
-UA = "KampTrail coverage importer (+https://github.com/prowebpromo/kamptrail)"
+URL = 'https://broadbandmap.fcc.gov/api/public/map/listAsOfDates'
+UA = 'KampTrail coverage importer (+https://github.com/prowebpromo/kamptrail)'
+KIND = {'application/json': 'JSON', 'application/problem+json': 'JSON', 'text/html': 'HTML'}
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -20,75 +23,36 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         return None
 
 
-def report_html_error(body, headers, credentials):
-    # Publish only recognizable support fields. Never log raw response data.
-    page = unescape(body.decode("utf-8", "replace"))
-    title = re.search(r"<title\b[^>]*>([^<]{1,160})</title\s*>", page, re.I)
-    if title:
-        value = " ".join(title[1].split())
-        if re.fullmatch(r"[\w .,:/()'!–—-]{1,120}", value) and all(
-            credential.casefold() not in value.casefold() for credential in credentials
-        ):
-            print(f"HTML title: {value}")
-    reference = re.search(
-        r"\bReference\s*(?:#|ID\s*[:#]|Number\s*[:#])\s*([A-Za-z0-9][A-Za-z0-9.-]{2,95})",
-        page, re.I,
-    )
-    fields = {"Page reference": reference[1].rstrip(".") if reference else ""}
-    for name in ("X-Request-ID", "X-Reference-ID", "Akamai-GRN", "CF-Ray"):
-        fields[name] = headers.get(name, "")
-    for name, value in fields.items():
-        if re.fullmatch(r"[A-Za-z0-9.-]{3,96}", value) and all(
-            credential.casefold() not in value.casefold() for credential in credentials
-        ):
-            print(f"{name}: {value}")
-
-
-def check(host, user, token):
-    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    request = urllib.request.Request(f"https://{host}{PATH}", headers={
-        "username": user, "hash_value": token, "User-Agent": UA, "Accept": "application/json",
-    })
-    try:
-        try:
-            response = urllib.request.build_opener(NoRedirect()).open(request, timeout=90)
-        except urllib.error.HTTPError as error:
-            response = error
-        with response:
-            status = response.getcode()
-            media = response.headers.get_content_type()
-            body = response.read(2_000_000 if status == 200 else 16_384)
-            print(f"{stamp} | {host} | HTTP {status} | {media}")
-            if status == 403 and media == "text/html":
-                report_html_error(body, response.headers, (user, token))
-            if status == 200 and media in ("application/json", "application/problem+json"):
-                payload = json.loads(body)
-                rows = payload.get("data") if isinstance(payload, dict) else None
-                if not isinstance(rows, list):
-                    print("No data array in JSON response.")
-                    return status, False
-                dates = {row["as_of_date"] for row in rows if isinstance(row, dict)
-                         and row.get("data_type") == "availability"
-                         and isinstance(row.get("as_of_date"), str) and row["as_of_date"]}
-                print(f"Availability dates returned: {len(dates)}")
-                return status, bool(dates)
-            return status, False
-    except (OSError, ValueError) as error:
-        print(f"{stamp} | {host} | check failed ({type(error).__name__})")
-        return None, False
-
-
 def main():
-    user = os.environ.get("FCC_USERNAME", "").strip()
-    token = os.environ.get("FCC_TOKEN", "").strip()
+    user, token = os.environ.get('FCC_USERNAME', '').strip(), os.environ.get('FCC_TOKEN', '').strip()
     if not user or not token:
-        print("Missing FCC credential. No request was sent.")
+        print('FCC_USERNAME or FCC_TOKEN is not set. No request was sent.')
         return 2
-    status, valid_dates = check(MAP_HOST, user, token)
-    if status == 403:
-        check(PREVIOUS_HOST, user, token)
-    return 0 if valid_dates else 1
+    stamp = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+    req = urllib.request.Request(URL, headers={'username': user, 'hash_value': token, 'User-Agent': UA,
+                                              'Accept': 'application/json'})
+    try:
+        with urllib.request.build_opener(NoRedirect()).open(req, timeout=90) as r:
+            status, media, body = r.getcode(), r.headers.get('Content-Type', ''), r.read(2_000_000)
+    except urllib.error.HTTPError as e:
+        status, media, body = e.code, (e.headers or {}).get('Content-Type', ''), b''
+        e.close()
+    except Exception as e:
+        print(f'{stamp} | connection failed ({type(e).__name__}). No details logged.')
+        return 1
+    kind = KIND.get(media.split(';', 1)[0].strip().lower(), 'other/unspecified')
+    dates = 0
+    if status == 200:
+        try:
+            dates = sum(1 for row in json.loads(body).get('data', []) if isinstance(row, dict) and row.get('data_type') == 'availability')
+        except Exception:
+            dates = -1
+    verdict = ('authentication succeeded' if status == 200 and dates > 0 else
+               'account or token rejected by the API' if status in (401, 403) and kind == 'JSON' else
+               'block page, source unconfirmed' if status == 403 and kind == 'HTML' else 'unexpected response')
+    print(f'{stamp} | HTTP {status} | format {kind} | availability dates {dates if status == 200 else "n/a"} | {verdict}')
+    return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())
