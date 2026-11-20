@@ -1,11 +1,16 @@
-name: Refresh FCC mobile coverage
-
+# Prototype-only: this dispatch entry reuses a path registered on main. Never merge
+# this file over the production FCC publisher. Every job below has read access only.
+name: Qualify national FCC carrier archives
 on:
-  schedule:
-    - cron: '41 7 10 * *'
   workflow_dispatch:
+    inputs:
+      scope:
+        description: 'One uppercase state abbreviation (or DC). US explicitly qualifies all 50 states and DC.'
+        type: string
+        default: 'NY'
+        required: true
   push:
-    branches: [pilot/fcc-mobile-qualification]
+    branches: [trial/fcc-national-ak]
 
 permissions:
   contents: read
@@ -15,63 +20,97 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  qualify:
-    if: github.repository == 'prowebpromo/kamptrail' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/pilot/fcc-mobile-qualification')
-    runs-on: ubuntu-24.04
-    timeout-minutes: 45
-    outputs:
-      artifact: ${{ steps.tiles.outputs.artifact-id }}
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: ${{ github.sha }}
-          persist-credentials: false
-      - name: Install Ubuntu geospatial readers and independent acceptance tools
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends python3-gdal python3-numpy python3-fiona python3-pyproj python3-shapely python3-pil
-      - name: Check publication and retention safeguards
-        run: /usr/bin/python3 -m unittest discover -s scripts/tests -p 'test_fcc_refresh.py'
-      - name: Retrieve the latest authorized provider source files
-        env:
-          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
-          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
-        run: /usr/bin/python3 scripts/prepare_fcc_refresh.py --work "$RUNNER_TEMP/fcc-input"
-      - name: Build complete viewport tiles
-        run: /usr/bin/python3 scripts/build_fcc_tiles.py --plan "$RUNNER_TEMP/fcc-input/plan.json" --output "$RUNNER_TEMP/fcc-output"
-      - name: Check coverage against the downloaded provider geometry and state boundary
-        run: |
-          /usr/bin/python3 scripts/acceptance/check-fcc-tiles.py --plan "$RUNNER_TEMP/fcc-input/plan.json" --input "$RUNNER_TEMP/fcc-output" --output "$RUNNER_TEMP/fcc-acceptance.json"
-          /usr/bin/python3 scripts/publish_fcc_tiles.py validate "$RUNNER_TEMP/fcc-output"
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: fcc-mobile-acceptance-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/fcc-acceptance.json
-          if-no-files-found: error
-          retention-days: 30
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        id: tiles
-        with:
-          name: fcc-mobile-tiles-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/fcc-output
-          if-no-files-found: error
-          retention-days: 7
-
-  publish:
-    needs: qualify
-    if: github.repository == 'prowebpromo/kamptrail' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+  plan:
+    if: github.repository == 'prowebpromo/kamptrail' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/work/fcc-national-qualification') || (github.event_name == 'push' && github.ref == 'refs/heads/trial/fcc-national-ak'))
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    permissions:
-      contents: write
+    outputs:
+      lanes: ${{ steps.plan.outputs.lanes }}
+      artifact: ${{ steps.artifact.outputs.artifact-id }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install --no-install-recommends python3-fiona
+          /usr/bin/python3 -m unittest discover -s scripts/tests -p 'test_qualify_fcc_national.py'
+      - name: Freeze one filing, provider catalog, Census boundary and fair worker slots
+        id: plan
+        env:
+          # Push cannot choose the US bulk path.
+          SCOPE: ${{ github.event_name == 'workflow_dispatch' && inputs.scope || 'AK' }}
+          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
+        run: /usr/bin/python3 scripts/qualify_fcc_national.py plan --scope "$SCOPE" --output "$RUNNER_TEMP/fcc-plan"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        id: artifact
         with:
-          ref: ${{ github.sha }}
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+          name: fcc-catalog-plan
+          path: ${{ runner.temp }}/fcc-plan
+          overwrite: true
+          if-no-files-found: error
+          retention-days: 2
+  provider:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 345
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        lane: ${{ fromJSON(needs.plan.outputs.lanes) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          artifact-ids: ${{ needs.qualify.outputs.artifact }}
-          path: ${{ runner.temp }}/tiles
+          artifact-ids: ${{ needs.plan.outputs.artifact }}
+          path: ${{ runner.temp }}/fcc-plan
           merge-multiple: true
-      - name: Atomically move the public data ref after all files validate
-        run: python3 scripts/publish_fcc_tiles.py publish "$RUNNER_TEMP/tiles"
+      - name: Set up geospatial tools and pinned PMTiles package
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install --no-install-recommends python3-gdal python3-numpy python3-fiona python3-pyproj python3-shapely python3-pil
+          python3 -m pip install --target "$RUNNER_TEMP/pmdeps" --only-binary=:all: --no-deps --require-hashes -r scripts/requirements-fcc-pmtiles.txt
+          echo "PYTHONPATH=$RUNNER_TEMP/pmdeps" >> "$GITHUB_ENV"
+      - name: Download one provider at a time; independently qualify spatial samples and every packed tile
+        env:
+          LANE: ${{ matrix.lane }}
+          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
+        run: /usr/bin/python3 scripts/qualify_fcc_national.py acquire --plan "$RUNNER_TEMP/fcc-plan/plan.json" --lane "$LANE" --output "$RUNNER_TEMP/provider-results"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always() && !cancelled()
+        with:
+          name: fcc-packed-lane-${{ matrix.lane }}
+          path: ${{ runner.temp }}/provider-results
+          overwrite: true
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+  aggregate:
+    needs: [plan, provider]
+    if: needs.provider.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: ${{ needs.plan.outputs.artifact }}
+          path: ${{ runner.temp }}/fcc-plan
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          pattern: fcc-packed-lane-*
+          path: ${{ runner.temp }}/lanes
+      - name: Verify every expected archive and record missing catalog pairs
+        run: python3 scripts/qualify_fcc_national.py assemble --plan "$RUNNER_TEMP/fcc-plan/plan.json" --lanes "$RUNNER_TEMP/lanes" --output "$RUNNER_TEMP/qualified"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: fcc-national-qualification
+          path: ${{ runner.temp }}/qualified
+          overwrite: true
+          if-no-files-found: error
+          retention-days: 14

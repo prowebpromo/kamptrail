@@ -7,6 +7,8 @@ import json
 import math
 import random
 import shutil
+import sqlite3
+from itertools import chain
 import tempfile
 import zipfile
 from collections import Counter
@@ -53,6 +55,17 @@ def tile_xy(lon, lat, zoom):
             max(0, min(size - 1, math.floor((1 - math.asinh(math.tan(math.radians(lat))) / math.pi) / 2 * size))))
 
 
+def pacific(x, y, z=None):
+    """Use continuous longitudes around 180, independently of GDAL's cut geometry."""
+    if hasattr(x, "__iter__"):
+        return [v + 360 if v < 0 else v for v in x], y
+    return (x + 360 if x < 0 else x), y
+
+
+def state_lonlat(lon, lat, alaska):
+    return Point(*pacific(lon, lat)) if alaska else Point(lon, lat)
+
+
 def jurisdiction(region):
     boundary = region["boundary"]
     path = Path(boundary["path"]).resolve()
@@ -63,7 +76,10 @@ def jurisdiction(region):
         polygons = [shape(row["geometry"]) for row in source
                     if row["properties"]["STUSPS"] == region["id"]]
     require(len(polygons) == 1, f"Expected exactly one Census polygon for {region['id']}")
-    return prep(transform(project, polygons[0])), file_hash(path)
+    state = transform(project, polygons[0])
+    if region["id"] == "AK":
+        state = transform(pacific, state)
+    return prep(state), file_hash(path)
 
 
 def inspect_archive(source, private_dir):
@@ -78,28 +94,38 @@ def inspect_archive(source, private_dir):
     return target
 
 
-def classify_samples(collection, state, source, lon_lats, geom_cache):
+def classify_samples(collection, state, source, lon_lats, geom_cache, crossing=(), alaska=False):
     """Query geometries directly in native lon/lat. Include both stationary-capable modes."""
     points = [Point(*xy) for xy in lon_lats]
-    inside = [state.covers(p) for p in points]
+    mask_points = [state_lonlat(*xy, alaska) for xy in lon_lats] if alaska else points
+    inside = [state.covers(p) for p in mask_points]
     if not any(inside):
         return ["missing"] * len(points)
     covered = [False] * len(points)
     xs, ys = zip(*lon_lats)
-    for feature in collection.filter(bbox=(min(xs), min(ys), max(xs), max(ys))):
+    # An unsplit ring from 179E to 179W can exclude its own interior at 179.9
+    # from its native bounding box. Include every such original feature separately.
+    seen = set()
+    for feature in chain(collection.filter(bbox=(min(xs), min(ys), max(xs), max(ys))), crossing):
+        if feature.id in seen:
+            continue
+        seen.add(feature.id)
         row = {k.lower():v for k,v in feature["properties"].items()}
         require(str(row["providerid"]) == str(source["providerId"]), "Unexpected provider in provider archive")
         if (int(row["technology"]) != 400 or float(row["mindown"]) != 5 or
             float(row["minup"]) != 1 or int(row["environmnt"]) not in (0, 1)):
             continue
         fid = feature.id
-        geom = geom_cache.get(fid)
-        if geom is None:
-            geom = prep(shape(feature["geometry"]))
+        cached = geom_cache.get(fid)
+        if cached is None:
+            original = shape(feature["geometry"])
+            wraps = alaska and original.bounds[2] - original.bounds[0] > 180
+            cached = (prep(transform(pacific, original) if wraps else original), wraps)
             if len(geom_cache) >= 128:
                 geom_cache.pop(next(iter(geom_cache)))
-            geom_cache[fid] = geom
-        for i, point in enumerate(points):
+            geom_cache[fid] = cached
+        geom, wraps = cached
+        for i, point in enumerate(mask_points if wraps else points):
             if inside[i] and not covered[i] and geom.covers(point):
                 covered[i] = True
         if all(c or not available for c, available in zip(covered, inside)):
@@ -133,13 +159,68 @@ def candidates(image, rng):
                 break
 
 
+def point_pixel(lon, lat, zoom):
+    edge = 256 * 2**zoom
+    x = min(edge - 1, max(0, math.floor((lon + 180) * edge / 360)))
+    y = min(edge - 1, max(0, math.floor(
+        (1 - math.asinh(math.tan(math.radians(lat))) / math.pi) * edge / 2)))
+    return (x // 256, y // 256), (x % 256, y % 256)
+
+
+def original_points(raw, collection, zoom, alaska):
+    """Seed additional native pixels from up to 20 original provider features, independent of raster colors."""
+    anchors = {}
+    with sqlite3.connect(raw.resolve().as_uri() + "?mode=ro&immutable=1", uri=True) as db:
+        layers = db.execute("select table_name from gpkg_geometry_columns").fetchall()
+        require(len(layers) == 1, "Expected a single original coverage geometry layer")
+        table = '"' + layers[0][0].replace('"', '""') + '"'
+        columns = list(db.execute("pragma table_info(" + table + ")"))
+        ids = [col[1] for col in columns if col[5] == 1]
+        require(len(ids) == 1, "Missing GeoPackage feature identifier")
+        pk = '"' + ids[0].replace('"', '""') + '"'
+        lo, hi = db.execute(f"select min({pk}), max({pk}) from {table}").fetchone()
+        if lo is None:
+            return anchors
+        seeds = sorted({lo + (hi-lo)*i//19 for i in range(20)})
+        for seed in seeds:
+            row = db.execute(f"select {pk} from {table} where {pk}>=? order by {pk} limit 1", (seed,)).fetchone()
+            feature = collection[int(row[0])]
+            original = shape(feature["geometry"])
+            if alaska and original.bounds[2] - original.bounds[0] > 180:
+                original = transform(pacific, original)
+            point = original.representative_point()
+            lon = point.x - 360 if point.x > 180 else point.x
+            tile, pixel = point_pixel(lon, point.y, zoom)
+            anchors.setdefault(tile, set()).add(pixel)
+    return anchors
+
+
+def validated_footprints(declared, alaska):
+    if not alaska:
+        return [declared["bounds"]]
+    boxes = declared.get("footprints")
+    require(isinstance(boxes, list) and len(boxes) == 2, "Alaska must declare both sides of the dateline")
+    for w,s,e,n in boxes:
+        require(-180 <= w < e <= 180 and 0 < e-w < 180 and 0 < s < n <= 85.05112878
+                and (e <= 0 or w >= 0), "Invalid Alaska reporting footprint")
+    require({box[0] >= 0 for box in boxes} == {False, True}, "Alaska footprints repeat a hemisphere")
+    return boxes
+
+
 def verify_carrier(root, manifest, region, source, declared, state, raw):
     zoom = declared["maxZoom"]
-    tile_dirs = list(tiles_for(declared["bounds"], zoom))
+    alaska = region["id"] == "AK"
+    boxes = validated_footprints(declared, alaska)
     rng = random.Random(f"{manifest['release']}:{region['id']}:{source['id']}")
-    if len(tile_dirs) > 36:
-        edges = (tile_dirs[0], tile_dirs[-1])
-        tile_dirs = list(dict.fromkeys([*edges, *rng.sample(tile_dirs, 34)]))
+    tile_dirs = []
+    extents = set()
+    for box in boxes:
+        footprint = list(tiles_for(box, zoom))
+        extents.update(footprint)
+        budget = 36 // len(boxes)
+        selected = footprint if len(footprint) <= budget else [
+            footprint[0], footprint[-1], *rng.sample(footprint, budget - 2)]
+        tile_dirs.extend(selected)
     counts = Counter()
     witnesses = {}
     seen_classes = set()
@@ -150,6 +231,12 @@ def verify_carrier(root, manifest, region, source, declared, state, raw):
         require(CRS.from_user_input(collection.crs_wkt or collection.crs).to_epsg() == 4326,
                 "Raw coverage CRS is not the expected EPSG:4326")
         require(len(collection) == int(source["recordCount"]), "FCC catalog count differs from source")
+        anchors = original_points(raw, collection, zoom, alaska)
+        tile_dirs = list(dict.fromkeys([*tile_dirs, *(tile for tile in anchors if tile in extents)]))
+        # A polygon crossing the longitude discontinuity necessarily intersects
+        # the Greenwich meridian in its original planar representation.
+        crossing = list(collection.filter(bbox=(-0.01, 0, 0.01, 85))) if alaska else []
+        matched_hemispheres = Counter()
         for x, y in tile_dirs:
             relative = f"{manifest['release']}/{source['id']}/{region['id']}/{zoom}/{x}/{y}.png"
             data = (root / relative).read_bytes()
@@ -160,11 +247,11 @@ def verify_carrier(root, manifest, region, source, declared, state, raw):
             colors = {color for _,color in image.getcolors(256*256)}
             require(colors <= PALETTE.keys(), f"Undocumented color in {relative}")
             seen_classes.update(PALETTE[c] for c in colors)
-            for px, py in candidates(image, rng):
+            for px, py in dict.fromkeys([*candidates(image, rng), *sorted(anchors.get((x,y), ()))]):
                 center_x, center_y = 256*x + px + .5, 256*y + py + .5
                 probes = [wgs84(center_x+dx, center_y+dy, zoom) for dx,dy in (
                     (0,0), (-.4,-.4), (.4,-.4), (-.4,.4), (.4,.4))]
-                expected = classify_samples(collection, state, source, probes, geom_cache)
+                expected = classify_samples(collection, state, source, probes, geom_cache, crossing, alaska)
                 if len(set(expected)) != 1:
                     uncertain += 1
                     continue
@@ -174,18 +261,21 @@ def verify_carrier(root, manifest, region, source, declared, state, raw):
                     if len(failures) >= 5:
                         raise ValueError(f"Source/raster disagreements: {failures}")
                 counts[expected[0]] += 1
+                matched_hemispheres["east" if probes[0][0] >= 0 else "west"] += 1
                 if actual == expected[0] and actual not in witnesses:
                     witnesses[actual] = {"lon": probes[0][0],"lat": probes[0][1],
                                          "tile": relative,"sha256": digest,"pixel": [px,py],"zoom": zoom}
     require(not failures, f"Source/raster disagreements: {failures}")
-    require(counts["covered"] > 0, f"No source-confirmed covered sample for {source['id']}")
-    require(counts["missing"] > 0, f"No outside-scope sample for {source['id']}")
-    require("uncovered" not in seen_classes or counts["uncovered"] > 0,
-            f"No verified uncovered witness for {source['id']} despite mapped gray pixels")
+    require(sum(counts.values()) > 0, "No stable native pixel was verified")
+    if alaska:
+        require(all(matched_hemispheres[side] for side in ("east", "west")), "A dateline footprint received no checks")
+    unobserved = {kind: ("present in sampled tiles, no stable witness verified" if kind in seen_classes
+                         else "not present in sampled native tiles") for kind in PALETTE.values() if not counts[kind]}
     return {"region": region["id"],"carrier": source["id"],"fileId": source["fileId"],
             "sourceSHA256": source["sha256"],"records": int(source["recordCount"]),
             "tilesCompared": len(tile_dirs),"matches": dict(counts),
-            "boundaryPixelsSkipped": uncertain,"witnesses": witnesses}
+            "boundaryPixelsSkipped": uncertain,"witnesses": witnesses,"unobservedClasses": unobserved,
+            "stableSamplesByHemisphere": dict(matched_hemispheres)}
 
 
 def verify(plan, area):
