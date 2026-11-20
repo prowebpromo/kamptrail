@@ -58,7 +58,7 @@ async function decompressDirectory(buffer, compression) {
   throw Error('Invalid PMTiles directory size');
 }
 export class RangeSource {
-  constructor(url, region, fetcher = fetch) {
+  constructor(url, region, fetcher = globalThis.fetch.bind(globalThis)) {
     this.url = url;
     this.region = region;
     this.fetcher = fetcher;
