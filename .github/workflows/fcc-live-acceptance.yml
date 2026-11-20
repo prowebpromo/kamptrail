@@ -1,4 +1,5 @@
 name: Verify live FCC coverage and saved sessions
+# Exercise the normal browser update path with measured navigation.
 on:
   push:
     branches: [verify/fcc-live-2490-native-center]

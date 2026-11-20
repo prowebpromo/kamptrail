@@ -19,6 +19,14 @@ const expectedText = {
   covered:'Map center: modeled coverage.', uncovered:'Map center: no modeled coverage.',
   missing:'Map center: no published data here.', unavailable:'Map center: coverage tile unavailable.'
 };
+const pause = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+function recordRateLimits(context) {
+  context.on('response', response => {
+    if (response.status() === 429 && new URL(response.url()).origin === base.origin) {
+      console.error('Host returned HTTP 429',new URL(response.url()).pathname,'Retry-After',response.headers()['retry-after'] || 'unspecified');
+    }
+  });
+}
 const requiredRegions = (process.env.EXPECTED_REGIONS || 'RI').split(',').sort();
 const sources = (report?.checks || []).filter(c=>requiredRegions.includes(c.region));
 const anchor = () => sources.find(c=>c.region==='RI' && c.carrier==='att').witnesses.covered;
@@ -134,6 +142,7 @@ async function upgrade(mode, manifest) {
     isMobile:mobile,hasTouch:mobile,locale:'en-US'
   });
   try {
+    recordRateLimits(context);
     const previous=old[mode];
     const page=context.pages()[0]||await context.newPage(), sampled=[];
     await context.setOffline(true);
@@ -145,18 +154,20 @@ async function upgrade(mode, manifest) {
       return {mode,source_commit: previous.source_commit,savedIds:previous.storedIds,cacheVerifiedOffline:true};
     }
     await context.setOffline(false);
-    await page.evaluate(async()=>{ const sw=await navigator.serviceWorker.getRegistration(); if(sw) await sw.update(); });
+    // A returning visitor reconnects and navigates. The browser checks for a new worker as part of navigation.
     let upgraded=false;
     for(let attempt=0;attempt<3&&!upgraded;attempt++) {
       await page.goto(endpoint('?acceptance='+Date.now()+'#explore'),{waitUntil:'domcontentloaded',timeout:90_000});
       try {await waitForPicker(page); upgraded=true;} catch(error) {if(attempt===2)throw error;}
     }
+    await page.waitForFunction(async()=>!!navigator.serviceWorker.controller && (await caches.keys()).some(key=>key.startsWith('kamptrail:') && key.endsWith('kt-v94')),null,{timeout:90000});
     assert.deepEqual(await storedIds(page),previous.storedIds,'Existing saved stop changed during upgrade');
     assert.equal(await page.locator(picker).inputValue(),'','Overlay must start off');
     assert.equal(await page.locator('#fcc-coverage-readout').isVisible(),false);
     assert.deepEqual((await page.locator(picker+' option').evaluateAll(els=>els.map(o=>o.value))).sort(),['','att','t-mobile','verizon']);
     for(const c of sources) {
       const carrier=c.carrier;
+      await pause(3500);
       await setCenter(page,c.witnesses.covered);
       await select(page,carrier);
       const areaWidget=page.getByRole('combobox',{name:'Published coverage area'});
@@ -178,6 +189,7 @@ async function upgrade(mode, manifest) {
       const filing = new Date(manifest.asOf+'T00:00:00Z').toLocaleDateString('en-US',{timeZone:'UTC'});
       assert.ok(coveredResult.includes(filing)||coveredResult.includes(manifest.asOf),'Correct FCC filing date for selected carrier');
       for(const [expected,w] of Object.entries(c.witnesses)) {
+        await pause(1500);
         await setCenter(page,w);
         const joint=await combinedAt(page,manifest,carrier,w);
         const native=joint.entries.find(e=>e.region===c.region)?.state || 'missing';
@@ -272,9 +284,13 @@ async function failureCases(manifest) {
   assert.equal(old.base.replace(/\/$/,''),base.origin);
   assert.equal(report.result,'PASS');
   const release=await checkRelease(),manifest=await getJSON('data/fcc-coverage/manifest.json');
-  const assets=await confirmAssets(manifest);
   const runs=[];
-  for (const mode of ['desktop','mobile']) runs.push(await upgrade(mode,manifest));
+  for (const mode of ['desktop','mobile']) {
+    await pause(45000);
+    runs.push(await upgrade(mode,manifest));
+  }
+  await pause(45000);
+  const assets=await confirmAssets(manifest);
   const controlledFailureCases=await failureCases(manifest);
   await checkRelease();
   assert.equal((await getJSON('data/fcc-coverage/manifest.json')).release,manifest.release);
