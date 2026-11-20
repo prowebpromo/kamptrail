@@ -6,13 +6,13 @@ This branch builds candidate PMTiles and verifies them against provider-reported
 
 A push to `trial/fcc-national-ak` can only qualify Alaska. A dispatch to `work/fcc-national-qualification` accepts an uppercase state abbreviation, DC or US. US means the 50 states and DC. A distinct region input never selects US automatically.
 
-The prototype uses the same workflow file path as the default-branch FCC publisher because GitHub only accepts dispatch events for registered default-branch workflows. The ref below selects the read-only prototype implementation. Keep this branch's workflow out of production merges.
+The default branch already registers a read-only state staging workflow. This prototype branch supplies its own dispatch entry at that path with the same `states` input, calling the FCC qualifier at the same reviewed commit. GitHub requires a registered default-branch workflow path for dispatch. Neither workflow file from this prototype should replace the production jobs.
 
 ```bash
-gh workflow run refresh-fcc-mobile.yml --repo prowebpromo/kamptrail --ref work/fcc-national-qualification --field scope=NY
+gh workflow run stage-national-services.yml --repo prowebpromo/kamptrail --ref work/fcc-national-qualification --field states=NY
 ```
 
-Use the same command with `scope=US` only for an explicitly approved full qualification after reviewing trial storage, source file sizes and run time. A regular branch push cannot launch a national fetch.
+Use the same command with `states=US` only for an explicitly approved full qualification after reviewing trial storage, source file sizes and run time. A regular branch push cannot launch a national fetch.
 
 ## Data flow
 

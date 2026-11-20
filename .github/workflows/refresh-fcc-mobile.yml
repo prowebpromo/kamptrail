@@ -2,6 +2,16 @@
 # this file over the production FCC publisher. Every job below has read access only.
 name: Qualify national FCC carrier archives
 on:
+  workflow_call:
+    inputs:
+      scope:
+        required: true
+        type: string
+    secrets:
+      FCC_USERNAME:
+        required: true
+      FCC_TOKEN:
+        required: true
   workflow_dispatch:
     inputs:
       scope:
