@@ -1,0 +1,31 @@
+name: Measure national FCC input and tile footprint
+
+on:
+  push:
+    branches: [measure/fcc-national-footprint]
+    paths: ['scripts/measure_fcc_national.py', '.github/workflows/measure-fcc-national.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kamptrail-fcc-mobile-data
+  cancel-in-progress: false
+
+jobs:
+  measure:
+    if: github.repository == 'prowebpromo/kamptrail'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install --no-install-recommends python3-gdal python3-numpy
+      - name: Measure input and output with bounded FCC requests
+        env:
+          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
+        run: /usr/bin/python3 scripts/measure_fcc_national.py
