@@ -1,0 +1,54 @@
+name: Qualify dual-format FCC data publication in local Git
+on:
+  push:
+    branches: [feat/fcc-packed-publisher]
+    paths: ['scripts/publish_fcc_tiles.py','scripts/fcc_packed_publication.py','scripts/acceptance/check-fcc-packed-publication.py','.github/workflows/qualify-packed-publisher.yml']
+permissions: {contents: read, actions: read}
+jobs:
+  fixture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: '44728454427'
+          artifact-ids: '14624833446'
+          path: ${{ runner.temp }}/legacy
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: '44728742813'
+          artifact-ids: '14624603962'
+          path: ${{ runner.temp }}/ri
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: '44727106921'
+          artifact-ids: '14623864266'
+          path: ${{ runner.temp }}/ri-proof
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: '44732061125'
+          artifact-ids: '14625899462'
+          path: ${{ runner.temp }}/aggregate
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: '44730390584'
+          artifact-ids: '14626387827'
+          path: ${{ runner.temp }}/lane
+          merge-multiple: true
+      - name: Check existing regional publisher regression suite
+        run: python3 -m unittest discover -s scripts/tests -p test_fcc_refresh.py -v
+      - name: Qualify real files using a fresh local bare remote
+        run: |
+          evidence="$(find "$RUNNER_TEMP/ri-proof" -type f -name '*.json' -print -quit)"
+          python3 scripts/acceptance/check-fcc-packed-publication.py --legacy "$RUNNER_TEMP/legacy" --ri "$RUNNER_TEMP/ri" --ri-evidence "$evidence" --aggregate "$RUNNER_TEMP/aggregate" --lane "$RUNNER_TEMP/lane"
