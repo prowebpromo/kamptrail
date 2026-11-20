@@ -1,0 +1,855 @@
+{
+  "result": "PASS",
+  "release": {
+    "source_commit": "b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69"
+  },
+  "dataRelease": "2026-06-30-de34e5edde74c32c3458",
+  "filingDate": "2026-06-30",
+  "sourceChecks": [
+    {
+      "region": "NY",
+      "carrier": "att",
+      "fileId": 1890539,
+      "sourceSHA256": "cf4632000fd4b813c26968a8749ec68167ab2165e9e74920d435968da6fbf051",
+      "records": 1525930,
+      "tilesCompared": 36,
+      "matches": {
+        "missing": 208,
+        "covered": 110,
+        "uncovered": 34
+      },
+      "boundaryPixelsSkipped": 28,
+      "witnesses": {
+        "missing": {
+          "lon": -79.77104187011719,
+          "lat": 45.065276571542405,
+          "tile": "2026-06-30-de34e5edde74c32c3458/att/NY/10/285/368.png",
+          "sha256": "547c07d2a628b95cde0d69739bc91ed7b971b8162676088aec35419470291770",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "covered": {
+          "lon": -78.71635437011719,
+          "lat": 42.786834614268805,
+          "tile": "2026-06-30-de34e5edde74c32c3458/att/NY/10/288/377.png",
+          "sha256": "cd1855a122f3909dc09c75ffeff475d6dfb41cb93527cc533088ef65d236a37e",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "uncovered": {
+          "lon": -75.40946960449219,
+          "lat": 42.528290276193765,
+          "tile": "2026-06-30-de34e5edde74c32c3458/att/NY/10/297/378.png",
+          "sha256": "e3fa8eb520207a133d88747253bf69f8b8e2fd5e02e5375fda0c7f6019c267c9",
+          "pixel": [
+            128,
+            24
+          ],
+          "zoom": 10
+        }
+      }
+    },
+    {
+      "region": "NY",
+      "carrier": "t-mobile",
+      "fileId": 1890598,
+      "sourceSHA256": "cdf513fb243dee9cba4b0a2546693dd413af1bb7860752523e64233deebd1a92",
+      "records": 2844,
+      "tilesCompared": 36,
+      "matches": {
+        "missing": 237,
+        "covered": 69,
+        "uncovered": 52
+      },
+      "boundaryPixelsSkipped": 22,
+      "witnesses": {
+        "missing": {
+          "lon": -79.77104187011719,
+          "lat": 45.065276571542405,
+          "tile": "2026-06-30-de34e5edde74c32c3458/t-mobile/NY/10/285/368.png",
+          "sha256": "547c07d2a628b95cde0d69739bc91ed7b971b8162676088aec35419470291770",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "covered": {
+          "lon": -73.79447937011719,
+          "lat": 41.48337664564807,
+          "tile": "2026-06-30-de34e5edde74c32c3458/t-mobile/NY/10/302/382.png",
+          "sha256": "76bcb16a9aec83cfea1272c81e088e1bcbcc72e73c1181fada234e8a61680c63",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "uncovered": {
+          "lon": -73.65165710449219,
+          "lat": 41.270065593723864,
+          "tile": "2026-06-30-de34e5edde74c32c3458/t-mobile/NY/10/302/382.png",
+          "sha256": "76bcb16a9aec83cfea1272c81e088e1bcbcc72e73c1181fada234e8a61680c63",
+          "pixel": [
+            128,
+            231
+          ],
+          "zoom": 10
+        }
+      }
+    },
+    {
+      "region": "NY",
+      "carrier": "verizon",
+      "fileId": 1890752,
+      "sourceSHA256": "65086ec51e186efdd043eceed84b172a03f2c4668c4f390f9a33fb5fc2766210",
+      "records": 195286,
+      "tilesCompared": 36,
+      "matches": {
+        "missing": 255,
+        "covered": 81,
+        "uncovered": 26
+      },
+      "boundaryPixelsSkipped": 16,
+      "witnesses": {
+        "missing": {
+          "lon": -79.77104187011719,
+          "lat": 45.065276571542405,
+          "tile": "2026-06-30-de34e5edde74c32c3458/verizon/NY/10/285/368.png",
+          "sha256": "547c07d2a628b95cde0d69739bc91ed7b971b8162676088aec35419470291770",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "covered": {
+          "lon": -73.79447937011719,
+          "lat": 43.810251807128715,
+          "tile": "2026-06-30-de34e5edde74c32c3458/verizon/NY/10/302/373.png",
+          "sha256": "a6c92f41a7dbcd7225c7021bdd866df8730a22d2eccd84998603e437b5a6648c",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "uncovered": {
+          "lon": -73.65165710449219,
+          "lat": 43.707097142731,
+          "tile": "2026-06-30-de34e5edde74c32c3458/verizon/NY/10/302/373.png",
+          "sha256": "a6c92f41a7dbcd7225c7021bdd866df8730a22d2eccd84998603e437b5a6648c",
+          "pixel": [
+            128,
+            128
+          ],
+          "zoom": 10
+        }
+      }
+    },
+    {
+      "region": "RI",
+      "carrier": "att",
+      "fileId": 1890550,
+      "sourceSHA256": "4dbf7246dc653ad51a1697e88b5134390a4c664dbe8fc09849f023337a756741",
+      "records": 34136,
+      "tilesCompared": 12,
+      "matches": {
+        "missing": 76,
+        "covered": 50,
+        "uncovered": 8
+      },
+      "boundaryPixelsSkipped": 5,
+      "witnesses": {
+        "missing": {
+          "lon": -72.03666687011719,
+          "lat": 42.007978804701,
+          "tile": "2026-06-30-de34e5edde74c32c3458/att/RI/10/307/380.png",
+          "sha256": "65b8fb04910e36ebe5cea0b368d10a75cda1c9babe64d36e2e77724a3cbc45a1",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "covered": {
+          "lon": -71.75239562988281,
+          "lat": 42.007978804701,
+          "tile": "2026-06-30-de34e5edde74c32c3458/att/RI/10/307/380.png",
+          "sha256": "65b8fb04910e36ebe5cea0b368d10a75cda1c9babe64d36e2e77724a3cbc45a1",
+          "pixel": [
+            231,
+            24
+          ],
+          "zoom": 10
+        },
+        "uncovered": {
+          "lon": -71.78810119628906,
+          "lat": 41.58720193303141,
+          "tile": "2026-06-30-de34e5edde74c32c3458/att/RI/10/307/381.png",
+          "sha256": "c4ceb742abd7b3ba20242952b7a70ab62e7573f38826ac298189bf1d6421fb4c",
+          "pixel": [
+            205,
+            179
+          ],
+          "zoom": 10
+        }
+      }
+    },
+    {
+      "region": "RI",
+      "carrier": "t-mobile",
+      "fileId": 1890613,
+      "sourceSHA256": "504a03779deca8cd9446f301dbbfbd8e70bd5af95dbf4d75615b0922c8b8b8ff",
+      "records": 146,
+      "tilesCompared": 12,
+      "matches": {
+        "missing": 76,
+        "covered": 51,
+        "uncovered": 5
+      },
+      "boundaryPixelsSkipped": 7,
+      "witnesses": {
+        "missing": {
+          "lon": -72.03666687011719,
+          "lat": 42.007978804701,
+          "tile": "2026-06-30-de34e5edde74c32c3458/t-mobile/RI/10/307/380.png",
+          "sha256": "a44d7ccb53224f56741f63a29b499f2855a1c4ce0559a797e6957487a63b49e5",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "covered": {
+          "lon": -71.75239562988281,
+          "lat": 42.007978804701,
+          "tile": "2026-06-30-de34e5edde74c32c3458/t-mobile/RI/10/307/380.png",
+          "sha256": "a44d7ccb53224f56741f63a29b499f2855a1c4ce0559a797e6957487a63b49e5",
+          "pixel": [
+            231,
+            24
+          ],
+          "zoom": 10
+        },
+        "uncovered": {
+          "lon": -71.77986145019531,
+          "lat": 41.7267429131401,
+          "tile": "2026-06-30-de34e5edde74c32c3458/t-mobile/RI/10/307/381.png",
+          "sha256": "1f9c7e1306c9ce0c061a6cef3b0ade8ba146bff735b56a2308613e032628f0ac",
+          "pixel": [
+            211,
+            43
+          ],
+          "zoom": 10
+        }
+      }
+    },
+    {
+      "region": "RI",
+      "carrier": "verizon",
+      "fileId": 1890751,
+      "sourceSHA256": "23da9e49fa552200f6119f6de8bcf05522a7030897dbdb8b4c0d628142fe9ebd",
+      "records": 7289,
+      "tilesCompared": 12,
+      "matches": {
+        "missing": 76,
+        "covered": 54,
+        "uncovered": 3
+      },
+      "boundaryPixelsSkipped": 3,
+      "witnesses": {
+        "missing": {
+          "lon": -72.03666687011719,
+          "lat": 42.007978804701,
+          "tile": "2026-06-30-de34e5edde74c32c3458/verizon/RI/10/307/380.png",
+          "sha256": "a5e52506786c4d4acdec57842e524999ec0a5bfc6351082a4ed80dceff1b40b5",
+          "pixel": [
+            24,
+            24
+          ],
+          "zoom": 10
+        },
+        "covered": {
+          "lon": -71.75239562988281,
+          "lat": 42.007978804701,
+          "tile": "2026-06-30-de34e5edde74c32c3458/verizon/RI/10/307/380.png",
+          "sha256": "a5e52506786c4d4acdec57842e524999ec0a5bfc6351082a4ed80dceff1b40b5",
+          "pixel": [
+            231,
+            24
+          ],
+          "zoom": 10
+        },
+        "uncovered": {
+          "lon": -71.78810119628906,
+          "lat": 41.97225386481823,
+          "tile": "2026-06-30-de34e5edde74c32c3458/verizon/RI/10/307/380.png",
+          "sha256": "a5e52506786c4d4acdec57842e524999ec0a5bfc6351082a4ed80dceff1b40b5",
+          "pixel": [
+            205,
+            59
+          ],
+          "zoom": 10
+        }
+      }
+    }
+  ],
+  "assets": [
+    "2026-06-30-de34e5edde74c32c3458/att/NY/10/285/368.png",
+    "2026-06-30-de34e5edde74c32c3458/att/NY/10/288/377.png",
+    "2026-06-30-de34e5edde74c32c3458/att/NY/10/297/378.png",
+    "2026-06-30-de34e5edde74c32c3458/t-mobile/NY/10/285/368.png",
+    "2026-06-30-de34e5edde74c32c3458/t-mobile/NY/10/302/382.png",
+    "2026-06-30-de34e5edde74c32c3458/verizon/NY/10/285/368.png",
+    "2026-06-30-de34e5edde74c32c3458/verizon/NY/10/302/373.png",
+    "2026-06-30-de34e5edde74c32c3458/att/RI/10/307/380.png",
+    "2026-06-30-de34e5edde74c32c3458/att/RI/10/307/381.png",
+    "2026-06-30-de34e5edde74c32c3458/t-mobile/RI/10/307/380.png",
+    "2026-06-30-de34e5edde74c32c3458/t-mobile/RI/10/307/381.png",
+    "2026-06-30-de34e5edde74c32c3458/verizon/RI/10/307/380.png"
+  ],
+  "runs": [
+    {
+      "mode": "desktop",
+      "reopenedPlace": {
+        "id": "osm:node:2140964052",
+        "name": "Narragansett Council, Boy Scouts of America, Cub World"
+      },
+      "previousRelease": "efbc184b829c062186982b41a9a73a70fa213b55",
+      "savedIds": [
+        "osm:node:2140964052"
+      ],
+      "nativeWitnesses": [
+        [
+          "NY",
+          "att",
+          "missing",
+          -79.77104187011719,
+          45.065276571542405,
+          "missing",
+          []
+        ],
+        [
+          "NY",
+          "att",
+          "covered",
+          -78.71635437011719,
+          42.786834614268805,
+          "covered",
+          [
+            [
+              "NY",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "att",
+          "uncovered",
+          -75.40946960449219,
+          42.528290276193765,
+          "uncovered",
+          [
+            [
+              "NY",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "t-mobile",
+          "missing",
+          -79.77104187011719,
+          45.065276571542405,
+          "missing",
+          []
+        ],
+        [
+          "NY",
+          "t-mobile",
+          "covered",
+          -73.79447937011719,
+          41.48337664564807,
+          "covered",
+          [
+            [
+              "NY",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "t-mobile",
+          "uncovered",
+          -73.65165710449219,
+          41.270065593723864,
+          "uncovered",
+          [
+            [
+              "NY",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "verizon",
+          "missing",
+          -79.77104187011719,
+          45.065276571542405,
+          "missing",
+          []
+        ],
+        [
+          "NY",
+          "verizon",
+          "covered",
+          -73.79447937011719,
+          43.810251807128715,
+          "covered",
+          [
+            [
+              "NY",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "verizon",
+          "uncovered",
+          -73.65165710449219,
+          43.707097142731,
+          "uncovered",
+          [
+            [
+              "NY",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "att",
+          "missing",
+          -72.03666687011719,
+          42.007978804701,
+          "missing",
+          [
+            [
+              "NY",
+              "missing"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "att",
+          "covered",
+          -71.75239562988281,
+          42.007978804701,
+          "covered",
+          [
+            [
+              "RI",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "att",
+          "uncovered",
+          -71.78810119628906,
+          41.58720193303141,
+          "uncovered",
+          [
+            [
+              "NY",
+              "missing"
+            ],
+            [
+              "RI",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "t-mobile",
+          "missing",
+          -72.03666687011719,
+          42.007978804701,
+          "missing",
+          [
+            [
+              "NY",
+              "missing"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "t-mobile",
+          "covered",
+          -71.75239562988281,
+          42.007978804701,
+          "covered",
+          [
+            [
+              "RI",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "t-mobile",
+          "uncovered",
+          -71.77986145019531,
+          41.7267429131401,
+          "uncovered",
+          [
+            [
+              "NY",
+              "missing"
+            ],
+            [
+              "RI",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "verizon",
+          "missing",
+          -72.03666687011719,
+          42.007978804701,
+          "missing",
+          [
+            [
+              "NY",
+              "missing"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "verizon",
+          "covered",
+          -71.75239562988281,
+          42.007978804701,
+          "covered",
+          [
+            [
+              "RI",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "verizon",
+          "uncovered",
+          -71.78810119628906,
+          41.97225386481823,
+          "uncovered",
+          [
+            [
+              "NY",
+              "missing"
+            ],
+            [
+              "RI",
+              "uncovered"
+            ]
+          ]
+        ]
+      ],
+      "offline": "AT&T · 4G LTE · Outdoor stationary · FCC filing 6/30/2026. Offline copy, not current.\nPublished areas: New York, Rhode Island.\nOutdoor LTE model: at least 5 Mbps down and 1 Mbps up. Signal inside your RV may differ.\nMap layer based on FCC BDC.\nState boundaries: U.S. Census Bureau.\nModeled coverage\nNo modeled coverage\nNo data\nMap center: modeled coverage.",
+      "reopenedFromPreviousCache": true,
+      "mobileEmulation": false
+    },
+    {
+      "mode": "mobile",
+      "reopenedPlace": {
+        "id": "osm:node:2140964052",
+        "name": "Narragansett Council, Boy Scouts of America, Cub World"
+      },
+      "previousRelease": "efbc184b829c062186982b41a9a73a70fa213b55",
+      "savedIds": [
+        "osm:node:2140964052"
+      ],
+      "nativeWitnesses": [
+        [
+          "NY",
+          "att",
+          "missing",
+          -79.77104187011719,
+          45.065276571542405,
+          "missing",
+          []
+        ],
+        [
+          "NY",
+          "att",
+          "covered",
+          -78.71635437011719,
+          42.786834614268805,
+          "covered",
+          [
+            [
+              "NY",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "att",
+          "uncovered",
+          -75.40946960449219,
+          42.528290276193765,
+          "uncovered",
+          [
+            [
+              "NY",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "t-mobile",
+          "missing",
+          -79.77104187011719,
+          45.065276571542405,
+          "missing",
+          []
+        ],
+        [
+          "NY",
+          "t-mobile",
+          "covered",
+          -73.79447937011719,
+          41.48337664564807,
+          "covered",
+          [
+            [
+              "NY",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "t-mobile",
+          "uncovered",
+          -73.65165710449219,
+          41.270065593723864,
+          "uncovered",
+          [
+            [
+              "NY",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "verizon",
+          "missing",
+          -79.77104187011719,
+          45.065276571542405,
+          "missing",
+          []
+        ],
+        [
+          "NY",
+          "verizon",
+          "covered",
+          -73.79447937011719,
+          43.810251807128715,
+          "covered",
+          [
+            [
+              "NY",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "NY",
+          "verizon",
+          "uncovered",
+          -73.65165710449219,
+          43.707097142731,
+          "uncovered",
+          [
+            [
+              "NY",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "att",
+          "missing",
+          -72.03666687011719,
+          42.007978804701,
+          "missing",
+          [
+            [
+              "NY",
+              "missing"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "att",
+          "covered",
+          -71.75239562988281,
+          42.007978804701,
+          "covered",
+          [
+            [
+              "RI",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "att",
+          "uncovered",
+          -71.78810119628906,
+          41.58720193303141,
+          "uncovered",
+          [
+            [
+              "NY",
+              "missing"
+            ],
+            [
+              "RI",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "t-mobile",
+          "missing",
+          -72.03666687011719,
+          42.007978804701,
+          "missing",
+          [
+            [
+              "NY",
+              "missing"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "t-mobile",
+          "covered",
+          -71.75239562988281,
+          42.007978804701,
+          "covered",
+          [
+            [
+              "RI",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "t-mobile",
+          "uncovered",
+          -71.77986145019531,
+          41.7267429131401,
+          "uncovered",
+          [
+            [
+              "NY",
+              "missing"
+            ],
+            [
+              "RI",
+              "uncovered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "verizon",
+          "missing",
+          -72.03666687011719,
+          42.007978804701,
+          "missing",
+          [
+            [
+              "NY",
+              "missing"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "verizon",
+          "covered",
+          -71.75239562988281,
+          42.007978804701,
+          "covered",
+          [
+            [
+              "RI",
+              "covered"
+            ]
+          ]
+        ],
+        [
+          "RI",
+          "verizon",
+          "uncovered",
+          -71.78810119628906,
+          41.97225386481823,
+          "uncovered",
+          [
+            [
+              "NY",
+              "missing"
+            ],
+            [
+              "RI",
+              "uncovered"
+            ]
+          ]
+        ]
+      ],
+      "offline": "AT&T · 4G LTE · Outdoor stationary · FCC filing 6/30/2026. Offline copy, not current.\nPublished areas: New York, Rhode Island.\nOutdoor LTE model: at least 5 Mbps down and 1 Mbps up. Signal inside your RV may differ.\nMap layer based on FCC BDC.\nState boundaries: U.S. Census Bureau.\nModeled coverage\nNo modeled coverage\nNo data\nMap center: modeled coverage.",
+      "reopenedFromPreviousCache": true,
+      "mobileEmulation": true
+    }
+  ],
+  "controlledFailureCases": {
+    "tileFailure": "passed in isolated browser using forced condition",
+    "oldFiling": "passed in isolated browser using forced condition",
+    "manifestFailure": "passed in isolated browser using forced condition"
+  }
+}

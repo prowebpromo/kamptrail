@@ -68,19 +68,19 @@ Each contract has three parts:
 - **Adaptation:** accepted KampTrail differences.
 - **Added:** KampTrail requirements beyond the original.
 
-### R1. Carrier coverage overlay (should, 2.0, no)
+### R1. Carrier coverage overlay (should, 2.0, yes)
 
 - **Source:** separate fill layers per carrier.
 - **Added:** each layer is dated and attributed, and Verizon, AT&T and T-Mobile can each be selected on their own.
   - Missing data is shown separately from no coverage.
   - Tests cover covered, uncovered, missing, stale and unavailable states.
   - Offline: a cached layer shows its data date and a "not current" label. It never implies current coverage.
-- **Dependency:** authorized automated FCC Broadband Data Collection access. FCC ticket #64052 is open.
+- **Dependency:** authorized automated FCC Broadband Data Collection access, verified on November 20, 2026.
   - No credential retries.
   - No manual nationwide download maintenance.
   - No purchased substitute.
 - **Credit:** awarded for the working, verified feature only. Restored access alone earns nothing.
-- **Status:** blocked externally.
+- **Status:** live in 2.49.0 for New York and Rhode Island, with desktop, mobile-emulation and saved-session upgrade evidence in [the production check](evidence/2026-11-20-live-2.49.0.json).
 
 ### R2. Cell-signal filter (could, 0.5, partial)
 
@@ -255,6 +255,7 @@ Escalate to the owner only for:
 |---|---|---|---|---|
 | 2026-10-31 | 2.29.1 | 99/109 = 90.8 | Baseline for these contracts | `docs/replica/parity-queue.md` |
 | 2026-10-31 | 2.30.0 | 100/109 = 91.7 | R2 cell-signal filter and R4 road-difficulty filter partial to yes (+0.5 each) after verified live 2.30.0 and an end-to-end submission-to-filter test | `docs/replica/evidence/2026-10-31-live-2.30.0.txt`, PR #146 run 41239742146 |
+| 2026-11-20 | 2.49.0 | 102/109 = 93.6 | R1 carrier coverage overlay no to yes (+2). Initial geographic coverage is two states. | [Production evidence](evidence/2026-11-20-live-2.49.0.json), [acceptance run 44736088828](https://github.com/prowebpromo/kamptrail/actions/runs/44736088828) |
 
 ## Reproducible score calculation
 
