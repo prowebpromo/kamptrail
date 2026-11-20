@@ -32,6 +32,22 @@ The [New York build](https://github.com/prowebpromo/kamptrail/actions/runs/44727
 
 The latest manifest is served at `data/fcc-coverage/manifest.json`. Its region entries record the filing, source file, provider, archive hash, Census boundary and zoom range. The refresh runs monthly and retains the previous validated generation. A failed download, incomplete region or source mismatch prevents a new generation from replacing the existing one. Enlarge the reviewed geographic scope only after checking the new source against its state boundary and deployed capacity.
 
+## Live acceptance for 2.49.0
+
+The public site served commit `b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69` and the FCC data generation `2026-06-30-de34e5edde74c32c3458` on November 20. The data represent the June 30, 2026 filing and were retrieved November 20. All six source filenames carry the November 10 version stamp. The source files supply 1,765,631 reported polygons across the three carriers and two states.
+
+| Verification | Evidence |
+| --- | --- |
+| Integrated release | [PR #199](https://github.com/prowebpromo/kamptrail/pull/199), [regression on exact head `7573f23d`](https://github.com/prowebpromo/kamptrail/actions/runs/44728642864), [Hostinger publish](https://github.com/prowebpromo/kamptrail/actions/runs/44732860218) |
+| Source-to-tile validation | [Production data qualification and publication](https://github.com/prowebpromo/kamptrail/actions/runs/44732860300), [versioned manifest](https://github.com/prowebpromo/kamptrail/blob/d900365edb54f7a1c735d5786e01ab678c530b8e/manifest.json) |
+| Public browser checks | [Live run and original artifact](https://github.com/prowebpromo/kamptrail/actions/runs/44736088828/artifacts/14628204404), [complete result retained in the repository](replica/evidence/2026-11-20-live-2.49.0.json) |
+
+Desktop Chromium and mobile Chromium emulation each switched among all six carrier and state combinations. Each checked 18 geographic samples against the independently qualified source classifications. The run verified 12 distinct live tile paths against their expected SHA-256 hashes. The dated offline status appeared in both browsers. An isolated browser exercised an unavailable tile, an unavailable manifest and a stale filing under controlled conditions.
+
+Both browser profiles upgraded from the preceding release and reopened Narragansett Council, Boy Scouts of America, Cub World through Trips with its original ID, `osm:node:2140964052`. A prior check reached the correct public version but received HTTP 429 while explicitly requesting a service-worker refresh. The passing check used the returning visitor's normal navigation and confirmed the upgraded cache.
+
+This evidence completes the R1 functional contract. Geographic coverage is New York and Rhode Island. The measurements use browser mobile emulation.
+
 ## Historical checkpoint, October 28, 2026
 
 The FCC public map's download page returned Access Denied in this browser, including one reload. No attempt was made to evade that restriction. The documented public-data API requires an FCC user account. No FCC account/API credentials were available in this session, and redistribution/usage conditions for the intended mobile datasets have not been verified.
