@@ -10,19 +10,21 @@ const data=JSON.parse(await fs.readFile(path.join(packed,'manifest.json')));
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 test('reference PNG bytes from each real FCC regional archive are identical to the original XYZ tiles', async()=>{
   assert.ok(client.validManifest(data));
+  const original = JSON.parse(await fs.readFile(path.join(xyz,'manifest.json')));
   let matches=0,ranges=0;
   for(const carrier of data.carriers) for(const region of carrier.regions){
     const rel=[data.release,carrier.id,region.id].join('/');
+    const originalRegion = path.join(xyz,original.release,carrier.id,region.id);
     const full=await fs.readFile(path.join(packed,rel+'.pmtiles'));
     assert.equal(full.length,region.archive.bytes); assert.equal(digest(full),region.archive.sha256);
     const url=base+rel+'.pmtiles?sha256='+region.archive.sha256;
     const fetcher=async (input,init)=>{const r=await fetch(input,init);assert.equal(r.status,206);assert.match(init.headers.Range,/^bytes=\d+-\d+$/);ranges++;return r;};
     const read=openCoverageArchive(url,region,base,{fetcher});
-    for(const entry of await fs.readdir(path.join(xyz,rel),{recursive:true})){
+    for(const entry of await fs.readdir(originalRegion,{recursive:true})){
       if(!entry.endsWith('.png'))continue;
       const [z,x,y]=entry.slice(0,-4).split(path.sep).map(Number);
       const blob=await read({z,x,y});
-      assert.deepEqual(Buffer.from(await blob.arrayBuffer()),await fs.readFile(path.join(xyz,rel,entry)));
+      assert.deepEqual(Buffer.from(await blob.arrayBuffer()),await fs.readFile(path.join(originalRegion,entry)));
       matches++;
     }
   }
