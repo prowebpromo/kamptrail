@@ -1,0 +1,32 @@
+name: FCC pre-release saved session acceptance
+on:
+  push:
+    branches: [verify/fcc-carrier-acceptance]
+    paths: ['.github/workflows/fcc-capture-upgrade.yml', 'scripts/acceptance/capture-fcc-upgrade.js']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Save a stop in each clean profile and capture the actual production service worker
+        env:
+          CHROMIUM_PATH: /usr/bin/google-chrome
+        run: node scripts/acceptance/capture-fcc-upgrade.js
+      - name: Preserve only this disposable site's prior service worker, cache and saved-stop data
+        run: |
+          tar -C fcc-profiles -czf fcc-upgrade-baseline.tar.gz baseline.json \
+            "desktop/Default/Service Worker" "desktop/Default/Local Storage" \
+            "mobile/Default/Service Worker" "mobile/Default/Local Storage"
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: fcc-upgrade-baseline
+          path: fcc-upgrade-baseline.tar.gz
+          retention-days: 14
