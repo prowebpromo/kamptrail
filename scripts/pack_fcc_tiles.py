@@ -7,7 +7,7 @@ import os
 import tempfile
 from pathlib import Path
 
-from pmtiles.reader import MmapSource, Reader
+from pmtiles.reader import MmapSource, Reader, all_tiles
 from pmtiles.tile import Compression, TileType, zxy_to_tileid
 from pmtiles.writer import write
 
@@ -49,13 +49,16 @@ def pack_region(prefix, out, region, carrier, as_of, attribution):
     size = out.stat().st_size
     check(size < MAX_ARCHIVE, "Archive exceeds 96 MiB; subdivide this region before publication")
     with out.open("rb") as f:
-        rd=Reader(MmapSource(f))
-        h=rd.header()
+        source=MmapSource(f)
+        h=Reader(source).header()
         check(h["version"] == 3 and h["addressed_tiles_count"] == len(coords) and
               h["tile_type"] == TileType.PNG and h["tile_compression"] == Compression.NONE, "Invalid archive header")
-        for coord, expected in raw.items():
-            observed=rd.get(*coord)
-            check(observed and hashlib.sha256(observed).digest()==expected, "Archived tile differs from qualified XYZ bytes")
+        # Traverse each archive directory once; repeated random lookup is expensive on a national build.
+        for coord, observed in all_tiles(source):
+            expected=raw.pop(tuple(coord), None)
+            check(expected and observed and hashlib.sha256(observed).digest()==expected,
+                  "Unexpected, duplicate or changed tile in archive")
+        check(not raw, "A qualified native tile is missing from the archive")
     print(f"{region['id']} {carrier}: {len(coords)} verified native tiles, {size} packed bytes", flush=True)
     return {"format":"pmtiles-v3","bytes":size,"sha256":sha256(out)}
 
