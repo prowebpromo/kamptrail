@@ -6,10 +6,11 @@ test('published carrier maps load on selection, classify the center and preserve
   const region = {id:'RI',bounds:[-72,41,-71,42],minZoom:6,maxZoom:9};
   const manifest = {schema:1,release:'2024-06-30-example',asOf:'2024-06-30',retrievedAt:'2025-01-01',
     technology:'4G LTE',environment:'Outdoor stationary',carriers:['att','verizon','t-mobile'].map(id=>({id,regions:[region]}))};
+  await page.route(/^https:\/\/(?:[^/]+\.)?(?:openstreetmap\.org|nationalmap\.gov)\//, route => route.abort());
   await bindCampsiteFixture(page,{states:['RI']});
   await page.route('**/data/fcc-coverage/manifest.json', route => route.fulfill({json:manifest}));
   await page.addInitScript(()=>localStorage.setItem('kt_last_position',JSON.stringify({lat:41.55,lng:-71.5,zoom:8})));
-  await page.goto('/');
+  await page.goto('/', {waitUntil:'domcontentloaded'});
   const fixtures = await page.evaluate(() => ['#1860b0','#707070'].map(color => {
     const c = document.createElement('canvas'); c.width = c.height = 256;
     const ctx = c.getContext('2d'); ctx.fillStyle = color; ctx.fillRect(0,0,256,256);
