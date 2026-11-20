@@ -214,7 +214,19 @@ async function upgrade(mode, manifest) {
     assert.ok(offline.includes(filing)||offline.includes(manifest.asOf),'Correct filing date remains visible offline');
     assert.deepEqual(await storedIds(page),previous.storedIds);
     await context.setOffline(false);
-    return {mode,previousRelease:previous.source_commit,savedIds:previous.storedIds,
+    await page.evaluate(() => KampTrailData.loadStates(['RI']));
+    const savedPlace = await page.evaluate(id => {
+      const feature = KampTrailData.getAllCampsites().find(f => f.properties.id === id);
+      if (!feature || !feature.properties.name) throw Error('Previously saved Rhode Island stop no longer resolves: ' + id);
+      return {id, name:feature.properties.name};
+    }, previous.storedIds[0]);
+    await page.locator('#trip').click();
+    const drawer = page.locator('#kt-trip-drawer');
+    await drawer.waitFor({state:'visible'});
+    await drawer.getByRole('button',{name:'View on map'}).first().click();
+    await page.waitForFunction(name => document.querySelector('.leaflet-popup-content')?.textContent.includes(name), savedPlace.name, {timeout:30000});
+    assert.deepEqual(await storedIds(page),previous.storedIds,'Stored ID after reopening the stop');
+    return {mode,reopenedPlace:savedPlace,previousRelease:previous.source_commit,savedIds:previous.storedIds,
       nativeWitnesses:sampled,offline,reopenedFromPreviousCache:true,mobileEmulation:mobile};
   } finally {await context.close();}
 }
