@@ -56,4 +56,4 @@ jobs:
                               lat=math.degrees(math.atan(math.sinh(math.pi*(1-2*(y+(py+.5)/256)/2**z))))
                               results[(hemi,key)]=dict(longitude=lon,latitude=lat,tile=[z,x,y],pixel=[px,py],interior=bool(core.getbbox()))
               print("WITNESSES",slug,json.dumps({a+"-"+("covered" if b==2 else "gray"):v for (a,b),v in results.items()},separators=(",",":")))
-                    PY
+          PY
