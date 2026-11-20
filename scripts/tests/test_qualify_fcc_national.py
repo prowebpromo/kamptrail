@@ -29,6 +29,12 @@ class QualificationTests(unittest.TestCase):
         self.assertEqual(len(missing),2)
         with self.assertRaises(ValueError): q.assignments(rows+rows,geos,"AK")
 
+    def test_known_june_national_inventory_lost_rows_block_new_rows_allowed(self):
+        rows=[{"id":p,"region":s} for p in q.PROVIDERS for s in q.US if (p,s)!=("t-mobile","AK")]
+        q.check_national_inventory("2026-06-30",[rows])
+        q.check_national_inventory("2026-06-30",[rows+[{"id":"t-mobile","region":"AK"}]])
+        with self.assertRaises(ValueError): q.check_national_inventory("2026-06-30",[rows[1:]])
+
     def test_lane_temporal_slots_never_collide_and_missed_windows_are_skipped(self):
         for slots in [1,4]:
             starts=[]

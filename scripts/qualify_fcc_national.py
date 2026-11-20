@@ -56,7 +56,7 @@ COMPONENTS = ("fcc_download.py","build_fcc_tiles.py","build_fcc_alaska_tiles.py"
 
 
 def environment():
-    creds=(os.environ["FCC_USERNAME"].strip(),os.environ["FCC_TOKEN"].strip())
+    creds=(os.environ.pop("FCC_USERNAME").strip(),os.environ.pop("FCC_TOKEN").strip())
     require(all(creds),"FCC credentials unavailable.")
     return creds
 
@@ -106,6 +106,27 @@ def assignments(rows,geos,scope):
     return lanes,missing
 
 
+def check_national_inventory(asof,lanes):
+    # The 2026-11-20 independent catalog preflight found 152 public files in the
+    # June filing for these 153 pairs. New availability can legitimately be added.
+    if asof!="2026-06-30":
+        return
+    known={(p,s) for p in PROVIDERS for s in US} - {("t-mobile","AK")}
+    found={(r["id"],r["region"]) for lane in lanes for r in lane}
+    absent=sorted(known-found)
+    require(not absent, f"Catalog lost previously verified June 2026 source rows: {absent}")
+
+
+def mobile_catalog(asof,creds):
+    envelope=fcc.read_json(fcc.request("downloads/listAvailabilityData/"+asof+
+                           "?category=Provider&technology_type=Mobile+Broadband",creds))
+    rows=envelope["data"]
+    if "result_count" in envelope and envelope["result_count"] is not None:
+        require(str(envelope["result_count"])==str(len(rows)),"FCC catalog count differs from returned rows.")
+    return [r for r in rows if isinstance(r,dict) and r.get("category")=="Provider" and
+            r.get("file_type")=="gis" and r.get("technology_type")=="Mobile Broadband"]
+
+
 def plan(scope,out):
     import fiona
     out.mkdir(parents=True,exist_ok=False)
@@ -121,8 +142,9 @@ def plan(scope,out):
     require(dates and None not in dates,"Missing or invalid FCC filing date.")
     asof=max(dates).isoformat()
     time.sleep(SLOT)
-    rows=fcc.list_mobile(asof,creds,"Provider")
+    rows=mobile_catalog(asof,creds)
     lanes,missing=assignments(rows,geos,scope)
+    if scope=="US": check_national_inventory(asof,lanes)
     versions={p:file_hash(SCRIPT/p) for p in COMPONENTS}
     record={"schema":1,"scope":scope,"asOf":asof,"retrievedAt":dt.datetime.now(dt.timezone.utc).date().isoformat(),
             "sourceCommit":os.environ.get("GITHUB_SHA"),"componentHashes":versions,"boundary":bounds,
@@ -218,7 +240,7 @@ def candidate(item,profile,zipinfo,bounds,work):
     require(c["id"]==slug and len(c["regions"])==1 and c["regions"][0]["id"]==state,"Wrong packed carrier or state.")
     reg=c["regions"][0]
     output=packed/manifest["release"]/slug/(state+".pmtiles")
-    require(file_hash(output)==reg["archive"]["sha256"] and output.stat().st_size==reg["archive"]["bytes"],
+    require(file_hash(output)==reg["archive"]["sha256"] and 0 < output.stat().st_size==reg["archive"]["bytes"] < 100_000_000,
             "Packed archive receipt mismatch.")
     receipt={"planId":profile["planId"],"carrier":slug,"region":state,"fileId":item["fileId"],
              "bytes":size,"expanded":expanded,"sourceSha256":sha,"asOf":profile["asOf"],
@@ -310,7 +332,7 @@ def assemble(profile,lanes_root,output,materialize=None):
                     sum(audit["matches"].values())>0,"Catalog, boundary or geometry evidence mismatch.")
             relative=Path("archives")/key[0]/(key[1]+".pmtiles")
             asset=work/relative
-            require(blob["format"]=="pmtiles-v3" and 127<=blob["bytes"]<96*1024**2 and
+            require(blob["format"]=="pmtiles-v3" and 127<=blob["bytes"]<100_000_000 and
                     asset.is_file() and not asset.is_symlink() and asset.stat().st_size==blob["bytes"]
                     and file_hash(asset)==blob["sha256"],"Archive content differs from manifest.")
             members[key]=(r,asset)
