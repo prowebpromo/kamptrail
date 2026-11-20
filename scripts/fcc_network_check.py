@@ -62,7 +62,7 @@ def inspect_gpkg(src, dest):
         for layer, geom, typ, srs in layers:
             attrs = [c[1] for c in db.execute("pragma table_info("+ident(layer)+")") if c[1] != geom]
             print("Layer", layer, "fields", attrs, "count", db.execute("select count(*) from "+ident(layer)).fetchone()[0])
-            sample_fields=[x for x in attrs if x.lower() in {"brandname","brand_name","providerid","provider_id","technology","technology_code","tech","mindown","minup","min_down","min_up","env","environment","bizrescode","speed","model","state_fips","h3_res9_id","h3index"}]
+            sample_fields=[x for x in attrs if x.lower() in {"brandname","brand_name","providerid","provider_id","technology","technology_code","tech","mindown","minup","min_down","min_up","environmnt","env","environment","bizrescode","speed","model","state_fips","h3_res9_id","h3index"}]
             if sample_fields:
                 fields = ",".join(ident(c) for c in sample_fields)
                 print("Attribute examples", json.dumps(db.execute("select distinct "+fields+" from "+ident(layer)+" limit 20").fetchall(),default=str))
@@ -74,19 +74,19 @@ def run():
     print("Availability dates", sorted(available), flush=True)
     date = max(available)[:10]
     datetime.date.fromisoformat(date)
-    query = urllib.parse.urlencode({"category":"State", "technology_type":"Mobile Broadband"})
+    query = urllib.parse.urlencode({"category":"Provider", "technology_type":"Mobile Broadband"})
     rows = records("downloads/listAvailabilityData/"+date+"?"+query)
-    print("State catalog count",len(rows))
+    print("Provider catalog count",len(rows))
     fields = ("file_id","file_name","file_type","category","subcategory","technology_type","technology_code","technology_code_desc","state_fips","state_name","provider_id","provider_name","speed_tier","record_count","revision_date","file_record_count")
     def show(row):
         return {k: row[k] for k in fields if k in row}
     print("State row example", json.dumps(show(rows[0]) if rows else {}))
     if rows: print("Field names",sorted(rows[0]))
     ri=[r for r in rows if str(r.get("state_fips","")).zfill(2)=="44" or str(r.get("state_name","")).lower()=="rhode island"]
-    print("RI rows",json.dumps([show(r) for r in ri[:20]]),flush=True)
-    choices=[r for r in ri if "lte" in json.dumps(show(r)).lower() or str(r.get("technology_code",""))=="83"]
+    print("RI provider listings",json.dumps([show(r) for r in ri if str(r.get("technology_code"))=="400"]),flush=True)
+    choices=[r for r in ri if str(r.get("technology_code"))=="400" and r.get("subcategory")=="Raw Coverage" and "verizon" in str(r.get("provider_name","")).lower()]
     if len(choices)!=1:
-        raise SystemExit("No unambiguous RI 4G LTE dataset.")
+        raise SystemExit("No unambiguous RI Verizon raw LTE dataset.")
     rid=int(choices[0]["file_id"])
     with tempfile.TemporaryDirectory() as tmp:
         folder=Path(tmp)
