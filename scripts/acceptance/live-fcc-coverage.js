@@ -10,7 +10,7 @@ const { chromium } = require('playwright');
 
 const base = new URL(process.env.BASE || 'https://kamptrail.com/');
 const commit = process.env.EXPECTED_SHA;
-const report = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+const report = process.argv[2] ? JSON.parse(fs.readFileSync(process.argv[2], 'utf8')) : null;
 const profiles = path.resolve(process.env.QA_PROFILES || 'fcc-profiles');
 const old = JSON.parse(fs.readFileSync(path.join(profiles,'baseline.json'), 'utf8'));
 const picker = '.kt-coverage-picker select';
@@ -19,7 +19,7 @@ const expectedText = {
   covered:'Map center: modeled coverage.', uncovered:'Map center: no modeled coverage.',
   missing:'Map center: no published data here.', unavailable:'Map center: coverage tile unavailable.'
 };
-const lookup = new Map(report.checks.filter(c=>c.region==='RI').map(c=>[c.carrier,c]));
+const lookup = new Map((report?.checks || []).filter(c=>c.region==='RI').map(c=>[c.carrier,c]));
 const endpoint = url => new URL(url, base).href;
 const sha = buf => crypto.createHash('sha256').update(buf).digest('hex');
 const browserOptions = { ...(process.env.CHROMIUM_PATH && {executablePath:process.env.CHROMIUM_PATH}),
@@ -89,6 +89,9 @@ async function upgrade(mode, manifest) {
     assert.deepEqual(await storedIds(page),previous.storedIds,'Pre-update offline profile missing its saved stop');
     const oldCache=await page.evaluate(()=>caches.keys());
     assert.ok(previous.caches.some(key=>/kamptrail:.*kt-v\d+$/.test(key)&&oldCache.includes(key)),'Old shell cache not restored');
+    if (process.env.BASELINE_ONLY === '1') {
+      return {mode,source_commit: previous.source_commit,savedIds:previous.storedIds,cacheVerifiedOffline:true};
+    }
     await context.setOffline(false);
     await page.evaluate(async()=>{ const sw=await navigator.serviceWorker.getRegistration(); if(sw) await sw.update(); });
     let upgraded=false;
@@ -171,6 +174,12 @@ async function failureCases(manifest) {
   }finally{await browser.close();}
 }
 (async()=>{
+  if (process.env.BASELINE_ONLY === '1') {
+    const modes=[];
+    for (const mode of ['desktop','mobile']) modes.push(await upgrade(mode,null));
+    console.log(JSON.stringify({result:'PASS',scope:'offline baseline restoration',modes},null,2));
+    return;
+  }
   assert.match(commit||'',/^[a-f0-9]{40}$/);
   assert.equal(old.base.replace(/\/$/,''),base.origin);
   assert.equal(report.result,'PASS');
