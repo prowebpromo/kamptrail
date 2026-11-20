@@ -1,0 +1,41 @@
+name: Replay Alaska PMTiles qualification with pinned artifacts
+on:
+  push:
+    branches: [verify/fcc-packed-aggregate-replay]
+    paths: ['.github/workflows/replay-ak-pmtiles-aggregate.yml']
+permissions: {contents: read, actions: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {ref: '03eb8c9a0dc3348a84b72a7ed61043573380be58', persist-credentials: false}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: 44730390584
+          artifact-ids: 14625902170
+          path: ${{ runner.temp }}/plan
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: 44730390584
+          artifact-ids: 14626387827
+          path: ${{ runner.temp }}/lanes/fcc-packed-lane-0
+      - name: Verify original catalog, scope, archive digests and source evidence
+        run: |
+          GITHUB_SHA="$(git rev-parse HEAD)" python3 scripts/qualify_fcc_national.py assemble --plan "$RUNNER_TEMP/plan/plan.json" --lanes "$RUNNER_TEMP/lanes" --output "$RUNNER_TEMP/summary"
+          python3 - "$RUNNER_TEMP/summary/qualification.json" <<'PY'
+          import json, sys
+          report=json.load(open(sys.argv[1]))
+          for row in report["shards"]:
+              print(json.dumps({k:row[k] for k in ("region","carrier","sourceBytes","expandedBytes","pmtilesBytes","downloadSeconds","qualifySeconds","initialFreeBytes","freeBytesWithQualifiedSource")}))
+              print("Native source matches:", row["spatial"]["matches"])
+          PY
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: verified-alaska-aggregate
+          path: ${{ runner.temp }}/summary
+          retention-days: 14
+          if-no-files-found: error
