@@ -73,7 +73,8 @@ class LimitedStream:
         return block
 
 
-def prepare(work):
+def prepare(work, configured_regions=None, interval=7.0):
+    states = REGIONS if configured_regions is None else configured_regions
     import fcc_download as fcc
     from osgeo import gdal
     import numpy
@@ -86,7 +87,7 @@ def prepare(work):
 
     def paced(call, *args):
         nonlocal last
-        time.sleep(max(0.0, last + 7.0 - time.monotonic()))
+        time.sleep(max(0.0, last + max(7.0, interval) - time.monotonic()))
         last = time.monotonic()
         return call(*args)
 
@@ -105,7 +106,7 @@ def prepare(work):
     boundary = {"path": str(boundary_file.resolve()), "layer": "tl_2025_us_state",
                 "source": BOUNDARY, "sha256": meta["sha256"]}
     regions, source_records = [], []
-    for region, fips in REGIONS.items():
+    for region, fips in states.items():
         carriers = []
         for slug, (provider, brand) in PROVIDERS.items():
             row = eligible(catalog, fips, provider)

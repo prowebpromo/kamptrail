@@ -1,0 +1,49 @@
+name: Verify both Alaska footprints in real packed carrier archives
+on:
+  push:
+    branches: [prototype/fcc-regional-pmtiles]
+    paths: ['scripts/build_fcc_alaska_tiles.py','scripts/tests/test_fcc_alaska.py','.github/workflows/check-fcc-packed-ak.yml']
+permissions:
+  contents: read
+concurrency:
+  group: kamptrail-fcc-mobile-data
+  cancel-in-progress: false
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install --no-install-recommends python3-gdal python3-numpy
+      - name: Install pinned PMTiles writer and reader
+        run: |
+          python3 -m pip install --target "$RUNNER_TEMP/pmdeps" --only-binary=:all: --no-deps --require-hashes -r scripts/requirements-fcc-pmtiles.txt
+          echo "PYTHONPATH=$RUNNER_TEMP/pmdeps" >> "$GITHUB_ENV"
+      - name: Check dateline-crossing fixture
+        run: /usr/bin/python3 scripts/tests/test_fcc_alaska.py -v
+      - name: Retrieve bounded, provider-specific Alaska filings
+        env:
+          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
+        run: |
+          cd scripts
+          /usr/bin/python3 -c 'import os; from pathlib import Path; import prepare_fcc_refresh as p; p.prepare(Path(os.environ["RUNNER_TEMP"])/"ak-input", {"AK":"02"}, 26.0)'
+      - name: Build the two jurisdictional footprints and verify every packed tile
+        run: |
+          /usr/bin/python3 scripts/build_fcc_alaska_tiles.py --plan "$RUNNER_TEMP/ak-input/plan.json" --output "$RUNNER_TEMP/xyz"
+          /usr/bin/python3 scripts/pack_fcc_tiles.py --xyz "$RUNNER_TEMP/xyz" --output "$RUNNER_TEMP/pmout"
+          go build -o "$RUNNER_TEMP/rangesrv" scripts/acceptance/fcc-range-server.go
+          "$RUNNER_TEMP/rangesrv" "$RUNNER_TEMP/pmout" > "$RUNNER_TEMP/range-origin" &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..40}; do test -s "$RUNNER_TEMP/range-origin" && break; sleep .1; done
+          /usr/bin/python3 scripts/check_fcc_pack_http.py --origin "$(cat "$RUNNER_TEMP/range-origin")" --packed "$RUNNER_TEMP/pmout" --xyz "$RUNNER_TEMP/xyz"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: derived-fcc-pmtiles-ak
+          path: ${{ runner.temp }}/pmout
+          retention-days: 3
+          if-no-files-found: error
