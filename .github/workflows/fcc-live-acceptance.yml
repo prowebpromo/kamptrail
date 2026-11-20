@@ -1,7 +1,7 @@
 name: Verify live FCC coverage and saved sessions
 on:
   push:
-    branches: [verify/fcc-carrier-acceptance]
+    branches: [verify/fcc-live-2490-native-center]
     paths: ['.github/workflows/fcc-live-acceptance.yml','scripts/acceptance/fcc-release-check.json']
 permissions:
   contents: read
@@ -48,6 +48,7 @@ jobs:
       - if: steps.pins.outputs.check != ''
         env:
           CHROMIUM_PATH: /usr/bin/google-chrome
+          EXPECTED_REGIONS: NY,RI
           EXPECTED_SHA: ${{ steps.pins.outputs.commit }}
         run: |
           test -s qualified/fcc-acceptance.json
