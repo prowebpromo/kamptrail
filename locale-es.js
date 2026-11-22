@@ -1,5 +1,5 @@
 /* Optional Spanish UI catalogue. */
-(function(global){'use strict';global.KampTrailI18nEs={version:'2.49.0',messages:{
+(function(global){'use strict';global.KampTrailI18nEs={version:'2.50.0',messages:{
   "This listing remains under review. Its own source record still supports the camping type shown.": "Este lugar sigue en revisión. Su propia ficha de origen sigue respaldando el tipo de acampada mostrado.",
   "This previously listed location is under review. Its record does not establish the camping type at this point.": "Este lugar ya figuraba en el catálogo y está en revisión. La ficha no confirma el tipo de acampada en este punto.",
   "This listing’s own record changed after its type was reviewed. It shows as Other until it is reviewed again.": "La ficha propia de este lugar cambió después de revisar su tipo. Aparece como Otro hasta que se revise de nuevo.",
@@ -191,7 +191,7 @@
   "Current beta limitations": "Limitaciones actuales de la beta",
   "Campsite and service coverage varies. Source dates describe records, not a recent field inspection. Confirm current conditions with the operator.": "La cobertura de campamentos y servicios varía. Las fechas de las fuentes describen los registros, no una inspección reciente. Confirma las condiciones actuales con el operador.",
   "Routes use car routing. RV dimensions and clearance warnings do not guarantee safe passage.": "Las rutas usan un planificador para automóviles. Las dimensiones del vehículo y las advertencias de altura no garantizan un paso seguro.",
-  "The FCC coverage layer starts with outdoor 4G LTE in New York and Rhode Island. Camper signal reports show what visitors experienced on their visit date.": "La capa de cobertura de la FCC comienza con 4G LTE al aire libre en Nueva York y Rhode Island. Los informes de los campistas describen la señal que tuvieron el día de su visita.",
+  "Compare modeled outdoor 4G LTE coverage from AT&T, T-Mobile and Verizon across the 48 contiguous states. Camper signal reports show what visitors experienced on their visit date.": "Compare la cobertura 4G LTE al aire libre prevista por AT&T, T-Mobile y Verizon en los 48 estados contiguos. Los informes de los campistas describen la señal que tuvieron el día de su visita.",
   "Saved stops stay on this device and browser. Offline use requires preparation and available browser storage.": "Las paradas guardadas permanecen en este dispositivo y navegador. El uso sin conexión requiere preparación y almacenamiento disponible en el navegador.",
   "What we need help testing": "Qué necesitamos ayudarte a probar",
   "Try finding a familiar place, checking its details, saving a stop, and finding it again after reloading. Tell us where you get stuck and what information you need before deciding to visit.": "Busca un lugar conocido, revisa sus detalles, guarda una parada y vuelve a encontrarla después de cargar la página. Dinos dónde te atascas y qué información necesitas antes de decidir visitarlo.",

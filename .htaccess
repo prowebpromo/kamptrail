@@ -12,7 +12,17 @@ Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-
 <FilesMatch "\.(html)$|^(manifest\.json|service-worker\.js|release\.json)$">
 Header always set Cache-Control "no-cache"
 </FilesMatch>
+<Files "manifest-v2.json">
+Header always set Cache-Control "no-cache"
+</Files>
+<FilesMatch "\.pmtiles$">
+Header always set Cache-Control "public, max-age=31536000, immutable, no-transform"
+</FilesMatch>
 </IfModule>
+<IfModule mod_setenvif.c>
+SetEnvIfNoCase Request_URI "\.pmtiles$" no-gzip=1 no-brotli=1
+</IfModule>
+AddType application/vnd.pmtiles .pmtiles
 AddType application/manifest+json .webmanifest
 AddType application/xml .xml
 AddType image/x-icon .ico

@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v94';
+const VERSION = 'kt-v95';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -11,6 +11,7 @@ const CAMPER_CACHE = `${PREFIX}camper-discovery-v1`;
 const ELEVATION_CACHE = `${PREFIX}elevation-v1`;
 const SERVICES_CACHE = `${PREFIX}services-v2`;
 const ROUTE_CACHE = `${PREFIX}routes-v1`;
+const PACKED_CACHE = `${PREFIX}fcc-packed-v1`;
 const COVERAGE_CACHE = `${PREFIX}fcc-tiles-v1`;
 const CLEARANCE_CACHE = `${PREFIX}clearance-v1`;
 const SHELL = [
@@ -20,14 +21,109 @@ const SHELL = [
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
   'feedback.js','install.js','safety.js','how-to.html','updates.html','tools.html','guides.html','plan.html','about.html','resources.css','terms.html','safety.html','privacy.html','legal.css'
 ];
-self.addEventListener('install',event=>event.waitUntil((async()=>{
-  const cache=await caches.open(SHELL_CACHE);
-  await cache.addAll(SHELL.map(url=>new Request(new URL(url,self.registration.scope),{cache:'reload'})));
+// Cold visits also fetch the visible page. Pace all shell requests and pause both
+// workers together if the hosting service asks us to retry later.
+async function fetchShell(requests) {
+  const responses = new Array(requests.length);
+  const holdCache = PREFIX+'shell-cooldown', holdKey = new Request(new URL('.shell-cooldown',self.registration.scope));
+  let cursor = 0, nextStart = 0, failure;
+  if ((await caches.keys()).includes(holdCache)) {
+    const stored = await (await caches.open(holdCache)).match(holdKey);
+    nextStart = Number(await stored?.text()) || 0;
+    if (nextStart-Date.now()>30000) throw Error('Hosting service shell cooldown is still in effect');
+  }
+  async function waitToStart() {
+    while (!failure) {
+      const delay = nextStart - Date.now();
+      if (delay <= 0) {
+        nextStart = Date.now() + 150;
+        return;
+      }
+      await new Promise(resolve => setTimeout(resolve, Math.min(delay,1000)));
+    }
+    throw failure;
+  }
+  async function download(request) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      await waitToStart();
+      const response = await fetch(request);
+      if (response.ok && response.status !== 206 && !response.headers.get('Vary')?.split(',').some(v=>v.trim()==='*')) {
+        // Keep the original response (URL, headers, redirect semantics) and wait
+        // for its body to finish before giving the worker another download.
+        const complete = response.clone();
+        await response.arrayBuffer();
+        return complete;
+      }
+      const retry = response.headers.get('Retry-After');
+      const throttled = response.status === 429 || (response.status === 503 && retry !== null);
+      if (throttled) {
+        const retryMs = retry === null ? NaN : /^\d+$/.test(retry.trim()) ? Number(retry)*1000
+          : /[a-z]/i.test(retry) ? Date.parse(retry)-Date.now() : NaN;
+        const delay = Number.isFinite(retryMs) ? Math.max(0,retryMs) : 8000;
+        nextStart = Math.max(nextStart, Date.now()+delay);
+        if (delay > 30000 || attempt > 0) {
+          failure ||= Error('Required shell asset returned HTTP '+response.status);
+          // The browser may try installation again on another visit. Carry the
+          // deadline across attempts independently of the visitor's active shell.
+          const hold = await caches.open(holdCache);
+          await hold.put(holdKey,new Response(String(nextStart)));
+        } else {
+          await response.body?.cancel();
+          continue;
+        }
+      }
+      // A longer cooldown (or a second denial) ends this install rather than
+      // issuing another request before the service allows it.
+      failure ||= Error('Required shell asset returned HTTP '+response.status);
+      await response.body?.cancel();
+      throw failure;
+    }
+  }
+  async function worker() {
+    try {
+      while (!failure && cursor < requests.length) {
+        const i = cursor++;
+        responses[i] = await download(requests[i]);
+      }
+    } catch (err) { failure ||= err; }
+  }
+  await Promise.all([worker(),worker()]);
+  if (failure) throw failure;
+  return responses;
+}
+async function installShell() {
+  const requests = SHELL.map(url=>new Request(new URL(url,self.registration.scope),{cache:'reload'}));
+  const responses = await fetchShell(requests);
+  const existing = (await caches.keys()).includes(SHELL_CACHE);
+  const cache = await caches.open(SHELL_CACHE), changed = [];
+  try {
+    for (let i=0; i<requests.length; i++) {
+      const previous = existing ? await cache.match(requests[i]) : null;
+      await cache.put(requests[i],responses[i]);
+      if (existing) changed.push([requests[i],previous]);
+    }
+  } catch (err) {
+    if (!existing) await caches.delete(SHELL_CACHE);
+    else {
+      for (const [request,previous] of changed) {
+        if (previous) await cache.put(request,previous);
+        else await cache.delete(request);
+      }
+    }
+    throw err;
+  }
+  // A first visit can select coverage before the new worker controls the page.
+  // Warm the optional reader for offline viewing, then retry on ordinary use.
+  try {
+    await cache.add(new Request(new URL('vendor/fcc-pmtiles/reader.js',self.registration.scope),
+      {cache:'reload',signal:AbortSignal.timeout(4000)}));
+  } catch { /* The reader is optional for the shell upgrade. */ }
   await self.skipWaiting();
-})()));
+}
+self.addEventListener('install',event=>event.waitUntil(installShell()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
   const keys=await caches.keys();
-  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==LOCALE_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE && key!==SERVICES_CACHE && key!==COVERAGE_CACHE && key!==CLEARANCE_CACHE).map(key=>caches.delete(key)));
+  await Promise.all(keys.filter(key=>key.startsWith(PREFIX) && key!==SHELL_CACHE && key!==LOCALE_CACHE && key!==DATA_CACHE && key!==TILE_CACHE && key!==ROUTE_CACHE && key!==MVUM_CACHE && key!==CAMPER_CACHE && key!==ELEVATION_CACHE && key!==SERVICES_CACHE && key!==COVERAGE_CACHE && key!==PACKED_CACHE && key!==CLEARANCE_CACHE).map(key=>caches.delete(key)));
   await self.clients.claim();
 })()));
 self.addEventListener('fetch',event=>{

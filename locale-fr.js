@@ -1,7 +1,7 @@
 /* French first-party UI catalogue, loaded only when French is selected. Source records and visitor text never pass through it. */
 (function (global) {
   'use strict';
-  global.KampTrailI18nFr = {version:'2.49.0', messages:{
+  global.KampTrailI18nFr = {version:'2.50.0', messages:{
   "Listing history is unavailable. Reconnect and retry before opening campsite records.": "L’historique des lieux est indisponible. Reconnectez-vous et réessayez avant d’ouvrir les fiches.",
   "Historical listing": "Fiche historique",
   "Close historical listing": "Fermer la fiche historique",
@@ -179,7 +179,7 @@
   "Current beta limitations": "Limites actuelles de la bêta",
   "Campsite and service coverage varies. Source dates describe records, not a recent field inspection. Confirm current conditions with the operator.": "La couverture des lieux de camping et des services varie. Les dates des sources décrivent les données, pas une inspection récente sur place. Confirmez les conditions actuelles auprès de l’exploitant.",
   "Routes use car routing. RV dimensions and clearance warnings do not guarantee safe passage.": "Les itinéraires utilisent un calcul pour voitures. Les dimensions du véhicule et les avertissements de dégagement ne garantissent pas un passage sûr.",
-  "The FCC coverage layer starts with outdoor 4G LTE in New York and Rhode Island. Camper signal reports show what visitors experienced on their visit date.": "La couche de couverture de la FCC présente d’abord la 4G LTE en extérieur dans l’État de New York et au Rhode Island. Les signalements des campeurs indiquent la réception constatée le jour de leur visite.",
+  "Compare modeled outdoor 4G LTE coverage from AT&T, T-Mobile and Verizon across the 48 contiguous states. Camper signal reports show what visitors experienced on their visit date.": "Comparez la couverture 4G LTE en extérieur modélisée par AT&T, T-Mobile et Verizon dans les 48 États contigus. Les signalements des campeurs indiquent la réception constatée le jour de leur visite.",
   "Saved stops stay on this device and browser. Offline use requires preparation and available browser storage.": "Les étapes enregistrées restent sur cet appareil et ce navigateur. L’utilisation hors ligne nécessite une préparation et du stockage disponible dans le navigateur.",
   "What we need help testing": "Ce que nous souhaitons tester avec vous",
   "Try finding a familiar place, checking its details, saving a stop, and finding it again after reloading. Tell us where you get stuck and what information you need before deciding to visit.": "Cherchez un endroit connu, vérifiez ses détails, enregistrez une étape et retrouvez-la après avoir rechargé la page. Dites-nous où vous bloquez et de quelles informations vous avez besoin avant de décider de vous y rendre.",
