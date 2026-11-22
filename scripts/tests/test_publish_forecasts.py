@@ -337,7 +337,8 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(result['pointer_verification'], 'public_asset_id')
         self.assertEqual(result['pointer_url_status'], 'previous')
         self.assertEqual(result['pointer_asset_id'], self.api.entries['current-a.json']['id'])
-        self.assertEqual(len(reads), 4)
+        # Four bounded propagation reads and one final independent slot read.
+        self.assertEqual(len(reads), 5)
         self.assertEqual(self.api.delays, [2, 4, 8])
         self.assertEqual(self.api.log.count(('UPLOAD', 'current-a.json')), 1)
         self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
@@ -354,6 +355,62 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(p.PublishError, 'public_asset_verification_failed'):
             self.publish()
         self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
+    def test_empty_public_id_quota_can_confirm_exact_public_filename_and_digest(self):
+        original = self.api.asset_bytes
+        def asset_bytes(asset, limit, *, draft=False):
+            if asset.get('name') in p.POINTERS:
+                raise p.PublishError('rate_limited')
+            return original(asset, limit, draft=draft)
+        self.api.asset_bytes = asset_bytes
+        result = self.publish()
+        self.assertEqual(result['pointer_verification'], 'public_filename_and_asset_digest')
+        self.assertEqual(result['pointer_url_status'], 'current')
+        self.assertEqual(self.api.bodies['current-b.json'], self.old[1])
+
+    def test_unreadable_existing_slot_aborts_before_cleanup_even_when_pointer_is_expired(self):
+        expired = fixture(NOW - 50000, 'd' * 24)
+        self.api.delete(self.api.entries['current-b.json']['id'])
+        self.api.seed(expired, pointers=('current-b.json',))
+        original = self.api.asset_bytes
+        # The ordinary URL still returns the old other slot. Its digest does
+        # not match listed metadata, so the unique asset-ID read is needed.
+        public = self.api.public
+        self.api.public = lambda name, limit: self.old[1] if name == 'current-b.json' else public(name, limit)
+        def asset_bytes(asset, limit, *, draft=False):
+            if asset.get('name') == 'current-b.json':
+                raise p.PublishError('rate_limited')
+            return original(asset, limit, draft=draft)
+        self.api.asset_bytes = asset_bytes
+        with self.assertRaisesRegex(p.PublishError, 'rate_limited'):
+            self.publish()
+        self.assertFalse(any(item[0] in ('DELETE', 'UPLOAD') for item in self.api.log))
+        self.assertTrue(all(name in self.api.entries for name in expired[2]))
+
+    def test_rate_limit_cannot_confirm_a_stale_filename_or_missing_digest(self):
+        for missing_digest in (False, True):
+            with self.subTest(missing_digest=missing_digest):
+                api = self.api = FakeGitHub()
+                api.seed(self.old)
+                original = api.asset_bytes
+                def asset_bytes(asset, limit, *, draft=False):
+                    if asset.get('name') == 'current-a.json' and api.bodies[asset['name']] == self.new[1]:
+                        raise p.PublishError('github_rate_limited')
+                    return original(asset, limit, draft=draft)
+                api.asset_bytes = asset_bytes
+                if missing_digest:
+                    upload = api.upload
+                    def upload_no_digest(release_id, name, data):
+                        asset = upload(release_id, name, data)
+                        asset.pop('digest', None)
+                        return asset
+                    api.upload = upload_no_digest
+                else:
+                    self.delayed_pointer(count=100)
+                with self.assertRaisesRegex(p.PublishError, 'rate_limited'):
+                    self.publish()
+                self.assertEqual(api.bodies['current-b.json'], self.old[1])
+                self.assertEqual(api.log.count(('UPLOAD', 'current-a.json')), 1)
 
     def test_final_asset_identity_change_fails_after_public_byte_verification(self):
         original = self.api.assets
