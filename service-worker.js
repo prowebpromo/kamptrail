@@ -16,7 +16,7 @@ const COVERAGE_CACHE = `${PREFIX}fcc-tiles-v1`;
 const CLEARANCE_CACHE = `${PREFIX}clearance-v1`;
 const SHELL = [
   './','index.html','provider-config.json','locale.js','shell.js','consent-analytics.js','consent-controls.js','analytics-bootstrap.js','analytics-settings.js','beta.js','map-loader.js','app.js','app.css','data/places-us.json','manifest.json','brand-mark.svg','apple-touch-icon.png','favicon-32.png','icon-192.png','icon-512.png','icon-maskable-192.png','icon-maskable-512.png','og.png',
-  'vendor/fcc-pmtiles/reader.js','vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
+  'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
   'listing-history.js','data-loader.js','data-quality.js','forecast.js','services.js','filters.js','trip-planner.js','routes.js','spot-info.js','share.js','carrier-coverage.js','layers.js','mvum.js','offline-maps.js','contributions.js','feedback.js','install.js','safety.js','how-to.html','updates.html','tools.html','guides.html','plan.html','about.html','record-overrides.js','resources.css','terms.html','safety.html','privacy.html','legal.css','community.js','permissions.js','rest-areas.js','clearances.js','rig-profile.js','route-elevation.js','route-clearance.js','community-discovery.js','environment.js'
@@ -24,6 +24,12 @@ const SHELL = [
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(SHELL_CACHE);
   await cache.addAll(SHELL.map(url=>new Request(new URL(url,self.registration.scope),{cache:'reload'})));
+  // A first visit can select coverage before the new worker controls the page. Warm its
+  // reader for the offline return; the normal asset handler retries it on demand.
+  try {
+    await cache.add(new Request(new URL('vendor/fcc-pmtiles/reader.js',self.registration.scope),
+      {cache:'reload',signal:AbortSignal.timeout(4000)}));
+  } catch { /* An unavailable optional map reader must not block the shell upgrade. */ }
   await self.skipWaiting();
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
