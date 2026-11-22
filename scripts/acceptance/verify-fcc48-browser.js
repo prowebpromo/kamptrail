@@ -81,7 +81,11 @@ function observe(context) {
   context.on('response',response=>{
     const url=new URL(response.url()), headers=response.headers();
     if(url.origin!==origin) return;
-    if(response.status()===429) rateLimited.push(url.pathname);
+    if(response.status()===429) {
+      const event={path:url.pathname,retryAfter:headers['retry-after']||null,at:new Date().toISOString()};
+      rateLimited.push(event);
+      console.error('Production rate limit',JSON.stringify(event));
+    }
     if(!url.pathname.startsWith('/data/fcc-coverage/')) return;
     if(url.pathname.endsWith('.png')) png.push(url.pathname);
     if(!url.pathname.endsWith('.pmtiles')) return;
@@ -92,7 +96,70 @@ function observe(context) {
     }
     responses.push({url:url.pathname,bytes:Number(headers['content-length']||0),range:value});
   });
-  return {responses,errors,png,rateLimited};
+  async function respectRetryAfter() {
+    if(!rateLimited.length) return;
+    const next=Math.max(...rateLimited.map(r=>{
+      const at=Date.parse(r.at), value=(r.retryAfter||'').trim();
+      if(/^\d+$/.test(value))return at + Number(value)*1000;
+      const date=Date.parse(value);
+      return Number.isFinite(date)?date:at+60000;
+    }));
+    const remaining=next-Date.now(); if(remaining>0) await delay(remaining);
+  }
+  return {responses,errors,png,rateLimited,respectRetryAfter};
+}
+async function visitorForecast(page,old,observations) {
+  await observations.respectRetryAfter();
+  const observed=page.waitForResponse(r=>{
+    const u=new URL(r.url());return u.origin===origin && u.pathname==='/api/forecast.php' && u.searchParams.get('kind')==='index';
+  },{timeout:65000});
+  await page.getByRole('button',{name:'Open filters',exact:true}).click();
+  const form=page.getByRole('dialog',{name:'Filters',exact:true});
+  const minimum=form.locator('#f-forecast-min');
+  await minimum.fill('-100'); await minimum.press('Tab');
+  const response=await observed;
+  let payload; try {payload=await response.json();} catch {payload={};}
+  const m=payload.manifest;
+  const fresh=response.status()===200 && payload.ok && Number.isFinite(Date.parse(payload.server_now)) && Date.parse(m?.expires_at)>Date.parse(payload.server_now);
+  await page.waitForFunction(()=>window.KampTrailForecast && !KampTrailForecast.status().loading,null,{timeout:60000});
+  if(fresh) {
+    await expect(form.locator('#f-forecast-status')).toContainText(/NOAA\/NWS NDFD samples\. Expires/,{timeout:60000});
+    await page.waitForFunction(()=>KampTrailForecast.status().states.includes('RI'),null,{timeout:60000});
+    assert.equal(await page.evaluate(()=>KampTrailForecast.status().expires),m.expires_at);
+  } else {
+    await expect(form.locator('#f-forecast-status')).toContainText(/unavailable|expired|incompatible/i,{timeout:45000});
+    assert.equal(await page.evaluate(()=>KampTrailForecast.status().ready),false);
+  }
+  const label=await form.locator('#f-forecast-status').innerText();
+  await form.locator('#kt-f-close').click();
+  await page.locator('#trip').click();
+  const drawer=page.locator('#kt-trip-drawer');
+  await drawer.waitFor({state:'visible'});
+  await drawer.getByRole('button',{name:'View on map'}).first().click();
+  const popup=page.locator('.leaflet-popup-content');
+  await expect(popup).toContainText(old.savedPlace.name);
+  const detail=popup.locator('.kt-forecast-evidence');
+  await detail.waitFor({state:'visible',timeout:30000});
+  let visible=await detail.innerText(),place=old.savedPlace;
+  if(fresh && !/published samples:/.test(visible)) {
+    // A point can have incomplete future hours. A separate on-screen list card
+    // still provides a real named stop from this visitor's already loaded data.
+    const card=page.locator('.kt-forecast-evidence').filter({hasText:/published samples:/}).first();
+    await card.waitFor({state:'visible',timeout:30000});
+    visible=await card.innerText();
+    place=await card.evaluate(el=>({name:el.parentElement.querySelector('h2,h3,h4')?.textContent||el.parentElement.innerText.split('\n')[0]}));
+    assert.ok(place.name);
+  }
+  if(fresh){
+    assert.match(visible,/published samples:.*NOAA\/NWS NDFD file updated/i);
+    assert.ok(visible.includes(m.expires_at));
+  }else{
+    assert.match(visible,/unknown|incomplete|expired|unavailable/i);
+    assert.doesNotMatch(visible,/published samples:/i);
+  }
+  return {result:fresh?'current samples visible':payload.error==='stale'?'expired, correctly unavailable':'endpoint unavailable, correctly labeled',
+    place,indexStatus:response.status(),serverNow:payload.server_now||null,snapshot:m?.snapshot_id||null,
+    expiresAt:m?.expires_at||null,error:payload.error||null,retryAfter:response.headers()['retry-after']||null,statusText:label,visible};
 }
 async function inspect(mode) {
   const mobile = mode==='mobile', old=previous[mode];
@@ -124,6 +191,7 @@ async function inspect(mode) {
     assert.equal(observations.responses.length,0,'Activating in Alaska must not eagerly fetch any of the 144 archives');
     let active='', jumped=false;
     for(const s of proof.browserSamples) {
+      await observations.respectRetryAfter();
       await delay(pause);
       await move(page,s);
       if(active!==s.carrier) {await select(page,s.carrier); active=s.carrier;}
@@ -171,6 +239,7 @@ async function inspect(mode) {
     await expect(page.locator(status)).toHaveText(expected.unavailable,{timeout:35000});
     await select(page,'');
     await context.setOffline(false);
+    await observations.respectRetryAfter();
     await page.evaluate(async()=>KampTrailData.loadStates(['RI']));
     await page.locator('#trip').click();
     const drawer=page.locator('#kt-trip-drawer');
@@ -178,9 +247,10 @@ async function inspect(mode) {
     await drawer.getByRole('button',{name:'View on map'}).first().click();
     await expect(page.locator('.leaflet-popup-content')).toContainText(old.savedPlace.name,{timeout:30000});
     assert.deepEqual(await saved(page),[old.savedPlace.id]);
+    const forecast = mode==='desktop' && process.env.QA_MODE==='production' ? await visitorForecast(page,old,observations) : null;
     assert.ok(observations.responses.length>0); assert.deepEqual(observations.errors,[]);
     assert.deepEqual(observations.png,[],'Schema 2 browser should use the packed data');
-    return {mode,mobileEmulation:mobile,reopenedPlace:old.savedPlace,previousVersion:old.clientVersion,currentVersion:'2.50.0',
+    return {mode,forecast,mobileEmulation:mobile,reopenedPlace:old.savedPlace,previousVersion:old.clientVersion,currentVersion:'2.50.0',
       dataRelease:proof.generation,selectionMatrix:states.length*regionsChecked.size,outOfScopeRequests:0,samples:result,
       rangeResponses:observations.responses.length,transferredRangeBytes:observations.responses.reduce((n,r)=>n+r.bytes,0),
       distinctArchivesLoaded:[...new Set(observations.responses.map(r=>r.url))].length,areaPickerNavigatedTo:'NY',
@@ -218,10 +288,20 @@ async function controlledFailures() {
 async function main(){
   assert.equal(proof.result,'PASS');assert.equal(proof.archiveCount,144);
   assert.equal(previous.base.replace(/\/$/,''),origin);
-  const runs=[];
-  for(const mode of ['desktop','mobile']) {
+  const requested=process.env.QA_VISITOR_MODE;
+  if(requested==='desktop' || requested==='mobile') {
     if(process.env.QA_MODE==='production') await delay(45000);
-    runs.push(await inspect(mode));
+    const result=await inspect(requested);
+    fs.writeFileSync(process.argv[3],JSON.stringify(result,null,2)+'\n');
+    console.log('VISITOR-CHECK '+JSON.stringify(result));
+    return;
+  }
+  assert.equal(requested,'collect');
+  const resultDirectory=path.dirname(process.argv[3]);
+  const runs=['desktop','mobile'].map(mode=>JSON.parse(fs.readFileSync(path.join(resultDirectory,mode+'.json'),'utf8')));
+  for(const [i,run] of runs.entries()){
+    assert.equal(run.mode,i?'mobile':'desktop');
+    assert.equal(run.dataRelease,proof.generation);
   }
   const controlled=await controlledFailures();
   const marker=await (await fetch(base('release.json?qa='+Date.now()),{cache:'no-store'})).json();

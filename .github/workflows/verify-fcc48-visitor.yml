@@ -46,7 +46,8 @@ jobs:
           node --check scripts/acceptance/verify-fcc48-browser.js
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: fcc-conus48-evidence
+          artifact-ids: '14759026844'
+          merge-multiple: true
           run-id: ${{ steps.run.outputs.run }}
           github-token: ${{ github.token }}
           path: evidence
@@ -62,7 +63,8 @@ jobs:
       - if: steps.run.outputs.mode == 'preview'
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: fcc-conus48-candidate
+          artifact-ids: '14759185866'
+          merge-multiple: true
           run-id: ${{ steps.run.outputs.run }}
           github-token: ${{ github.token }}
           path: qualified
@@ -76,7 +78,7 @@ jobs:
           path: baseline
           merge-multiple: true
           digest-mismatch: error
-      - name: Verify real carrier files, visitor upgrades, campground points and local failure behavior
+      - name: Prepare exact release, previously saved visitor profiles and qualification artifacts
         env:
           EXPECTED_SHA: ${{ steps.run.outputs.commit }}
           QA_MODE: ${{ steps.run.outputs.mode }}
@@ -98,7 +100,6 @@ jobs:
             rsync -a --exclude=.git previous/ "$served/"
             # Nginx is production-equivalent for local byte ranges; actual hosting is checked by production mode.
             docker run -d --name fcc-preview -p 127.0.0.1:8765:80 -v "$served:/usr/share/nginx/html:ro" nginx:stable-alpine@sha256:caf4e1e032a20f9c3c5e28fc7f25ffd768ad8677b4975c54193075997b3a97e3 >/dev/null
-            trap 'docker stop fcc-preview >/dev/null 2>&1 || true' EXIT
             curl --retry 8 --retry-all-errors --retry-delay 1 -fsS "$BASE/release.json" | jq -e '.source_commit=="b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69"'
             EXPECTED_SHA=b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69 node scripts/acceptance/capture-fcc48-baseline.js
             rsync -a --delete --checksum "$package_dir/" "$served/"
@@ -118,9 +119,36 @@ jobs:
             if [ "$attempt" = 24 ]; then echo "Public release and map generation have not matched both pins"; exit 1; fi
             sleep 35
           done
+          echo "BASE=$BASE" >> "$GITHUB_ENV"
+          echo "QA_PROFILES=$QA_PROFILES" >> "$GITHUB_ENV"
+          echo "RANGE_DELAY=$rate" >> "$GITHUB_ENV"
+      - name: Check 144 complete archive hashes, both byte ranges and original source pixels
+        env:
+          EXPECTED_SHA: ${{ steps.run.outputs.commit }}
+          QA_MODE: ${{ steps.run.outputs.mode }}
+        run: |
           python scripts/acceptance/verify-fcc48-archives.py --base "$BASE" --commit "$EXPECTED_SHA" --mode "$QA_MODE" \
-            --evidence evidence --repo candidate --previous previous-evidence --pause "$rate" --output result/archive-checks.json
-          node scripts/acceptance/verify-fcc48-browser.js result/archive-checks.json result/browser-checks.json
+            --evidence evidence --repo candidate --previous previous-evidence --pause "$RANGE_DELAY" --output result/archive-checks.json
+      - name: Verify the desktop saved-stop upgrade, covered and uncovered points, campgrounds and offline use
+        env:
+          QA_VISITOR_MODE: desktop
+          QA_MODE: ${{ steps.run.outputs.mode }}
+          CHROMIUM_PATH: /usr/bin/google-chrome
+        run: node scripts/acceptance/verify-fcc48-browser.js result/archive-checks.json result/desktop.json
+      - name: Verify the mobile-width saved-stop upgrade, covered and uncovered points, campgrounds and offline use
+        env:
+          QA_VISITOR_MODE: mobile
+          QA_MODE: ${{ steps.run.outputs.mode }}
+          CHROMIUM_PATH: /usr/bin/google-chrome
+        run: node scripts/acceptance/verify-fcc48-browser.js result/archive-checks.json result/mobile.json
+      - name: Check unavailable files, stale filing and legacy fallback, then freeze browser results
+        env:
+          QA_VISITOR_MODE: collect
+          QA_MODE: ${{ steps.run.outputs.mode }}
+          CHROMIUM_PATH: /usr/bin/google-chrome
+        run: node scripts/acceptance/verify-fcc48-browser.js result/archive-checks.json result/browser-checks.json
+      - if: always() && steps.run.outputs.mode == 'preview'
+        run: docker stop fcc-preview >/dev/null 2>&1 || true
       - if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
