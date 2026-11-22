@@ -1,0 +1,56 @@
+name: Stage the verified November 22 campsite recovery
+on:
+  push:
+    branches: [once/stage-verified-campsites-20261122]
+permissions:
+  actions: read
+  contents: write
+jobs:
+  stage:
+    if: github.repository == 'prowebpromo/kamptrail'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 44643b2ce90a51e59e02d366a592a652feef9737
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: 45035598256
+          artifact-ids: 14759644753
+          path: ${{ runner.temp }}/candidate
+          merge-multiple: true
+          digest-mismatch: error
+      - name: Verify artifact and source before staging
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/prowebpromo/kamptrail/actions/runs/45035598256 | jq -e '.head_sha=="e792f8a89ad2cce7a78fee880dd5bfa5f7929aee" and .conclusion=="success"'
+          gh api repos/prowebpromo/kamptrail/actions/artifacts/14759644753 | jq -e '.digest=="sha256:c35085397e06b006c7a98175ef65f91519fa8faaddd16ccb9d88832ee9d08956" and .name=="recovered-november-22-campsites" and (.expired|not)'
+          (cd "$RUNNER_TEMP/candidate" && sha256sum --check SHA256SUMS)
+          git fetch --no-tags --depth=1 origin a016d67cb32db8dbf5cd78bc3c1e782ffa00cdd8 5d05505145f916865c90af1b25405c4bfed295d9 "$GITHUB_SHA"
+          git show "$GITHUB_SHA:.github/stage-camps-nov22.py" > "$RUNNER_TEMP/stage-camps.py"
+          python3 "$RUNNER_TEMP/stage-camps.py"
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Confirm regenerated index and version
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build:search
+          git diff --exit-code -- data
+          node -e "if (require('./package.json').version !== '2.51.0') process.exit(1)"
+      - name: Stage reviewed source and verified data on an isolated release branch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u
+          tree=$(git write-tree)
+          commit=$(git commit-tree "$tree" -p 44643b2ce90a51e59e02d366a592a652feef9737 -p 5d05505145f916865c90af1b25405c4bfed295d9 -m "Restore the complete November 22 campsite snapshot and preserve saved listings")
+          git push --force-with-lease=refs/heads/release/campsites-nov22-recovery: origin "$commit:refs/heads/release/campsites-nov22-recovery"
+          echo "Staged the verified campsite source and data at $commit" >> "$GITHUB_STEP_SUMMARY"
