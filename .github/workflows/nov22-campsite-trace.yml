@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-          ref: 1e195c9ea930880d51f5216a6b9a333f8e13328e
+          ref: 1d9462460d10bc8f33ae21a612669b419a39e1b1
       - uses: actions/download-artifact@v8.0.2
         with:
           name: unverified-refresh-45012745211-1
@@ -26,7 +26,10 @@ jobs:
       - name: Replay the held source bytes; rebuild snapshot and preserve all previously published identities 
         run: |
           set -euo pipefail
+          node --test scripts/tests/merge-safety.test.js
           cp data/campsites/search-index.json "$RUNNER_TEMP/old-index.json"
+          node scripts/build-search-index.js
+          cmp "$RUNNER_TEMP/old-index.json" data/campsites/search-index.json
           for dir in campsites opencampingmap services sources rest-areas; do
             rsync -a --delete "$RUNNER_TEMP/candidate/data/$dir/" "data/$dir/"
           done
