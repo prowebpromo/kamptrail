@@ -65,6 +65,9 @@ jobs:
           retention-days: 7
 
   publish:
+    concurrency:
+      group: fcc-mobile-data-publication
+      cancel-in-progress: false
     needs: qualify
     if: github.repository == 'prowebpromo/kamptrail' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push')
     runs-on: ubuntu-24.04

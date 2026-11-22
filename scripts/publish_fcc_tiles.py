@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate, retain and atomically publish bounded FCC XYZ generations."""
+"""Validate, retain and atomically publish FCC XYZ and packed coverage generations."""
 import argparse
 import contextlib
 import hashlib
@@ -13,6 +13,8 @@ import subprocess
 import tempfile
 from datetime import date
 from pathlib import Path
+
+import fcc_packed_publication as packed
 
 DATA_REF = "refs/heads/fcc-mobile-data"
 RELEASE = re.compile(r"\d{4}-\d{2}-\d{2}-[0-9a-f]{12,64}")
@@ -123,18 +125,45 @@ def remote_head(repo):
     if result.returncode == 2:
         return None
     ensure(result.returncode == 0, "Could not resolve the last data release.")
-    head, ref = result.stdout.strip().split()
-    ensure(re.fullmatch(r"[a-f0-9]{40}",head) and ref == DATA_REF,"Invalid data ref.")
-    git(["fetch","--no-tags","--depth=1","origin",DATA_REF],repo)
-    ensure(git(["rev-parse","FETCH_HEAD"],repo).decode().strip() == head,"Data branch advanced; retry safely.")
-    return head
+    advertised, ref = result.stdout.strip().split()
+    ensure(re.fullmatch(r"[a-f0-9]{40}", advertised) and ref == DATA_REF, "Invalid data ref.")
+    # The named ref may already have advanced between ls-remote and fetch.
+    # Use the fetched snapshot as the lease for this transaction.
+    git(["fetch", "--no-tags", "--depth=1", "origin", DATA_REF], repo)
+    return git(["rev-parse", "FETCH_HEAD"], repo).decode().strip()
 
 
-@contextlib.contextmanager
-def checked_tree(repo, head, work):
-    # Validate Git modes, names and total bytes before creating files.
+class PublicationConflict(Exception):
+    """Another publisher updated the data ref after this transaction read it."""
+
+
+def push_data_ref(repo, commit, head):
+    try:
+        git(["push", "--force-with-lease=" + DATA_REF + ":" + (head or ""),
+             "origin", commit + ":" + DATA_REF], repo)
+    except subprocess.CalledProcessError:
+        current = remote_head(repo)
+        if current == commit:
+            return  # The remote accepted the push even though the transport failed.
+        if current != head:
+            raise PublicationConflict("Concurrent FCC data update") from None
+        raise
+
+
+def publish_with_retry(operation):
+    for attempt in range(3):
+        try:
+            return operation()
+        except PublicationConflict:
+            if attempt == 2:
+                raise
+            print("FCC data changed concurrently. Revalidating the new base before updating.")
+
+
+def inspect_tree_entries(repo, head):
+    # Shared legacy capacity is unchanged. Check both formats before creating files.
     listings = git(["ls-tree","-r","-l","-z",head],repo).split(b"\x00")
-    ensure(len(listings) <= 2*MAX_FILES + 5, "Data branch exceeds retained file budget.")
+    ensure(len(listings) <= 2*MAX_FILES + 5 + 2*(len(packed.STATES)*3+2) + 1, "Data branch exceeds retained file budget.")
     total = 0
     for entry in filter(None,listings):
         metadata, name = entry.decode("ascii").split("\t",1)
@@ -144,8 +173,16 @@ def checked_tree(repo, head, work):
         allowed = (name=="manifest.json" or (len(parts)==2 and parts[0]=="manifests"
                     and parts[1].endswith(".json") and RELEASE.fullmatch(parts[1][:-5]))
                    or (RELEASE.fullmatch(parts[0]) and PNG.fullmatch("/".join(parts[1:]))))
-        ensure(mode=="100644" and kind=="blob" and allowed and int(size)<=MAX_TILE
-               and total<=2*MAX_BYTES+2*1024**2, "Unexpected public data file.")
+        legacy = allowed and int(size)<=MAX_TILE
+        extension = name.startswith(packed.FAMILY+"/") and packed.allowed_git_file(name,int(size))
+        ensure(mode=="100644" and kind=="blob" and (legacy or extension)
+               and total<=2*MAX_BYTES+2*1024**2, "Unexpected public data file or shared retention capacity exceeded.")
+    return total
+
+
+@contextlib.contextmanager
+def checked_tree(repo, head, work):
+    inspect_tree_entries(repo,head)
     checkout = work / "prior"
     git(["worktree","add","--detach",str(checkout),head],repo)
     try:
@@ -160,7 +197,10 @@ def checked_tree(repo, head, work):
                 other = validate(checkout,m)[0]
                 ensure(other["release"] == m.stem, "Incorrect historical manifest.")
             retained.add(m.stem)
-        ensure({p.name for p in checkout.iterdir()} == retained|{".git","manifests","manifest.json"},"Unexpected retained release.")
+        family=packed.inspect(checkout,MAX_BYTES)
+        ensure(not (retained & set(family["generations"])),"Packed and legacy immutable paths collide.")
+        extra={packed.FAMILY} if family["generations"] else set()
+        ensure({p.name for p in checkout.iterdir()} == retained|{".git","manifests","manifest.json"}|extra,"Unexpected retained release.")
         yield checkout, active, scopes, digest
     finally:
         git(["worktree","remove","--force",str(checkout)],repo)
@@ -196,16 +236,21 @@ def publish(repo,candidate):
             git(["read-tree","--prefix="+old_id+"/",head+":"+old_id],repo,env=env)
             old_blob=git(["rev-parse",head+":manifest.json"],repo).decode().strip()
             git(["update-index","--add","--cacheinfo","100644,"+old_blob+",manifests/"+old_id+".json"],repo,env=env)
+        if prior and (checkout/packed.FAMILY).is_dir():
+            ensure(not (checkout/packed.FAMILY/current["release"]).exists(),"Legacy release collides with packed URLs.")
+            git(["read-tree","--prefix="+packed.FAMILY+"/",head+":"+packed.FAMILY],repo,env=env)
         tree=git(["write-tree"],repo,env=env).decode().strip()
+        inspect_tree_entries(repo,tree)
         commit=git(["commit-tree",tree,*(["-p",head] if head else []),"-m","Publish FCC LTE "+current["release"]],repo,env=env).decode().strip()
         # Parent equals the previously read ref. A competing writer causes a safe rejection.
-        git(["push","origin",commit+":"+DATA_REF],repo)
+        push_data_ref(repo, commit, head)
         print(f"Published {count} validated tiles for {current['release']}.")
 
 
-def package(repo,destination):
+def package(repo,destination,*,require_contiguous=False):
     head=remote_head(repo)
     if not head:
+        ensure(not require_contiguous, "Required FCC data branch is missing. Current site preserved.")
         # A missing branch is normal before the first qualified data release.
         # If the last site already advertised FCC tiles, preserve it and stop.
         result=subprocess.run(["git","ls-remote","--exit-code","origin","refs/heads/hostinger"],cwd=repo,capture_output=True)
@@ -218,22 +263,56 @@ def package(repo,destination):
     ensure(not destination.exists(), "FCC release destination already exists.")
     with tempfile.TemporaryDirectory() as temp:
         with checked_tree(repo,head,Path(temp)) as (checkout,active,scopes,_):
-            destination.mkdir(parents=True)
-            for m in sorted((checkout/"manifests").glob("*.json")):
-                shutil.copytree(checkout/m.stem,destination/m.stem)
-            shutil.copyfile(checkout/"manifest.json",destination/"manifest.json")
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            with tempfile.TemporaryDirectory(dir=destination.parent) as staging:
+                staged=Path(staging)/"data"
+                staged.mkdir()
+                legacy=set()
+                for m in sorted((checkout/"manifests").glob("*.json")):
+                    legacy.add(m.stem)
+                    shutil.copytree(checkout/m.stem,staged/m.stem)
+                shutil.copyfile(checkout/"manifest.json",staged/"manifest.json")
+                packed.package(checkout,staged,legacy,require_contiguous=require_contiguous)
+                os.rename(staged,destination)
             print(f"Packaged FCC {active['release']} for {len(scopes)} carrier-region pairs.")
 
 
 if __name__ == "__main__":
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action",choices=("validate","publish","package"))
-    parser.add_argument("path",type=Path)
+    ops=parser.add_subparsers(dest="action",required=True)
+    for action in ("validate","publish","package","validate-packed","publish-packed","measure-packed","preview-packed"):
+        op=ops.add_parser(action)
+        op.add_argument("path",type=Path)
+        if action == "package":
+            op.add_argument("--require-contiguous", action="store_true",
+                            help="Require a qualified lower-48 generation or an explicitly recorded rollback")
+        if action.endswith("-packed"):
+            op.add_argument("--qualification",type=Path,required=True)
+        if action == "preview-packed":
+            op.add_argument("--destination", type=Path, required=True)
+    rollback=ops.add_parser("rollback-packed")
+    rollback.add_argument("--from-release",required=True)
+    rollback.add_argument("--to",required=True,help="Retained packed release ID or legacy")
     args=parser.parse_args()
-    if args.action=="package":
-        package(ROOT,args.path.resolve())
+    import sys
+    if args.action=="rollback-packed":
+        publish_with_retry(lambda: packed.edit(sys.modules[__name__], ROOT, "rollback", expected=args.from_release,
+                                               target=None if args.to == "legacy" else args.to))
+    elif args.action == "preview-packed":
+        packed.preview(sys.modules[__name__], ROOT, args.path.resolve(), args.qualification.resolve(),
+                       args.destination.resolve())
+    elif args.action=="measure-packed":
+        print(json.dumps(packed.measure(sys.modules[__name__],ROOT,args.path.resolve(),args.qualification.resolve()),sort_keys=True))
+    elif args.action=="publish-packed":
+        publish_with_retry(lambda: packed.edit(sys.modules[__name__], ROOT, "publish", path=args.path.resolve(),
+                                               report=args.qualification.resolve()))
+    elif args.action=="validate-packed":
+        m,scopes,receipt=packed.candidate(args.path.resolve(),args.qualification.resolve(),MAX_BYTES,packed.PUBLIC_SCOPE)
+        print(f"Verified {len(scopes)} PMTiles archives, {receipt['packedBytes']} bytes for {m['release']}.")
+    elif args.action=="package":
+        package(ROOT,args.path.resolve(),require_contiguous=args.require_contiguous)
     elif args.action=="publish":
-        publish(ROOT,args.path.resolve())
+        publish_with_retry(lambda: publish(ROOT, args.path.resolve()))
     else:
         result=validate_candidate(args.path.resolve())
         print(f"Verified {result[3]} XYZ tiles; tree digest {result[2]}.")
