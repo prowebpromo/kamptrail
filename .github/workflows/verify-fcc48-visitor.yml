@@ -128,25 +128,26 @@ jobs:
           QA_MODE: ${{ steps.run.outputs.mode }}
         run: |
           python scripts/acceptance/verify-fcc48-archives.py --base "$BASE" --commit "$EXPECTED_SHA" --mode "$QA_MODE" \
-            --evidence evidence --repo candidate --previous previous-evidence --pause "$RANGE_DELAY" --output result/archive-checks.json
+            --evidence evidence --repo candidate --previous previous-evidence --pause "$RANGE_DELAY" --output "$RUNNER_TEMP/fcc-archive-details.json"
+          jq 'del(.browserSamples,.navigationRegion,.unvisitedOfflineWitness)' "$RUNNER_TEMP/fcc-archive-details.json" > result/archive-checks.json
       - name: Verify the desktop saved-stop upgrade, covered and uncovered points, campgrounds and offline use
         env:
           QA_VISITOR_MODE: desktop
           QA_MODE: ${{ steps.run.outputs.mode }}
           CHROMIUM_PATH: /usr/bin/google-chrome
-        run: node scripts/acceptance/verify-fcc48-browser.js result/archive-checks.json result/desktop.json
+        run: node scripts/acceptance/verify-fcc48-browser.js "$RUNNER_TEMP/fcc-archive-details.json" result/desktop.json
       - name: Verify the mobile-width saved-stop upgrade, covered and uncovered points, campgrounds and offline use
         env:
           QA_VISITOR_MODE: mobile
           QA_MODE: ${{ steps.run.outputs.mode }}
           CHROMIUM_PATH: /usr/bin/google-chrome
-        run: node scripts/acceptance/verify-fcc48-browser.js result/archive-checks.json result/mobile.json
+        run: node scripts/acceptance/verify-fcc48-browser.js "$RUNNER_TEMP/fcc-archive-details.json" result/mobile.json
       - name: Check unavailable files, stale filing and legacy fallback, then freeze browser results
         env:
           QA_VISITOR_MODE: collect
           QA_MODE: ${{ steps.run.outputs.mode }}
           CHROMIUM_PATH: /usr/bin/google-chrome
-        run: node scripts/acceptance/verify-fcc48-browser.js result/archive-checks.json result/browser-checks.json
+        run: node scripts/acceptance/verify-fcc48-browser.js "$RUNNER_TEMP/fcc-archive-details.json" result/browser-checks.json
       - if: always() && steps.run.outputs.mode == 'preview'
         run: docker stop fcc-preview >/dev/null 2>&1 || true
       - if: always()

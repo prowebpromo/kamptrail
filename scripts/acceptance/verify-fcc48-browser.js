@@ -291,7 +291,13 @@ async function main(){
   const requested=process.env.QA_VISITOR_MODE;
   if(requested==='desktop' || requested==='mobile') {
     if(process.env.QA_MODE==='production') await delay(45000);
-    const result=await inspect(requested);
+    const raw=await inspect(requested);
+    const {reopenedPlace,samples,forecast,...counters}=raw;
+    const forecastSummary=forecast && Object.fromEntries(
+      ['result','indexStatus','serverNow','snapshot','expiresAt','error','retryAfter']
+        .filter(key=>forecast[key]!=null).map(key=>[key,forecast[key]])
+    );
+    const result={...counters,savedStopReopened:Boolean(reopenedPlace),samples:samples.map(point=>({kind:point.kind})),forecast:forecastSummary};
     fs.writeFileSync(process.argv[3],JSON.stringify(result,null,2)+'\n');
     console.log('VISITOR-CHECK '+JSON.stringify(result));
     return;

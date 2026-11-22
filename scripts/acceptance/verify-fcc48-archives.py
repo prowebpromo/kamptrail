@@ -213,4 +213,4 @@ if __name__ == "__main__":
     print(f"Verified {result['archiveCount']} archives and {result['archiveBytes']:,} bytes via {result['rangeResponses']} HTTP range responses.")
     for entry in result["archiveChecks"]:
         print("ARCHIVE-CHECK " + json.dumps(entry, separators=(",", ":")))
-    print("ARCHIVE-REPORT " + json.dumps({k:v for k,v in result.items() if k!="archiveChecks"}, separators=(",", ":")))
+    print("ARCHIVE-REPORT " + json.dumps({k:v for k,v in result.items() if k not in ("archiveChecks","navigationRegion","browserSamples","unvisitedOfflineWitness")}, separators=(",", ":")))
