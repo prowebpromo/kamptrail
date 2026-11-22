@@ -1,0 +1,214 @@
+name: Refresh lower 48 FCC mobile coverage
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        description: Compare the current FCC source, force a new source build, or adopt the reviewed initial candidate.
+        options: [refresh, rebuild, adopt]
+        default: refresh
+  push:
+    branches: [main]
+    paths: ['.github/fcc-conus48-adoption.json']
+  schedule:
+    - cron: '41 9 10 * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kamptrail-fcc-mobile-data
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    if: github.repository == 'prowebpromo/kamptrail' && github.ref == 'refs/heads/main' && github.event_name != 'push' && inputs.mode != 'adopt'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      lanes: ${{ steps.plan.outputs.lanes }}
+      artifact: ${{ steps.artifact.outputs.artifact-id }}
+      changed: ${{ steps.compare.outputs.changed }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: fcc-mobile-data
+          path: current-fcc-store
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /packed/state.json
+            /packed/manifests/*.json
+            /packed/receipts/*.json
+      - run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install --no-install-recommends python3-fiona
+          /usr/bin/python3 -m unittest discover -s scripts/tests -p 'test_qualify_fcc_national.py'
+          /usr/bin/python3 -m unittest discover -s scripts/tests -p 'test_fcc_packed_refresh.py'
+      - name: Freeze one filing, provider catalog, Census boundary and fair worker slots
+        id: plan
+        env:
+          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
+        run: /usr/bin/python3 scripts/qualify_fcc_national.py plan --output "$RUNNER_TEMP/fcc-plan"
+      - name: Compare each selected file and its builder with the retained release
+        id: compare
+        run: python3 scripts/fcc_packed_refresh.py changed "$RUNNER_TEMP/fcc-plan/plan.json" current-fcc-store
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        id: artifact
+        with:
+          name: fcc-catalog-plan
+          path: ${{ runner.temp }}/fcc-plan
+          overwrite: true
+          if-no-files-found: error
+          retention-days: 7
+  provider:
+    if: needs.plan.outputs.changed == 'true' || inputs.mode == 'rebuild'
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 345
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        lane: ${{ fromJSON(needs.plan.outputs.lanes) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: ${{ needs.plan.outputs.artifact }}
+          path: ${{ runner.temp }}/fcc-plan
+          merge-multiple: true
+      - name: Set up geospatial tools and pinned PMTiles package
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install --no-install-recommends python3-gdal python3-numpy python3-fiona python3-pyproj python3-shapely python3-pil
+          python3 -m pip install --target "$RUNNER_TEMP/pmdeps" --only-binary=:all: --no-deps --require-hashes -r scripts/requirements-fcc-pmtiles.txt
+          echo "PYTHONPATH=$RUNNER_TEMP/pmdeps" >> "$GITHUB_ENV"
+      - name: Download one provider at a time; independently qualify spatial samples and every packed tile
+        env:
+          LANE: ${{ matrix.lane }}
+          FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+          FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
+        run: /usr/bin/python3 scripts/qualify_fcc_national.py acquire --plan "$RUNNER_TEMP/fcc-plan/plan.json" --lane "$LANE" --output "$RUNNER_TEMP/provider-results"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always() && !cancelled()
+        with:
+          name: fcc-packed-lane-${{ matrix.lane }}
+          path: ${{ runner.temp }}/provider-results
+          overwrite: true
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+  aggregate:
+    needs: [plan, provider]
+    outputs:
+      artifact: ${{ steps.candidate.outputs.artifact-id }}
+    if: needs.provider.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: ${{ needs.plan.outputs.artifact }}
+          path: ${{ runner.temp }}/fcc-plan
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          pattern: fcc-packed-lane-*
+          path: ${{ runner.temp }}/lanes
+      - name: Verify 144 archives and assemble the immutable deployment candidate
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/release"
+          python3 scripts/qualify_fcc_national.py assemble --plan "$RUNNER_TEMP/fcc-plan/plan.json" --lanes "$RUNNER_TEMP/lanes" --output "$RUNNER_TEMP/evidence" --materialize "$RUNNER_TEMP/release/candidate"
+          cp "$RUNNER_TEMP/evidence/qualification.json" "$RUNNER_TEMP/release/qualification.json"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: fcc-conus48-evidence
+          path: ${{ runner.temp }}/evidence
+          overwrite: true
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        id: candidate
+        with:
+          name: fcc-conus48-candidate
+          path: ${{ runner.temp }}/release
+          overwrite: true
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+
+  adoption:
+    if: github.repository == 'prowebpromo/kamptrail' && github.ref == 'refs/heads/main' && (github.event_name == 'push' || inputs.mode == 'adopt')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      run: ${{ steps.verify.outputs.run }}
+      artifact: ${{ steps.verify.outputs.artifact }}
+      source: ${{ steps.verify.outputs.source }}
+      release: ${{ steps.verify.outputs.release }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - name: Confirm the source run, artifact ID, digest and release approved in this revision
+        id: verify
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          request=.github/fcc-conus48-adoption.json
+          run_id=$(jq -er '.run | numbers' "$request")
+          artifact_id=$(jq -er '.artifact | numbers' "$request")
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" > "$RUNNER_TEMP/run.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact_id" > "$RUNNER_TEMP/artifact.json"
+          python3 scripts/fcc_packed_refresh.py adopt "$request" "$RUNNER_TEMP/run.json" "$RUNNER_TEMP/artifact.json"
+
+  publish:
+    needs: [aggregate, adoption]
+    if: >-
+      always() && !cancelled() && github.repository == 'prowebpromo/kamptrail' &&
+      github.ref == 'refs/heads/main' &&
+      (needs.aggregate.result == 'success' || needs.adoption.result == 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    concurrency:
+      group: fcc-mobile-data-publication
+      cancel-in-progress: false
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ needs.adoption.outputs.run || github.run_id }}
+          artifact-ids: ${{ needs.adoption.outputs.artifact || needs.aggregate.outputs.artifact }}
+          path: ${{ runner.temp }}/release
+          merge-multiple: true
+          digest-mismatch: error
+      - name: Check production code provenance and publish all 144 verified archives
+        env:
+          SOURCE_COMMIT: ${{ needs.adoption.outputs.source || github.sha }}
+          EXPECTED_RELEASE: ${{ needs.adoption.outputs.release }}
+        run: |
+          set -euo pipefail
+          candidate="$RUNNER_TEMP/release/candidate"
+          receipt="$RUNNER_TEMP/release/qualification.json"
+          python3 scripts/fcc_packed_refresh.py verify "$receipt" --source-commit "$SOURCE_COMMIT" --release "$EXPECTED_RELEASE"
+          python3 scripts/publish_fcc_tiles.py validate-packed "$candidate" --qualification "$receipt"
+          python3 scripts/publish_fcc_tiles.py measure-packed "$candidate" --qualification "$receipt"
+          python3 scripts/publish_fcc_tiles.py publish-packed "$candidate" --qualification "$receipt"

@@ -1,6 +1,6 @@
 {
   "name": "kamptrail",
-  "version": "2.49.0",
+  "version": "2.50.0",
   "description": "KampTrail: free campsite map with public land, RV services, trip planning and GPX",
   "scripts": {
     "fetch-data": "bash scripts/fetch_all_campsite_data.sh",
@@ -26,7 +26,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "playwright": "^1.57.0"
+    "playwright": "^1.57.0",
+    "pmtiles": "4.5.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

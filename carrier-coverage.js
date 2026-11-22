@@ -1,7 +1,7 @@
 /* FCC provider-reported mobile coverage. Each selected carrier uses its published tiles only. */
 (function (global) {
   'use strict';
-  const VERSION = '2.49.0';
+  const VERSION = '2.50.0';
   const ROOT = 'data/fcc-coverage/';
   const CARRIERS = {verizon: 'Verizon', att: 'AT&T', 't-mobile': 'T-Mobile'};
   const t = (key, params) => global.KampTrailI18n?.t(key, params) ??
@@ -19,8 +19,19 @@
     const time = Date.parse(value + 'T00:00:00Z');
     return Number.isFinite(time) && new Date(time).toISOString().slice(0, 10) === value ? time : NaN;
   }
+  function validBounds(b) {
+    if (!Array.isArray(b) || b.length !== 4 || !b.every(Number.isFinite)) return false;
+    const [w,s,e,n] = b;
+    return -180 <= w && w < e && e <= 180 && -85.052 <= s && s < n && n <= 85.052;
+  }
+  function footprints(region) { return region.footprints || [region.bounds]; }
+  function navigationBounds(region) {
+    // For a split jurisdiction, navigate to its largest footprint without spanning the date line.
+    const size = ([w,s,e,n]) => (e - w) * (n - s);
+    return footprints(region).reduce((largest, item) => size(item) > size(largest) ? item : largest);
+  }
   function validManifest(m, now = Date.now()) {
-    if (!m || m.schema !== 1 || typeof m.release !== 'string' || !/^[a-z0-9][a-z0-9-]{0,63}$/.test(m.release)) return false;
+    if (!m || ![1,2].includes(m.schema) || typeof m.release !== 'string' || !/^[a-z0-9][a-z0-9-]{0,63}$/.test(m.release)) return false;
     const asOf = day(m.asOf), retrieved = day(m.retrievedAt);
     if (!(asOf <= retrieved && retrieved <= now) ||
         typeof m.technology !== 'string' || !m.technology.trim() || m.technology.length > 75 ||
@@ -34,12 +45,18 @@
       const areas = new Set();
       return carrier.regions.every(region => {
         if (!region || typeof region.id !== 'string' || !/^[A-Z]{2}(?:-[A-Za-z0-9]+)?$/.test(region.id) ||
-            areas.has(region.id) || !Array.isArray(region.bounds) || region.bounds.length !== 4 ||
-            !region.bounds.every(Number.isFinite)) return false;
+            areas.has(region.id)) return false;
+        const packed = region.archive !== undefined;
+        if (packed !== (m.schema === 2)) return false;
+        if (packed && (region.archive?.format !== 'pmtiles-v3' ||
+            !Number.isSafeInteger(region.archive.bytes) || region.archive.bytes < 127 ||
+            region.archive.bytes > 2 ** 40 || !/^[0-9a-f]{64}$/.test(region.archive.sha256))) return false;
+        if (!packed && !validBounds(region.bounds)) return false;
+        if (region.footprints && (!packed || !Array.isArray(region.footprints) ||
+            !region.footprints.length || region.footprints.length > 8 || !region.footprints.every(validBounds))) return false;
+        if (packed && !region.footprints && !validBounds(region.bounds)) return false;
         areas.add(region.id);
-        const [w,s,e,n] = region.bounds;
-        return -180 <= w && w < e && e <= 180 && -85.052 <= s && s < n && n <= 85.052 &&
-          Number.isInteger(region.minZoom) && Number.isInteger(region.maxZoom) &&
+        return Number.isInteger(region.minZoom) && Number.isInteger(region.maxZoom) &&
           region.minZoom >= 0 && region.minZoom <= region.maxZoom && region.maxZoom <= 19;
       });
     });
@@ -59,12 +76,12 @@
   function tileTemplate(m, carrier, region) {
     return ROOT + [m.release, carrier.id, region.id, '{z}', '{x}', '{y}.png'].join('/');
   }
-  async function loadManifest(url, storage, online, request = global.fetch.bind(global)) {
+  async function loadManifest(url, storage, online, request = global.fetch.bind(global), schema = 1) {
     const key = 'kt_fcc_manifest:' + url;
     const parse = raw => {
       if (!raw || raw.length > 128 * 1024) return null;
       const value = JSON.parse(raw);
-      return validManifest(value) ? value : null;
+      return value?.schema === schema && validManifest(value) ? value : null;
     };
     const forget = () => { try { storage?.removeItem(key); } catch {} };
     if (online) {
@@ -89,12 +106,20 @@
       return value ? {value, fallback:true} : null;
     } catch { return null; }
   }
+  async function preferredManifest(root, storage, online, request = global.fetch.bind(global)) {
+    for (const [name, schema] of [['manifest-v2.json', 2], ['manifest.json', 1]]) {
+      const loaded = await loadManifest(new URL(name, root).href, storage, online, request, schema);
+      if (loaded) return loaded;
+    }
+    return null;
+  }
   function samplesAtCenter(map, entries, readPixel) {
     const point = map.wrapLatLng(map.getCenter()), zoom = map.getZoom();
     let result = 'missing';
     const priority = ['missing','zoom','loading','unavailable','uncovered','covered'];
-    for (const {region, tiles} of entries) {
-      const [w,s,e,n] = region.bounds;
+    for (const entry of entries) {
+      const {region, tiles} = entry;
+      const [w,s,e,n] = entry.bounds || region.bounds;
       if (point.lng < w || point.lng > e || point.lat < s || point.lat > n) continue;
       let state = 'zoom';
       if (zoom >= region.minZoom) {
@@ -109,6 +134,28 @@
     }
     return result;
   }
+  function archiveTiles(L, reader, options) {
+    const ArchiveLayer = L.TileLayer.extend({
+      createTile(coords, done) {
+        const image = document.createElement('img'), cancel = new AbortController();
+        image.alt = ''; image.role = 'presentation'; image.ktCancel = cancel;
+        reader().then(read => read(coords,cancel.signal)).then(blob => {
+          if (cancel.signal.aborted) return;
+          image.ktObjectURL = URL.createObjectURL(blob);
+          image.onload = () => { if (!cancel.signal.aborted) done(null,image); };
+          image.onerror = () => { if (!cancel.signal.aborted) done(Error('Coverage PNG unavailable'),image); };
+          image.src = image.ktObjectURL;
+        }).catch(error => { if (!cancel.signal.aborted) done(error,image); });
+        return image;
+      }
+    });
+    const layer = new ArchiveLayer('',options);
+    layer.on('tileunload',({tile}) => {
+      tile.ktCancel?.abort(); tile.onload = tile.onerror = null;
+      if (tile.ktObjectURL) URL.revokeObjectURL(tile.ktObjectURL);
+    });
+    return layer;
+  }
   function init(map, layerControl) {
     const doc = global.document, L = global.L;
     const panel = layerControl.getContainer().querySelector('.leaflet-control-layers-list');
@@ -121,9 +168,9 @@
     areaLabel.className = 'kt-coverage-area';
     areaLabel.append(t('Published coverage area'), areas);
     areas.addEventListener('change', () => {
-      const region = entries.find(entry => entry.region.id === areas.value)?.region;
+      const region = selectedCarrier?.regions.find(region => region.id === areas.value);
       if (!region) return;
-      const [w,s,e,n] = region.bounds;
+      const [w,s,e,n] = navigationBounds(region);
       const bounds = L.latLngBounds([s,w],[n,e]);
       const zoom = Math.max(region.minZoom, Math.min(region.maxZoom, map.getBoundsZoom(bounds, false, [30,30])));
       map.setView(bounds.getCenter(), zoom);
@@ -153,7 +200,7 @@
     const regionName = region => global.KampTrailStateNames?.[region.id] || (region.id === 'DC' ? 'District of Columbia' : region.id);
     const canvas = doc.createElement('canvas');
     canvas.width = canvas.height = 1;
-    let ctx, data, entries = [], generation = 0, storage;
+    let ctx, data, selectedCarrier, entries = [], generation = 0, storage;
     try { storage = global.localStorage; } catch {}
     function readPixel(image, x, y) {
       try {
@@ -165,7 +212,7 @@
     }
     function render() {
       const id = select.value;
-      if (!id || !data || !entries.length) return;
+      if (!id || !data || !selectedCarrier) return;
       const m = data.value;
       const markDate = global.KampTrailI18n?.date(m.asOf) || m.asOf;
       const note = freshness(m, !global.navigator.onLine, data.fallback);
@@ -176,15 +223,50 @@
       const status = t(statusText[samplesAtCenter(map, entries, readPixel)]);
       if (center.textContent !== status) center.textContent = status;
     }
+    function addFootprint(entry) {
+      const {carrier, region, bounds, tiles} = entry;
+      const [w,s,e,n] = bounds;
+      const options = {
+        bounds:[[s,w],[n,e]], noWrap:true, minZoom:region.minZoom, maxNativeZoom:region.maxZoom,
+        maxZoom:19, opacity:0.55, updateWhenIdle:true, keepBuffer:0, className:'kt-coverage-tiles'
+      };
+      const layer = entry.reader ? archiveTiles(L,entry.reader,options) : L.tileLayer(tileTemplate(data.value,carrier,region),options);
+      const key = e => [e.coords.z,e.coords.x,e.coords.y].join('/');
+      layer.on('tileloadstart', e => tiles.set(key(e), {state:'loading',image:e.tile}));
+      layer.on('tileload', e => {
+        tiles.set(key(e), {state:e.tile.naturalWidth === 256 && e.tile.naturalHeight === 256 ? 'ready' : 'unavailable',image:e.tile});
+        render();
+      });
+      layer.on('tileerror', e => { tiles.set(key(e), {state:'unavailable',image:e.tile}); render(); });
+      layer.on('tileunload', e => { if (tiles.get(key(e))?.image === e.tile) tiles.delete(key(e)); });
+      entry.layer = layer;
+      layer.addTo(map);
+    }
+    function syncViewport() {
+      const zoom = map.getZoom(), view = map.getBounds();
+      for (const entry of entries) {
+        const [w,s,e,n] = entry.bounds;
+        const visible = zoom >= entry.region.minZoom && view.intersects([[s,w],[n,e]]);
+        if (visible && !entry.layer) addFootprint(entry);
+        if (!visible && entry.layer) {
+          entry.layer.remove();
+          entry.layer = null;
+          entry.tiles.clear();
+        }
+      }
+      render();
+    }
     function selectCarrier() {
       const previous = entries;
       entries = [];
-      previous.forEach(entry => entry.layer.remove());
+      selectedCarrier = null;
+      previous.forEach(entry => entry.layer?.remove());
       mark.remove();
       readout.hidden = true;
       areaLabel.remove();
       const m = data?.value, carrier = m?.carriers.find(c => c.id === select.value);
       if (!carrier) return;
+      selectedCarrier = carrier;
       scope.textContent = carrier.regions.length <= 3
         ? t('Published areas: {areas}.', {areas:carrier.regions.map(regionName).join(', ')})
         : t('Published areas: {count}.', {count:carrier.regions.length});
@@ -195,29 +277,30 @@
       label.after(areaLabel);
       for (const region of carrier.regions) {
         areas.add(new Option(regionName(region), region.id));
-        const [w,s,e,n] = region.bounds;
-        const layer = L.tileLayer(tileTemplate(m, carrier, region), {
-          bounds:[[s,w],[n,e]], noWrap:true, minZoom:region.minZoom, maxNativeZoom:region.maxZoom,
-          maxZoom:19, opacity:0.55, updateWhenIdle:true, keepBuffer:0, className:'kt-coverage-tiles'
-        });
-        const tiles = new Map();
-        const key = e => [e.coords.z,e.coords.x,e.coords.y].join('/');
-        layer.on('tileloadstart', e => tiles.set(key(e), {state:'loading',image:e.tile}));
-        layer.on('tileload', e => {
-          tiles.set(key(e), {state:e.tile.naturalWidth === 256 && e.tile.naturalHeight === 256 ? 'ready' : 'unavailable',image:e.tile});
-          render();
-        });
-        layer.on('tileerror', e => { tiles.set(key(e), {state:'unavailable',image:e.tile}); render(); });
-        layer.on('tileunload', e => { if (tiles.get(key(e))?.image === e.tile) tiles.delete(key(e)); });
-        entries.push({region,tiles,layer}); layer.addTo(map);
+        let reader;
+        if (region.archive) {
+          let opened;
+          reader = () => {
+            if (!opened) {
+              const url = new URL(ROOT + [m.release,carrier.id,region.id+'.pmtiles'].join('/'),doc.baseURI);
+              url.searchParams.set('sha256',region.archive.sha256);
+              const moduleURL = new URL('vendor/fcc-pmtiles/reader.js',doc.baseURI).href;
+              opened = import(moduleURL).then(mod => mod.openCoverageArchive(url.href,region,new URL('./',doc.baseURI).href));
+            }
+            return opened;
+          };
+        }
+        for (const bounds of footprints(region)) {
+          entries.push({carrier,region,bounds,reader,tiles:new Map(),layer:null});
+        }
       }
       map.getContainer().append(mark);
       readout.hidden = false;
-      render();
+      syncViewport();
     }
     async function refresh() {
-      const current = ++generation, url = new URL(ROOT + 'manifest.json', doc.baseURI).href;
-      const loaded = await loadManifest(url, storage, global.navigator.onLine);
+      const current = ++generation;
+      const loaded = await preferredManifest(new URL(ROOT, doc.baseURI), storage, global.navigator.onLine);
       if (current !== generation) return;
       const previous = select.value;
       data = loaded;
@@ -230,7 +313,7 @@
       selectCarrier();
     }
     select.addEventListener('change', selectCarrier);
-    map.on('moveend zoomend', render);
+    map.on('moveend zoomend', syncViewport);
     global.addEventListener('offline', render);
     global.addEventListener('online', refresh);
     map.once('unload', () => {
@@ -240,7 +323,7 @@
     });
     refresh();
   }
-  const api = {version:VERSION, validManifest, pixelStatus, freshness, tileTemplate, loadManifest, samplesAtCenter, init};
+  const api = {version:VERSION, validManifest, pixelStatus, freshness, tileTemplate, loadManifest, preferredManifest, samplesAtCenter, init};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else global.KampTrailCoverage = api;
 })(typeof window !== 'undefined' ? window : globalThis);
