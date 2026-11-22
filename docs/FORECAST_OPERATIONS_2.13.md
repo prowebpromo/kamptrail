@@ -22,6 +22,12 @@ The producer exports the immutable artifact ID returned by its successful upload
 
 Each public download retries a 404 with up to four reads and bounded backoff, honoring bounded Retry-After values. If an immutable state file or generation manifest still returns 404 while staging a public generation, the publisher finishes staging the remaining files, waits 30 seconds once for the batch, and requests each missing file again through its ordinary public URL. It must read the exact expected bytes before reporting success or switching a pointer. A persistent 404, incorrect bytes, or forecast expiry stops publication. This second pass makes no uploads or deletions. Error-page bodies are discarded after a bounded read. Missing authenticated draft assets and forbidden responses stop immediately. No pointer advances before all exact bytes pass verification, and response status is retained in failure codes. This does not establish that GitHub's hourly scheduler has executed; production run history must show that separately.
 
+### November 22 release-pointer rate limits
+
+The November 21 01:29 and 17:29 UTC and November 22 11:17 UTC scheduled NOAA producer jobs succeeded. Their publishers stopped with `rate_limited`. The November 22 publisher uploaded a new pointer before public verification stopped. Inspect publication metadata alongside the workflow conclusion to distinguish an upload from confirmed public availability.
+
+For an existing pointer, the publisher reads the ordinary public filename and matches its SHA-256 against the digest for the listed GitHub asset ID. A missing digest, delayed filename, or mismatched digest requires an ID read. A network failure when reading a listed pointer stops the transaction before its generation can be swept. After uploading a replacement, an anonymous rate limit on the ID is recoverable only when both the uploaded ID's GitHub digest and the exact bytes at the ordinary public filename match the new validated manifest. The result then records `public_filename_and_asset_digest`. A stale filename alone cannot confirm a rate-limited upload. Source expiry, protected generations, mutation pacing, and authorization-free redirects still apply.
+
 Local validation performs no network mutation:
 
 ```sh
