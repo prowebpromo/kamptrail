@@ -177,6 +177,13 @@ class CampsiteMerger {
       const a = canonicals(p1), b = canonicals(p2);
       if (a.length && b.length && new Set([...a, ...b]).size > 1) return false;
     }
+    // Keep a published OSM campground and a separate RIDB facility as distinct source
+    // rows. Copying facility_id onto the OSM row rekeys it during normalization.
+    // The national index can still attach a matching facility as an attributed alias.
+    if (this.preferredIds?.size) {
+      const keptOsm = p => osmIdentity(p) && p.facility_id == null && this.preferredIds.has(p.id);
+      if ((keptOsm(p1) && p2.facility_id != null) || (keptOsm(p2) && p1.facility_id != null)) return false;
+    }
     const distance = this.calculateDistance(lat1, lon1, lat2, lon2);
     const name1 = p1.name || p1.Name || '';
     const name2 = p2.name || p2.Name || '';
