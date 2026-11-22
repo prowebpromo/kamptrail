@@ -1,4 +1,4 @@
-name: Verify the held November campsite snapshot
+name: Check November state-feed omissions against exact Recreation.gov facilities
 on:
   push:
     branches: [verify/nov22-campsite-refresh]
@@ -7,123 +7,108 @@ permissions:
   actions: read
   contents: read
 jobs:
-  trace:
+  check:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          persist-credentials: false
           ref: 653275196f3b9a50e994f5f898f71cd43223ed18
+          persist-credentials: false
       - uses: actions/download-artifact@v8.0.2
         with:
-          name: unverified-refresh-45012745211-1
-          run-id: 45012745211
-          github-token: ${{ github.token }}
-          path: ${{ runner.temp }}/candidate
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: pdo_sqlite, gd, mbstring, fileinfo, exif, curl, zlib
-      - name: Set up exact regression dependencies
-        run: |
-          npm ci
-          pip install -r requirements.txt pyyaml
-      - name: Confirm the published index still rebuilds byte for byte
-        run: |
-          cp data/campsites/search-index.json "$RUNNER_TEMP/published-index.json"
-          node scripts/build-search-index.js
-          cmp "$RUNNER_TEMP/published-index.json" data/campsites/search-index.json
-      - name: Replay all 50 state merges and archive independently verified source losses
-        id: candidate
-        env:
-          CANDIDATE_CODE: 653275196f3b9a50e994f5f898f71cd43223ed18
-        run: |
-          set -euo pipefail
-          cp data/campsites/search-index.json "$RUNNER_TEMP/old-index.json"
-          for dir in campsites opencampingmap services sources rest-areas; do
-            rsync -a --delete "$RUNNER_TEMP/candidate/data/$dir/" "data/$dir/"
-          done
-          cp "$RUNNER_TEMP/candidate/data/health.json" data/health.json
-          cp "$RUNNER_TEMP/old-index.json" data/campsites/search-index.json
-          for file in data/campsites/??_merged.geojson; do
-            state=$(basename "$file" _merged.geojson)
-            node scripts/merge_campsite_data.js --state="$state" > "$RUNNER_TEMP/merge-$state.log"
-          done
-          node scripts/build-search-index.js
-          node scripts/build-listing-history.js --base-ref HEAD --previous-index "$RUNNER_TEMP/old-index.json"
-          node scripts/build-search-index.js
-          git show HEAD:data/campsites/withdrawn.json > "$RUNNER_TEMP/old-withdrawn.json"
-          node - <<'JS'
-          const fs=require('fs'),index=require('./data/campsites/search-index.json'),before=require(process.env.RUNNER_TEMP+'/old-index.json'),history=require('./data/campsites/withdrawn.json'),h0=require(process.env.RUNNER_TEMP+'/old-withdrawn.json');
-          const c=require('./scripts/check-id-continuity');
-          console.log('CONTINUITY',JSON.stringify(c.check(before,index,history,h0)));
-          console.log('SAVED LINKS',JSON.stringify(index.redirects||{}));
-          console.log('Shady Campground',JSON.stringify(index.sites.find(s=>s.id==='ridb:237734')));
-          const oldRows=new Map(before.sites.map(s=>[s.id,s])), rows=new Map(index.sites.map(s=>[s.id,s]));
-          const ledger1=require('./docs/tourism/owner-decisions-2026-11-01.json');
-          const ledger2=require('./docs/tourism/decision-ledger-2026-11-15.json');
-          const ownerIds=new Set([...ledger1.records.map(r=>r.id),...ledger2.records.map(r=>r.id),...ledger2.retained_pending_ids]);
-          const typeChanges=[], ownerChanges=[];
-          for(const [id,prior] of oldRows){
-            const now=rows.get(id);
-            if(now && now.m.t!==prior.m.t)typeChanges.push({id,name:prior.name,from:prior.m.t,to:now.m.t});
-            if(ownerIds.has(id) && (!now || now.m.t!==prior.m.t))ownerChanges.push({id,name:prior.name,from:prior.m.t,to:now?.m.t||'missing'});
-          }
-          const holds=require('./docs/acceptance/tourism-retained-main-2026-11-15.json').snapshots.holds_after;
-          const holdsChanged=holds.flatMap(h=>{
-            const snap=JSON.parse(fs.readFileSync('data/campsites/'+h.state+'_merged.geojson'));
-            const p=snap.features.find(f=>f.properties.id===h.id)?.properties;
-            return p?.access_hold?.value===h.hold.value && p.access_hold.source_record_id===h.hold.source_record_id && !rows.has(h.id)?[]:[h];
-          });
-          const receipt={code:process.env.CANDIDATE_CODE,original_run:45012745211,
-            original_artifact:14753606620,active_before:oldRows.size,active_after:rows.size,previous_history:h0.listings.length,
-            historical_after:history.listings.length,continuity:c.check(before,index,history,h0),links:index.redirects||{},
-            independent_agencies:index.independent_agencies||[],type_changes:typeChanges,owner_changes:ownerChanges,
-            restrictive_hold_changes:holdsChanged,added_history:history.listings.slice(h0.listings.length).map(s=>({id:s.id,name:s.name,reason:s.reason}))};
-          fs.writeFileSync(process.env.RUNNER_TEMP+'/qualification.json',JSON.stringify(receipt,null,2)+'\n');
-          console.log('OWNER_REVIEW',JSON.stringify({previousPublishedTypeChanges:typeChanges.length,ownerChanges,holdsChanged}));
-          console.log('HISTORY_IDS',receipt.added_history.map(h=>h.id).join(' '));
-
-          console.log('ARCHIVE',JSON.stringify(history.listings.slice(h0.listings.length).reduce((n,s)=>(n[s.reason]=(n[s.reason]||0)+1,n),{})));
-          JS
-      - name: Verify candidate with the complete production refresh gate
-        id: regression
-        run: bash scripts/verify-refresh.sh HEAD
-      - name: Compare complete browser catalogue with the candidate in both load orders
-        id: browser
-        if: ${{ !cancelled() && steps.candidate.outcome == 'success' }}
-        run: |
-          set -euo pipefail
-          node scripts/check-browser-identity.js --scenarios default,reversed --out "$RUNNER_TEMP/browser-census.json"
-          node - <<'JS'
-          const r=require(process.env.RUNNER_TEMP+'/browser-census.json');
-          const differences=Object.entries(r.scenarios).filter(([k,v])=>Object.values(v.counts).some(Boolean));
-          if(differences.length){console.log(JSON.stringify(differences));process.exitCode=1;}
-          JS
-      - name: Retain the exact candidate and its verification results
-        if: ${{ !cancelled() && steps.candidate.outcome == 'success' }}
-        env:
-          REGRESSION: ${{ steps.regression.outcome }}
-          BROWSER: ${{ steps.browser.outcome }}
-        run: |
-          set -euo pipefail
-          dir="$RUNNER_TEMP/nov22-recovery"
-          mkdir "$dir"
-          cp "$RUNNER_TEMP/qualification.json" "$dir/"
-          if [ -f "$RUNNER_TEMP/browser-census.json" ]; then cp "$RUNNER_TEMP/browser-census.json" "$dir/"; fi
-          git add -A -- data/campsites data/opencampingmap data/health.json data/sources data/rest-areas data/services
-          git diff --cached --binary --full-index HEAD -- data | gzip -n > "$dir/source-and-snapshot.patch.gz"
-          git diff --cached --name-status HEAD -- data > "$dir/changed-paths.txt"
-          git rev-parse HEAD > "$dir/replay-code.txt"
-          echo "production_refresh_gate=$REGRESSION" > "$dir/verification.txt"
-          echo "both_browser_load_orders=$BROWSER" >> "$dir/verification.txt"
-          cd "$dir"
-          sha256sum *.json *.gz *.txt > SHA256SUMS
-      - uses: actions/upload-artifact@v7.0.2
-        if: ${{ !cancelled() && steps.candidate.outcome == 'success' }}
-        with:
           name: november-22-campsite-replay
-          path: ${{ runner.temp }}/nov22-recovery/
+          run-id: 45032981415
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/prior-replay
+      - name: Restore checked public input and isolate active state-feed omissions
+        run: |
+          set -euo pipefail
+          (cd "$RUNNER_TEMP/prior-replay" && sha256sum -c SHA256SUMS)
+          cp data/campsites/search-index.json "$RUNNER_TEMP/published.json"
+          gzip -dc "$RUNNER_TEMP/prior-replay/source-and-snapshot.patch.gz" | git apply --index --whitespace=nowarn -
+          mkdir "$RUNNER_TEMP/exact-facilities"
+          python - <<'PY'
+          import json, os, pathlib, subprocess
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])
+          before=json.loads((root/'published.json').read_text())
+          ids={v[5:] for row in before['sites'] for v in [row['id'],*row['legacy_ids']] if v.startswith('ridb:')}
+          def scoped(records):
+              return {str(f['properties']['facility_id']):{'name':f['properties']['name'],'coordinates':f['geometry']['coordinates']} for f in records['features'] if f['properties'].get('facility_id') is not None}
+          old,new={},{}
+          files=subprocess.check_output(['git','ls-tree','-r','--name-only','HEAD','data/campsites'],text=True).splitlines()
+          import re
+          for path in files:
+              m=re.match(r'data/campsites/([A-Z]{2})(?:\(1\))?\.geojson$',path)
+              if not m:continue
+              for fid,props in scoped(json.loads(subprocess.check_output(['git','show','HEAD:'+path]))).items():
+                  if fid in ids:old.setdefault(fid,{})[m[1]]=props
+          for path in pathlib.Path('data/campsites').glob('*.geojson'):
+              m=re.fullmatch(r'([A-Z]{2})(?:\(1\))?\.geojson',path.name)
+              if not m: continue
+              for fid in scoped(json.loads(path.read_text())):new.setdefault(fid,set()).add(m[1])
+          absent={fid:old[fid] for fid in sorted(set(old)-set(new),key=int)}
+          (root/'exact-facilities'/'missing-published.json').write_text(json.dumps(absent))
+          print('Active Recreation.gov identities absent from all current raw files:',len(absent))
+          print('By previous state', {s:sum(s in states for states in absent.values()) for s in sorted({s for states in absent.values() for s in states})})
+          PY
+      - name: Retrieve every omitted published record from its official ID endpoint
+        env:
+          RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib,sys,time,datetime,collections
+          sys.path.insert(0,'scripts')
+          from fetch_ridb_facility_evidence import make_get,BASE_URL,same_id
+          key=os.environ['RIDB_API_KEY']
+          if not key:raise ValueError('RIDB credential is unavailable')
+          path=pathlib.Path(os.environ['RUNNER_TEMP'])/'exact-facilities'
+          absent=json.loads((path/'missing-published.json').read_text())
+          get=make_get(key); result={}
+          for fid,prior in absent.items():
+              row={'verified_at':datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')}
+              try:
+                  response=get(BASE_URL+'/facilities/'+fid,params={'full':'true'})
+                  row['http']=response.status
+                  if response.status==200:
+                      facility=response.json()
+                      if not isinstance(facility,dict) or not same_id(facility.get('FacilityID'),fid):raise ValueError('FacilityID mismatch')
+                      row['facility']=facility
+                      xyz=[float(facility['FacilityLongitude']),float(facility['FacilityLatitude'])]
+                      row['coordinate_match']=any(xyz==v['coordinates'] for v in prior.values())
+                  elif response.status not in (404,410):
+                      row['error']='unavailable'
+              except Exception as exc:
+                  row['error']=type(exc).__name__
+              result[fid]=row;time.sleep(1.25)
+          (path/'official-facilities.json').write_text(json.dumps(result,ensure_ascii=False))
+          print('EXACT_HTTP',dict(collections.Counter((r.get('http'),r.get('error')) for r in result.values())))
+          print('MOVED_COORDINATES',[fid for fid,r in result.items() if r.get('coordinate_match') is False])
+          for fid in ('10069432','10278932','234159'):
+              row=result.get(fid,{});f=row.get('facility',{})
+              print('REVIEWED',fid,row.get('http'),row.get('error'),f.get('FacilityName'),f.get('FacilityTypeDescription'),row.get('coordinate_match'),[a.get('ActivityName') for a in f.get('ACTIVITY',[])])
+          PY
+      - name: Retrieve the existing public Forest Service table with its source guards
+        run: |
+          python - <<'PY'
+          import datetime,json,sys,pathlib,os
+          sys.path.insert(0,'scripts')
+          import build_usfs_site_amenities as forest
+          path=pathlib.Path(os.environ['RUNNER_TEMP'])/'exact-facilities'
+          wanted=forest.catalogue_facilities('data/campsites/search-index.json')
+          saved=json.loads(pathlib.Path('data/campsites/usfs-site-amenities.json').read_text())
+          print('NO_LONGER_IN_CANDIDATE',sorted(set(saved['facilities'])-wanted,key=int))
+          try:
+              rows=forest.fetch_rows()
+              print('USFS raw rows',len(rows))
+              (path/'usfs-rows.json').write_text(json.dumps({'rows':rows}))
+              (path/'usfs-retrieved.txt').write_text(datetime.datetime.now(datetime.timezone.utc).date().isoformat())
+          except Exception as exc:
+              print('USFS live source unavailable',str(exc)[:220])
+          PY
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: november-22-exact-source-evidence
+          path: ${{ runner.temp }}/exact-facilities
           retention-days: 14
           if-no-files-found: error
