@@ -35,9 +35,9 @@ jobs:
           node --check scripts/acceptance/verify-fcc48-browser.js
           python -m pip install --only-binary=:all: --no-deps --require-hashes -r scripts/acceptance/fcc48-pmtiles-requirements.txt
           python -m pip install --only-binary=:all: 'Pillow==11.3.0'
-          docker run -d --name fccqa -p 127.0.0.1:8765:80 -v "$PWD/ri:/usr/share/nginx/html:ro" nginx:stable-alpine >/dev/null
+          docker run -d --name fccqa -p 127.0.0.1:8765:80 -v "$PWD/ri:/usr/share/nginx/html:ro" nginx:stable-alpine@sha256:caf4e1e032a20f9c3c5e28fc7f25ffd768ad8677b4975c54193075997b3a97e3 >/dev/null
           trap 'docker stop fccqa >/dev/null' EXIT
-          curl --retry 5 --retry-connrefused --retry-delay 1 -fsS http://127.0.0.1:8765/manifest.json >/dev/null
+          curl --retry 8 --retry-all-errors --retry-delay 1 -fsS http://127.0.0.1:8765/manifest.json >/dev/null
           python - <<'PY'
           from pathlib import Path
           import json, runpy

@@ -99,9 +99,9 @@ jobs:
             served="$RUNNER_TEMP/fcc-preview"; mkdir "$served"
             rsync -a --exclude=.git previous/ "$served/"
             # Nginx is production-equivalent for local byte ranges; actual hosting is checked by production mode.
-            docker run -d --name fcc-preview -p 127.0.0.1:8765:80 -v "$served:/usr/share/nginx/html:ro" nginx:stable-alpine >/dev/null
+            docker run -d --name fcc-preview -p 127.0.0.1:8765:80 -v "$served:/usr/share/nginx/html:ro" nginx:stable-alpine@sha256:caf4e1e032a20f9c3c5e28fc7f25ffd768ad8677b4975c54193075997b3a97e3 >/dev/null
             trap 'docker stop fcc-preview >/dev/null 2>&1 || true' EXIT
-            curl --retry 5 --retry-connrefused --retry-delay 1 -fsS "$BASE/release.json" | jq -e '.source_commit=="b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69"'
+            curl --retry 8 --retry-all-errors --retry-delay 1 -fsS "$BASE/release.json" | jq -e '.source_commit=="b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69"'
             EXPECTED_SHA=b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69 node scripts/acceptance/capture-fcc48-baseline.js
             rsync -a --delete --checksum "$package_dir/" "$served/"
             rate=0
