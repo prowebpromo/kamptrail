@@ -146,6 +146,11 @@ test('a lost member keeps a saved link to its surviving host without becoming cu
   const next=buildSearchIndex(sources,undefined,null,[],new Set([host]),prior);
   assert.deepEqual(next.redirects,{[alias]:host});
   assert.deepEqual(next.sites[0].legacy_ids,[]);
+  const hidden=structuredClone(sources);
+  hidden[0].geojson.features[0].properties.source_ids=[host,alias];
+  const hiddenIndex=buildSearchIndex(hidden,undefined,null,[],new Set([host]),prior);
+  assert.equal(hiddenIndex.redirects,undefined);
+  assert.deepEqual(check(previous,hiddenIndex,null).lost,[{id:alias,host}]);
   const manifest=require('../scripts/build-identity-hosts').identityHosts(JSON.stringify(next));
   const quality=require('../data-quality');
   assert.equal(quality.validIdentityHosts(manifest),true);

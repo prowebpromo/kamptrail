@@ -262,19 +262,21 @@
   }
   function rebuildCatalogue(){
     const input=[],withheldMembers=new Set();
+    const independentAgencyIds=new Set(state.index?.independent_agencies || []);
     for(const code of [...stateInputs.keys()].sort()){
       const cached=stateInputs.get(code);
       for(const id of cached.withheld)withheldMembers.add(id);
       for(const f of cached.rows){attachSidecars(f);input.push(f);}
     }
-    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{...identityOptions(),withheldMembers});
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{...identityOptions(),withheldMembers,independentAgencyIds});
     state.allCampsites=cleaned.features.map(activeFeature).filter(Boolean);
     for(const f of state.allCampsites){attachSidecars(f);shownIds.add(f.properties.id);}
     attachLoadedElevations();
   }
   function setStateInput(features,stateCode){
     features=features.map(activeFeature).filter(Boolean);
-    const options={state:stateCode,siteDetails:state.siteDetails,amenityDetails:state.amenityDetails};
+    const options={state:stateCode,siteDetails:state.siteDetails,amenityDetails:state.amenityDetails,
+      independentAgencyIds:new Set(state.index?.independent_agencies || [])};
     const rows=DataQuality.publicationCandidates(features,options).map(raw=>DataQuality.normalizeFeature(raw,options)).filter(Boolean);
     for(const f of rows)f.properties.forecastStates=[stateCode];
     stateInputs.set(stateCode,{rows,withheld:DataQuality.withheldMembers(features,options)});

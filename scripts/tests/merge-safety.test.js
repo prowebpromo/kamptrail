@@ -304,7 +304,10 @@ test('unverified same-name RIDB facility cannot suppress an agency campground', 
   const agency = point({id:'usfs:80672', name:'Green River Camps', camping_activity:'Campground Camping', source:'US Forest Service'});
   const facility = point({id:'ridb:248861', facility_id:'248861', name:'Green River Camps', source:'recreation.gov', type:'other'});
   for (const features of [[facility,agency], [agency,facility]]) {
-    const admitted = quality.publicationCandidates(features);
+    const separateAgencies=new Set();
+    const independentAgencyIds=new Set([agency.properties.id]);
+    const admitted = quality.publicationCandidates(features,{independentAgencyIds,separateAgencies});
+    assert.deepEqual([...separateAgencies],[agency.properties.id]);
     assert.deepEqual(admitted.map(f => f.properties.id), [agency.properties.id]);
   }
 });
