@@ -1,4 +1,4 @@
-name: Trace the held November campsite snapshot
+name: Verify the held November campsite snapshot
 on:
   push:
     branches: [verify/nov22-campsite-refresh]
@@ -9,19 +9,33 @@ permissions:
 jobs:
   trace:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-          ref: 1d9462460d10bc8f33ae21a612669b419a39e1b1
+          ref: 580281d0841549e2ac2c74f76e33e85f8745553a
       - uses: actions/download-artifact@v8.0.2
         with:
           name: unverified-refresh-45012745211-1
           run-id: 45012745211
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/candidate
-      - name: Report all candidate identity differences across 50 state merges
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, gd, mbstring, fileinfo, exif, curl, zlib
+      - name: Set up exact regression dependencies
+        run: |
+          npm ci
+          pip install -r requirements.txt pyyaml
+      - name: Confirm the published index still rebuilds byte for byte
+        run: |
+          cp data/campsites/search-index.json "$RUNNER_TEMP/published-index.json"
+          node scripts/build-search-index.js
+          cmp "$RUNNER_TEMP/published-index.json" data/campsites/search-index.json
+      - name: Replay all 50 state merges and archive independently verified source losses
+        id: candidate
         run: |
           set -euo pipefail
           cp data/campsites/search-index.json "$RUNNER_TEMP/old-index.json"
@@ -39,27 +53,22 @@ jobs:
           node scripts/build-search-index.js
           git show HEAD:data/campsites/withdrawn.json > "$RUNNER_TEMP/old-withdrawn.json"
           node - <<'JS'
-          const fs=require('fs'),c=require('./scripts/check-id-continuity'),h=require('./scripts/build-listing-history'),q=require('./data-quality');
-          const read=p=>JSON.parse(fs.readFileSync(p)),previous=read(process.env.RUNNER_TEMP+'/old-index.json'),current=read('data/campsites/search-index.json');
-          const diff=c.check(previous,current,read('data/campsites/withdrawn.json'),read(process.env.RUNNER_TEMP+'/old-withdrawn.json'));
-          console.log('FULL_CONTINUITY',JSON.stringify(diff));
-          const relevant=new Set([...diff.lost,...diff.moved,...diff.conflicts].flatMap(v=>[v.id,v.host,v.from,v.to,...(v.hosts||[])].filter(Boolean)));
-          for(const key of ['previous','current'])for(const row of (key==='previous'?previous:current).sites)
-            if([row.id,...row.legacy_ids].some(x=>relevant.has(x)))console.log('INDEX_RECORD',key,JSON.stringify(row));
-          for(const dir of ['data/opencampingmap','data/campsites','data/campsites/agency'])for(const f of fs.readdirSync(dir).filter(x=>/^[A-Z]{2}(?:\(1\)|_merged)?\.geojson$/.test(x))){
-            for(const row of read(dir+'/'+f).features){const p=row.properties||{},id=h.recordId(row),n=q.normalizeFeature(row,{state:f.slice(0,2)});
-              if([id,p.id,...(p.source_ids||[])].some(x=>relevant.has(x)))console.log('SOURCE_RECORD',dir+'/'+f,JSON.stringify({id,name:p.name,source_ids:p.source_ids,xy:row.geometry?.coordinates,classification:n?.properties?.camping_classification,normalized:n?.properties?.id}));
-            }
-          }
+          const fs=require('fs'),index=require('./data/campsites/search-index.json'),before=require(process.env.RUNNER_TEMP+'/old-index.json'),history=require('./data/campsites/withdrawn.json'),h0=require(process.env.RUNNER_TEMP+'/old-withdrawn.json');
+          const c=require('./scripts/check-id-continuity');
+          console.log('CONTINUITY',JSON.stringify(c.check(before,index,history,h0)));
+          console.log('SAVED LINKS',JSON.stringify(index.redirects||{}));
+          console.log('Shady Campground',JSON.stringify(index.sites.find(s=>s.id==='ridb:237734')));
+          console.log('ARCHIVE',JSON.stringify(history.listings.slice(h0.listings.length).reduce((n,s)=>(n[s.reason]=(n[s.reason]||0)+1,n),{})));
           JS
-      - name: Record current official Geofabrik redirect availability
+      - name: Verify candidate with the complete production refresh gate
+        run: bash scripts/verify-refresh.sh HEAD
+      - name: Compare complete browser catalogue with the candidate in both load orders
+        if: ${{ !cancelled() && steps.candidate.outcome == 'success' }}
         run: |
-          python - <<'PY'
-          import urllib.request
-          for state in ['alaska','utah','california','new-york']:
-              try:
-                  with urllib.request.urlopen(urllib.request.Request(f'https://download.geofabrik.de/north-america/us/{state}-latest.osm.pbf',method='HEAD'),timeout=12) as resp:
-                      print('GEOFABRIK',state,resp.status,resp.geturl())
-              except OSError as exc:
-                  print('GEOFABRIK',state,str(exc))
-          PY
+          set -euo pipefail
+          node scripts/check-browser-identity.js --scenarios default,reversed --out "$RUNNER_TEMP/browser-census.json"
+          node - <<'JS'
+          const r=require(process.env.RUNNER_TEMP+'/browser-census.json');
+          const differences=Object.entries(r.scenarios).filter(([k,v])=>Object.values(v.counts).some(Boolean));
+          if(differences.length){console.log(JSON.stringify(differences));process.exitCode=1;}
+          JS
