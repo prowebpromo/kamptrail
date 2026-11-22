@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-          ref: 580281d0841549e2ac2c74f76e33e85f8745553a
+          ref: 653275196f3b9a50e994f5f898f71cd43223ed18
       - uses: actions/download-artifact@v8.0.2
         with:
           name: unverified-refresh-45012745211-1
@@ -36,6 +36,8 @@ jobs:
           cmp "$RUNNER_TEMP/published-index.json" data/campsites/search-index.json
       - name: Replay all 50 state merges and archive independently verified source losses
         id: candidate
+        env:
+          CANDIDATE_CODE: 653275196f3b9a50e994f5f898f71cd43223ed18
         run: |
           set -euo pipefail
           cp data/campsites/search-index.json "$RUNNER_TEMP/old-index.json"
@@ -58,11 +60,38 @@ jobs:
           console.log('CONTINUITY',JSON.stringify(c.check(before,index,history,h0)));
           console.log('SAVED LINKS',JSON.stringify(index.redirects||{}));
           console.log('Shady Campground',JSON.stringify(index.sites.find(s=>s.id==='ridb:237734')));
+          const oldRows=new Map(before.sites.map(s=>[s.id,s])), rows=new Map(index.sites.map(s=>[s.id,s]));
+          const ledger1=require('./docs/tourism/owner-decisions-2026-11-01.json');
+          const ledger2=require('./docs/tourism/decision-ledger-2026-11-15.json');
+          const ownerIds=new Set([...ledger1.records.map(r=>r.id),...ledger2.records.map(r=>r.id),...ledger2.retained_pending_ids]);
+          const typeChanges=[], ownerChanges=[];
+          for(const [id,prior] of oldRows){
+            const now=rows.get(id);
+            if(now && now.m.t!==prior.m.t)typeChanges.push({id,name:prior.name,from:prior.m.t,to:now.m.t});
+            if(ownerIds.has(id) && (!now || now.m.t!==prior.m.t))ownerChanges.push({id,name:prior.name,from:prior.m.t,to:now?.m.t||'missing'});
+          }
+          const holds=require('./docs/acceptance/tourism-retained-main-2026-11-15.json').snapshots.holds_after;
+          const holdsChanged=holds.flatMap(h=>{
+            const snap=JSON.parse(fs.readFileSync('data/campsites/'+h.state+'_merged.geojson'));
+            const p=snap.features.find(f=>f.properties.id===h.id)?.properties;
+            return p?.access_hold?.value===h.hold.value && p.access_hold.source_record_id===h.hold.source_record_id && !rows.has(h.id)?[]:[h];
+          });
+          const receipt={code:process.env.CANDIDATE_CODE,original_run:45012745211,
+            original_artifact:14753606620,active_before:oldRows.size,active_after:rows.size,previous_history:h0.listings.length,
+            historical_after:history.listings.length,continuity:c.check(before,index,history,h0),links:index.redirects||{},
+            independent_agencies:index.independent_agencies||[],type_changes:typeChanges,owner_changes:ownerChanges,
+            restrictive_hold_changes:holdsChanged,added_history:history.listings.slice(h0.listings.length).map(s=>({id:s.id,name:s.name,reason:s.reason}))};
+          fs.writeFileSync(process.env.RUNNER_TEMP+'/qualification.json',JSON.stringify(receipt,null,2)+'\n');
+          console.log('OWNER_REVIEW',JSON.stringify({previousPublishedTypeChanges:typeChanges.length,ownerChanges,holdsChanged}));
+          console.log('HISTORY_IDS',receipt.added_history.map(h=>h.id).join(' '));
+
           console.log('ARCHIVE',JSON.stringify(history.listings.slice(h0.listings.length).reduce((n,s)=>(n[s.reason]=(n[s.reason]||0)+1,n),{})));
           JS
       - name: Verify candidate with the complete production refresh gate
+        id: regression
         run: bash scripts/verify-refresh.sh HEAD
       - name: Compare complete browser catalogue with the candidate in both load orders
+        id: browser
         if: ${{ !cancelled() && steps.candidate.outcome == 'success' }}
         run: |
           set -euo pipefail
@@ -72,3 +101,29 @@ jobs:
           const differences=Object.entries(r.scenarios).filter(([k,v])=>Object.values(v.counts).some(Boolean));
           if(differences.length){console.log(JSON.stringify(differences));process.exitCode=1;}
           JS
+      - name: Retain the exact candidate and its verification results
+        if: ${{ !cancelled() && steps.candidate.outcome == 'success' }}
+        env:
+          REGRESSION: ${{ steps.regression.outcome }}
+          BROWSER: ${{ steps.browser.outcome }}
+        run: |
+          set -euo pipefail
+          dir="$RUNNER_TEMP/nov22-recovery"
+          mkdir "$dir"
+          cp "$RUNNER_TEMP/qualification.json" "$dir/"
+          if [ -f "$RUNNER_TEMP/browser-census.json" ]; then cp "$RUNNER_TEMP/browser-census.json" "$dir/"; fi
+          git add -A -- data/campsites data/opencampingmap data/health.json data/sources data/rest-areas data/services
+          git diff --cached --binary --full-index HEAD -- data | gzip -n > "$dir/source-and-snapshot.patch.gz"
+          git diff --cached --name-status HEAD -- data > "$dir/changed-paths.txt"
+          git rev-parse HEAD > "$dir/replay-code.txt"
+          echo "production_refresh_gate=$REGRESSION" > "$dir/verification.txt"
+          echo "both_browser_load_orders=$BROWSER" >> "$dir/verification.txt"
+          cd "$dir"
+          sha256sum *.json *.gz *.txt > SHA256SUMS
+      - uses: actions/upload-artifact@v7.0.2
+        if: ${{ !cancelled() && steps.candidate.outcome == 'success' }}
+        with:
+          name: november-22-campsite-replay
+          path: ${{ runner.temp }}/nov22-recovery/
+          retention-days: 14
+          if-no-files-found: error
