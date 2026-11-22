@@ -664,6 +664,12 @@
             const op=other.properties;
             if (p.facility_id && op.facility_id && String(p.facility_id)!==String(op.facility_id)) continue;
             if (ownerOnly && ownerOf(op.id)!==ownerOf(p.id)) continue;
+            // A nearby unverified facility cannot suppress an agency's own camping record.
+            // An exact facility match can still corroborate the two source records.
+            const agencyAndUnverified = (a,b) => a.camping_evidence === 'agency_camping_activity'
+              && b.camping_classification === 'unverified_camping_record';
+            if ((agencyAndUnverified(p,op) || agencyAndUnverified(op,p))
+                && !(p.facility_id != null && op.facility_id != null && String(p.facility_id) === String(op.facility_id))) continue;
             if (normalizeName(op.name) === normalizeName(p.name) && distanceMeters(ll,getLatLng(other))<=radius) {
               if (!previousHost || op.id===previousHost) {found=other;break;}
               if (!first) first=other;

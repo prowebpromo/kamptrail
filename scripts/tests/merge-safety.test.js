@@ -285,3 +285,26 @@ test('new unpublished fuzzy duplicates still merge with published identity guard
   assert.equal(result.duplicatesRemoved, 1);
   assert.deepEqual(result.features[0].properties.source_ids, ['osm:way:407716029', 'osm:way:407716030']);
 });
+
+test('a new RIDB row keeps its own facility ID beside a published OSM listing', async () => {
+  const merger = new CampsiteMerger();
+  const campground = point({id:'osm:way:234239616', osm_type:'way', osm_id:234239616, name:'Fallen Leaf Campground', tourism:'camp_site'});
+  const facility = point({id:'ridb:232769', facility_id:'232769', name:'Fallen Leaf Campground', source:'recreation.gov'});
+  merger.preferredIds = new Set([campground.properties.id]);
+  merger.publishedAnyIds = new Set(merger.preferredIds);
+  for (const features of [[facility,campground], [campground,facility]]) {
+    const merged = await merger.mergeDatasets([{features}]);
+    assert.equal(merged.features.length, 2);
+    assert.equal(merged.features.find(f => f.properties.id === campground.properties.id).properties.facility_id, undefined);
+  }
+});
+
+test('unverified same-name RIDB facility cannot suppress an agency campground', () => {
+  const quality = require('../../data-quality');
+  const agency = point({id:'usfs:80672', name:'Green River Camps', camping_activity:'Campground Camping', source:'US Forest Service'});
+  const facility = point({id:'ridb:248861', facility_id:'248861', name:'Green River Camps', source:'recreation.gov', type:'other'});
+  for (const features of [[facility,agency], [agency,facility]]) {
+    const admitted = quality.publicationCandidates(features);
+    assert.deepEqual(admitted.map(f => f.properties.id), [agency.properties.id]);
+  }
+});
