@@ -213,6 +213,8 @@
   const stateInputs=new Map(),shownIds=new Set();
   let identity=null; // {preferredIds,previousHosts,aliases} from identity-hosts.json, or null when unavailable.
   let identityTask=null,identityTried=0,identityTimer=null;
+  // Saved links already resolved against the current search index while host metadata is unavailable.
+  const resolvedRedirects=new Map();
   async function loadIdentityHosts(){
     const generation=catalogueGeneration;
     identityTried=Date.now();
@@ -732,7 +734,7 @@
     },
     loadSearchIndex(force=false){
       const generation=catalogueGeneration;
-      if(force)state.searchIndexPromise=null;
+      if(force){state.searchIndexPromise=null;resolvedRedirects.clear();}
       if(!state.searchIndexPromise)state.searchIndexPromise=ensureAdmission().then(()=>fetchJSON('data/campsites/search-index.json')).then(d=>{if(generation!==catalogueGeneration)throw historyUnavailable();checkHistoryBinding(d);if(d.version!==1||!Array.isArray(d.sites))throw new Error('Search index unavailable');return {...d,sites:d.sites.filter(s=>!historyIds.has(String(s.id))).map(s=>({...s,legacy_ids:(s.legacy_ids||[]).filter(id=>!historyIds.has(String(id)))}))};}).catch(e=>{if(generation===catalogueGeneration)state.searchIndexPromise=null;throw e;});
       return state.searchIndexPromise;
     },
@@ -752,24 +754,29 @@
       return undefined;
     },
     // The listing's id in the published index. A listing shown before all its states load can carry a member's own id.
-    publishedId(id){const key=String(id);if(historyIds.has(key))return key;const host=identity?.previousHosts.get(key)||identity?.redirects.get(key);return host&&!historyIds.has(host)?host:key;},
+    publishedId(id){const key=String(id);if(historyIds.has(key))return key;const host=identity ? identity.previousHosts.get(key)||identity.redirects.get(key) : resolvedRedirects.get(key);return host&&!historyIds.has(host)?host:key;},
     async resolveListing(id){
-      const key=String(id);await ensureHistory();
+      const generation=catalogueGeneration, key=String(id);await ensureHistory();
       const record=historyIds.get(key);if(record)return {kind:'historical',record,feature:window.KampTrailListingHistory.historicalFeature(record)};
       let feature=api.getCampsiteById(key);
       if (!feature) {
-        const index = await api.loadSearchIndex();
+        const lookup = api.loadSearchIndex();
+        const index = await lookup;
         const host = Object.hasOwn(index.redirects || {}, key) ? index.redirects[key] : key;
         const entry = index.sites.find(site => site.id === host || site.legacy_ids?.includes(key));
         if (entry) {
           await api.loadStates(entry.states);
+          if (generation !== catalogueGeneration) throw historyUnavailable();
           feature = api.getCampsiteById(host);
+          if (!identity && lookup === state.searchIndexPromise && key !== host && entry.id === host && feature) {
+            resolvedRedirects.set(key,host);
+          }
         }
       }
       return feature?{kind:'active',feature}:{kind:'missing'};
     },
     getHistoricalById:id=>historyIds.get(String(id)),
-    async retryHistory(){catalogueGeneration++;history=null;historyTask=null;indexTask=null;historyDigest=null;historyIds=new Map();state.historyMismatch=false;state.index=null;state.searchIndexPromise=null;identity=null;identityTask=null;stateInputs.clear();mergedRaw.clear();agencyRaw.clear();agencyFailed.clear();state.agencyStates=new Set();state.agencyCounts={};state.agencyIndex='pending';delete state.agencyIndexError;state.agencyRetry=null;state.loading.clear();state.loadedStates.clear();state.failed.clear();state.allCampsites=[];updateMarkers();await ensureAdmission();await loadAgencyIndex();state.historyStatus='ready';ensureIdentity(true);await onView();notify();return api.getLoadStatus();},
+    async retryHistory(){catalogueGeneration++;resolvedRedirects.clear();history=null;historyTask=null;indexTask=null;historyDigest=null;historyIds=new Map();state.historyMismatch=false;state.index=null;state.searchIndexPromise=null;identity=null;identityTask=null;stateInputs.clear();mergedRaw.clear();agencyRaw.clear();agencyFailed.clear();state.agencyStates=new Set();state.agencyCounts={};state.agencyIndex='pending';delete state.agencyIndexError;state.agencyRetry=null;state.loading.clear();state.loadedStates.clear();state.failed.clear();state.allCampsites=[];updateMarkers();await ensureAdmission();await loadAgencyIndex();state.historyStatus='ready';ensureIdentity(true);await onView();notify();return api.getLoadStatus();},
     getIdentityStatus:()=>({hosts:identity?'published':'fallback',shown:shownIds.size}),
     // Retry the published host file now (also retried every 30 s, on reconnect and on state loads).
     async retryIdentity(){if(identityTask)await identityTask;return ensureIdentity(true);},
