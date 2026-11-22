@@ -1,7 +1,7 @@
 /* FCC provider-reported mobile coverage. Each selected carrier uses its published tiles only. */
 (function (global) {
   'use strict';
-  const VERSION = '2.50.0';
+  const VERSION = '2.51.0';
   const ROOT = 'data/fcc-coverage/';
   const CARRIERS = {verizon: 'Verizon', att: 'AT&T', 't-mobile': 'T-Mobile'};
   const t = (key, params) => global.KampTrailI18n?.t(key, params) ??

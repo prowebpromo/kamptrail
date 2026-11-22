@@ -634,6 +634,15 @@
       if (!ID_TEXT(id) || !Array.isArray(aliases) || !aliases.length || aliases.length > 128) return false;
       for (const alias of aliases) { if (!ID_TEXT(alias) || alias === id || seen.has(alias) || Object.hasOwn(data.hosts, alias)) return false; seen.add(alias); }
     }
+    if (data.redirects !== undefined) {
+      if (!data.redirects || typeof data.redirects !== 'object' || Array.isArray(data.redirects)) return false;
+      const links = Object.entries(data.redirects);
+      if (links.length > 200000) return false;
+      for (const [id, host] of links) {
+        if (!ID_TEXT(id) || !ID_TEXT(host) || seen.has(id) || Object.hasOwn(data.hosts, id)
+            || seen.has(host) || Object.hasOwn(data.redirects, host)) return false;
+      }
+    }
     return true;
   }
   function identityOptions(data) {
@@ -641,6 +650,10 @@
     const preferredIds = new Set(), previousHosts = new Map();
     for (const [id, aliases] of Object.entries(data.hosts)) { preferredIds.add(id); for (const alias of aliases) previousHosts.set(alias, id); }
     return {preferredIds, previousHosts};
+  }
+  function agencyAndUnverified(agency, other) {
+    return agency.camping_evidence === 'agency_camping_activity'
+      && other.camping_classification === 'unverified_camping_record';
   }
   function cleanAndDedupeGeoJSON(input, options = {}) {
     if (!input || !Array.isArray(input.features)) return {type:'FeatureCollection',features:[]};
@@ -665,6 +678,14 @@
             if (p.facility_id && op.facility_id && String(p.facility_id)!==String(op.facility_id)) continue;
             if (ownerOnly && ownerOf(op.id)!==ownerOf(p.id)) continue;
             if (normalizeName(op.name) === normalizeName(p.name) && distanceMeters(ll,getLatLng(other))<=radius) {
+              // A known, separately published agency campground keeps its own camping evidence.
+              // An unverified new facility cannot take its place because of name and distance.
+              const agency = agencyAndUnverified(p, op) ? p : agencyAndUnverified(op, p) ? op : null;
+              if (agency && options.independentAgencyIds?.has(agency.id)
+                  && !(p.facility_id != null && op.facility_id != null && String(p.facility_id) === String(op.facility_id))) {
+                options.separateAgencies?.add(agency.id);
+                continue;
+              }
               if (!previousHost || op.id===previousHost) {found=other;break;}
               if (!first) first=other;
             }
@@ -1074,6 +1095,6 @@
     const runFailed = !!h.run && !c.fresh && (c.failed || 0) > 0;
     return {degraded: runFailed || rows.some(r => r.status === 'failing' || r.status === 'stale'), runFailed, lastRun: h.run ? day(h.run.started) : null, runCounts: c, rows, issues};
   }
-  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.50.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,withheldMembers,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
+  global.DataQuality={USFS_CAMPGROUND_TYPES,RIDB_AMENITY_URL,USFS_SITE_URL,ridbFacilityIds,validRIDBAmenities,attachRIDBAmenities,validUSFSSiteAmenities,attachUSFSSiteAmenities,ELEVATION_SOURCE,coordinateKey,validElevationManifest,validElevationState,elevationInfo,attachElevation,elevationRange,elevationToMetres,elevationFromMetres,elevationText,version:'2.51.0',FILTER_AMENITIES,OSM_AMENITY_TAG,OSM_RIG_TAG,RIG_CATEGORIES,rigEvidence,rigFilterSet,rigMatches,rigLine,attachRigCheck,amenityEvidence,amenityFilterSets,amenityMatches,amenityFilterReason,campsiteRigActive,mergeFeeEvidence,publicationCandidates,withheldMembers,validIdentityHosts,identityOptions,summarizeHealth,attachSiteDetails,sitesFitting,matchingSites,normalizeFeature,cleanAndDedupeGeoJSON,applyFilters,getLatLng,classifyCampingRecord};
   if(typeof module !== 'undefined' && module.exports)module.exports=global.DataQuality;
 })(typeof window !== 'undefined' ? window : globalThis);
