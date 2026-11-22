@@ -32,7 +32,7 @@ jobs:
           done
           cp "$RUNNER_TEMP/candidate/data/health.json" data/health.json
           cp "$RUNNER_TEMP/old-index.json" data/campsites/search-index.json
-          for state in CA CO; do
+          for state in CA CO UT; do
             node scripts/merge_campsite_data.js --state="$state" > "$RUNNER_TEMP/merge-$state.log"
           done
           node scripts/build-search-index.js
@@ -40,6 +40,15 @@ jobs:
           const fs=require('fs'),q=require('./data-quality'),h=require('./scripts/build-listing-history');
           const prev=require(process.env.RUNNER_TEMP+'/old-index.json'),next=require('./data/campsites/search-index.json');
           const map=new Map(next.sites.flatMap(f=>[f.id,...f.legacy_ids].map(id=>[id,f.id])));
+          for(const file of ['data/campsites/UT_merged.geojson','data/campsites/agency/UT.geojson']){
+            for(const f of JSON.parse(fs.readFileSync(file)).features){
+              const p=f.properties, n=q.normalizeFeature(f,{state:'UT'});
+              if(/green river camps|horsethief campground/i.test(p.name||'') || ['usfs:80672','osm:relation:17579544'].includes(p.id))
+                console.log('UT-NEIGHBOR',file,p.id,p.source_ids,p.name,f.geometry.coordinates,n?.properties.id,n?.properties.camping_classification,n?.properties.exclusion_reason,n?.properties.legacy_ids);
+            }
+          }
+          console.log('UT-OLD',prev.sites.filter(r=>/green river camps|horsethief campground/i.test(r.name)&&r.states.includes('UT')).map(r=>[r.id,r.name,r.legacy_ids]));
+          console.log('UT-NEW',next.sites.filter(r=>/green river camps|horsethief campground/i.test(r.name)&&r.states.includes('UT')).map(r=>[r.id,r.name,r.legacy_ids]));
           const outdated=new Set(prev.sites.filter(f=>!next.sites.some(n=>n.id===f.id)).map(f=>f.id));
           for(const file of fs.readdirSync('data/opencampingmap').filter(f=>/^[A-Z]{2}\.geojson$/.test(f)).map(f=>'data/opencampingmap/'+f).concat(fs.readdirSync('data/campsites/agency').filter(f=>/^[A-Z]{2}\.geojson$/.test(f)).map(f=>'data/campsites/agency/'+f))) {
             for(const f of JSON.parse(fs.readFileSync(file)).features){const id=h.recordId(f);if(outdated.has(id)){
