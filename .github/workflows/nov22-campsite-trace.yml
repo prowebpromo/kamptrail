@@ -21,45 +21,45 @@ jobs:
           run-id: 45012745211
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/candidate
-      - name: Exercise current and prior exact Geofabrik paths
-        run: python -m unittest scripts/tests/test_services_import.py scripts/tests/test_national_services.py scripts/tests/test_services_recovery.py
-      - name: Replay the held source bytes; rebuild snapshot and preserve all previously published identities 
+      - name: Report all candidate identity differences across 50 state merges
         run: |
           set -euo pipefail
-          node --test scripts/tests/merge-safety.test.js
           cp data/campsites/search-index.json "$RUNNER_TEMP/old-index.json"
-          node scripts/build-search-index.js
-          cmp "$RUNNER_TEMP/old-index.json" data/campsites/search-index.json
           for dir in campsites opencampingmap services sources rest-areas; do
             rsync -a --delete "$RUNNER_TEMP/candidate/data/$dir/" "data/$dir/"
           done
           cp "$RUNNER_TEMP/candidate/data/health.json" data/health.json
           cp "$RUNNER_TEMP/old-index.json" data/campsites/search-index.json
-          for state in CA CO UT; do
+          for file in data/campsites/??_merged.geojson; do
+            state=$(basename "$file" _merged.geojson)
             node scripts/merge_campsite_data.js --state="$state" > "$RUNNER_TEMP/merge-$state.log"
           done
           node scripts/build-search-index.js
-          node - <<'JS'
-          const fs=require('fs'),q=require('./data-quality'),h=require('./scripts/build-listing-history');
-          const prev=require(process.env.RUNNER_TEMP+'/old-index.json'),next=require('./data/campsites/search-index.json');
-          const map=new Map(next.sites.flatMap(f=>[f.id,...f.legacy_ids].map(id=>[id,f.id])));
-          for(const file of ['data/campsites/UT_merged.geojson','data/campsites/agency/UT.geojson']){
-            for(const f of JSON.parse(fs.readFileSync(file)).features){
-              const p=f.properties, n=q.normalizeFeature(f,{state:'UT'});
-              if(/green river camps|horsethief campground/i.test(p.name||'') || ['usfs:80672','osm:relation:17579544'].includes(p.id))
-                console.log('UT-NEIGHBOR',file,p.id,p.source_ids,p.name,f.geometry.coordinates,n?.properties.id,n?.properties.camping_classification,n?.properties.exclusion_reason,n?.properties.legacy_ids);
-            }
-          }
-          console.log('UT-OLD',prev.sites.filter(r=>/green river camps|horsethief campground/i.test(r.name)&&r.states.includes('UT')).map(r=>[r.id,r.name,r.legacy_ids]));
-          console.log('UT-NEW',next.sites.filter(r=>/green river camps|horsethief campground/i.test(r.name)&&r.states.includes('UT')).map(r=>[r.id,r.name,r.legacy_ids]));
-          const outdated=new Set(prev.sites.filter(f=>!next.sites.some(n=>n.id===f.id)).map(f=>f.id));
-          for(const file of fs.readdirSync('data/opencampingmap').filter(f=>/^[A-Z]{2}\.geojson$/.test(f)).map(f=>'data/opencampingmap/'+f).concat(fs.readdirSync('data/campsites/agency').filter(f=>/^[A-Z]{2}\.geojson$/.test(f)).map(f=>'data/campsites/agency/'+f))) {
-            for(const f of JSON.parse(fs.readFileSync(file)).features){const id=h.recordId(f);if(outdated.has(id)){
-              const n=q.normalizeFeature(f,{state:file.split('/').pop().slice(0,2)});console.log('RESIDUAL',file,id,map.get(id),f.properties.name, n?.properties?.camping_classification,n?.properties?.id,n?.properties?.exclusion_reason);
-            }}
-          }
-          JS
           node scripts/build-listing-history.js --base-ref HEAD --previous-index "$RUNNER_TEMP/old-index.json"
           node scripts/build-search-index.js
           git show HEAD:data/campsites/withdrawn.json > "$RUNNER_TEMP/old-withdrawn.json"
-          node scripts/check-id-continuity.js "$RUNNER_TEMP/old-index.json" data/campsites/search-index.json data/campsites/withdrawn.json "$RUNNER_TEMP/old-withdrawn.json"
+          node - <<'JS'
+          const fs=require('fs'),c=require('./scripts/check-id-continuity'),h=require('./scripts/build-listing-history'),q=require('./data-quality');
+          const read=p=>JSON.parse(fs.readFileSync(p)),previous=read(process.env.RUNNER_TEMP+'/old-index.json'),current=read('data/campsites/search-index.json');
+          const diff=c.check(previous,current,read('data/campsites/withdrawn.json'),read(process.env.RUNNER_TEMP+'/old-withdrawn.json'));
+          console.log('FULL_CONTINUITY',JSON.stringify(diff));
+          const relevant=new Set([...diff.lost,...diff.moved,...diff.conflicts].flatMap(v=>[v.id,v.host,v.from,v.to,...(v.hosts||[])].filter(Boolean)));
+          for(const key of ['previous','current'])for(const row of (key==='previous'?previous:current).sites)
+            if([row.id,...row.legacy_ids].some(x=>relevant.has(x)))console.log('INDEX_RECORD',key,JSON.stringify(row));
+          for(const dir of ['data/opencampingmap','data/campsites','data/campsites/agency'])for(const f of fs.readdirSync(dir).filter(x=>/^[A-Z]{2}(?:\(1\)|_merged)?\.geojson$/.test(x))){
+            for(const row of read(dir+'/'+f).features){const p=row.properties||{},id=h.recordId(row),n=q.normalizeFeature(row,{state:f.slice(0,2)});
+              if([id,p.id,...(p.source_ids||[])].some(x=>relevant.has(x)))console.log('SOURCE_RECORD',dir+'/'+f,JSON.stringify({id,name:p.name,source_ids:p.source_ids,xy:row.geometry?.coordinates,classification:n?.properties?.camping_classification,normalized:n?.properties?.id}));
+            }
+          }
+          JS
+      - name: Record current official Geofabrik redirect availability
+        run: |
+          python - <<'PY'
+          import urllib.request
+          for state in ['alaska','utah','california','new-york']:
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(f'https://download.geofabrik.de/north-america/us/{state}-latest.osm.pbf',method='HEAD'),timeout=12) as resp:
+                      print('GEOFABRIK',state,resp.status,resp.geturl())
+              except OSError as exc:
+                  print('GEOFABRIK',state,str(exc))
+          PY
