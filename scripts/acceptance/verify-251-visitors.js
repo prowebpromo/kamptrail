@@ -12,6 +12,7 @@ const mode=process.env.QA_MODE;
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const popup=p=>p.locator('.leaflet-popup-content');
 const saveAt=(p,id)=>popup(p).locator('[data-kt-action=trip][data-siteid="'+id+'"]');
+const currentPopup=(p,id)=>popup(p).filter({has:p.locator('[data-kt-action=trip][data-siteid="'+id+'"]')});
 const hash=s=>'#site='+s;
 const local='http://127.0.0.1:8763', target=mode==='production'?'https://kamptrail.com':'http://127.0.0.1:8764';
 const expected=require('../../visitor-source.json');
@@ -37,7 +38,7 @@ async function prior(browser,mobile,label){
   const c=await browser.newContext(options(mobile)), p=await c.newPage();
   try {
     await start(p,local,old,'2.50.0','44643b2ce90a51e59e02d366a592a652feef9737');
-    await expect(popup(p)).toContainText(resort,{timeout:85000});
+    await expect(currentPopup(p,old)).toContainText(resort,{timeout:85000});
     await saveAt(p,old).click({timeout:35000});
     const item=p.locator('#kt-trip-list .kt-saved-stop');
     await expect(item).toContainText(resort);
@@ -64,7 +65,7 @@ async function lookup(page,name,id) {
   const result=page.locator('#search-results').getByRole('button',{name:name+' · Campsite',exact:true});
   await Promise.race([saveAt(page,id).waitFor({timeout:65000}),result.first().waitFor({timeout:65000})]);
   if(!await saveAt(page,id).isVisible()) await result.first().click();
-  await expect(saveAt(page,id)).toBeVisible({timeout:65000});await expect(popup(page)).toContainText(name);
+  await expect(saveAt(page,id)).toBeVisible({timeout:65000});await expect(currentPopup(page,id)).toContainText(name);
 }
 async function check(browser,mobile,label){
   const oldExport=await prior(browser,mobile,label);
@@ -104,10 +105,10 @@ async function check(browser,mobile,label){
     assert.deepEqual(index,{oldDiscoverable:false,matches:[current]});
     await p.goto(target+'/?source=pwa'+hash(recovered),{waitUntil:'domcontentloaded'});
     await expect(saveAt(p,row.id)).toBeVisible({timeout:85000});
-    await expect(popup(p)).toContainText(row.name);
+    await expect(currentPopup(p,row.id)).toContainText(row.name);
     assert.equal(new URL(p.url()).hash,hash(recovered));await shot('recovered-kiwanis');
     await p.goto(target+'/?source=pwa'+hash(alias),{waitUntil:'domcontentloaded'});
-    await expect(saveAt(p,host)).toBeVisible({timeout:85000});await expect(popup(p)).toContainText(destination.name);
+    await expect(saveAt(p,host)).toBeVisible({timeout:85000});await expect(currentPopup(p,host)).toContainText(destination.name);
     assert.equal(new URL(p.url()).hash,hash(alias));await shot('preserved-legacy-link');
     const coast=p.locator('#destination');await coast.fill('-10, -140');await coast.press('Enter');
     await p.waitForFunction(()=>Math.abs(map.getCenter().lat+10)<0.01&&Math.abs(map.getCenter().lng+140)<0.01,null,{timeout:30000});

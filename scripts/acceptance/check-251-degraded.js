@@ -8,9 +8,10 @@ const {chromium}=require('playwright');
     const ctx=await browser.newContext({serviceWorkers:'block'}),p=await ctx.newPage();
     await p.route('**/data/campsites/identity-hosts.json',r=>r.abort());
     const base='http://127.0.0.1:8764';await p.goto(base+'/?source=pwa#site='+alias,{waitUntil:'domcontentloaded'});
-    await p.waitForFunction(()=>window.KampTrailMapDataReady,null,{timeout:45000});
+    await p.waitForFunction(()=>!!window.KampTrailMapDataReady,null,{timeout:45000});
     await p.evaluate(()=>window.KampTrailMapDataReady);
-    await p.waitForTimeout(3000);
+    if(require('../../visitor-source.json').sha==='9404c8997e62b498b48b69df8fa1e86b15e1e530') await p.waitForFunction(()=>document.querySelector('#toast')?.textContent.includes('could not be found'),null,{timeout:20000});
+    else await p.locator('.leaflet-popup-content [data-kt-action=trip][data-siteid="'+host+'"]').waitFor({timeout:35000});
     const facts=await p.evaluate(async({alias,host})=>{
       const resolved=await KampTrailData.resolveListing(alias);
       return {identity:KampTrailData.getIdentityStatus().hosts, resolved:resolved.feature?.properties.id, name:resolved.feature?.properties.name, synchronous:KampTrailData.getCampsiteById(alias)?.properties.id||null, hash:location.hash, activePopup:!!document.querySelector('.leaflet-popup-content [data-kt-action=trip][data-siteid="'+host+'"]'),message:document.querySelector('#toast')?.textContent||''};
