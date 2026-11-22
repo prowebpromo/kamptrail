@@ -14,7 +14,15 @@ function hostMap(index) {
     if (!hosts.has(id)) hosts.set(id, new Set());
     hosts.get(id).add(site.id);
   }
+  const canonicalIds = new Set((index.sites || []).map(site => site.id));
   const map = new Map(), conflicts = [];
+  for (const [id, host] of Object.entries(index.redirects || {})) {
+    if (!canonicalIds.has(host) || hosts.has(id)) {
+      conflicts.push({id, hosts: [...new Set([...(hosts.get(id) || []), host])]});
+    } else {
+      hosts.set(id, new Set([host]));
+    }
+  }
   for (const [id, set] of hosts) {
     if (set.size > 1) conflicts.push({id, hosts: [...set].sort()});
     else map.set(id, [...set][0]);

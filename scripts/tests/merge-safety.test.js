@@ -308,3 +308,15 @@ test('unverified same-name RIDB facility cannot suppress an agency campground', 
     assert.deepEqual(admitted.map(f => f.properties.id), [agency.properties.id]);
   }
 });
+
+test('a published OSM alias keeps its own current record alongside the Recreation.gov host', async () => {
+  const merger = new CampsiteMerger();
+  const osm = point({id:'osm:node:3106288245', osm_type:'node', osm_id:3106288245, name:'Shady Campground', tourism:'camp_site'});
+  const ridb = point({id:'ridb:237734', facility_id:'237734', name:'Shady Campground', source:'recreation.gov'});
+  merger.preferredIds = new Set([ridb.properties.id]);
+  merger.publishedAnyIds = new Set([ridb.properties.id, osm.properties.id]);
+  for (const features of [[osm,ridb], [ridb,osm]]) {
+    const snapshot = await merger.mergeDatasets([{features}]);
+    assert.deepEqual(snapshot.features.map(f => f.properties.id).sort(), [osm.properties.id, ridb.properties.id]);
+  }
+});

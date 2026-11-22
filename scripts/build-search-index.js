@@ -79,8 +79,17 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if (!states.size) throw new Error(`No source snapshot found for ${feature.properties.id}`);
     return listingRow(feature, quality, [...states].sort());
   });
+  // Keep a saved link on its surviving published host after its source stops contributing.
+  // These links never appear in current source membership, amenities, or map admission.
+  const canonicals = new Set(sites.map(site => site.id));
+  const currentIds = new Set(sites.flatMap(site => [site.id, ...site.legacy_ids]));
+  const reserved = History.reservedIds(history);
+  const links = [...(previousHosts || [])].filter(([id, host]) =>
+    canonicals.has(host) && !currentIds.has(id) && !reserved.has(id));
+  links.sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0);
   sites.sort((a,b) => a.name.localeCompare(b.name, 'en') || a.id.localeCompare(b.id, 'en'));
   return {version:1, filter_version:1, community_version:1, elevation_version:1, amenity_version:1,
+    ...(links.length ? {redirects:Object.fromEntries(links)} : {}),
     ...(history ? {history_sha256:crypto.createHash('sha256').update(History.serializeHistory(history)).digest('hex')} : {}), sites};
 }
 
@@ -122,7 +131,8 @@ function publishedIds(directory) {
 function publishedHosts(directory) {
   const file = path.join(directory, 'search-index.json');
   if (!fs.existsSync(file)) return null;
-  const sites = JSON.parse(fs.readFileSync(file, 'utf8')).sites, hosts = new Map();
+  const index = JSON.parse(fs.readFileSync(file, 'utf8')), sites = index.sites;
+  const hosts = new Map(Object.entries(index.redirects || {}));
   if (Array.isArray(sites)) for (const site of sites) for (const alias of site.legacy_ids || []) hosts.set(alias, site.id);
   return hosts;
 }

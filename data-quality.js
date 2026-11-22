@@ -634,6 +634,15 @@
       if (!ID_TEXT(id) || !Array.isArray(aliases) || !aliases.length || aliases.length > 128) return false;
       for (const alias of aliases) { if (!ID_TEXT(alias) || alias === id || seen.has(alias) || Object.hasOwn(data.hosts, alias)) return false; seen.add(alias); }
     }
+    if (data.redirects !== undefined) {
+      if (!data.redirects || typeof data.redirects !== 'object' || Array.isArray(data.redirects)) return false;
+      const links = Object.entries(data.redirects);
+      if (links.length > 200000) return false;
+      for (const [id, host] of links) {
+        if (!ID_TEXT(id) || !ID_TEXT(host) || seen.has(id) || Object.hasOwn(data.hosts, id)
+            || seen.has(host) || Object.hasOwn(data.redirects, host)) return false;
+      }
+    }
     return true;
   }
   function identityOptions(data) {
@@ -641,6 +650,10 @@
     const preferredIds = new Set(), previousHosts = new Map();
     for (const [id, aliases] of Object.entries(data.hosts)) { preferredIds.add(id); for (const alias of aliases) previousHosts.set(alias, id); }
     return {preferredIds, previousHosts};
+  }
+  function agencyAndUnverified(agency, other) {
+    return agency.camping_evidence === 'agency_camping_activity'
+      && other.camping_classification === 'unverified_camping_record';
   }
   function cleanAndDedupeGeoJSON(input, options = {}) {
     if (!input || !Array.isArray(input.features)) return {type:'FeatureCollection',features:[]};
@@ -666,8 +679,6 @@
             if (ownerOnly && ownerOf(op.id)!==ownerOf(p.id)) continue;
             // A nearby unverified facility cannot suppress an agency's own camping record.
             // An exact facility match can still corroborate the two source records.
-            const agencyAndUnverified = (a,b) => a.camping_evidence === 'agency_camping_activity'
-              && b.camping_classification === 'unverified_camping_record';
             if ((agencyAndUnverified(p,op) || agencyAndUnverified(op,p))
                 && !(p.facility_id != null && op.facility_id != null && String(p.facility_id) === String(op.facility_id))) continue;
             if (normalizeName(op.name) === normalizeName(p.name) && distanceMeters(ll,getLatLng(other))<=radius) {

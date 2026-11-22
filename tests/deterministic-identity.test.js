@@ -15,7 +15,7 @@ const dir=path.join(root,'data/campsites');
 const {webcrypto}=require('node:crypto');
 const indexText=fs.readFileSync(path.join(dir,'search-index.json'),'utf8'),index=JSON.parse(indexText),byId=new Map(index.sites.map(s=>[s.id,s]));
 
-function harness({hosts='served',delay={},fail=new Set(),sidecarDelay=0}={}){
+function harness({hosts='served',delay={},fail=new Set(),sidecarDelay=0,redirects=null}={}){
   const host={mode:hosts};
   const cluster={addLayers(){},addLayer(){},removeLayer(){}};
   const ocean={getSouth:()=>-10,getNorth:()=>-9,getWest:()=>-140,getEast:()=>-139,contains:()=>false};
@@ -33,6 +33,9 @@ function harness({hosts='served',delay={},fail=new Set(),sidecarDelay=0}={}){
     }
     if(code&&fail.has(code))return {ok:false,status:503,json:async()=>({})};
     const file=path.join(root,rel);if(!fs.existsSync(file))return {ok:false,status:404,json:async()=>({})};
+    if (redirects && /(?:identity-hosts|search-index)\.json$/.test(rel)) {
+      return new Response(JSON.stringify({...JSON.parse(fs.readFileSync(file)), redirects}));
+    }
     return new Response(fs.readFileSync(file));
   };
   const context={console:{warn(){},log(){},error(){}},fetch:fetcher,setTimeout,clearTimeout,AbortController,URL,document:{addEventListener(){}},dispatchEvent(){},
@@ -198,5 +201,22 @@ test('Bird Creek Campground: NV alone keeps usfs:65184 and the OSM/RIDB listing 
     }
     expectIndex(h,['usfs:65184','osm:way:1236741631']);
     assert.equal(h.api.getCampsiteById('ridb:234209').properties.id,'osm:way:1236741631');
+  }
+});
+
+test('saved links resolve to the active campground without adding missing sources to the marker',async()=>{
+  const old='ridb:99999999',host='osm:way:1107154601',redirects={[old]:host};
+  for(const mode of ['served','missing']){
+    const h=harness({hosts:mode,redirects});
+    await h.api.init(h.map);
+    const result=await h.api.resolveListing(old);
+    assert.equal(result.kind,'active');
+    assert.equal(result.feature.properties.id,host);
+    assert.ok(!result.feature.properties.legacy_ids.includes(old));
+    assert.ok(!h.DQ.ridbFacilityIds(result.feature.properties).includes(old.slice(5)));
+    if(mode==='served'){
+      assert.equal(h.api.publishedId(old),host);
+      assert.ok(h.api.identityIds(host).includes(old));
+    }
   }
 });
