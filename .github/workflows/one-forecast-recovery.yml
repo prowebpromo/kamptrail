@@ -1,0 +1,34 @@
+name: Start one forecast recovery on verified main
+on:
+  push:
+    branches: [recover/forecast-20261122]
+    paths: ['.github/workflows/one-forecast-recovery.yml']
+permissions: {}
+jobs:
+  dispatch:
+    if: github.repository == 'prowebpromo/kamptrail' && github.event_name == 'push' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Start the existing forecast publisher once on the reviewed commit
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_MAIN: a4485db358353fd399285c4d2e15401350dbf73e
+        run: |
+          set -euo pipefail
+          origin="/repos/prowebpromo/kamptrail"
+          test "$(gh api "$origin/commits/$GITHUB_SHA" --jq '.parents | length')" = 1
+          test "$(gh api "$origin/commits/$GITHUB_SHA" --jq '.parents[0].sha')" = "$EXPECTED_MAIN"
+          test "$(gh api "$origin/git/ref/heads/main" --jq '.object.sha')" = "$EXPECTED_MAIN"
+          workflow="$origin/actions/workflows/publish-forecasts.yml"
+          existing="$(gh api --method GET "$workflow/runs" -f head_sha="$EXPECTED_MAIN" -f branch=main -f per_page=20 --jq '[.workflow_runs[] | select((.event=="schedule" or .event=="workflow_dispatch") and (.status!="completed" or .conclusion=="success"))] | length')"
+          if [ "$existing" != 0 ]; then
+            echo "Forecast recovery already queued or completed on $EXPECTED_MAIN"
+            exit 0
+          fi
+          gh api --method POST "$workflow/dispatches" -f ref=main
+          echo "Requested a fresh forecast package from the existing main-branch publisher."
