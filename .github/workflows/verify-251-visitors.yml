@@ -65,6 +65,7 @@ jobs:
             PORT=8764 KAMPTRAIL_SERVE_DIR="$PWD/candidate/dist/kamptrail" node candidate/scripts/serve.js > "$RUNNER_TEMP/candidate-server.log" 2>&1 &
           fi
           curl -fsS --retry 6 --retry-all-errors --retry-delay 1 http://127.0.0.1:8763/release.json
+          if [ "$QA_MODE" = staging ]; then node scripts/acceptance/check-251-degraded.js; fi
           node scripts/acceptance/verify-251-visitors.js
       - if: always()
         uses: actions/upload-artifact@v7.0.2

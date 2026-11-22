@@ -15,7 +15,11 @@ const saveAt=(p,id)=>popup(p).locator('[data-kt-action=trip][data-siteid="'+id+'
 const hash=s=>'#site='+s;
 const local='http://127.0.0.1:8763', target=mode==='production'?'https://kamptrail.com':'http://127.0.0.1:8764';
 const expected=require('../../visitor-source.json');
-const {sites}=require('../../candidate/data/campsites/search-index.json');
+const {sites,redirects}=require('../../candidate/data/campsites/search-index.json');
+const alias='osm:way:1054896883', host='osm:relation:21141431';
+assert.equal(redirects[alias],host);
+const before=require('../../previous/data/campsites/identity-hosts.json');assert.ok(before.hosts[host].includes(alias));
+const destination=sites.find(site=>site.id===host);assert.ok(destination);assert.ok(!destination.legacy_ids.includes(alias));
 const row=sites.find(s=>s.id===recovered || s.legacy_ids.includes(recovered));
 assert.match(row.name,/Kiwanis Campground/i);
 assert.deepEqual(sites.filter(s=>s.name.toLowerCase()===resort.toLowerCase()).map(s=>s.id),[current]);
@@ -88,10 +92,10 @@ async function check(browser,mobile,label){
       await expect(archive.locator('a').first()).toHaveAttribute('href',hist.source_urls[0].url);
     };
     await archived();await shot('reopened-historical');
-    await archive.getByRole('button',{name:'Close historical listing'}).click();
+    await archive.getByRole('button',{name:'Close historical listing'}).click();await expect(archive).toHaveCount(0);
     await p.goto(target+'/?source=pwa'+hash(old),{waitUntil:'domcontentloaded'});
     await archived();assert.equal(new URL(p.url()).hash,hash(old));
-    await archive.getByRole('button',{name:'Close historical listing'}).click();
+    await archive.getByRole('button',{name:'Close historical listing'}).click();await expect(archive).toHaveCount(0);
     await lookup(p,resort,current);await shot('current-search');
     const index=await p.evaluate(async(id)=>{
       const index=await KampTrailData.loadSearchIndex();
@@ -102,6 +106,9 @@ async function check(browser,mobile,label){
     await expect(saveAt(p,row.id)).toBeVisible({timeout:85000});
     await expect(popup(p)).toContainText(row.name);
     assert.equal(new URL(p.url()).hash,hash(recovered));await shot('recovered-kiwanis');
+    await p.goto(target+'/?source=pwa'+hash(alias),{waitUntil:'domcontentloaded'});
+    await expect(saveAt(p,host)).toBeVisible({timeout:85000});await expect(popup(p)).toContainText(destination.name);
+    assert.equal(new URL(p.url()).hash,hash(alias));await shot('preserved-legacy-link');
     const coast=p.locator('#destination');await coast.fill('-10, -140');await coast.press('Enter');
     await p.waitForFunction(()=>Math.abs(map.getCenter().lat+10)<0.01&&Math.abs(map.getCenter().lng+140)<0.01,null,{timeout:30000});
     const control=p.getByRole('combobox',{name:'FCC mobile coverage'}), area=p.getByRole('combobox',{name:'Published coverage area'});
@@ -117,7 +124,7 @@ async function check(browser,mobile,label){
     assert.equal(ranges.length,0,'No FCC archive requests needed for off-footprint menu verification');
     const saved=await p.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')));
     assert.deepEqual(saved,oldExport.backup.stops,'Exact prior saved snapshot, ID, user note and dates survived all lookups');
-    const receipt={mode,base:target,sha:expected.sha,version:'2.51.0',viewport:p.viewportSize(),savedVia:'2.50.0 popup, local JSON backup, 2.51.0 trip drawer',savedExactId:saved[0].id,archiveReason:hist.reason,archiveDate:hist.archived_at,sourceDate:hist.source_dates[0].retrieved_at,currentSearchMatch:{id:current,name:resort},recovered:{request:recovered,canonical:row.id,name:row.name},menus,requestedCoverageArchives:ranges.length,screenshots,issues};
+    const receipt={mode,base:target,sha:expected.sha,version:'2.51.0',viewport:p.viewportSize(),savedVia:'2.50.0 popup, local JSON backup, 2.51.0 trip drawer',savedExactId:saved[0].id,archiveReason:hist.reason,archiveDate:hist.archived_at,sourceDate:hist.source_dates[0].retrieved_at,currentSearchMatch:{id:current,name:resort},recovered:{request:recovered,canonical:row.id,name:row.name},legacyShortcut:{priorAlias:alias,activeHost:host,name:destination.name},menus,requestedCoverageArchives:ranges.length,screenshots,issues};
     console.log(JSON.stringify(receipt,null,2));await fs.writeFile(path.join(out,label+'.json'),JSON.stringify(receipt,null,2));
   } catch(e){console.error(label,'URL',p.url(),'HTTP',JSON.stringify(issues.slice(-14)), 'BODY', (await p.locator('body').innerText().catch(()=>'' )).slice(-1200));await shot('failure').catch(()=>{});throw e;}finally{await c.close();}
 }
