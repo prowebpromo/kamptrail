@@ -1,0 +1,62 @@
+name: Check lower-48 acceptance tools on previously verified FCC files
+on:
+  push:
+    branches: [verify/fcc-lower48-visitor]
+    paths: ['.github/workflows/check-fcc48-verifier.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v7.1.0
+        with: {python-version: '3.11'}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14631196583'
+          run-id: '44741537700'
+          github-token: ${{ github.token }}
+          path: previous-evidence
+          merge-multiple: true
+          digest-mismatch: error
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14624603962'
+          run-id: '44728742813'
+          github-token: ${{ github.token }}
+          path: ri
+          merge-multiple: true
+          digest-mismatch: error
+      - run: |
+          node --check scripts/acceptance/verify-fcc48-browser.js
+          python -m pip install --only-binary=:all: --no-deps --require-hashes -r scripts/acceptance/fcc48-pmtiles-requirements.txt
+          python -m pip install --only-binary=:all: 'Pillow==11.3.0'
+          docker run -d --name fccqa -p 127.0.0.1:8765:80 -v "$PWD/ri:/usr/share/nginx/html:ro" nginx:stable-alpine >/dev/null
+          trap 'docker stop fccqa >/dev/null' EXIT
+          curl --retry 5 --retry-connrefused --retry-delay 1 -fsS http://127.0.0.1:8765/manifest.json >/dev/null
+          python - <<'PY'
+          from pathlib import Path
+          import json, runpy
+          v=runpy.run_path("scripts/acceptance/verify-fcc48-archives.py")
+          m=json.loads(Path("ri/manifest.json").read_bytes())
+          q=json.loads(Path("previous-evidence/qualification.json").read_bytes())
+          lower=[r for r in q["shards"] if r["region"] in v["STATES"]]
+          assert len(lower)==144 and sum(r["pmtilesBytes"] for r in lower)==142403276
+          for c in m["carriers"]:
+              r=c["regions"][0]
+              url="http://127.0.0.1:8765/"+m["release"]+"/"+c["id"]+"/RI.pmtiles?sha256="+r["archive"]["sha256"]
+              data=v["read_archive"](url,r["archive"]["bytes"],0)
+              assert v["hash_bytes"](data)==r["archive"]["sha256"]
+              reader=v["Reader"](lambda offset,count:data[offset:offset+count])
+              row=next(s for s in lower if s["region"]=="RI" and s["carrier"]==c["id"])
+              for k,w in row["spatial"]["witnesses"].items():
+                  assert v["sample"](reader,w["lon"],w["lat"],w["zoom"])==(k,w["sha256"])
+          for state in v["SAMPLES"]:
+              site=v["campsite"](Path("."),state);assert site["id"] and site["name"]
+              print(state,site["name"],site["id"])
+          print("Confirmed independent archive decoding and source-pixel picking with three real packs, 144 receipts, five named campsites.")
+          PY

@@ -1,0 +1,132 @@
+name: Verify lower-48 carrier coverage and visitor upgrades
+on:
+  push:
+    branches: [verify/fcc-lower48-visitor]
+    paths: ['scripts/acceptance/fcc48-verify.json']
+permissions:
+  actions: read
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with: {persist-credentials: false}
+      - id: run
+        name: Pin application and data qualification
+        run: |
+          config=scripts/acceptance/fcc48-verify.json
+          jq -e '(.commit | test("^[a-f0-9]{40}$")) and (.run | type=="number" and .>0) and (.mode=="preview" or .mode=="production")' "$config" >/dev/null
+          for key in commit run mode; do echo "$key=$(jq -er ".$key" "$config")" >> "$GITHUB_OUTPUT"; done
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ steps.run.outputs.commit }}
+          path: candidate
+          persist-credentials: false
+      - if: steps.run.outputs.mode == 'preview'
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: 26a2db23172c7bca043971b3d29c28906732ede7
+          path: previous
+          persist-credentials: false
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.11'
+      - name: Install the pinned archive reader and existing browser tools
+        run: |
+          npm ci --no-audit --no-fund
+          python -m pip install --only-binary=:all: --no-deps --require-hashes -r scripts/acceptance/fcc48-pmtiles-requirements.txt
+          python -m pip install --only-binary=:all: 'Pillow==11.3.0'
+          python -m py_compile scripts/acceptance/verify-fcc48-archives.py
+          node --check scripts/acceptance/verify-fcc48-browser.js
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: fcc-conus48-evidence
+          run-id: ${{ steps.run.outputs.run }}
+          github-token: ${{ github.token }}
+          path: evidence
+          digest-mismatch: error
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14631196583'
+          run-id: '44741537700'
+          github-token: ${{ github.token }}
+          path: previous-evidence
+          merge-multiple: true
+          digest-mismatch: error
+      - if: steps.run.outputs.mode == 'preview'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: fcc-conus48-candidate
+          run-id: ${{ steps.run.outputs.run }}
+          github-token: ${{ github.token }}
+          path: qualified
+          digest-mismatch: error
+      - if: steps.run.outputs.mode == 'production'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14757168130'
+          run-id: '45030008325'
+          github-token: ${{ github.token }}
+          path: baseline
+          merge-multiple: true
+          digest-mismatch: error
+      - name: Verify real carrier files, visitor upgrades, campground points and local failure behavior
+        env:
+          EXPECTED_SHA: ${{ steps.run.outputs.commit }}
+          QA_MODE: ${{ steps.run.outputs.mode }}
+          CHROMIUM_PATH: /usr/bin/google-chrome
+        run: |
+          set -euo pipefail
+          export QA_PROFILES="$PWD/fcc-profiles"
+          mkdir -p "$QA_PROFILES" result
+          if [ "$QA_MODE" = preview ]; then
+            export BASE=http://127.0.0.1:8765
+            package_dir="$PWD/candidate/dist/kamptrail"
+            (cd candidate && npm ci --no-audit --no-fund && npm run build)
+            cmp evidence/manifest.json qualified/candidate/manifest.json
+            # The fixture starts with the actual prior distribution and its legacy regional layer.
+            rsync -a previous/data/fcc-coverage/ "$package_dir/data/fcc-coverage/"
+            generation=$(jq -er .release evidence/manifest.json)
+            cp -a "qualified/candidate/$generation" "$package_dir/data/fcc-coverage/"
+            cp qualified/candidate/manifest.json "$package_dir/data/fcc-coverage/manifest-v2.json"
+            jq -n --arg c "$EXPECTED_SHA" '{source_commit:$c}' > "$package_dir/release.json"
+            served="$RUNNER_TEMP/fcc-preview"; mkdir "$served"
+            rsync -a --exclude=.git previous/ "$served/"
+            # Nginx is production-equivalent for local byte ranges; actual hosting is checked by production mode.
+            docker run -d --name fcc-preview -p 127.0.0.1:8765:80 -v "$served:/usr/share/nginx/html:ro" nginx:stable-alpine >/dev/null
+            trap 'docker stop fcc-preview >/dev/null 2>&1 || true' EXIT
+            curl --retry 5 --retry-connrefused --retry-delay 1 -fsS "$BASE/release.json" | jq -e '.source_commit=="b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69"'
+            EXPECTED_SHA=b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69 node scripts/acceptance/capture-fcc48-baseline.js
+            rsync -a --delete --checksum "$package_dir/" "$served/"
+            rate=0
+          else
+            export BASE=https://kamptrail.com
+            tar -xzf baseline/fcc-upgrade-baseline.tar.gz -C "$QA_PROFILES"
+            rate=0.8
+          fi
+          generation=$(jq -er .release evidence/manifest.json)
+          for attempt in $(seq 1 24); do
+            live=$(curl -fsS --max-time 20 "$BASE/release.json?verify=$(date +%s)" | jq -r '.source_commit // empty') || live=''
+            if [ "$live" = "$EXPECTED_SHA" ]; then
+              data=$(curl -fsS --max-time 20 "$BASE/data/fcc-coverage/manifest-v2.json?verify=$(date +%s)" | jq -r '.release // empty') || data=''
+              if [ "$generation" = "$data" ]; then break; fi
+            fi
+            if [ "$attempt" = 24 ]; then echo "Public release and map generation have not matched both pins"; exit 1; fi
+            sleep 35
+          done
+          python scripts/acceptance/verify-fcc48-archives.py --base "$BASE" --commit "$EXPECTED_SHA" --mode "$QA_MODE" \
+            --evidence evidence --repo candidate --previous previous-evidence --pause "$rate" --output result/archive-checks.json
+          node scripts/acceptance/verify-fcc48-browser.js result/archive-checks.json result/browser-checks.json
+      - if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: fcc-lower48-${{ steps.run.outputs.mode }}-acceptance
+          path: result
+          if-no-files-found: ignore
+          retention-days: 30
