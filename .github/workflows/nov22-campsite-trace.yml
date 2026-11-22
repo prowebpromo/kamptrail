@@ -1,0 +1,61 @@
+name: Trace the held November campsite snapshot
+on:
+  push:
+    branches: [verify/nov22-campsite-refresh]
+    paths: ['.github/workflows/nov22-campsite-trace.yml']
+permissions:
+  actions: read
+  contents: read
+jobs:
+  trace:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+          ref: a016d67cb32db8dbf5cd78bc3c1e782ffa00cdd8
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          name: unverified-refresh-45012745211-1
+          run-id: 45012745211
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/candidate
+      - name: Trace original records and refresh identities
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          here=Path('.')
+          cand=Path(os.environ['RUNNER_TEMP'])/'candidate'
+          def load(path): return json.loads(path.read_bytes())
+          def gid(p):
+              if p.get('facility_id') is not None: return 'ridb:'+str(p['facility_id'])
+              if p.get('osm_id') is not None and p.get('osm_type'): return 'osm:'+p['osm_type']+':'+str(p['osm_id'])
+              return p.get('id')
+          old=load(here/'data/campsites/search-index.json')['sites']
+          new=load(cand/'data/campsites/search-index.json')['sites']
+          current={s['id'] for s in new}
+          lost={s['id']:s for s in old if s['id'] not in current}
+          print('OLD, NEW, LOST',len(old),len(new),len(lost))
+          print('LOST',[(s['id'],s['name'],s['states'],s['legacy_ids']) for s in list(lost.values())[:100]])
+          ids=set(lost)
+          for p in new:
+              matched=ids.intersection(p.get('legacy_ids',[]))
+              if matched: print('NOW ALIAS',p['id'],p['name'],list(matched))
+          for label,root in [('OLD',here),('NEW',cand)]:
+              for folder,patterns in [('data/opencampingmap',['[A-Z][A-Z].geojson']),('data/campsites',['[A-Z][A-Z].geojson','[A-Z][A-Z](1).geojson','[A-Z][A-Z]_merged.geojson']),('data/campsites/agency',['[A-Z][A-Z].geojson'])]:
+                  for pat in patterns:
+                      for f in (root/folder).glob(pat):
+                          if pat=='[A-Z][A-Z](1).geojson' and f.with_name(f.name.replace('(1)','')).exists(): continue
+                          for row in load(f)['features']:
+                              p=row['properties']; own=gid(p)
+                              matches=ids.intersection([own,*p.get('source_ids',[]),*p.get('legacy_ids',[])])
+                              if matches:
+                                  print(label,str(f.relative_to(root)),list(matches),own,{k:p.get(k) for k in ['id','name','tourism','tourism_tag','tags','primary_source','type','source_ids','legacy_ids'] if k in p},str(row.get('geometry'))[:160])
+          PY
+      - name: Observe exact published Geofabrik redirect paths
+        run: |
+          for state in california alabama massachusetts; do
+            curl --silent --show-error --max-time 20 --head "https://download.geofabrik.de/north-america/us/${state}-latest.osm.pbf" | grep -Ei '^(HTTP/|Location:)' || true
+          done
