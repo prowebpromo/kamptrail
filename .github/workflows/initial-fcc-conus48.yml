@@ -1,0 +1,14 @@
+name: Build initial lower-48 FCC release candidate
+on:
+  push:
+    branches: [once/fcc-conus48-20261122]
+    paths: ['.github/workflows/initial-fcc-conus48.yml']
+permissions:
+  contents: read
+jobs:
+  build:
+    if: github.event.before == 'eab05da73322d1cf794ddfe3b186332577a32448'
+    uses: ./.github/workflows/refresh-fcc-packed.yml
+    secrets:
+      FCC_USERNAME: ${{ secrets.FCC_USERNAME }}
+      FCC_TOKEN: ${{ secrets.FCC_TOKEN }}
