@@ -1,0 +1,21 @@
+name: Check public forecast freshness and visitor status
+on:
+  push:
+    branches: [verify/forecast-freshness-20261122]
+    paths: ['.github/workflows/forecast-live-status.yml','scripts/acceptance/forecast-status.cjs']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Observe existing public reader and both generation pointers
+        run: node scripts/acceptance/forecast-status.cjs
