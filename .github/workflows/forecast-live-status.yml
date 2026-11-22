@@ -8,7 +8,7 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-24.04
-    timeout-minutes: 7
+    timeout-minutes: 23
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -18,4 +18,6 @@ jobs:
           node-version: '22'
       - run: npm ci
       - name: Observe existing public reader and both generation pointers
+        env:
+          EXPECTED_SNAPSHOT: '5ea4c35c491f3caed33ff181'
         run: node scripts/acceptance/forecast-status.cjs

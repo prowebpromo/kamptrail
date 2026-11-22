@@ -1,5 +1,20 @@
 const {chromium} = require('playwright');
 (async () => {
+  const assert = require('node:assert/strict');
+  const expectedSnapshot = process.env.EXPECTED_SNAPSHOT;
+  assert.match(expectedSnapshot,/^[a-f0-9]{24}$/);
+  let indexResponse, index;
+  for(let attempt=0;attempt<2;attempt++){
+    indexResponse = await fetch('https://kamptrail.com/api/forecast.php?kind=index',{cache:'no-store'});
+    index = await indexResponse.json();
+    if(indexResponse.status===200 && index.manifest?.snapshot_id===expectedSnapshot) break;
+    if(attempt===1 || ![200,503].includes(indexResponse.status)) break;
+    const wait=Number(indexResponse.headers.get('retry-after')||900);
+    if(!Number.isFinite(wait) || wait<1 || wait>900) break;
+    console.log('Waiting for normal forecast cache refresh; first public status',indexResponse.status);
+    await new Promise(resolve=>setTimeout(resolve,(wait+2)*1000));
+  }
+  console.log('READER',JSON.stringify({status:indexResponse.status,ok:index.ok,error:index.error,generated:index.manifest?.generated_at,expires:index.manifest?.expires_at,serverNow:index.server_now,snapshot:index.manifest?.snapshot_id}));
   const browser = await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
   try {
     const page = await browser.newPage();
@@ -24,6 +39,13 @@ const {chromium} = require('playwright');
     });
     console.log('VISITOR',JSON.stringify(visitor));
     console.log('PUBLIC_READER',JSON.stringify(seen));
+    assert.equal(indexResponse.status, 200);
+    assert.equal(index.ok, true);
+    assert.equal(index.manifest.snapshot_id, expectedSnapshot);
+    assert.ok(Date.parse(index.manifest.expires_at) > Date.parse(index.server_now));
+    assert.equal(visitor.ready, true);
+    assert.ok(visitor.states.includes('NY'));
+    assert.equal(visitor.error, '');
     const catalog=await (await fetch('https://kamptrail.com/data/campsites/coordinate-index.json')).json();
     for(const slot of ['current-a.json','current-b.json']){
       const r=await fetch('https://github.com/prowebpromo/kamptrail/releases/download/forecast-data-v1/'+slot,{headers:{'Cache-Control':'no-cache','User-Agent':'KampTrail forecast status check'}});
