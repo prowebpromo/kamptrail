@@ -55,7 +55,7 @@ jobs:
             cp fcc-evidence/manifest.json candidate/dist/kamptrail/data/fcc-coverage/manifest-v2.json
           fi
           node --check scripts/acceptance/verify-251-visitors.js
-          if [ "$QA_MODE" = staging ] && rg -q "a saved redirect opens active details" candidate/tests/browser/historical-listings.spec.js; then
+          if [ "$QA_MODE" = staging ] && grep -q "a saved redirect opens active details" candidate/tests/browser/historical-listings.spec.js; then
             (cd candidate && CHROMIUM_PATH=/usr/bin/google-chrome ../node_modules/.bin/playwright test historical-listings.spec.js --grep "a saved redirect opens active details" --reporter=list)
           fi
       - name: Save in 2.50 then reopen in 2.51, check both listings, the recovered facility and all three menus

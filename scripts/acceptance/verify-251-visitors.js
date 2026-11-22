@@ -110,9 +110,12 @@ async function check(browser,mobile,label){
     await p.goto(target+'/?source=pwa'+hash(alias),{waitUntil:'domcontentloaded'});
     await expect(saveAt(p,host)).toBeVisible({timeout:85000});await expect(currentPopup(p,host)).toContainText(destination.name);
     assert.equal(new URL(p.url()).hash,hash(alias));await shot('preserved-legacy-link');
+    const lastPopup=p.locator('.leaflet-popup').filter({has:p.locator('[data-kt-action=trip][data-siteid="'+host+'"]')});
+    await lastPopup.locator('.leaflet-popup-close-button').click();
+    await expect(p.locator('.kt-site-popup')).toHaveCount(0);
     const coast=p.locator('#destination');await coast.fill('-10, -140');await coast.press('Enter');
     await p.waitForFunction(()=>Math.abs(map.getCenter().lat+10)<0.01&&Math.abs(map.getCenter().lng+140)<0.01,null,{timeout:30000});
-    const control=p.getByRole('combobox',{name:'FCC mobile coverage'}), area=p.getByRole('combobox',{name:'Published coverage area'});
+    const control=p.locator('.kt-coverage-picker select'), area=p.getByRole('combobox',{name:'Published coverage area'});
     if(!await control.isVisible())await p.getByRole('button',{name:'Map layers',exact:true}).click();
     assert.deepEqual((await control.locator('option').evaluateAll(o=>o.map(x=>x.value).filter(Boolean))).sort(),carriers);
     const menus={};for(const carrier of carriers){
