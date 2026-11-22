@@ -335,11 +335,12 @@ class GitHub:
                     self.sleep(2 ** attempt)
                     continue
                 raise PublishError('github_transport_failed') from None
-            if status in (429, 500, 502, 503, 504) or (status == 403 and (response_headers.get('Retry-After') or response_headers.get('X-RateLimit-Remaining') == '0')):
+            rate_limited = status == 429 or (status == 403 and (response_headers.get('Retry-After') or response_headers.get('X-RateLimit-Remaining') == '0'))
+            if rate_limited or status in (500, 502, 503, 504):
                 if method == 'GET' and attempt < 2:
                     self.sleep(response_delay(response_headers, self.clock()))
                     continue
-                raise PublishError('github_rate_or_service_unavailable')
+                raise PublishError('github_rate_limited' if rate_limited else 'github_service_unavailable')
             return status, response_headers, raw
         raise PublishError('github_transport_failed')
 
@@ -460,20 +461,41 @@ def ensure_release(api, source_sha):
     return release_check(release, allow_draft=True)
 
 
+def pointer_bytes(api, asset, *, draft=False):
+    # Published asset IDs identify immutable bytes. The release API also provides
+    # a SHA-256 digest for that ID. An exact public filename match avoids drawing
+    # from a shared runner's anonymous REST quota to read those same bytes.
+    expected = asset.get('digest')
+    if not draft and isinstance(expected, str) and re.fullmatch(r'sha256:[0-9a-f]{64}', expected):
+        try:
+            raw = api.public(asset['name'], MAX_MANIFEST)
+        except PublishError as error:
+            # A cached/missing filename can trail a successful upload. Only a
+            # positive read against the unique ID can resolve that ambiguity.
+            if str(error) != 'public_asset_unavailable_404':
+                raise
+        else:
+            if expected == 'sha256:' + digest(raw):
+                return raw
+    return api.asset_bytes(asset, MAX_MANIFEST, draft=draft)
+
+
 def read_pointers(api, assets, now, *, draft=False):
     pointers = {}
     for name in POINTERS:
         entry = assets.get(name)
         if not entry or entry.get('state') != 'uploaded':
             continue
+        # An unreadable uploaded slot may still be the last good generation.
+        # Propagate transport errors before cleanup or replacement; only a
+        # successfully read, malformed document is eligible for repair.
+        raw = pointer_bytes(api, entry, draft=draft)
+        require(len(raw) == entry['size'], 'asset_hash_mismatch')
         try:
-            raw = api.asset_bytes(entry, MAX_MANIFEST, draft=draft)
-            require(len(raw) == entry['size'], 'asset_hash_mismatch')
             manifest = validate_manifest(raw, now, allow_expired=True)
-            pointers[name] = (manifest, raw)
         except PublishError:
-            # A malformed/missing slot can be repaired while the other survives.
             continue
+        pointers[name] = (manifest, raw)
     if len(pointers) == 2:
         left, right = (value[0] for value in pointers.values())
         require(left['generated_at'] != right['generated_at'] or left['snapshot_id'] == right['snapshot_id'], 'pointer_conflict')
@@ -537,22 +559,32 @@ def ensure_asset(api, release_id, assets, name, raw, *, allow_starter=False, dra
 
 def confirm_pointer(api, asset, raw, previous, now):
     validate_manifest(raw, max(now, api.clock()))
-    require(api.asset_bytes(asset, MAX_MANIFEST) == raw, 'public_asset_verification_failed')
+    proof = 'public_asset_id'
+    try:
+        observed_id = api.asset_bytes(asset, MAX_MANIFEST)
+    except PublishError as error:
+        # A public REST rate limit can outlast the weather's useful lifetime.
+        # In that case require both GitHub's digest for this uploaded ID and
+        # the exact new bytes at the URL used by the visitor-facing reader.
+        if str(error) not in ('rate_limited', 'github_rate_limited') or asset.get('digest') != 'sha256:' + digest(raw):
+            raise
+        proof = 'public_filename_and_asset_digest'
+    else:
+        require(observed_id == raw, 'public_asset_verification_failed')
     validate_manifest(raw, max(now, api.clock()))
-    # A replaced fixed public URL can briefly serve its exact previous valid
-    # bytes even with revalidation headers. The independent public asset-ID read
-    # above proves the upload. Report filename propagation separately; unexpected
-    # bytes or transport errors still stop, and never repeat the mutation.
+    # Older bytes are acceptable only when independently verified by public ID.
+    # Never repeat a mutation to resolve a stale filename.
     for attempt in range(4):
         validate_manifest(raw, max(now, api.clock()))
         observed = api.public(asset['name'], MAX_MANIFEST)
         validate_manifest(raw, max(now, api.clock()))
         if observed == raw:
-            return 'current'
+            return 'current', proof
         require(previous is not None and observed == previous, 'pointer_unexpected_bytes')
         if attempt < 3:
             api.sleep(2 ** (attempt + 1))
-    return 'previous'
+    require(proof == 'public_asset_id', 'rate_limited')
+    return 'previous', proof
 
 
 def publish(api, manifest, raw, files, now, source_sha):
@@ -604,7 +636,7 @@ def publish(api, manifest, raw, files, now, source_sha):
     validate_manifest(raw, max(now, api.clock()))
     if already_current and not draft:
         return {'snapshot_id': sid, 'status': 'unchanged', 'deleted_assets': deleted,
-                'pointer_verification': 'public_asset_id', 'pointer_url_status': 'not_checked'}
+                'pointer_verification': 'public_pointer_bytes', 'pointer_url_status': 'not_checked'}
     if draft:
         for name in POINTERS:
             old = assets.get(name)
@@ -636,7 +668,7 @@ def publish(api, manifest, raw, files, now, source_sha):
     if old:
         api.delete(old['id'])
     uploaded = api.upload(release['id'], target, raw)
-    url_status = confirm_pointer(api, uploaded, raw, pointers[target][1] if target in pointers else None, now)
+    url_status, proof = confirm_pointer(api, uploaded, raw, pointers[target][1] if target in pointers else None, now)
     final_assets = api.assets(release['id'])
     require({name: final_assets.get(name, {}).get('id') for name in POINTERS} ==
             {name: uploaded['id'] if name == target else latest_assets.get(name, {}).get('id') for name in POINTERS},
@@ -647,7 +679,7 @@ def publish(api, manifest, raw, files, now, source_sha):
     deleted += cleanup(api, final_assets, final_pointers, now, preserve=(sid,))
     validate_manifest(raw, max(now, api.clock()))
     return {'snapshot_id': sid, 'status': 'published', 'pointer': target, 'deleted_assets': deleted,
-            'pointer_asset_id': uploaded['id'], 'pointer_verification': 'public_asset_id',
+            'pointer_asset_id': uploaded['id'], 'pointer_verification': proof,
             'pointer_url_status': url_status}
 
 

@@ -1,10 +1,13 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
-function worker(fetcher) {
+function worker(fetcher=async()=>new Response('shell asset')) {
+  let time=Date.UTC(2026,0,1), skipCount=0;
+  const Clock=class extends Date { static now(){return time;} };
+  const advance=(callback,ms)=>setImmediate(()=>{time+=ms;callback();});
   const handlers={},stores=new Map();
   const caches={async open(name){if(!stores.has(name))stores.set(name,new Map());const s=stores.get(name);return {async match(request){return s.get(typeof request==='string'?request:request.url)?.clone();},async put(request,response){s.set(typeof request==='string'?request:request.url,response.clone());},async keys(){return [...s.keys()].map(key=>new Request(key));},async delete(request){return s.delete(typeof request==='string'?request:request.url);},async addAll(){}};},async keys(){return [...stores.keys()];},async delete(key){return stores.delete(key);}};
-  const context={URL,Response,Request,AbortSignal,caches,fetch:fetcher,self:{registration:{scope:'https://example.test/kamptrail/'},location:{origin:'https://example.test'},addEventListener:(event,handler)=>handlers[event]=handler,skipWaiting:async()=>{},clients:{claim:async()=>{}}}};
+  const context={URL,Response,Request,AbortSignal,Date:Clock,setTimeout:advance,caches,fetch:fetcher,self:{registration:{scope:'https://example.test/kamptrail/'},location:{origin:'https://example.test'},addEventListener:(event,handler)=>handlers[event]=handler,skipWaiting:async()=>{skipCount++;},clients:{claim:async()=>{}}}};
   vm.createContext(context);vm.runInContext(fs.readFileSync('service-worker.js','utf8'),context);
-  return {handlers,stores,caches};
+  return {handlers,stores,caches,now:()=>time,skipCount:()=>skipCount};
 }
 const good={type:'FeatureCollection',features:[]};
 
@@ -220,4 +223,86 @@ test('only versioned valid FCC tiles are cached and retained for offline use', a
   assert.deepEqual(Buffer.from(await (await request(tile)).arrayBuffer()),bytes);
   assert.equal(calls,3);
   assert.equal((await request(tile.replace('/4.png','/9.png'))).status,503);
+});
+
+function install(w) {
+  let finished;
+  w.handlers.install({waitUntil(promise){finished=promise;}});
+  return finished;
+}
+test('shell install limits concurrency, paces starts and honors shared Retry-After seconds and HTTP dates',async()=>{
+  for (const asDate of [false,true]) {
+    let active=0, peak=0, resumeAt=0, throttled=false;
+    const starts=[];
+    const w=worker(async request=>{
+      starts.push({url:request.url,time:w.now()});
+      active++;peak=Math.max(peak,active);
+      // Allow both worker slots to become occupied without a clock-based test delay.
+      await new Promise(done=>setImmediate(()=>setImmediate(done)));
+      active--;
+      if (!throttled) {
+        throttled=true;
+        resumeAt=asDate ? Math.ceil((w.now()+2500)/1000)*1000 : w.now()+3000;
+        return new Response('',{status:429,headers:{'Retry-After':asDate?new Date(resumeAt).toUTCString():'3'}});
+      }
+      return new Response('validated required file');
+    });
+    await install(w);
+    assert.equal(peak,2);
+    const first=starts[0];
+    const retry=starts.find((s,i)=>i>0 && s.url===first.url);
+    assert.ok(retry && retry.time>=resumeAt,'retry begins after the requested cooldown');
+    assert.ok(starts.slice(2).every(s=>s.time>=resumeAt),'other shell work respects the same cooldown');
+    for(let i=1;i<starts.length;i++) assert.ok(starts[i].time-starts[i-1].time>=150);
+    assert.equal(w.skipCount(),1);
+  }
+});
+test('failed essential fetches preserve the old shell and never expose a partial new shell',async()=>{
+  const prefix='kamptrail:https://example.test/kamptrail/:',oldKey=prefix+'previous';
+  for (const reply of [()=>new Response('',{status:404}),()=>new Response('',{status:429,headers:{'Retry-After':'90'}}),()=>new Response('',{status:429}),()=>{throw new Error('offline');}]) {
+    let failures=0,calls=0;
+    const w=worker(async request=>{
+      calls++;
+      if(request.url.endsWith('locale.js')) { failures++;return reply(); }
+      return new Response('required file');
+    });
+    const old=await w.caches.open(oldKey);
+    await old.put('https://example.test/kamptrail/index.html',new Response('saved shell'));
+    await assert.rejects(install(w));
+    assert.ok(calls<15,'other shell fetches stop when essential warming fails');
+    assert.ok(failures<=2,'at most one retry for throttling');
+    assert.equal(w.skipCount(),0);
+    assert.deepEqual((await w.caches.keys()).filter(k=>k!==prefix+'shell-cooldown'),[oldKey]);
+    assert.equal(await (await old.match('https://example.test/kamptrail/index.html')).text(),'saved shell');
+  }
+});
+
+test('a long Retry-After applies to a later installation attempt without a second request',async()=>{
+  let calls=0;
+  const w=worker(async()=>{calls++;return new Response('',{status:429,headers:{'Retry-After':'90'}});});
+  await assert.rejects(install(w),/HTTP 429/);
+  const before=calls;
+  await assert.rejects(install(w),/cooldown is still in effect/);
+  assert.equal(calls,before);
+  assert.equal(w.skipCount(),0);
+});
+
+test('a quota error during shell publication restores the prior contents',async()=>{
+  const w=worker(),version=fs.readFileSync('service-worker.js','utf8').match(/const VERSION = '([^']+)'/)[1];
+  const key='kamptrail:https://example.test/kamptrail/:'+version;
+  const previous=await w.caches.open(key), home='https://example.test/kamptrail/index.html';
+  await previous.put(home,new Response('previous complete home'));
+  const open=w.caches.open.bind(w.caches);
+  w.caches.open=async name=>{
+    const cache=await open(name),put=cache.put.bind(cache);
+    if(name===key)cache.put=async(req,resp)=>{
+      if(req.url.endsWith('/locale.js'))throw Error('quota exhausted');
+      return put(req,resp);
+    };
+    return cache;
+  };
+  await assert.rejects(install(w),/quota/);
+  assert.equal(w.skipCount(),0);
+  assert.deepEqual((await previous.keys()).map(req=>req.url),[home]);
+  assert.equal(await (await previous.match(home)).text(),'previous complete home');
 });

@@ -1,5 +1,11 @@
 # FCC carrier coverage — access checkpoint
 
+## Contiguous U.S. release
+
+The 2.50.0 map uses one dated archive per carrier and state for modeled outdoor 4G LTE. The lower-48 layer requires all 144 combinations. The preceding two-state data is retained for installed 2.49.0 clients and regional fallback. [Refresh and publication procedure](FCC_LOWER48_REFRESH.md)
+
+The November 20 notifications included separate runs for the national archive assembly, the Alaska test, the packed reader, and the map preview and saved-session checks. The original 152 national archives passed the [corrected assembly against the same files](https://github.com/prowebpromo/kamptrail/actions/runs/44741537700). The [Alaska assembly](https://github.com/prowebpromo/kamptrail/actions/runs/44732061125), [Alaska sample check](https://github.com/prowebpromo/kamptrail/actions/runs/44730419592), [packed-reader check](https://github.com/prowebpromo/kamptrail/actions/runs/44730800978), [two-state preview](https://github.com/prowebpromo/kamptrail/actions/runs/44732366098) and [production upgrade check](https://github.com/prowebpromo/kamptrail/actions/runs/44736088828) subsequently passed.
+
 ## November 20, 2026
 
 The Public Map Data API accepted the existing account credentials on `https://broadbandmap.fcc.gov/api/public/map/`. Two GitHub Actions checks returned nine availability dates. The earlier 403 came from `bdc.fcc.gov`.
@@ -13,7 +19,7 @@ The owner's [October 29 review of the FCC's License and Attribution notice](http
 
 The private worker in `scripts/fcc_download.py` supports `check`, `list` and `download` with the owner-only directory documented in [FCC credential entry](FCC_CREDENTIAL_ENTRY.md). Run `list` with `--as-of YYYY-MM-DD` first, then `download` with the same date and a `--file-id` from that catalog. The default catalog is `Provider`. Use `--category State` on both commands for state files. Each successful download writes a ZIP and a provenance record with its source URL, filing date, retrieval timestamp and SHA-256. The worker is excluded from the web release.
 
-## New York and Rhode Island mobile coverage
+## Initial New York and Rhode Island release
 
 KampTrail uses each carrier's raw mobile availability polygons and the 2025 Census TIGER/Line boundaries of the two published states. Outdoor stationary LTE includes FCC environment codes 0 and 1 with technology 400 and minimum speeds of 5 Mbps down and 1 Mbps up. The state boundary includes coastal waters. A gray pixel indicates no modeled LTE coverage at this map resolution inside the published area. Outside the published states, the result is unknown. Camper reports remain separate.
 
@@ -46,7 +52,7 @@ Desktop Chromium and mobile Chromium emulation each switched among all six carri
 
 Both browser profiles upgraded from the preceding release and reopened Narragansett Council, Boy Scouts of America, Cub World through Trips with its original ID, `osm:node:2140964052`. A prior check reached the correct public version but received HTTP 429 while explicitly requesting a service-worker refresh. The passing check used the returning visitor's normal navigation and confirmed the upgraded cache.
 
-This evidence completes the R1 functional contract. Geographic coverage is New York and Rhode Island. The measurements use browser mobile emulation.
+This evidence completed the R1 functional contract for the initial New York and Rhode Island release. The measurements use browser mobile emulation.
 
 ## Historical checkpoint, October 28, 2026
 
