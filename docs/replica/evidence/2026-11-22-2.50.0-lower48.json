@@ -1,0 +1,206 @@
+{
+  "release": "2.50.0",
+  "scope": "48 contiguous states, three carriers",
+  "preview": {
+    "result": "PASS",
+    "phase": "preview",
+    "verifiedAt": "2026-11-22T15:14:04Z",
+    "sourceCommit": "3b874a17a95d816f3eb5ba092752958d0adc4944",
+    "appVersion": "2.50.0",
+    "generation": "2026-06-30-5bfa9d13da25bd5be1f9",
+    "filing": "2026-06-30",
+    "evidence": {
+      "actionsRun": 45036717333,
+      "job": 137251994802,
+      "verificationCommit": "f1184737377856eac50ae447a9d1ac287284bb99",
+      "dataBuildRun": 45030147919,
+      "qualifiedArchiveArtifact": 14759185866,
+      "sourceEvidenceArtifact": 14759026844,
+      "acceptanceArtifact": 14760445582,
+      "acceptanceArtifactSHA256": "sha256:39953d4c57f32298b7b53b8a687288b96f0b30a55f69798d60e7b7ea3a36cd14",
+      "savedProfileBaselineRun": 45030008325
+    },
+    "archives": {
+      "contiguousStates": 48,
+      "carrierIds": [
+        "att",
+        "t-mobile",
+        "verizon"
+      ],
+      "completeFilesIndependentlyHashed": 144,
+      "completeBytes": 142403276,
+      "verified206Responses": 288,
+      "verifiedSourceWitnesses": {
+        "covered": 144,
+        "missing": 144,
+        "uncovered": 144
+      },
+      "priorQualification": {
+        "priorRun": 44741537700,
+        "priorArtifact": 14631196583,
+        "priorFiling": "2026-06-30",
+        "priorLower48Bytes": 142403276,
+        "bytesDelta": 0,
+        "changedArchives": []
+      }
+    },
+    "visitors": [
+      {
+        "profile": "desktop",
+        "emulatedMobile": false,
+        "upgradedFrom": "2.49.0",
+        "upgradedTo": "2.50.0",
+        "savedStopReopened": true,
+        "selectionMatrix": 144,
+        "pointsByType": {
+          "source-covered": 9,
+          "source-uncovered": 9,
+          "named-campsite": 5
+        },
+        "distinctArchivesRead": 21,
+        "verified206Responses": 448,
+        "partialBytes": 1487580,
+        "outOfScopeArchiveRequests": 0,
+        "areaNavigationPassed": true,
+        "previouslyVisitedOfflinePassed": true,
+        "unvisitedOfflineUnavailable": true,
+        "throttledPublicRequests": [],
+        "forecast": null
+      },
+      {
+        "profile": "mobile",
+        "emulatedMobile": true,
+        "upgradedFrom": "2.49.0",
+        "upgradedTo": "2.50.0",
+        "savedStopReopened": true,
+        "selectionMatrix": 144,
+        "pointsByType": {
+          "source-covered": 9,
+          "source-uncovered": 9,
+          "named-campsite": 5
+        },
+        "distinctArchivesRead": 20,
+        "verified206Responses": 273,
+        "partialBytes": 1044273,
+        "outOfScopeArchiveRequests": 0,
+        "areaNavigationPassed": true,
+        "previouslyVisitedOfflinePassed": true,
+        "unvisitedOfflineUnavailable": true,
+        "throttledPublicRequests": [],
+        "forecast": null
+      }
+    ],
+    "controlled": {
+      "archiveOutage": "passed in isolated browser under a forced condition",
+      "olderFiling": "passed in isolated browser under a forced condition",
+      "packedPointerOutage": "passed in isolated browser under a forced condition"
+    }
+  },
+  "production": {
+    "result": "PASS",
+    "phase": "production",
+    "verifiedAt": "2026-11-22T16:12:38Z",
+    "sourceCommit": "44643b2ce90a51e59e02d366a592a652feef9737",
+    "appVersion": "2.50.0",
+    "generation": "2026-06-30-5bfa9d13da25bd5be1f9",
+    "filing": "2026-06-30",
+    "evidence": {
+      "actionsRun": 45041590982,
+      "job": 137267021653,
+      "verificationCommit": "e48a8ffafb7d59c16958d7ce9d93ac566765e629",
+      "dataBuildRun": 45030147919,
+      "qualifiedArchiveArtifact": 14759185866,
+      "sourceEvidenceArtifact": 14759026844,
+      "acceptanceArtifact": 14761374439,
+      "acceptanceArtifactSHA256": "sha256:9cb6a6bff78a11e5591e5deba0fdc14f961a8e1f7e0866a913bd667fb3271778",
+      "savedProfileBaselineRun": 45030008325
+    },
+    "archives": {
+      "contiguousStates": 48,
+      "carrierIds": [
+        "att",
+        "t-mobile",
+        "verizon"
+      ],
+      "completeFilesIndependentlyHashed": 144,
+      "completeBytes": 142403276,
+      "verified206Responses": 288,
+      "verifiedSourceWitnesses": {
+        "covered": 144,
+        "missing": 144,
+        "uncovered": 144
+      },
+      "priorQualification": {
+        "priorRun": 44741537700,
+        "priorArtifact": 14631196583,
+        "priorFiling": "2026-06-30",
+        "priorLower48Bytes": 142403276,
+        "bytesDelta": 0,
+        "changedArchives": []
+      },
+      "assetHeaders": [
+        {
+          "cacheControl": "public, max-age=31536000, immutable, no-transform",
+          "contentType": "application/vnd.pmtiles"
+        }
+      ]
+    },
+    "visitors": [
+      {
+        "profile": "desktop",
+        "emulatedMobile": false,
+        "upgradedFrom": "2.49.0",
+        "upgradedTo": "2.50.0",
+        "savedStopReopened": true,
+        "selectionMatrix": 144,
+        "pointsByType": {
+          "source-covered": 9,
+          "source-uncovered": 9,
+          "named-campsite": 5
+        },
+        "distinctArchivesRead": 23,
+        "verified206Responses": 461,
+        "partialBytes": 1587009,
+        "outOfScopeArchiveRequests": 0,
+        "areaNavigationPassed": true,
+        "previouslyVisitedOfflinePassed": true,
+        "unvisitedOfflineUnavailable": true,
+        "throttledPublicRequests": [],
+        "forecast": {
+          "result": "current samples visible",
+          "indexStatus": 200,
+          "serverNow": "2026-11-22T16:10:13Z",
+          "snapshot": "5ea4c35c491f3caed33ff181",
+          "expiresAt": "2026-11-22T16:53:54Z"
+        }
+      },
+      {
+        "profile": "mobile",
+        "emulatedMobile": true,
+        "upgradedFrom": "2.49.0",
+        "upgradedTo": "2.50.0",
+        "savedStopReopened": true,
+        "selectionMatrix": 144,
+        "pointsByType": {
+          "source-covered": 9,
+          "source-uncovered": 9,
+          "named-campsite": 5
+        },
+        "distinctArchivesRead": 21,
+        "verified206Responses": 253,
+        "partialBytes": 1015603,
+        "outOfScopeArchiveRequests": 0,
+        "areaNavigationPassed": true,
+        "previouslyVisitedOfflinePassed": true,
+        "unvisitedOfflineUnavailable": true,
+        "throttledPublicRequests": [],
+        "forecast": null
+      }
+    ],
+    "controlled": {
+      "archiveOutage": "passed in isolated browser under a forced condition",
+      "olderFiling": "passed in isolated browser under a forced condition",
+      "packedPointerOutage": "passed in isolated browser under a forced condition"
+    }
+  }
+}
