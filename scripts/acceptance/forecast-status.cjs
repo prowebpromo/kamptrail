@@ -15,6 +15,15 @@ const {chromium} = require('playwright');
     await new Promise(resolve=>setTimeout(resolve,(wait+2)*1000));
   }
   console.log('READER',JSON.stringify({status:indexResponse.status,ok:index.ok,error:index.error,generated:index.manifest?.generated_at,expires:index.manifest?.expires_at,serverNow:index.server_now,snapshot:index.manifest?.snapshot_id}));
+  assert.equal(indexResponse.status, 200);
+  assert.equal(index.ok, true);
+  assert.equal(index.manifest.snapshot_id, expectedSnapshot);
+  const ny = await fetch('https://kamptrail.com/api/forecast.php?kind=state&state=NY&snapshot='+expectedSnapshot);
+  const bytes=Buffer.from(await ny.arrayBuffer());
+  const hash=require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+  assert.equal(ny.status,200);
+  assert.equal(hash,index.manifest.states.NY.json_sha256);
+  console.log('STATE',JSON.stringify({state:'NY',records:index.manifest.states.NY.count,bytes:bytes.length,sha256:hash}));
   const browser = await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
   try {
     const page = await browser.newPage();
@@ -31,12 +40,41 @@ const {chromium} = require('playwright');
       }
       seen.push(summary);
     });
-    await page.goto('https://kamptrail.com/#explore',{waitUntil:'domcontentloaded',timeout:90000});
-    await page.waitForFunction(()=>typeof window.KampTrailForecast?.ensureStates==='function');
-    const visitor=await page.evaluate(async()=>{
-      await KampTrailForecast.ensureStates(['NY']);
-      return {message:KampTrailForecast.statusText(),...KampTrailForecast.status()};
+    let waitSeconds=65;
+    const reported=new Set();
+    page.on('response', resp=>{
+      const u=new URL(resp.url());
+      if(u.hostname!=='kamptrail.com' || resp.status()<400 || reported.has(u.pathname)) return;
+      reported.add(u.pathname);
+      if(reported.size<=12) console.log('HTTP',resp.status(),u.pathname,resp.headers()['retry-after']||'');
+      if(resp.status()===429){
+        const raw=Number(resp.headers()['retry-after']||60);
+        if(Number.isFinite(raw)&&raw>0) waitSeconds=Math.max(waitSeconds,raw);
+      }
     });
+    await page.goto('https://kamptrail.com/',{waitUntil:'domcontentloaded',timeout:90000});
+    const enter=page.getByRole('link',{name:'Explore the map'}).first();
+    await enter.waitFor({timeout:90000});
+    await enter.click();
+    const ready=()=>page.waitForFunction(()=>typeof window.KampTrailForecast?.ensureStates==='function',null,{timeout:60000});
+    try{await ready();}catch(err){
+      const retry=page.getByRole('button',{name:'Retry map',exact:true});
+      if(!await retry.isVisible() || waitSeconds>300) throw err;
+      console.log('Retrying through the visitor action after',waitSeconds,'seconds.');
+      await new Promise(resolve=>setTimeout(resolve,waitSeconds*1000));
+      await retry.click();
+      await ready();
+    }
+    const loadForecast=(force=false)=>page.evaluate(async force=>{
+      await KampTrailForecast.ensureStates(['NY'],{force});
+      return {message:KampTrailForecast.statusText(),...KampTrailForecast.status()};
+    },force);
+    let visitor=await loadForecast();
+    if((!visitor.ready || !visitor.states.includes('NY')) && waitSeconds<=300){
+      console.log('Initial forecast status',visitor.message);
+      await new Promise(resolve=>setTimeout(resolve,waitSeconds*1000));
+      visitor=await loadForecast(true);
+    }
     console.log('VISITOR',JSON.stringify(visitor));
     console.log('PUBLIC_READER',JSON.stringify(seen));
     assert.equal(indexResponse.status, 200);
