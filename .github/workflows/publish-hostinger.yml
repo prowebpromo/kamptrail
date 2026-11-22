@@ -9,6 +9,7 @@ on:
   workflow_run:
     workflows:
       - Refresh FCC mobile coverage
+      - Refresh lower 48 FCC mobile coverage
       - Refresh campsite data
       - Refresh all states (manual)
       - Refresh selected OSM states (manual)
@@ -20,15 +21,47 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: kamptrail-hostinger-release
   cancel-in-progress: false
 
 jobs:
-  release:
+  gate:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    outputs:
+      deploy: ${{ steps.gate.outputs.deploy }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: github.event_name == 'push'
+        with:
+          fetch-depth: 2
+          sparse-checkout: .github/fcc-conus48-adoption.json
+          sparse-checkout-cone-mode: false
+      - name: Let a newly requested FCC adoption qualify before deploying its app
+        id: gate
+        env:
+          PREVIOUS_SHA: ${{ github.event.before }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = push ]; then
+            if ! git cat-file -e "$PREVIOUS_SHA^{commit}" 2>/dev/null; then
+              git fetch --no-tags --depth=1 origin "$PREVIOUS_SHA"
+            fi
+            changed=$(git diff --name-only "$PREVIOUS_SHA" "$GITHUB_SHA" -- .github/fcc-conus48-adoption.json)
+            if [ -n "$changed" ]; then
+              echo 'deploy=false' >> "$GITHUB_OUTPUT"
+              echo 'The verified FCC adoption workflow will trigger this deployment.' >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+          fi
+          echo 'deploy=true' >> "$GITHUB_OUTPUT"
+  release:
+    needs: gate
+    if: needs.gate.outputs.deploy == 'true'
+    permissions:
+      contents: write
     runs-on: ubuntu-24.04
     env:
       CHROMIUM_PATH: /usr/bin/google-chrome
@@ -88,7 +121,7 @@ jobs:
         env:
           KAMPTRAIL_PUBLIC_URL: https://kamptrail.com/
       - name: Package the current verified mobile coverage generation
-        run: python3 scripts/publish_fcc_tiles.py package dist/kamptrail/data/fcc-coverage
+        run: python3 scripts/publish_fcc_tiles.py package dist/kamptrail/data/fcc-coverage --require-contiguous
       - name: Publish tested static files with release history
         run: node scripts/publish-hostinger.js
       - uses: actions/upload-artifact@v7.0.2

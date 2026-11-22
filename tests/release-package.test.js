@@ -66,6 +66,7 @@ test('built release contains agency index dependencies and supports a custom-dom
   const permissionDir=path.join(out,'api','_data','permissions');
   assert.equal(fs.readFileSync(path.join(permissionDir,'.htaccess'),'utf8'),'Require all denied\n','Generated identity data must be denied over HTTP');
   assert.equal(fs.readdirSync(permissionDir).filter(name=>/^[a-f0-9]{2}\.json$/.test(name)).length,256,'Every protected identity bucket is packaged');
+  assert.ok(fs.statSync(path.join(out,'vendor/fcc-pmtiles/reader.js')).size>0,'Packed coverage reader is served from this release');
   assert.ok(fs.existsSync(path.join(out,'permissions.js')));
   assert.ok(fs.existsSync(path.join(out,'listing-history.js')));
   assert.deepEqual(fs.readFileSync(path.join(out,'data/campsites/withdrawn.json')),fs.readFileSync(path.join(root,'data/campsites/withdrawn.json')),'Packaged historical identities retain the exact reviewed bytes');

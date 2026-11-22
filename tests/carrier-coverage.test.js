@@ -48,3 +48,32 @@ test('a missing or invalid manifest withdraws the control; only a validated copy
   assert.equal(await C.loadManifest(url,storage,false),null);
   assert.equal(await C.loadManifest(url,storage,true,async()=>Response.json({...sample,schema:99})),null);
 });
+
+test('a separate packed pointer takes precedence, keeps its date offline, and is withdrawn on rollback', async () => {
+  const rows = new Map();
+  const storage = {getItem:k=>rows.get(k),setItem:(k,v)=>rows.set(k,v),removeItem:k=>rows.delete(k)};
+  const base = new URL('https://example.invalid/data/fcc-coverage/');
+  const regional = {...m,asOf:'2023-06-30',retrievedAt:'2024-01-01'};
+  const packed = {...regional,schema:2,release:'2023-06-30-national',carriers:[{
+    id:'att',regions:[{...region,archive:{format:'pmtiles-v3',bytes:65536,sha256:'a'.repeat(64)}}]
+  }]};
+  let published = packed;
+  const urls=[];
+  const request = async url => {
+    urls.push(new URL(url).pathname.split('/').pop());
+    if (url.endsWith('/manifest.json')) return Response.json(regional);
+    if (published === null) return new Response('',{status:404});
+    return Response.json(published);
+  };
+  assert.deepEqual(await C.preferredManifest(base,storage,true,request), {value:packed,fallback:false});
+  assert.deepEqual(urls,['manifest-v2.json']);
+  assert.deepEqual(await C.preferredManifest(base,storage,false,request), {value:packed,fallback:true});
+  published = null;
+  assert.deepEqual(await C.preferredManifest(base,storage,true,request), {value:regional,fallback:false});
+  assert.deepEqual(await C.preferredManifest(base,storage,false,request), {value:regional,fallback:true});
+  published = {...packed,carriers:regional.carriers};
+  assert.equal(C.validManifest(published),false);
+  assert.deepEqual(await C.preferredManifest(base,storage,true,request), {value:regional,fallback:false});
+  published = regional; // A misconfigured server must not accept schema 1 at the packed pointer.
+  assert.deepEqual(await C.preferredManifest(base,storage,true,request), {value:regional,fallback:false});
+});
