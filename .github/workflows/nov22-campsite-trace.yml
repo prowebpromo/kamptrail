@@ -9,53 +9,45 @@ permissions:
 jobs:
   trace:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-          ref: a016d67cb32db8dbf5cd78bc3c1e782ffa00cdd8
+          ref: 1e195c9ea930880d51f5216a6b9a333f8e13328e
       - uses: actions/download-artifact@v8.0.2
         with:
           name: unverified-refresh-45012745211-1
           run-id: 45012745211
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/candidate
-      - name: Trace original records and refresh identities
+      - name: Exercise current and prior exact Geofabrik paths
+        run: python -m unittest scripts/tests/test_services_import.py scripts/tests/test_national_services.py scripts/tests/test_services_recovery.py
+      - name: Replay the held source bytes; rebuild snapshot and preserve all previously published identities 
         run: |
-          python - <<'PY'
-          import json, os
-          from pathlib import Path
-          here=Path('.')
-          cand=Path(os.environ['RUNNER_TEMP'])/'candidate'
-          def load(path): return json.loads(path.read_bytes())
-          def gid(p):
-              if p.get('facility_id') is not None: return 'ridb:'+str(p['facility_id'])
-              if p.get('osm_id') is not None and p.get('osm_type'): return 'osm:'+p['osm_type']+':'+str(p['osm_id'])
-              return p.get('id')
-          old=load(here/'data/campsites/search-index.json')['sites']
-          new=load(cand/'data/campsites/search-index.json')['sites']
-          current={s['id'] for s in new}
-          lost={s['id']:s for s in old if s['id'] not in current}
-          print('OLD, NEW, LOST',len(old),len(new),len(lost))
-          print('LOST',[(s['id'],s['name'],s['states'],s['legacy_ids']) for s in list(lost.values())[:100]])
-          ids=set(lost)
-          for p in new:
-              matched=ids.intersection(p.get('legacy_ids',[]))
-              if matched: print('NOW ALIAS',p['id'],p['name'],list(matched))
-          for label,root in [('OLD',here),('NEW',cand)]:
-              for folder,patterns in [('data/opencampingmap',['[A-Z][A-Z].geojson']),('data/campsites',['[A-Z][A-Z].geojson','[A-Z][A-Z](1).geojson','[A-Z][A-Z]_merged.geojson']),('data/campsites/agency',['[A-Z][A-Z].geojson'])]:
-                  for pat in patterns:
-                      for f in (root/folder).glob(pat):
-                          if pat=='[A-Z][A-Z](1).geojson' and f.with_name(f.name.replace('(1)','')).exists(): continue
-                          for row in load(f)['features']:
-                              p=row['properties']; own=gid(p)
-                              matches=ids.intersection([own,*p.get('source_ids',[]),*p.get('legacy_ids',[])])
-                              if matches:
-                                  print(label,str(f.relative_to(root)),list(matches),own,{k:p.get(k) for k in ['id','name','tourism','tourism_tag','tags','primary_source','type','source_ids','legacy_ids'] if k in p},str(row.get('geometry'))[:160])
-          PY
-      - name: Observe exact published Geofabrik redirect paths
-        run: |
-          for state in california alabama massachusetts; do
-            curl --silent --show-error --max-time 20 --head "https://download.geofabrik.de/north-america/us/${state}-latest.osm.pbf" | grep -Ei '^(HTTP/|Location:)' || true
+          set -euo pipefail
+          cp data/campsites/search-index.json "$RUNNER_TEMP/old-index.json"
+          for dir in campsites opencampingmap services sources rest-areas; do
+            rsync -a --delete "$RUNNER_TEMP/candidate/data/$dir/" "data/$dir/"
           done
+          cp "$RUNNER_TEMP/candidate/data/health.json" data/health.json
+          cp "$RUNNER_TEMP/old-index.json" data/campsites/search-index.json
+          for state in CA CO; do
+            node scripts/merge_campsite_data.js --state="$state" > "$RUNNER_TEMP/merge-$state.log"
+          done
+          node scripts/build-search-index.js
+          node - <<'JS'
+          const fs=require('fs'),q=require('./data-quality'),h=require('./scripts/build-listing-history');
+          const prev=require(process.env.RUNNER_TEMP+'/old-index.json'),next=require('./data/campsites/search-index.json');
+          const map=new Map(next.sites.flatMap(f=>[f.id,...f.legacy_ids].map(id=>[id,f.id])));
+          const outdated=new Set(prev.sites.filter(f=>!next.sites.some(n=>n.id===f.id)).map(f=>f.id));
+          for(const file of fs.readdirSync('data/opencampingmap').filter(f=>/^[A-Z]{2}\.geojson$/.test(f)).map(f=>'data/opencampingmap/'+f).concat(fs.readdirSync('data/campsites/agency').filter(f=>/^[A-Z]{2}\.geojson$/.test(f)).map(f=>'data/campsites/agency/'+f))) {
+            for(const f of JSON.parse(fs.readFileSync(file)).features){const id=h.recordId(f);if(outdated.has(id)){
+              const n=q.normalizeFeature(f,{state:file.split('/').pop().slice(0,2)});console.log('RESIDUAL',file,id,map.get(id),f.properties.name, n?.properties?.camping_classification,n?.properties?.id,n?.properties?.exclusion_reason);
+            }}
+          }
+          JS
+          node scripts/build-listing-history.js --base-ref HEAD --previous-index "$RUNNER_TEMP/old-index.json"
+          node scripts/build-search-index.js
+          git show HEAD:data/campsites/withdrawn.json > "$RUNNER_TEMP/old-withdrawn.json"
+          node scripts/check-id-continuity.js "$RUNNER_TEMP/old-index.json" data/campsites/search-index.json data/campsites/withdrawn.json "$RUNNER_TEMP/old-withdrawn.json"
