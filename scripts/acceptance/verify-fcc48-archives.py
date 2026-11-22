@@ -54,7 +54,7 @@ def read_json(url):
     return json.loads(content)
 
 
-def read_archive(url, size, delay):
+def read_archive(url, size, delay, policies=None):
     chunks = []
     for start, end in [(0, 126), (127, size - 1)]:
         time.sleep(delay)
@@ -63,6 +63,8 @@ def read_archive(url, size, delay):
         assert headers["Content-Range"] == f"bytes {start}-{end}/{size}", (url, headers["Content-Range"])
         assert int(headers["Content-Length"]) == len(data) == end - start + 1, url
         assert headers.get("Content-Encoding", "identity").lower() == "identity", url
+        if policies is not None:
+            policies.append({"cacheControl": headers.get("Cache-Control", ""), "contentType": headers.get_content_type()})
         chunks.append(data)
     assert chunks[0][:8] == b"PMTiles\x03", url
     return b"".join(chunks)
@@ -111,7 +113,11 @@ def verify(args):
     declared = json.loads((args.evidence / "manifest.json").read_bytes())
     release = read_json(base + "release.json?acceptance=" + str(time.time_ns()))
     assert release["source_commit"] == args.commit, release
-    manifest = read_json(base + PREFIX + "manifest-v2.json")
+    manifest_status, pointer_headers, manifest_body = get(base + PREFIX + "manifest-v2.json")
+    assert manifest_status == 200
+    manifest = json.loads(manifest_body)
+    if args.mode == "production":
+        assert "no-cache" in pointer_headers.get("Cache-Control", "").lower(), "Packed manifest is expected to revalidate"
     assert manifest == declared and manifest["release"] == qualification["release"], "Publication differs from qualified manifest"
     assert qualification["scope"] == "CONUS48" and not qualification["explicitlyMissing"]
     assert manifest["schema"] == 2 and qualification["archives"] == 144
@@ -133,7 +139,14 @@ def verify(args):
             assert (size, row["pmtilesSHA256"]) == (archive["bytes"], archive["sha256"])
             assert (region["source"]["sha256"], str(region["source"]["fileId"])) == (row["sourceSHA256"], str(row["fileId"]))
             url = base + PREFIX + manifest["release"] + "/" + carrier + "/" + state + ".pmtiles?sha256=" + archive["sha256"]
-            data = read_archive(url, size, args.pause)
+            policies = []
+            data = read_archive(url, size, args.pause, policies)
+            if args.mode == "production":
+                for policy in policies:
+                    directives = set(v.strip().lower() for v in policy["cacheControl"].split(","))
+                    assert {"immutable", "no-transform"} <= directives, (url, policy)
+                    assert policy["contentType"] == "application/vnd.pmtiles", (url, policy)
+
             assert hash_bytes(data) == archive["sha256"], "Archive hash mismatch: " + url
             reader = Reader(lambda offset, length, data=data: data[offset:offset+length])
             readers[carrier, state] = reader
@@ -144,7 +157,7 @@ def verify(args):
                 verified.append(kind)
             assert verified, (carrier, state)
             checks.append({"state": state, "carrier": carrier, "bytes": size, "archiveSHA256": archive["sha256"],
-                           "sourceFileId": row["fileId"], "sourceWitnesses": verified, "ranges": 2})
+                           "sourceFileId": row["fileId"], "sourceWitnesses": verified, "ranges": 2, "delivery": policies[0]})
         print(f"Verified public ranges, bytes and source witnesses for all 48 {carrier} archives.", flush=True)
 
     browser_samples = []
@@ -198,3 +211,6 @@ if __name__ == "__main__":
     result = verify(args)
     args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(f"Verified {result['archiveCount']} archives and {result['archiveBytes']:,} bytes via {result['rangeResponses']} HTTP range responses.")
+    for entry in result["archiveChecks"]:
+        print("ARCHIVE-CHECK " + json.dumps(entry, separators=(",", ":")))
+    print("ARCHIVE-REPORT " + json.dumps({k:v for k,v in result.items() if k!="archiveChecks"}, separators=(",", ":")))

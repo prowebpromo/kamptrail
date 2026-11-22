@@ -90,11 +90,9 @@ jobs:
             package_dir="$PWD/candidate/dist/kamptrail"
             (cd candidate && npm ci --no-audit --no-fund && npm run build)
             cmp evidence/manifest.json qualified/candidate/manifest.json
-            # The fixture starts with the actual prior distribution and its legacy regional layer.
-            rsync -a previous/data/fcc-coverage/ "$package_dir/data/fcc-coverage/"
-            generation=$(jq -er .release evidence/manifest.json)
-            cp -a "qualified/candidate/$generation" "$package_dir/data/fcc-coverage/"
-            cp qualified/candidate/manifest.json "$package_dir/data/fcc-coverage/manifest-v2.json"
+            cmp evidence/qualification.json qualified/qualification.json
+            python candidate/scripts/publish_fcc_tiles.py preview-packed qualified/candidate --qualification evidence/qualification.json --destination "$package_dir/data/fcc-coverage"
+            cmp evidence/manifest.json "$package_dir/data/fcc-coverage/manifest-v2.json"
             jq -n --arg c "$EXPECTED_SHA" '{source_commit:$c}' > "$package_dir/release.json"
             served="$RUNNER_TEMP/fcc-preview"; mkdir "$served"
             rsync -a --exclude=.git previous/ "$served/"

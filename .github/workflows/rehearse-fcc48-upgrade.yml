@@ -1,0 +1,62 @@
+name: Rehearse visitor upgrade on the real Rhode Island archive
+on:
+  push:
+    branches: [verify/fcc-lower48-visitor]
+    paths: ['.github/workflows/rehearse-fcc48-upgrade.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  rehearse:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v7.0.1
+        with: {ref: '26a2db23172c7bca043971b3d29c28906732ede7', path: previous, persist-credentials: false}
+      - uses: actions/checkout@v7.0.1
+        with: {ref: '8c3294afa6975f3e30b8d9f9ab02817d4e93512f', path: candidate, persist-credentials: false}
+      - uses: actions/setup-node@v7.1.0
+        with: {node-version: '22', cache: npm}
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14631196583'
+          run-id: '44741537700'
+          github-token: ${{ github.token }}
+          path: previous-evidence
+          merge-multiple: true
+          digest-mismatch: error
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14624603962'
+          run-id: '44728742813'
+          github-token: ${{ github.token }}
+          path: region
+          merge-multiple: true
+          digest-mismatch: error
+      - name: Check the integrated reader with former saved sessions and independently measured callbacks
+        env:
+          BASE: http://127.0.0.1:8765
+          CHROMIUM_PATH: /usr/bin/google-chrome
+          QA_MODE: preview
+        run: |
+          set -euo pipefail
+          npm ci --no-fund --no-audit
+          (cd candidate && npm ci --no-fund --no-audit && npm run build)
+          export QA_PROFILES="$PWD/fcc-profiles"
+          served="$RUNNER_TEMP/fcc-rehearsal"; mkdir "$served"
+          rsync -a --exclude=.git previous/ "$served/"
+          docker run -d --name fccqa -p 127.0.0.1:8765:80 -v "$served:/usr/share/nginx/html:ro" nginx:stable-alpine@sha256:caf4e1e032a20f9c3c5e28fc7f25ffd768ad8677b4975c54193075997b3a97e3 >/dev/null
+          trap 'docker stop fccqa >/dev/null' EXIT
+          curl --retry 8 --retry-all-errors --retry-delay 1 -fsS "$BASE/release.json" >/dev/null
+          EXPECTED_SHA=b7f7cc41c26c82ec6b3245ccd9b933d1c97f3d69 node scripts/acceptance/capture-fcc48-baseline.js
+          pkg="$PWD/candidate/dist/kamptrail"
+          rsync -a previous/data/fcc-coverage/ "$pkg/data/fcc-coverage/"
+          release=$(jq -er .release region/manifest.json)
+          cp -a "region/$release" "$pkg/data/fcc-coverage/"
+          cp region/manifest.json "$pkg/data/fcc-coverage/manifest-v2.json"
+          printf '{"source_commit":"%s"}\n' "$(git -C candidate rev-parse HEAD)" > "$pkg/release.json"
+          rsync -a --delete --checksum "$pkg/" "$served/"
+          jq '{archiveChecks: [.shards[]|select(.region=="RI")|{state:.region, carrier, witnesses:.spatial.witnesses}]}' previous-evidence/qualification.json > region-checks.json
+          node scripts/acceptance/rehearse-fcc48-upgrade.js region-checks.json

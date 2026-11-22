@@ -215,7 +215,7 @@ async function controlledFailures() {
   } finally {await browser.close();}
   return result;
 }
-(async()=>{
+async function main(){
   assert.equal(proof.result,'PASS');assert.equal(proof.archiveCount,144);
   assert.equal(previous.base.replace(/\/$/,''),origin);
   const runs=[];
@@ -232,4 +232,6 @@ async function controlledFailures() {
     runs,controlled};
   fs.writeFileSync(process.argv[3],JSON.stringify(evidence,null,2)+'\n');
   console.log(JSON.stringify(evidence));
-})().catch(error=>{console.error(error);process.exitCode=1;});
+}
+if(require.main===module) main().catch(error=>{console.error(error);process.exitCode=1;});
+module.exports={move,renderedStatus,onlineUpgrade,select,saved,observe,launch,expected};
