@@ -1,0 +1,35 @@
+name: Refresh forecasts for the 33,605-campsite catalogue
+on:
+  push:
+    branches: [recover/forecast-catalogue-33605-20261122]
+    paths: ['.github/workflows/one-forecast-recovery.yml']
+permissions: {}
+jobs:
+  dispatch:
+    if: github.repository == 'prowebpromo/kamptrail' && github.event_name == 'push' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Start the existing forecast publisher once on the reviewed commit
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_MAIN: 0711b3027fe597250766c5e2691b71898679fdc6
+        run: |
+          set -euo pipefail
+          origin="/repos/prowebpromo/kamptrail"
+          test "$(gh api "$origin/commits/$GITHUB_SHA" --jq '.parents | length')" = 1
+          test "$(gh api "$origin/commits/$GITHUB_SHA" --jq '.parents[0].sha')" = "$EXPECTED_MAIN"
+          test "$(gh api "$origin/git/ref/heads/main" --jq '.object.sha')" = "$EXPECTED_MAIN"
+          workflow="$origin/actions/workflows/publish-forecasts.yml"
+          test "$(gh api "$origin/contents/data/campsites/coordinate-index.json?ref=$EXPECTED_MAIN" --jq .content | base64 -d | jq -r .sha256)" = df5e63b0cc11e267692f2efb9d5ee57583e6e9f046b6184c3de2523d86ff7141
+          existing="$(gh api --method GET "$workflow/runs" -f head_sha="$EXPECTED_MAIN" -f branch=main -f per_page=20 --jq '[.workflow_runs[] | select((.event=="schedule" or .event=="workflow_dispatch") and (.status!="completed" or .conclusion=="success"))] | length')"
+          if [ "$existing" != 0 ]; then
+            echo "Forecast recovery already queued or completed on $EXPECTED_MAIN"
+            exit 0
+          fi
+          gh api --method POST "$workflow/dispatches" -f ref=main
+          echo "Requested a fresh forecast package from the existing main-branch publisher."
