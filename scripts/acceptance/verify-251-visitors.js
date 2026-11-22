@@ -132,5 +132,20 @@ async function check(browser,mobile,label){
     console.log(JSON.stringify(receipt,null,2));await fs.writeFile(path.join(out,label+'.json'),JSON.stringify(receipt,null,2));
   } catch(e){console.error(label,'URL',p.url(),'HTTP',JSON.stringify(issues.slice(-14)), 'BODY', (await p.locator('body').innerText().catch(()=>'' )).slice(-1200));await shot('failure').catch(()=>{});throw e;}finally{await c.close();}
 }
-(async()=>{await fs.mkdir(out,{recursive:true});const browser=await chromium.launch(args);
+async function waitForPublishedRelease(){
+  const until=Date.now()+10*60*1000;
+  while(Date.now()<until){
+    let wait=45_000;
+    try{
+      const response=await fetch(target+'/release.json?verify='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
+      if(response.ok && (await response.json()).source_commit===expected.sha)return;
+      const retry=response.headers.get('retry-after');
+      if(retry){const deadline=/^\d+$/.test(retry)?Date.now()+Number(retry)*1000:Date.parse(retry);if(Number.isFinite(deadline))wait=Math.max(wait,deadline-Date.now());}
+    }catch(e){console.log('Release pointer check',e.message);}
+    if(Date.now()+wait>=until)break;
+    await sleep(wait);
+  }
+  throw Error('Public release pointer did not reach '+expected.sha+' in the propagation window.');
+}
+(async()=>{await fs.mkdir(out,{recursive:true});if(mode==='production')await waitForPublishedRelease();const browser=await chromium.launch(args);
 try{await check(browser,false,'desktop');if(mode==='production')await sleep(65000);await check(browser,true,'mobile');}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});
