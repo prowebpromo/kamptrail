@@ -44,6 +44,11 @@ function buildHistory({previousIndex,currentIndex,priorHistory={version:1,listin
   if(!Array.isArray(previousIndex?.sites)||!Array.isArray(currentIndex?.sites))throw Error('Invalid history build index');
   const result={version:1,listings:structuredClone(priorHistory.listings)},reserved=History.historyMap(priorHistory);
   const currentCanonicals=new Set(currentIndex.sites.map(row=>row.id));
+  const redirectedIds = new Map();
+  for (const [id, host] of Object.entries(previousIndex.redirects || {})) {
+    if (!redirectedIds.has(host)) redirectedIds.set(host, []);
+    redirectedIds.get(host).push(id);
+  }
   for(const site of previousIndex.sites){
     if(reserved.has(site.id)||currentCanonicals.has(site.id))continue;
     const source=sourceOf(site.id),old=ownRecords(previousRecords,site.id),now=ownRecords(currentRecords,site.id);
@@ -60,7 +65,7 @@ function buildHistory({previousIndex,currentIndex,priorHistory={version:1,listin
       const own=evidence(ownRecords(previousRecords,id),id);
       provenance.source_dates.push(...own.source_dates);provenance.source_urls.push(...own.source_urls);
     }
-    result.listings.push({id:site.id,legacy_ids:[...(site.legacy_ids||[])],name:site.name,lat:site.lat,lng:site.lng,
+    result.listings.push({id:site.id,legacy_ids:[...(site.legacy_ids||[]),...(redirectedIds.get(site.id)||[])],name:site.name,lat:site.lat,lng:site.lng,
       states:[...site.states],...provenance,reason:now.length?'no_longer_in_current_catalogue':'source_absent_latest_feed',archived_at:archivedAt});
   }
   // Never alter/reactivate prior historical rows, even when their source reappears.

@@ -61,3 +61,32 @@ test.describe('offline historical links',()=>{
   await context.setOffline(true);await page.reload();await expect(page.locator('.kt-historical-listing')).toContainText(record.name);await expect(page.locator('.kt-historical-listing')).toContainText('2026-10-01');
  });
 });
+
+test('a saved redirect opens active details when the host file is unavailable, with historical IDs reserved',async({page})=>{
+  const prior='retired-source-way', host='ridb:123';
+  const stop={...saved,id:prior,feature:{...feature,properties:{id:prior,name:'Earlier saved name'}}};
+  await fixture(page);
+  await page.route('**/data/campsites/identity-hosts.json',route=>route.abort());
+  await page.route('**/data/campsites/search-index.json',route=>route.fulfill({json:{
+    ...JSON.parse(searchRaw),redirects:{[prior]:host,'old-saved-id':host}
+  }}));
+  await page.addInitScript(stop=>localStorage.setItem('kt_trip',JSON.stringify([stop])),stop);
+  await page.goto('/?source=pwa#site='+prior);
+  const active=page.locator('.leaflet-popup-content [data-kt-action=trip][data-siteid="ridb:123"]');
+  await expect(active).toBeVisible();
+  expect(await page.evaluate(()=>location.hash)).toBe('#site='+prior);
+  expect(await page.evaluate(async ({prior})=>{
+    const api=KampTrailData, site=api.getCampsiteById(prior);
+    return {hosts:api.getIdentityStatus().hosts,current:site?.properties.id,
+      sourceIds:[...(site?.properties.legacy_ids||[]),...(site?.properties.source_ids||[])].includes(prior),
+      archived:(await api.resolveListing('old-saved-id')).kind};
+  },{prior})).toEqual({hosts:'fallback',current:host,sourceIds:false,archived:'historical'});
+  await page.locator('.leaflet-popup-close-button').click();
+  await expect(active).toHaveCount(0);
+  await page.locator('#trip').click();
+  const drawer=page.locator('#kt-trip-list');
+  await expect(drawer).toContainText('Current Campground');
+  await drawer.getByRole('button',{name:'View on map',exact:true}).click();
+  await expect(active).toBeVisible();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('kt_trip')))).toEqual([stop]);
+});

@@ -15,6 +15,8 @@ import time
 import re
 import html
 from data_integrity import valid_coordinates, save_geojson
+from build_ridb_sites import catalogue_facilities
+from fetch_ridb_facility_evidence import make_get
 from pathlib import Path
 from typing import Dict, List, Any
 
@@ -46,6 +48,8 @@ class RIDBFetcher:
     def fetch_facilities_by_state(self, state_code: str, limit: int = 50) -> List[Dict]:
         """Fetch camping facilities for a given state."""
         facilities = []
+        seen = set()
+        expected = None
         offset = 0
 
         print(f"Fetching facilities for {state_code}...")
@@ -57,6 +61,7 @@ class RIDBFetcher:
                 'activity': 9,  # Camping activity ID
                 'limit': limit,
                 'offset': offset,
+                'sort': 'ID',
                 'full': 'true'
             }
 
@@ -67,14 +72,23 @@ class RIDBFetcher:
 
                 if not isinstance(data, dict) or not isinstance(data.get('RECDATA'), list):
                     raise ValueError('Invalid RIDB response; refusing partial state data')
-                if not data['RECDATA']:
-                    break
-
                 batch = data['RECDATA']
+                count = data.get('METADATA', {}).get('RESULTS', {}).get('TOTAL_COUNT')
+                if count is not None:
+                    if not re.fullmatch(r'[0-9]+', str(count)) or (expected is not None and int(count) != expected):
+                        raise ValueError('RIDB state count changed during pagination')
+                    expected = int(count)
+                for row in batch:
+                    fid = str(row.get('FacilityID', ''))
+                    if not re.fullmatch(r'[1-9][0-9]*', fid) or fid in seen:
+                        raise ValueError(f'Missing or repeated RIDB facility ID on page at offset {offset}')
+                    seen.add(fid)
                 facilities.extend(batch)
                 print(f"  Fetched {len(batch)} facilities (total: {len(facilities)})")
 
-                if len(batch) < limit:
+                if len(batch) < limit or len(seen) == expected:
+                    if expected is not None and len(seen) != expected:
+                        raise ValueError(f'Expected {expected} unique RIDB facilities, got {len(seen)}')
                     break
 
                 offset += limit
@@ -86,7 +100,37 @@ class RIDBFetcher:
 
         return facilities
 
-    def convert_to_geojson(self, facilities: List[Dict], state_code: str) -> Dict:
+    def fetch_exact_facility(self, facility_id):
+        time.sleep(self.rate_limit_delay)
+        response = make_get(self.api_key)(f'{BASE_URL}/facilities/{facility_id}', {'full': 'true'})
+        if response.status in (404, 410):
+            return None, None
+        response.raise_for_status()
+        return response.json(), time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+    def reconcile_published(self, collection, previous, state_code):
+        """A missing list entry can still be a current campground. Consult its own facility ID."""
+        present = {str(row['properties']['facility_id']) for row in collection['features']}
+        additions = []
+        for fid in sorted(previous.keys() - present, key=int):
+            record, retrieved_at = self.fetch_exact_facility(fid)
+            if record is None:
+                continue
+            if not isinstance(record, dict) or str(record.get('FacilityID')) != fid:
+                raise ValueError(f'Exact RIDB facility lookup returned a different identity for {fid}')
+            activities = record.get('ACTIVITY') or []
+            if record.get('Enabled') is False or not any(str(a.get('ActivityID')) == '9' or
+                                                        str(a.get('ActivityName', '')).upper() == 'CAMPING' for a in activities):
+                raise ValueError(f'Current RIDB facility {fid} lacks active camping evidence; saved {state_code} source retained')
+            features = self.convert_to_geojson([record], state_code, retrieved_at)['features']
+            if not features or tuple(features[0]['geometry']['coordinates']) not in previous[fid]:
+                raise ValueError(f'Cannot confirm prior state location for missing RIDB facility {fid}')
+            features[0]['properties']['source_api_url'] = f'{BASE_URL}/facilities/{fid}'
+            additions.append(features[0])
+        collection['features'].extend(additions)
+        return len(additions)
+
+    def convert_to_geojson(self, facilities: List[Dict], state_code: str, retrieved_at=None) -> Dict:
         """Convert RIDB facilities to KampTrail GeoJSON format."""
         features = []
         site_counter = 1
@@ -150,7 +194,7 @@ class RIDBFetcher:
                     "facility_id": facility.get('FacilityID'),
                     "description": facility.get('FacilityDescription', ''),
                     "source_url": f"https://www.recreation.gov/camping/campgrounds/{facility['FacilityID']}",
-                    "source_retrieved_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+                    "source_retrieved_at": retrieved_at or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
                 }
             }
 
@@ -167,6 +211,25 @@ class RIDBFetcher:
             "type": "FeatureCollection",
             "features": features
         }
+
+
+def previous_published_facilities(output_dir, state_code):
+    """Prior own coordinates in this state for current published Recreation.gov IDs."""
+    index = output_dir / 'search-index.json'
+    if not index.exists():
+        return {}
+    active = catalogue_facilities(index)
+    result = {}
+    for filename in (f'{state_code}.geojson', f'{state_code}(1).geojson'):
+        path = output_dir / filename
+        if not path.exists():
+            continue
+        for feature in json.loads(path.read_text(encoding='utf-8'))['features']:
+            fid = str(feature['properties'].get('facility_id', ''))
+            coords = feature.get('geometry', {}).get('coordinates')
+            if fid in active and valid_coordinates(coords):
+                result.setdefault(fid, set()).add(tuple(coords))
+    return result
 
 
 def main():
@@ -207,16 +270,16 @@ def main():
         facilities = fetcher.fetch_facilities_by_state(state_code, limit=args.limit)
 
         if not facilities:
-            print(f"  No facilities found for {state_code}")
-            continue
+            raise RuntimeError(f'Empty RIDB list for {state_code}; saved source retained')
 
         # Convert to GeoJSON
         geojson = fetcher.convert_to_geojson(facilities, state_code)
+        recovered = fetcher.reconcile_published(geojson, previous_published_facilities(output_dir, state_code), state_code)
         site_count = len(geojson['features'])
-
         if site_count == 0:
-            print(f"  No valid campsites (all missing coordinates)")
-            continue
+            raise RuntimeError(f'No valid RIDB coordinates for {state_code}; saved source retained')
+        if recovered:
+            print(f'  Confirmed {recovered} omitted facilities at their own official endpoints')
 
         # Save to file
         output_file = output_dir / f"{state_code}.geojson"

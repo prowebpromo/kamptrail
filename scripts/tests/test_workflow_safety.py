@@ -72,7 +72,14 @@ class WorkflowSafetyTests(unittest.TestCase):
         refresh = next(i for i,s in enumerate(steps) if s.get('name') == 'Refresh sources and rebuild visible snapshots')
         self.assertLess(freeze, refresh)
         self.assertIn('cp data/campsites/search-index.json', steps[freeze]['run'])
-        build = next(s['run'] for s in steps if s.get('name') == 'Rebuild national campsite-name search')
+        names = [s.get('name') for s in steps]
+        provisional = names.index('Collect current facility IDs for site details and amenity joins')
+        evidence = names.index('Refresh Forest Service site water and restroom statements')
+        final = names.index('Rebuild national campsite-name search')
+        self.assertLess(provisional, evidence)
+        self.assertLess(evidence, final)
+        build = steps[final]['run']
+        self.assertIn('cp "$RUNNER_TEMP/previous-search-index.json" data/campsites/search-index.json', build)
         self.assertLess(build.index('node scripts/build-search-index.js'), build.index('node scripts/build-listing-history.js'))
         self.assertLess(build.index('node scripts/build-listing-history.js'), build.rindex('node scripts/build-search-index.js'))
         self.assertIn('--previous-index "$RUNNER_TEMP/previous-search-index.json"', build)

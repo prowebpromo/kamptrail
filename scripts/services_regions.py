@@ -18,13 +18,20 @@ for state, row in REGISTRY['regions'].items():
 def validate_resolved_url(region, url):
     """Only requested canonical extract, or its valid same-region dated variant."""
     canonical = URLS[region]
-    if url == canonical:
-        return None
-    prefix = canonical.removesuffix('latest.osm.pbf')
-    if not url.startswith(prefix) or not re.fullmatch('[0-9]{6}\\.osm\\.pbf', url[len(prefix):]):
+    directory, filename = canonical.rsplit('/', 1)
+    slug = filename.removesuffix('-latest.osm.pbf')
+    # Geofabrik moved each public PBF into its own region directory in Nov 2026.
+    # Older receipts still use the flat layout. Both paths bind the same origin and state.
+    for parent in (directory, f'{directory}/{slug}'):
+        if url == f'{parent}/{filename}':
+            return None
+        match = re.fullmatch(re.escape(f'{parent}/{slug}-') + r'([0-9]{6})\.osm\.pbf', url)
+        if match:
+            break
+    else:
         raise ValueError('PBF redirect outside fixed same-state public extract')
     try:
-        day = dt.datetime.strptime(url[len(prefix):len(prefix) + 6], '%y%m%d').date()
+        day = dt.datetime.strptime(match[1], '%y%m%d').date()
     except ValueError as exc:
         raise ValueError('Invalid dated extract redirect') from exc
     if day > dt.datetime.now(dt.timezone.utc).date():

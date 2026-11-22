@@ -41,6 +41,8 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if (amenitySidecars.ridb) quality.attachRIDBAmenities(feature, amenitySidecars.ridb);
     if (amenitySidecars.usfs) quality.attachUSFSSiteAmenities(feature, amenitySidecars.usfs);
   };
+  const separateAgencies = new Set();
+  const agencyIdentity = {independentAgencyIds:preferredIds, separateAgencies};
   const input = [];
   const stateById = new Map();
   for (const {state, geojson} of collections) {
@@ -50,7 +52,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     }
     const active = geojson.features.map(raw => History.filterActiveFeature(raw, history)).filter(Boolean);
     // Own overnight campsite records corroborate a Recreation.gov record's own facility type.
-    const options = {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})};
+    const options = {state, ...agencyIdentity, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})};
     for (const raw of quality.publicationCandidates(active,options)) {
       const feature = quality.normalizeFeature(raw, options);
       if (!feature) continue;
@@ -66,7 +68,7 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
 
   // Members of unclassified hosts stay withheld across state files.
   const withheldMembers = quality.withheldMembers ? new Set(collections.flatMap(({state, geojson}) => [...quality.withheldMembers(geojson.features.map(raw=>History.filterActiveFeature(raw,history)).filter(Boolean), {state, ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {})})])) : null;
-  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {}), ...(withheldMembers ? {withheldMembers} : {})});
+  const cleaned = quality.cleanAndDedupeGeoJSON({type:'FeatureCollection', features:input}, {...agencyIdentity, ...(preferredIds ? {preferredIds} : {}), ...(previousHosts ? {previousHosts} : {}), ...(siteDetails ? {siteDetails} : {}), ...(amenitySidecars.ridb ? {amenityDetails:amenitySidecars.ridb} : {}), ...(withheldMembers ? {withheldMembers} : {})});
   const sites = cleaned.features.map(feature => {
     quality.attachElevation(feature,elevationSnapshots);
     attachAmenities(feature);
@@ -79,8 +81,25 @@ function buildSearchIndex(collections, quality = DataQuality, siteDetails = null
     if (!states.size) throw new Error(`No source snapshot found for ${feature.properties.id}`);
     return listingRow(feature, quality, [...states].sort());
   });
+  // Keep a saved link on its surviving published host after its source stops contributing.
+  // These links never appear in current source membership, amenities, or map admission.
+  const canonicals = new Set(sites.map(site => site.id));
+  const currentIds = new Set(sites.flatMap(site => [site.id, ...site.legacy_ids]));
+  const reserved = History.reservedIds(history);
+  const missing = new Map([...(previousHosts || [])].filter(([id, host]) =>
+    canonicals.has(host) && !currentIds.has(id) && !reserved.has(id)));
+  // A source still in a snapshot must pass the ordinary membership and continuity gates.
+  if (missing.size) for (const {geojson} of collections) for (const {properties} of geojson.features) {
+    if (!properties) continue;
+    missing.delete(properties.id);
+    for (const id of properties.source_ids || []) missing.delete(id);
+    for (const id of properties.legacy_ids || []) missing.delete(id);
+  }
+  const links = [...missing].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0);
   sites.sort((a,b) => a.name.localeCompare(b.name, 'en') || a.id.localeCompare(b.id, 'en'));
   return {version:1, filter_version:1, community_version:1, elevation_version:1, amenity_version:1,
+    ...(separateAgencies.size ? {independent_agencies:[...separateAgencies].sort()} : {}),
+    ...(links.length ? {redirects:Object.fromEntries(links)} : {}),
     ...(history ? {history_sha256:crypto.createHash('sha256').update(History.serializeHistory(history)).digest('hex')} : {}), sites};
 }
 
@@ -122,7 +141,8 @@ function publishedIds(directory) {
 function publishedHosts(directory) {
   const file = path.join(directory, 'search-index.json');
   if (!fs.existsSync(file)) return null;
-  const sites = JSON.parse(fs.readFileSync(file, 'utf8')).sites, hosts = new Map();
+  const index = JSON.parse(fs.readFileSync(file, 'utf8')), sites = index.sites;
+  const hosts = new Map(Object.entries(index.redirects || {}));
   if (Array.isArray(sites)) for (const site of sites) for (const alias of site.legacy_ids || []) hosts.set(alias, site.id);
   return hosts;
 }
@@ -180,6 +200,8 @@ if (require.main === module) {
       const metadata=JSON.parse(fs.readFileSync(stateIndex,'utf8'));
       metadata.history_sha256=result.history_sha256;
       metadata.source_sha256=result.source_sha256;
+      if (result.independent_agencies) metadata.independent_agencies=result.independent_agencies;
+      else delete metadata.independent_agencies;
       if(Array.isArray(metadata.states)){
         metadata.states=metadata.states.map(row=>({...row,count:result.sites.filter(site=>site.states.includes(row.state)).length}));
         metadata.total_sites=metadata.states.reduce((total,row)=>total+row.count,0);
