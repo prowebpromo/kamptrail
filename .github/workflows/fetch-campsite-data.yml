@@ -188,16 +188,9 @@ jobs:
           if python scripts/fetch_blm_recreation.py; then node scripts/record_health.js record blm US fresh
           else echo 'BLM refresh failed; saved records kept.' >> "$GITHUB_STEP_SUMMARY"; node scripts/record_health.js record blm US failed; fi
           python scripts/build_agency_states.py
-      - name: Rebuild national campsite-name search
-        id: history_build
-        shell: bash
-        run: |
-          set -euo pipefail
-          node scripts/build-search-index.js
-          # Only successful source scopes may retire an absent/unpublishable own record.
-          node scripts/build-listing-history.js --base-ref "$(cat "$RUNNER_TEMP/history-baseline-ref")" --previous-index "$RUNNER_TEMP/previous-search-index.json"
-          # Reserve all original historical identities before final active publication.
-          node scripts/build-search-index.js
+      - name: Collect current facility IDs for site details and amenity joins
+        id: facility_index
+        run: node scripts/build-search-index.js
       - name: Refresh Recreation.gov site details (RV lengths, hookups, fees, stay limits)
         # Public bulk export, no API key. The builder refuses a shrunken result and keeps saved data.
         continue-on-error: true
@@ -229,6 +222,18 @@ jobs:
             echo 'Forest Service site statements refresh failed; saved data kept.' >> "$GITHUB_STEP_SUMMARY"
             node scripts/record_health.js record usfs_sites US failed
           fi
+      - name: Rebuild national campsite-name search
+        id: history_build
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Use the last published owners again after collecting current facility evidence.
+          cp "$RUNNER_TEMP/previous-search-index.json" data/campsites/search-index.json
+          node scripts/build-search-index.js
+          # Only successful source scopes may retire an absent/unpublishable own record.
+          node scripts/build-listing-history.js --base-ref "$(cat "$RUNNER_TEMP/history-baseline-ref")" --previous-index "$RUNNER_TEMP/previous-search-index.json"
+          # Reserve all original historical identities before final active publication.
+          node scripts/build-search-index.js
       - name: Download this weekly run's complete national service candidate
         id: service-candidate
         if: ${{ github.event_name == 'schedule' && needs.national-services-stage.result == 'success' }}
@@ -326,7 +331,7 @@ jobs:
             exit 1
           fi
       - name: Keep the unverified refresh for review when verification fails
-        if: ${{ failure() && (steps.history_build.outcome == 'failure' || steps.verify_refresh.outcome == 'failure' || steps.commit_refresh.outcome == 'failure') }}
+        if: ${{ failure() && (steps.facility_index.outcome == 'failure' || steps.history_build.outcome == 'failure' || steps.verify_refresh.outcome == 'failure' || steps.commit_refresh.outcome == 'failure') }}
         uses: actions/upload-artifact@v7.0.2
         with:
           name: unverified-refresh-${{ github.run_id }}-${{ github.run_attempt }}
