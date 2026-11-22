@@ -1,0 +1,63 @@
+name: Verify the packaged reader offline with original Rhode Island archives
+on:
+  push:
+    branches: [verify/lower48-offline-reader]
+    paths: ['.github/workflows/verify-fcc-offline-48-client.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Confirm production candidate code matches its immutable commit
+        run: |
+          git diff --exit-code b1587a4c5d6345ca8063cbe5f5963806626fdd77 HEAD -- carrier-coverage.js service-worker.js package.json package-lock.json scripts/build-fcc-reader.js scripts/build-release.js scripts/serve.js integrations/fcc-pmtiles
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14624603962'
+          run-id: '44728742813'
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/fcc-ri-pmtiles
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14624298332'
+          run-id: '44727106921'
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/fcc-original-xyz
+          merge-multiple: true
+      - name: Build the production distribution
+        run: |
+          npm ci --no-audit --no-fund
+          node scripts/build-release.js
+          destination=dist/kamptrail/data/fcc-coverage
+          mkdir -p "$destination"
+          cp -a "$RUNNER_TEMP/fcc-original-xyz/." "$destination/"
+          packed_release=$(jq -er .release "$RUNNER_TEMP/fcc-ri-pmtiles/manifest.json")
+          cp -a "$RUNNER_TEMP/fcc-ri-pmtiles/$packed_release" "$destination/"
+          cp "$RUNNER_TEMP/fcc-ri-pmtiles/manifest.json" "$destination/manifest-v2.json"
+      - name: Verify old-worker upgrade when the optional generated file is absent
+        run: npx --no-install playwright test tests/browser/upgrade.spec.js
+      - name: Check 60 source PNGs, actual browser ranges and offline restarts
+        env:
+          KAMPTRAIL_SERVE_DIR: dist/kamptrail
+          FCC_PACKED_DIR: ${{ runner.temp }}/fcc-ri-pmtiles
+          FCC_XYZ_DIR: ${{ runner.temp }}/fcc-original-xyz
+        run: |
+          node scripts/serve.js > "$RUNNER_TEMP/fcc-packed-offline.log" 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..40}; do
+            if curl -fsS http://127.0.0.1:8765/data/fcc-coverage/manifest-v2.json > /dev/null; then break; fi
+            sleep .25
+          done
+          node --test tests/carrier-coverage.test.js scripts/tests/fcc-packed-reader.test.mjs
+          node scripts/acceptance/fcc-packed-browser.cjs
