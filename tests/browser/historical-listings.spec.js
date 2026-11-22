@@ -81,6 +81,8 @@ test('a saved redirect opens active details when the host file is unavailable, w
       sourceIds:[...(site?.properties.legacy_ids||[]),...(site?.properties.source_ids||[])].includes(prior),
       archived:(await api.resolveListing('old-saved-id')).kind};
   },{prior})).toEqual({hosts:'fallback',current:host,sourceIds:false,archived:'historical'});
+  await page.locator('.leaflet-popup-close-button').click();
+  await expect(active).toHaveCount(0);
   await page.locator('#trip').click();
   const drawer=page.locator('#kt-trip-list');
   await expect(drawer).toContainText('Current Campground');
