@@ -1,0 +1,75 @@
+name: Check campsite recovery as returning desktop and mobile visitors
+on:
+  push:
+    branches: [verify/campsites-251-visitors]
+    paths: ['visitor-source.json', '.github/workflows/verify-251-visitors.yml', 'scripts/acceptance/verify-251-visitors.js']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  visitors:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with: {persist-credentials: false}
+      - id: inputs
+        name: Read the exact checked-out candidate or approved public release
+        run: |
+          jq -e '(.sha | test("^[a-f0-9]{40}$")) and (.mode == "staging" or .mode == "production")' visitor-source.json >/dev/null
+          echo "sha=$(jq -r .sha visitor-source.json)" >> "$GITHUB_OUTPUT"
+          echo "mode=$(jq -r .mode visitor-source.json)" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v7.0.1
+        with: {ref: '44643b2ce90a51e59e02d366a592a652feef9737', path: previous, persist-credentials: false}
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ steps.inputs.outputs.sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v7.1.0
+        with: {node-version: '22', cache: npm}
+      - if: steps.inputs.outputs.mode == 'staging'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '14759026844'
+          run-id: '45030147919'
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: fcc-evidence
+          digest-mismatch: error
+      - name: Build the exact prior app and stage the exact candidate when needed
+        env:
+          QA_MODE: ${{ steps.inputs.outputs.mode }}
+        run: |
+          set -eu
+          npm ci --no-fund --no-audit
+          export NODE_PATH="$GITHUB_WORKSPACE/node_modules"
+          for app in previous candidate; do
+            if [ "$app" = candidate ] && [ "$QA_MODE" = production ]; then continue; fi
+            ln -s "$GITHUB_WORKSPACE/node_modules" "$app/node_modules"
+            (cd "$app" && npm run build)
+            jq -n --arg s "$(git -C "$app" rev-parse HEAD)" '{source_commit:$s}' > "$app/dist/kamptrail/release.json"
+          done
+          if [ "$QA_MODE" = staging ]; then
+            mkdir -p candidate/dist/kamptrail/data/fcc-coverage
+            cp fcc-evidence/manifest.json candidate/dist/kamptrail/data/fcc-coverage/manifest-v2.json
+          fi
+          node --check scripts/acceptance/verify-251-visitors.js
+      - name: Save in 2.50 then reopen in 2.51, check both listings, the recovered facility and all three menus
+        env:
+          QA_MODE: ${{ steps.inputs.outputs.mode }}
+        run: |
+          set -eu
+          PORT=8763 KAMPTRAIL_SERVE_DIR="$PWD/previous/dist/kamptrail" node previous/scripts/serve.js > "$RUNNER_TEMP/previous-server.log" 2>&1 &
+          if [ "$QA_MODE" = staging ]; then
+            PORT=8764 KAMPTRAIL_SERVE_DIR="$PWD/candidate/dist/kamptrail" node candidate/scripts/serve.js > "$RUNNER_TEMP/candidate-server.log" 2>&1 &
+          fi
+          curl -fsS --retry 6 --retry-all-errors --retry-delay 1 http://127.0.0.1:8763/release.json
+          node scripts/acceptance/verify-251-visitors.js
+      - if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: campsite-251-${{ steps.inputs.outputs.mode }}-visitor-evidence
+          path: visitor-result/
+          retention-days: 30
+          if-no-files-found: ignore
