@@ -54,7 +54,7 @@ jobs:
           PY
       - name: Retrieve every omitted published record from its official ID endpoint
         env:
-          RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
+          RIDB_API_KEY: ${{ secrets.RECREATION_GOV_API_KEY || secrets.RIDB_API_KEY }}
         run: |
           python - <<'PY'
           import json,os,pathlib,sys,time,datetime,collections
@@ -89,6 +89,7 @@ jobs:
               print('REVIEWED',fid,row.get('http'),row.get('error'),f.get('FacilityName'),f.get('FacilityTypeDescription'),row.get('coordinate_match'),[a.get('ActivityName') for a in f.get('ACTIVITY',[])])
           PY
       - name: Retrieve the existing public Forest Service table with its source guards
+        if: ${{ !cancelled() }}
         run: |
           python - <<'PY'
           import datetime,json,sys,pathlib,os
@@ -107,6 +108,7 @@ jobs:
               print('USFS live source unavailable',str(exc)[:220])
           PY
       - uses: actions/upload-artifact@v7.0.2
+        if: ${{ !cancelled() }}
         with:
           name: november-22-exact-source-evidence
           path: ${{ runner.temp }}/exact-facilities
