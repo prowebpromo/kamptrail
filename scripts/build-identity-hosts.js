@@ -14,6 +14,7 @@ function identityHosts(indexText) {
   for (const s of rows) hosts[s.id] = [...s.legacy_ids];
   if(index.history_sha256!==undefined&&!/^[a-f0-9]{64}$/.test(index.history_sha256))throw new Error('Invalid listing history binding');
   return {version: 1, index_sites: index.sites.length, index_sha256: crypto.createHash('sha256').update(indexText, 'utf8').digest('hex'), hosts,
+    ...(index.redirects ? {redirects:index.redirects} : {}),
     ...(index.history_sha256?{history_sha256:index.history_sha256}:{})};
 }
 

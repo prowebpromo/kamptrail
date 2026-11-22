@@ -216,7 +216,19 @@
   async function loadIdentityHosts(){
     const generation=catalogueGeneration;
     identityTried=Date.now();
-    try{await ensureAdmission();const data=await fetchJSON('data/campsites/identity-hosts.json');if(generation!==catalogueGeneration)return false;checkHistoryBinding(data);if(!DataQuality.validIdentityHosts(data))throw new Error('Invalid identity hosts');identity={...DataQuality.identityOptions(data),ownerOnly:true,aliases:data.hosts};}
+    try {
+      await ensureAdmission();
+      const data = await fetchJSON('data/campsites/identity-hosts.json');
+      if (generation !== catalogueGeneration) return false;
+      checkHistoryBinding(data);
+      if (!DataQuality.validIdentityHosts(data)) throw new Error('Invalid identity hosts');
+      const redirects = new Map(Object.entries(data.redirects || {})), savedAliases = new Map();
+      for (const [alias, host] of redirects) {
+        if (!savedAliases.has(host)) savedAliases.set(host, []);
+        savedAliases.get(host).push(alias);
+      }
+      identity = {...DataQuality.identityOptions(data), ownerOnly:true, aliases:data.hosts, redirects, savedAliases};
+    }
     catch(err){console.warn('Listing identity hosts unavailable; nearby records stay separate until they load.',err.message);}
     finally{if(generation===catalogueGeneration)identityTask=null;}
     if(generation!==catalogueGeneration)return false;
@@ -250,19 +262,21 @@
   }
   function rebuildCatalogue(){
     const input=[],withheldMembers=new Set();
+    const independentAgencyIds=new Set(state.index?.independent_agencies || []);
     for(const code of [...stateInputs.keys()].sort()){
       const cached=stateInputs.get(code);
       for(const id of cached.withheld)withheldMembers.add(id);
       for(const f of cached.rows){attachSidecars(f);input.push(f);}
     }
-    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{...identityOptions(),withheldMembers});
+    const cleaned=DataQuality.cleanAndDedupeGeoJSON({type:'FeatureCollection',features:input},{...identityOptions(),withheldMembers,independentAgencyIds});
     state.allCampsites=cleaned.features.map(activeFeature).filter(Boolean);
     for(const f of state.allCampsites){attachSidecars(f);shownIds.add(f.properties.id);}
     attachLoadedElevations();
   }
   function setStateInput(features,stateCode){
     features=features.map(activeFeature).filter(Boolean);
-    const options={state:stateCode,siteDetails:state.siteDetails,amenityDetails:state.amenityDetails};
+    const options={state:stateCode,siteDetails:state.siteDetails,amenityDetails:state.amenityDetails,
+      independentAgencyIds:new Set(state.index?.independent_agencies || [])};
     const rows=DataQuality.publicationCandidates(features,options).map(raw=>DataQuality.normalizeFeature(raw,options)).filter(Boolean);
     for(const f of rows)f.properties.forecastStates=[stateCode];
     stateInputs.set(stateCode,{rows,withheld:DataQuality.withheldMembers(features,options)});
@@ -686,7 +700,7 @@
     notify();return Promise.resolve(api.getLoadStatus());
   }
   const api=window.KampTrailData={
-    version:'2.50.0',
+    version:'2.51.0',
     DETAIL_ZOOM,
     _overviewMoved:()=>(state.overview?.items||[]).filter(i=>i.dx||i.dy).map(i=>({code:i.code,dx:i.dx,dy:i.dy,leader:!!i.line&&state.overview.hasLayer(i.line)})),
     async init(map,config={}){
@@ -730,7 +744,7 @@
     getAllCampsites:()=>state.allCampsites,
     // Any id ever published (canonical or legacy) finds its listing, also while only some of its states are loaded.
     // Every published id of one listing: its index id first, then its legacy ids.
-    identityIds(id){const key=String(id);if(historyIds.has(key))return [key];const host=api.publishedId(key);return [...new Set([host,...(identity?.aliases[host]||[]),key])].filter(alias=>!historyIds.has(alias));},
+    identityIds(id){const key=String(id);if(historyIds.has(key))return [key];const host=api.publishedId(key);return [...new Set([host,...(identity?.aliases[host]||[]),...(identity?.savedAliases.get(host)||[]),key])].filter(alias=>!historyIds.has(alias));},
     getCampsiteById(id){
       if(!history||historyIds.has(String(id)))return undefined;
       const key=String(id),wanted=[key,...api.identityIds(key)];
@@ -738,12 +752,20 @@
       return undefined;
     },
     // The listing's id in the published index. A listing shown before all its states load can carry a member's own id.
-    publishedId(id){const key=String(id);if(historyIds.has(key))return key;const host=identity?.previousHosts.get(key);return host&&!historyIds.has(host)?host:key;},
+    publishedId(id){const key=String(id);if(historyIds.has(key))return key;const host=identity?.previousHosts.get(key)||identity?.redirects.get(key);return host&&!historyIds.has(host)?host:key;},
     async resolveListing(id){
       const key=String(id);await ensureHistory();
       const record=historyIds.get(key);if(record)return {kind:'historical',record,feature:window.KampTrailListingHistory.historicalFeature(record)};
       let feature=api.getCampsiteById(key);
-      if(!feature){const index=await api.loadSearchIndex(),entry=index.sites.find(s=>s.id===key||s.legacy_ids?.includes(key));if(entry)await api.loadStates(entry.states);feature=api.getCampsiteById(key);}
+      if (!feature) {
+        const index = await api.loadSearchIndex();
+        const host = Object.hasOwn(index.redirects || {}, key) ? index.redirects[key] : key;
+        const entry = index.sites.find(site => site.id === host || site.legacy_ids?.includes(key));
+        if (entry) {
+          await api.loadStates(entry.states);
+          feature = api.getCampsiteById(host);
+        }
+      }
       return feature?{kind:'active',feature}:{kind:'missing'};
     },
     getHistoricalById:id=>historyIds.get(String(id)),

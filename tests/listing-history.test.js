@@ -138,3 +138,31 @@ test('directory index binds exact state and agency bytes to the historical regis
     assert.equal(built.history_sha256,crypto.createHash('sha256').update(H.serializeHistory(history)).digest('hex'));
   }finally{fs.rmSync(directory,{recursive:true,force:true});}
 });
+
+test('a lost member keeps a saved link to its surviving host without becoming current evidence',()=>{
+  const host='osm:way:11',alias='ridb:123',feature=pt(host);
+  const previous=index([site(host,[alias])]),prior=new Map([[alias,host]]);
+  const sources=[{state:'UT',geojson:{type:'FeatureCollection',features:[feature]}}];
+  const next=buildSearchIndex(sources,undefined,null,[],new Set([host]),prior);
+  assert.deepEqual(next.redirects,{[alias]:host});
+  assert.deepEqual(next.sites[0].legacy_ids,[]);
+  const hidden=structuredClone(sources);
+  hidden[0].geojson.features[0].properties.source_ids=[host,alias];
+  const hiddenIndex=buildSearchIndex(hidden,undefined,null,[],new Set([host]),prior);
+  assert.equal(hiddenIndex.redirects,undefined);
+  assert.deepEqual(check(previous,hiddenIndex,null).lost,[{id:alias,host}]);
+  const manifest=require('../scripts/build-identity-hosts').identityHosts(JSON.stringify(next));
+  const quality=require('../data-quality');
+  assert.equal(quality.validIdentityHosts(manifest),true);
+  assert.equal(quality.identityOptions(manifest).previousHosts.has(alias),false);
+  assert.deepEqual(check(previous,next,null).lost,[]);
+  assert.deepEqual(check(next,index([site(host),site(alias)]),null).moved,[{id:alias,from:host,to:alias}]);
+  const rejoined=check(next,index([site(host,[alias])]),null);
+  assert.deepEqual([rejoined.lost,rejoined.moved,rejoined.conflicts],[[],[],[]]);
+
+  const history=buildHistory({previousIndex:next,currentIndex:index([]),previousRecords:[{state:'UT',feature}],
+    scopes:new Set(['osm:UT']),archivedAt:at});
+  assert.deepEqual(history.listings[0].legacy_ids,[alias]);
+  assert.deepEqual(check(next,index([]),history).lost,[]);
+  assert.equal(history.listings[0].source_dates.some(r=>r.source_record_id===alias),false);
+});

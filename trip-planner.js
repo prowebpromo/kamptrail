@@ -484,7 +484,7 @@
     if(codes.length)Promise.resolve(window.KampTrailData?.loadStates?.(codes)).then(()=>{if(captureMissingSnapshots())save();render();drawRoute();}).catch(()=>{});
   }
   window.KampTrailTrip={
-    version:'2.50.0',
+    version:'2.51.0',
     getRevision(){return syncRevision();},
     init(map) {
       if(st.el)return;

@@ -59,7 +59,7 @@
     }};
   }
   function serializeHistory(data) { return JSON.stringify(validateHistory(data)) + '\n'; }
-  const api = {version:'2.50.0', validateHistory, historyMap, reservedIds, filterActiveFeature, historicalFeature, serializeHistory};
+  const api = {version:'2.51.0', validateHistory, historyMap, reservedIds, filterActiveFeature, historicalFeature, serializeHistory};
   global.KampTrailListingHistory = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -71,5 +71,5 @@
   document.getElementById('install-kamptrail')?.addEventListener('click',open);
   document.querySelectorAll?.('[data-install-open]').forEach(button=>button.addEventListener('click',open));
   render();
-  window.KampTrailInstall={version:'2.50.0',open};
+  window.KampTrailInstall={version:'2.51.0',open};
 })();

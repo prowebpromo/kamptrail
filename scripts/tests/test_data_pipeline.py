@@ -3,11 +3,11 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from data_integrity import save_geojson, valid_coordinates
-from fetch_recreation_gov_data import RIDBFetcher
+from fetch_recreation_gov_data import RIDBFetcher, previous_published_facilities
 from fetch_osm_data import osm_to_geojson
 from fetch_osm_poi import osm_element_to_geojson
 
@@ -94,6 +94,53 @@ class PipelineTests(unittest.TestCase):
         with patch('fetch_recreation_gov_data.requests.get', side_effect=[response, RuntimeError('network')]), patch('fetch_recreation_gov_data.time.sleep'):
             with self.assertRaises(RuntimeError):
                 RIDBFetcher('not-a-key').fetch_facilities_by_state('NY', limit=1)
+
+    def test_state_paging_requires_stable_unique_ids_and_matching_counts(self):
+        def page(ids, total):
+            response = Mock()
+            response.json.return_value = {'METADATA': {'RESULTS': {'TOTAL_COUNT': total}},
+                                          'RECDATA': [self.facility(FacilityID=i) for i in ids]}
+            return response
+        fetcher = RIDBFetcher('not-a-key')
+        for pages in ([page([1, 2], 3), page([2], 3)], [page([1, 2], 4), page([3], 4)],
+                      [page([1, 2], 3), page([3], 4)]):
+            with patch('fetch_recreation_gov_data.requests.get', side_effect=pages), patch('fetch_recreation_gov_data.time.sleep'):
+                with self.assertRaises(RuntimeError):
+                    fetcher.fetch_facilities_by_state('NY', 2)
+        with patch('fetch_recreation_gov_data.requests.get', side_effect=[page([1, 2], 3), page([3], 3)]) as get, patch('fetch_recreation_gov_data.time.sleep'):
+            self.assertEqual([r['FacilityID'] for r in fetcher.fetch_facilities_by_state('NY', 2)], [1, 2, 3])
+            self.assertEqual([call.kwargs['params']['sort'] for call in get.call_args_list], ['ID', 'ID'])
+
+    def test_omitted_published_facility_requires_exact_current_camping_and_own_location(self):
+        fetcher = RIDBFetcher('not-a-key')
+        record = self.facility(FacilityName='Fresh Own Name', ACTIVITY=[{'ActivityID': 9}])
+        prior = {'42': {(-100, 40)}}
+        for response in (self.facility(FacilityID='43'), {**record, 'Enabled': False}, {**record, 'ACTIVITY': []},
+                         {**record, 'FacilityLongitude': -121}):
+            collection = {'features': []}
+            with patch.object(fetcher, 'fetch_exact_facility', return_value=(response, '2026-11-22T10:00:00Z')):
+                with self.assertRaises(ValueError):
+                    fetcher.reconcile_published(collection, prior, 'NY')
+            self.assertEqual(collection['features'], [])
+        collection = {'features': []}
+        with patch.object(fetcher, 'fetch_exact_facility', return_value=(record, '2026-11-22T10:00:00Z')):
+            self.assertEqual(fetcher.reconcile_published(collection, prior, 'NY'), 1)
+        props = collection['features'][0]['properties']
+        self.assertEqual((props['name'], props['id'], props['source_retrieved_at']),
+                         ('Fresh Own Name', 'ridb:42', '2026-11-22T10:00:00Z'))
+        with patch.object(fetcher, 'fetch_exact_facility', side_effect=AssertionError('should not fetch a present ID')):
+            self.assertEqual(fetcher.reconcile_published(collection, prior, 'NY'), 0)
+        with patch.object(fetcher, 'fetch_exact_facility', return_value=(None, None)):
+            self.assertEqual(fetcher.reconcile_published({'features': []}, prior, 'NY'), 0)
+
+    def test_only_previous_active_own_facilities_in_the_state_are_checked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root/'search-index.json').write_text(json.dumps({'sites': [{'id':'osm:way:2', 'legacy_ids':['ridb:42']}]}))
+            rows = RIDBFetcher('not-a-key').convert_to_geojson([self.facility(), self.facility(FacilityID=17)], 'NY')
+            (root/'NY(1).geojson').write_text(json.dumps(rows))
+            self.assertEqual(previous_published_facilities(root,'NY'), {'42': {(-100,40)}})
+            self.assertEqual(previous_published_facilities(root,'PA'), {})
 
     def test_lpg_tag_does_not_claim_cylinder_refilling(self):
         feature = osm_element_to_geojson({'type': 'node', 'id': 2, 'lat': 40, 'lon': -100,

@@ -177,6 +177,14 @@ class CampsiteMerger {
       const a = canonicals(p1), b = canonicals(p2);
       if (a.length && b.length && new Set([...a, ...b]).size > 1) return false;
     }
+    // Keep a published OSM campground and a separate RIDB facility as distinct source
+    // rows. Copying facility_id onto the OSM row rekeys it during normalization.
+    // The national index can still attach a matching facility as an attributed alias.
+    const published = this.publishedAnyIds || this.preferredIds;
+    if (published?.size) {
+      const keptOsm = p => osmIdentity(p) && p.facility_id == null && published.has(p.id);
+      if ((keptOsm(p1) && p2.facility_id != null) || (keptOsm(p2) && p1.facility_id != null)) return false;
+    }
     const distance = this.calculateDistance(lat1, lon1, lat2, lon2);
     const name1 = p1.name || p1.Name || '';
     const name2 = p2.name || p2.Name || '';
@@ -453,9 +461,11 @@ async function main() {
 // Canonical IDs in the committed search index, so a published listing keeps its ID across re-merges.
 function publishedIds(campsitesDir, { includeAliases = false } = {}) {
   try {
-    const sites = JSON.parse(require('fs').readFileSync(path.join(campsitesDir, 'search-index.json'), 'utf8')).sites;
+    const index = JSON.parse(require('fs').readFileSync(path.join(campsitesDir, 'search-index.json'), 'utf8'));
+    const sites = index.sites;
     if (!Array.isArray(sites)) return null;
-    return new Set(sites.flatMap(site => includeAliases ? [site.id, ...(site.legacy_ids || [])] : [site.id]));
+    const ids = sites.flatMap(site => includeAliases ? [site.id, ...(site.legacy_ids || [])] : [site.id]);
+    return new Set(includeAliases ? [...ids, ...Object.keys(index.redirects || {})] : ids);
   } catch (error) {
     return null;
   }

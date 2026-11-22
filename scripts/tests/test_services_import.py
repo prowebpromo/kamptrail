@@ -86,6 +86,17 @@ class ServicesImportTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'checksum'):
                 services.import_pbf(p,'UT',metadata,Boundaries())
 
+    def test_geofabrik_nested_region_redirects_remain_exact(self):
+        old = services.URLS['UT']
+        parent, file_name = old.rsplit('/', 1)
+        current = parent + '/utah/' + file_name
+        self.assertIsNone(services.validate_resolved_url('UT', current))
+        self.assertEqual(str(services.validate_resolved_url('UT', current.replace('latest', '250102'))), '2025-01-02')
+        for wrong in (current.replace('/utah/', '/colorado/'), current.replace('utah-latest', 'colorado-latest'),
+                      current.replace('download.geofabrik.de', 'example.org'), current + '?download=1'):
+            with self.subTest(wrong=wrong), self.assertRaises(ValueError):
+                services.validate_resolved_url('UT', wrong)
+
     def test_redirect_to_arbitrary_host_denied(self):
         handler=services.FixedRedirect()
         with self.assertRaises(ValueError):handler.redirect_request(None,None,302,'',{},'https://evil.example/utah.osm.pbf')
