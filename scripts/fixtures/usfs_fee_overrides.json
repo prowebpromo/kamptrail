@@ -98,8 +98,8 @@
       "source": "US Forest Service",
       "source_field": "official_page.Fee Site and Info",
       "source_url": "https://www.fs.usda.gov/r03/tonto/recreation/airplane-flat-campground",
-      "retrieved_at": "2026-10-30",
-      "source_updated_at": "2026-04-06",
+      "retrieved_at": "2026-11-23",
+      "source_updated_at": "2026-11-04",
       "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
       "text": "No fees are required for this site",
       "context": [
@@ -110,6 +110,10 @@
         {
           "source_field": "official_page.Passes and Permits",
           "text": "Permit required through the District Office if over 75 people.\nNo fees or passes required for standard camping."
+        },
+        {
+          "source_field": "official_page.Site status",
+          "text": "Site Closed\nClosed for the winter."
         }
       ],
       "identity_coordinates": [
@@ -118,11 +122,12 @@
       ],
       "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5036.002601, USDA_PORTAL_ID=35645 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 1.15 m; page to INFRA geometry 1.16 m. No CN-to-recreation-ID inference.",
       "caveats": [
+        "November 23 dedicated page explicitly says Site Closed: Closed for the winter. Fee-free ordinary camping does not mean the site is currently open.",
         "Open season April to October; 14-day stay limit.",
         "FR 512/FR 33 unpaved; four-wheel-drive or chains advised after heavy rain/snow. No potable water; pack in/out.",
         "Permit only for groups over 75. General Canyon Lake closure alert is not a closure of this Pleasant Valley campground."
       ],
-      "observed_site_status": "Site Open",
+      "observed_site_status": "Site Closed — Closed for the winter.",
       "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
       "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
       "notice_review": {
@@ -131,7 +136,7 @@
         "review_basis": "Full notice reviewed. Described area is Canyon Lake and listed roads in Mesa/Tonto Basin ranger districts. Named closed recreation sites are Acacia, Palo Verde, Boulder, Canyon Lake Marina, Laguna, Tortilla Campground; reviewed campgrounds are outside this area in Globe/Pleasant Valley districts.",
         "source_updated_at": "2026-08-25"
       },
-      "review_after": "2026-11-29"
+      "review_after": "2026-12-23"
     },
     {
       "recareaid": 35651,
@@ -221,14 +226,18 @@
       "source": "US Forest Service",
       "source_field": "official_page.Fee Site and Info",
       "source_url": "https://www.fs.usda.gov/r01/bitterroot/recreation/blodgett-campground",
-      "retrieved_at": "2026-10-30",
-      "source_updated_at": "2026-05-22",
+      "retrieved_at": "2026-11-23",
+      "source_updated_at": "2026-11-12",
       "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
       "text": "No fees are required for this site\nNo fees. Sites are first come, first served.",
       "context": [
         {
           "source_field": "official_page.Camping and access",
           "text": "Campground can accommodate tents, RV's or trailers up to 45 feet."
+        },
+        {
+          "source_field": "official_page.Site status",
+          "text": "Site Closed\nClosed for Season"
         }
       ],
       "identity_coordinates": [
@@ -237,15 +246,16 @@
       ],
       "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5204.000271, USDA_PORTAL_ID=60306 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 24.38 m; page to INFRA geometry 1.23 m. No CN-to-recreation-ID inference.",
       "caveats": [
+        "November 23 dedicated page explicitly says Site Closed: Closed for Season. Retain its differing annual-season statements below; fee-free ordinary camping does not establish current access.",
         "Current Conditions: Open May 1 - October 31.",
         "General Seasons of Use separately says Memorial Day to Labor Day; retain this internal season discrepancy, do not infer an exact annual operating schedule.",
         "Typically not accessible in winter.",
         "Camping limited to 16 consecutive days; then move 5 miles away. Food storage required. No garbage service."
       ],
-      "observed_site_status": "Site Open",
+      "observed_site_status": "Site Closed — Closed for Season",
       "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
       "fee_text_sha256": "b4da95a265f7e5d35bba5dca7258906ab53928574fefcb2fd9b1b5aae5fe5c86",
-      "review_after": "2026-11-29"
+      "review_after": "2026-12-23"
     },
     {
       "recareaid": 60320,
@@ -286,7 +296,7 @@
       "source": "US Forest Service",
       "source_field": "official_page.Fee Site and Info",
       "source_url": "https://www.fs.usda.gov/r01/bitterroot/recreation/paradise-campground",
-      "retrieved_at": "2026-10-30",
+      "retrieved_at": "2026-11-23",
       "source_updated_at": "2026-04-08",
       "source_updated_at_basis": "Dedicated page footer Last updated; date-only, not a fee-specific observation timestamp.",
       "text": "No fees are required for this site",
@@ -300,7 +310,7 @@
         -114.7377778,
         45.86083333
       ],
-      "identity_basis": "Dedicated official page Latitude / Longitude; INFRA SITE_CN=5086.000271, USDA_PORTAL_ID=60666 (metadata-defined recreation website ID), same named campground. Page to legacy EDW point 48.58 m; page to INFRA geometry 1.24 m. No CN-to-recreation-ID inference.",
+      "identity_basis": "October 30 dedicated-page identity anchor retained at [-114.7377778,45.86083333]; INFRA SITE_CN=5086.000271, USDA_PORTAL_ID=60666 (metadata-defined recreation website ID), same named campground. November 23 complete official-page review found coordinates [-114.737718,45.861263], 48.00 m from the reviewed anchor and approximately 1.2 m from the currently published EDW point [-114.737731,45.861269]. All other meaningful main text and links unchanged. Identity remains within the existing 300 m guard; no CN-to-recreation-ID inference or canonical geometry/id change.",
       "caveats": [
         "Site closed by snow annually; summer and fall use. Main roads not plowed in fall/winter; Nez Perce Pass generally gets snow first in early fall.",
         "14-day camping limit. No garbage or potable water; stock welcome and weed-seed-free feed required.",
@@ -310,7 +320,7 @@
       "observed_site_status": "No explicit Site Open/Closed badge in retrieved page; seasonal snow limitation, not a current closure assertion.",
       "reviewed_fee_scope": "Dedicated campground page applies this statement to the site; no separate contradictory camping price observed. Only ordinary camping considered; ancillary/group conditions retained.",
       "fee_text_sha256": "05bdfd52a48c99bdb63b3518bb657c9bd2c939c3abab25d8763a4ea3fcee8341",
-      "review_after": "2026-11-29"
+      "review_after": "2026-12-23"
     },
     {
       "recareaid": 66336,
