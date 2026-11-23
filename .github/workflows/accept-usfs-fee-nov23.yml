@@ -1,0 +1,131 @@
+name: Verify live November 23 USFS fee evidence
+on:
+  pull_request:
+    paths: [.github/workflows/accept-usfs-fee-nov23.yml]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  live_acceptance:
+    if: github.event.pull_request.number == 208 && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'codex/usfs-fee-recheck-2026-11-23'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 105
+    steps:
+      - name: Wait for the approved merge and normal Hostinger release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json,os,re,time,urllib.request,urllib.error
+          end=time.monotonic()+90*60
+          expected=None
+          while time.monotonic()<end:
+              request=urllib.request.Request('https://api.github.com/repos/prowebpromo/kamptrail/pulls/208',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(request,timeout=30) as response: pr=json.load(response)
+              if pr.get('merged'):
+                  expected=pr['merge_commit_sha']
+                  if not re.fullmatch('[0-9a-f]{40}',expected): raise SystemExit('Invalid merge identity')
+                  try:
+                      request=urllib.request.Request('https://kamptrail.com/release.json?usfs-pilot='+expected,headers={'Cache-Control':'no-cache'})
+                      with urllib.request.urlopen(request,timeout=30) as response: live=json.load(response)
+                      if live.get('source_commit')==expected:
+                          with open(os.environ['GITHUB_ENV'],'a') as env: env.write('MERGE_SHA='+expected+'\n')
+                          print('Verified normal release reached live:',expected)
+                          break
+                  except (urllib.error.URLError,ValueError): pass
+              elif pr.get('state')=='closed': raise SystemExit('PR closed without merge; acceptance stopped')
+              time.sleep(30)
+          else: raise SystemExit('Normal merge/release did not arrive inside the bounded acceptance window')
+          PY
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ env.MERGE_SHA }}
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Verify live release bytes and exact fee census
+        run: |
+          mkdir -p "$RUNNER_TEMP/fee-live-results"
+          cat > "$RUNNER_TEMP/fee-live-bytes.py" <<'PY'
+          import concurrent.futures,hashlib,json,urllib.request,urllib.error,sys
+          from pathlib import Path
+          from collections import Counter
+          root=Path.cwd()
+          expected=sys.argv[1]
+          paths=['app.js','data-loader.js','service-worker.js','data/campsites/index.json','data/campsites/search-index.json','data/campsites/coordinate-index.json','data/campsites/identity-hosts.json']+[str(p.relative_to(root)) for p in sorted((root/'data/campsites/agency').glob('*')) if p.is_file()]
+          def get(path):
+           req=urllib.request.Request('https://kamptrail.com/'+path+'?fee-acceptance='+expected,headers={'Cache-Control':'no-cache','User-Agent':'KampTrail release acceptance'})
+           with urllib.request.urlopen(req,timeout=60) as r:return r.read()
+          release=json.loads(get('release.json'));assert release['source_commit']==expected,release
+          
+          def verify(path):
+           raw=get(path);local=(root/path).read_bytes();sha=hashlib.sha256(raw).hexdigest();assert raw==local,path+' differs from reviewed main assets';return {'path':path,'bytes':len(raw),'sha256':sha}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:files=list(pool.map(verify,paths))
+          index=json.loads(get('data/campsites/search-index.json'))
+          census={'total':len(index['sites']),**Counter(s['m']['f'] for s in index['sites'])}
+          assert census=={'total':33605,'free':2161,'conditional':58,'paid':8233,'unknown':23153},census
+          private_source_statuses={}
+          for path in ['data/sources/usfs.json','data/sources/blm.json','data/sources/usfs-fee-checks.json']:
+           try:get(path);raise AssertionError(path+' unexpectedly deployed')
+           except urllib.error.HTTPError as e:assert e.code==404;(private_source_statuses.__setitem__(path,e.code))
+          release_end=json.loads(get('release.json'));assert release_end==release
+          result={'release':release,'files_matched':len(files),'files':files,'census':census,'unshipped_source_statuses':private_source_statuses,'verified_at':__import__('datetime').datetime.now(__import__('datetime').timezone.utc).isoformat(),'result':'PASS'}
+          (Path(__import__('os').environ['RUNNER_TEMP'])/'fee-live-results/live-bytes.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps({k:result[k] for k in ['release','files_matched','census','unshipped_source_statuses','verified_at','result']}))
+          PY
+          python3 "$RUNNER_TEMP/fee-live-bytes.py" "$MERGE_SHA"
+      - name: Inspect actual desktop and mobile fee evidence without contributions
+        run: |
+          cat > "$RUNNER_TEMP/fee-live-ui.cjs" <<'JS'
+          'use strict';
+          const {chromium}=require(process.cwd()+'/node_modules/playwright');
+          const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
+          const EXPECTED=process.argv[2],ROOT=process.cwd();
+          const ids=[35347,35355,35645,35651,35655,60306,60320,60666,66336,67118].map(x=>'usfs:'+x);
+          const idx=JSON.parse(fs.readFileSync(ROOT+'/data/campsites/search-index.json'));
+          const cases=ids.map(id=>{const r=idx.sites.find(s=>s.id===id||s.legacy_ids.includes(id));assert(r,id);return{id,host:r.id,fee:r.m.f,name:r.name,states:r.states};});
+          const output={started_at:new Date().toISOString(),expected_commit:EXPECTED,cases,runs:[]};
+          (async()=>{
+           const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox','--disable-dev-shm-usage']});
+           try{
+            for(const mobile of [false,true]){
+             const ctx=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:1000},isMobile:mobile,hasTouch:mobile,serviceWorkers:'block'});
+             const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+             await page.goto('https://kamptrail.com/?fee-recheck-acceptance='+Date.now(),{waitUntil:'domcontentloaded',timeout:90000});
+             await page.evaluate(()=>window.KampTrailMapLoader?.start());
+             await page.waitForFunction(()=>window.KampTrailData?.getIdentityStatus?.().hosts==='published',null,{timeout:90000});
+             const release=await page.evaluate(async()=>await(await fetch('/release.json?n='+Date.now(),{cache:'no-store'})).json());assert.equal(release.source_commit,EXPECTED);
+             const states=[...new Set(cases.flatMap(c=>c.states))].sort();if(mobile)states.reverse();
+             for(const st of states)await page.evaluate(st=>KampTrailData.loadStates([st]),st);
+             const rows=await page.evaluate(ids=>ids.map(id=>{const f=KampTrailData.getCampsiteById(id);if(!f)return{id,missing:true};return{id,host:f.properties.id,fee:f.properties.fee_status,evidence:f.properties.fee_evidence_records.filter(e=>e.source==='US Forest Service'&&e.source_record_id===id.slice(5))};}),ids);
+             for(const c of cases){const r=rows.find(x=>x.id===c.id);assert(!r.missing,c.id+' loaded');assert.equal(r.host,c.host,c.id+' canonical');assert.equal(r.fee,c.fee,c.id+' fee');const obs=r.evidence.find(e=>e.evidence_kind==='maintained_official_page_observation');
+              if(c.id==='usfs:60320'){assert(!obs,'Gold blocked');assert.equal(c.fee,'unknown');}
+              else{assert(obs,c.id+' maintained evidence');assert.equal(obs.retrieved_at,['usfs:35645','usfs:60306','usfs:60666'].includes(c.id)?'2026-11-23':'2026-10-30');assert.equal(obs.automated_check.checked_at,'2026-11-23T13:39:54Z');assert.equal(obs.automated_check.valid_until,'2026-12-23');}
+             }
+             const popups=[];
+             for(const id of ['usfs:35645','usfs:60306','usfs:60666','usfs:60320']){
+              const c=cases.find(x=>x.id===id);await page.evaluate(id=>KampTrailData.focusCampsite(id),id);
+              const popup=page.locator('.kt-site-popup');await popup.getByRole('heading',{name:c.name,level:2,exact:true}).waitFor({state:'visible',timeout:30000});
+              await popup.getByRole('button',{name:'Fee evidence',exact:true}).click();const box=popup.locator('.kt-fee-records');await box.waitFor({state:'visible'});
+              const record=box.locator('details').filter({has:page.locator('p.kt-fine',{hasText:'Record '+id.slice(5)})});
+              const summaries=await record.locator(':scope > summary').all();for(const summary of summaries){const details=summary.locator('..');if(!await details.evaluate(e=>e.open))await summary.click();}
+              const full=await box.innerText();if(id==='usfs:35645')assert(full.includes('Closed for the winter.'),'Airplane closure disclosed');if(id==='usfs:60306')assert(full.includes('Closed for Season'),'Blodgett closure disclosed');
+              assert(await box.evaluate(e=>e.scrollWidth<=e.clientWidth+1),'fee evidence fits viewport');popups.push({id,visible_fee_evidence:true,closure_disclosed:['usfs:35645','usfs:60306'].includes(id),fits_viewport:true});
+             }
+             assert.deepEqual(errors,[],'page errors');const releaseEnd=await page.evaluate(async()=>await(await fetch('/release.json?n='+Date.now(),{cache:'no-store'})).json());assert.equal(releaseEnd.source_commit,EXPECTED);
+             output.runs.push({mode:mobile?'mobile emulation':'desktop',viewport:page.viewportSize(),release,states,rows,popups,page_errors:errors,result:'PASS'});await ctx.close();
+            }
+            output.result='PASS';
+           }finally{await browser.close();output.finished_at=new Date().toISOString();fs.writeFileSync(process.env.RUNNER_TEMP+'/fee-live-results/live-ui.json',JSON.stringify(output,null,2)+'\n');}
+           console.log(JSON.stringify({result:output.result,runs:output.runs.map(r=>({mode:r.mode,listings:r.rows.length,popups:r.popups.length,result:r.result}))}));
+          })().catch(e=>{console.error(e.stack);process.exit(1)});
+          JS
+          node "$RUNNER_TEMP/fee-live-ui.cjs" "$MERGE_SHA"
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: usfs-fee-nov23-live-acceptance
+          path: ${{ runner.temp }}/fee-live-results
+          if-no-files-found: warn

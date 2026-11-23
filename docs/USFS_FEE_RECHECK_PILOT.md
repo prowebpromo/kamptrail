@@ -2,7 +2,7 @@
 
 ## Scope and decision
 
-Pilot the ten independently reviewed campground pages in `scripts/fixtures/usfs_fee_overrides.json` whose original human review window ended November 29, 2026. At installation their October 30 human observation dates, coordinate/name matches, fee wording, caveats and manual deadlines remained unchanged. The November 23 exception review below genuinely renews three observations; machine checks alone never change human dates.
+Pilot the ten independently reviewed campground pages in `scripts/fixtures/usfs_fee_overrides.json` whose original human review window was due to end November 29, 2026. At installation their October 30 human observation dates, coordinate/name matches, fee wording, caveats and manual deadlines remained unchanged. The November 23 exception review below genuinely renews three observations; machine checks alone never change human dates.
 
 An importer may renew eligibility from a **separate machine confirmation** for up to 30 days after a successful check, capped at **180 days after the human observation**. The original October 30 observations have an April 28, 2027 cap; a genuinely renewed November 23 observation has a May 22, 2027 cap. These are operational limits, not promises that agency fees remain stable. Weekly checks reduce the chance of missing a publication change. The six-month human cap bounds the risk of a parser or source-design assumption silently remaining wrong forever. This initial policy is deliberately limited to ten approved pages; expanding the list requires source/baseline review.
 
