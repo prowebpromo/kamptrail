@@ -255,13 +255,17 @@ class RecheckTests(unittest.TestCase):
 
     def test_all_ten_original_pilot_receipts_expire_on_nov29_without_new_confirmation(self):
         # Replay the actual original receipt through the full pin validator, with
-        # no future check timestamps and no changes to today's source evidence.
-        reviews = check.load_reviews()
+        # its original baseline/reviews, independent of later genuine reviews.
+        original = json.loads((Path(__file__).parent / 'fixtures/usfs-fee-original-pilot.json').read_text())
+        reviews = {int(rid): record for rid, record in original['reviews'].items()}
         from test_usfs_fee_reviews import row
         with tempfile.TemporaryDirectory() as folder:
             receipt_path = Path(folder) / 'original-checks.json'
             receipt_path.write_text(json.dumps(ORIGINAL_PILOT_RECEIPT))
-            with patch.object(check, 'CHECKS', receipt_path), patch.object(usfs, 'load_fee_reviews', return_value=reviews):
+            baseline_path = Path(folder) / 'original-baseline.json'
+            baseline_path.write_text(json.dumps(original['baseline']))
+            self.assertEqual(check.digest(original['baseline']), ORIGINAL_PILOT_RECEIPT['baseline_sha256'])
+            with patch.object(check, 'BASELINES', baseline_path), patch.object(check, 'CHECKS', receipt_path), patch.object(usfs, 'load_fee_reviews', return_value=reviews):
                 check.load_checks.cache_clear()
                 self.assertEqual(set(check.load_checks()), check.PILOT)
                 for rid, record in reviews.items():
