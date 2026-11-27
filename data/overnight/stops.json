@@ -1,0 +1,94 @@
+[
+  {
+    "id": "loves:870",
+    "name": "Love's Travel Stop #870, Watertown",
+    "type": "truck-stop",
+    "state": "NY",
+    "lat": 44.002115,
+    "lng": -75.921886,
+    "address": "23425 State Route 12, Watertown, NY 13601",
+    "phone": "+13152217018",
+    "interstates": [
+      "I-81"
+    ],
+    "status": "official-policy",
+    "policy": "Love's lists overnight parking and five back-in RV hookup spaces. Ask about availability and the rate for a designated RV space.",
+    "checked": "2026-11-27",
+    "source": "https://www.loves.com/locations/ny/watertown/loves-travel-stop-watertown-870",
+    "locationSource": "https://www.loves.com/locations/ny/watertown/loves-travel-stop-watertown-870",
+    "directions": "https://www.google.com/maps/dir/?api=1&destination=23425+State+Route+12%2C+Watertown%2C+NY+13601&destination_place_id=ChIJ89saGlpx2IkRfIOBmHttCa0"
+  },
+  {
+    "id": "loves:611",
+    "name": "Love's Travel Stop #611, Canaan",
+    "type": "truck-stop",
+    "state": "NY",
+    "lat": 42.362667,
+    "lng": -73.429423,
+    "address": "12845 Route 22, Canaan, NY 12029",
+    "phone": "+15187814040",
+    "interstates": [
+      "I-90"
+    ],
+    "status": "unverified",
+    "policy": "The operator lists RV-friendly parking. Call this location before planning to sleep in the RV.",
+    "checked": "2026-11-27",
+    "source": "https://www.loves.com/locations/ny/canaan/loves-travel-stop-canaan-611",
+    "locationSource": "https://www.loves.com/locations/ny/canaan/loves-travel-stop-canaan-611",
+    "directions": "https://www.google.com/maps/dir/?api=1&destination=12845+Route+22%2C+Canaan%2C+NY+12029&destination_place_id=ChIJfblGq8RY54kRKtmb5uYe6JU"
+  },
+  {
+    "id": "ta:963",
+    "name": "TA Express Pine Grove",
+    "type": "truck-stop",
+    "state": "PA",
+    "lat": 40.53385,
+    "lng": -76.43174,
+    "address": "482 Suedberg Road, Pine Grove, PA 17963",
+    "phone": "+17174546803",
+    "interstates": [
+      "I-81"
+    ],
+    "status": "unverified",
+    "policy": "TA lists RV parking at this location. The operator describes reserved spaces for trucks. Call about an occupied overnight RV stay.",
+    "checked": "2026-11-27",
+    "source": "https://www.ta-petro.com/newsroom/ta-opens-two-new-locations-in-pennsylvania/",
+    "locationSource": "https://www.ta-petro.com/location/pa/ta-express-pine-grove/",
+    "directions": "https://www.google.com/maps/dir/?api=1&destination=482+Suedberg+Road%2C+Pine+Grove%2C+PA+17963"
+  },
+  {
+    "id": "casino:oxford-me",
+    "name": "Oxford Casino Hotel & Sportsbook",
+    "type": "casino",
+    "state": "ME",
+    "lat": 44.1151733,
+    "lng": -70.4459609,
+    "address": "777 Casino Way, Oxford, ME 04270",
+    "phone": "+12075396700",
+    "interstates": [],
+    "status": "official-policy",
+    "policy": "The casino allows one 24-hour RV stay. Use the south corner of the upper lot for oversized vehicles. Keep camping gear inside and check for event or high-volume parking restrictions.",
+    "checked": "2026-11-27",
+    "source": "https://www.oxfordcasino.com/faq-oxford-casino-hotel-sportsbook/",
+    "locationSource": "https://www.oxfordcasino.com/faq-oxford-casino-hotel-sportsbook/",
+    "directions": "https://www.google.com/maps/dir/?api=1&destination=777+Casino+Way%2C+Oxford%2C+ME+04270"
+  },
+  {
+    "id": "osm:way:1201192567",
+    "name": "The Villages at Turning Stone RV Park",
+    "type": "casino",
+    "state": "NY",
+    "lat": 43.1081718,
+    "lng": -75.6077944,
+    "address": "5065 State Route 365, Verona, NY 13478",
+    "phone": "+13153617275",
+    "interstates": [],
+    "status": "official-policy",
+    "policy": "The resort operates this RV park from May through October. Call for opening dates, availability and rates. This pin marks the campground.",
+    "checked": "2026-11-27",
+    "source": "https://www.turningstone.com/accommodations/the-villages-rv-park",
+    "locationSource": "https://www.openstreetmap.org/way/1201192567",
+    "addressSource": "https://www.oneidaindiannation.com/wp-content/uploads/2023/03/Oneida-Indian-Nation-2022-Annual-Report.pdf",
+    "directions": "https://www.google.com/maps/dir/?api=1&destination=5065+State+Route+365%2C+Verona%2C+NY+13478"
+  }
+]

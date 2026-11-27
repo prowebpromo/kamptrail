@@ -172,7 +172,7 @@
       p.querySelector('#kt-filter-rig-profile').onclick=()=>window.KampTrailRigProfile?.open();
       p.querySelector('#kt-f-reset').onclick=reset;p.querySelector('#kt-f-close').onclick=()=>{close();state.button.focus();};
       p.querySelectorAll('[name="f-cost"]').forEach(el=>el.onchange=()=>{state.filters.cost=el.value;apply();});
-      p.querySelector('#f-type').onchange=e=>{state.filters.type=e.target.value;apply();};
+      p.querySelector('#f-type').onchange=e=>{state.filters.type=e.target.value;if(state.filters.entryLayer==='overnight-parking' && state.filters.type!=='parking')delete state.filters.entryLayer;apply();};
       p.querySelector('#f-rig').onchange=e=>{state.filters.rigSize=e.target.value;apply();};
       p.querySelectorAll('[name="f-amenity"]').forEach(el=>el.onchange=()=>{state.filters.amenities=[...p.querySelectorAll('[name="f-amenity"]:checked')].map(i=>i.value);apply();});
       const len=p.querySelector('#f-length');
@@ -185,6 +185,6 @@
       p.querySelectorAll('[name="f-hookup"]').forEach(el=>el.onchange=()=>{state.filters.hookups=[...p.querySelectorAll('[name="f-hookup"]:checked')].map(i=>i.value);apply();});
       document.addEventListener('keydown',e=>{if(e.key==='Escape'&&p.open&&(!e.target.closest('dialog[open]')||e.target.closest('dialog[open]')===p)){e.preventDefault();close();}});
       apply();
-    },reset,applyEntry(mode){state.filters=defaults();if(mode==='overnight-parking')state.filters.type='parking';if(mode==='free-camping')state.filters.cost='free';if(mode==='blm')state.filters.catalogueSource='blm';if(['rest-areas','dump-stations'].includes(mode))state.filters.entryLayer=mode;sync();apply('entry');},applyProfile,setElevationFilters,setForecastFilters,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
+    },reset,applyEntry(mode){state.filters=defaults();if(mode==='overnight-parking')state.filters.type='parking';if(mode==='free-camping')state.filters.cost='free';if(mode==='blm')state.filters.catalogueSource='blm';if(['overnight-parking','rest-areas','dump-stations'].includes(mode))state.filters.entryLayer=mode;sync();apply('entry');},applyProfile,setElevationFilters,setForecastFilters,setIncludeUnknownLength(on){state.filters.rigIncludeUnknown=!!on;sync();apply();},getFilters:()=>({...state.filters,amenities:[...state.filters.amenities],hookups:[...state.filters.hookups]})
   };
 })();

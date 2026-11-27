@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const t = (key, params) => (typeof window !== 'undefined' ? window.KampTrailI18n : globalThis.KampTrailI18n)?.t(key, params) ?? String(key).replace(/\{([a-zA-Z0-9_]+)\}/g, (token, name) => Object.hasOwn(params || {}, name) ? String(params[name]) : token);
-  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.51.0' || [window.KampTrailSafety,window.KampTrailBeta,window.KampTrailI18n,window.DataQuality,window.KampTrailListingHistory,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailCoverage,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailInstall,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.51.0')) {
+  if (document.querySelector('meta[name="kamptrail-version"]')?.content !== '2.51.0' || [window.KampTrailSafety,window.KampTrailBeta,window.KampTrailI18n,window.DataQuality,window.KampTrailListingHistory,window.KampTrailData,window.KampTrailTrip,window.KampTrailFilters,window.KampTrailSpot,window.KampTrailLayers,window.KampTrailCoverage,window.KampTrailShare,window.KampTrailOffline,window.KampTrailContrib,window.KampTrailFeedback,window.KampTrailInstall,window.KampTrailCommunity,window.KampTrailMVUM,window.KampTrailRoutes,window.KampTrailDiscovery,window.KampTrailEnvironment,window.KampTrailForecast,window.KampTrailServices,window.KampTrailPermissions,window.KampTrailRestAreas,window.KampTrailOvernight,window.KTOvernightGuides,window.KampTrailRigProfile,window.KampTrailRouteElevation,window.KampTrailClearances,window.KampTrailRouteClearance].some(module=>module?.version!=='2.51.0')) {
     showToast(t("Updating KampTrail. This page will reload automatically when the update is ready."),'info',0);
     document.getElementById('result-summary').textContent=t("Updating the saved app…");
     return;
@@ -65,6 +65,7 @@
   near.addEventListener('click', () => {
     if (locationLayer) {
       map.removeLayer(locationLayer); locationLayer = null;
+      window.KampTrailOvernight?.near(null);
       near.classList.remove('active'); near.setAttribute('aria-pressed', 'false');
       return;
     }
@@ -74,9 +75,10 @@
     navigator.geolocation.getCurrentPosition(pos => {
       const {latitude:lat, longitude:lng, accuracy} = pos.coords;
       locationLayer = L.circle([lat,lng], {radius:Math.min(accuracy || 100,5000),color:'#2a7850',fillOpacity:.15}).addTo(map);
+      window.KampTrailOvernight?.near([lng, lat]);
       map.setView([lat,lng], 8);
       near.disabled = false; near.classList.add('active'); near.setAttribute('aria-pressed','true');
-      showToast(t("Showing campsite listings near your location."));
+      showToast(window.KampTrailBeta?.entry.mode === 'overnight-parking' ? 'Showing overnight stops near your location.' : t("Showing campsite listings near your location."));
     }, () => {
       near.disabled = false; near.classList.remove('active'); near.setAttribute('aria-pressed','false');
       showToast(t("Location is unavailable or permission was denied. Search a city or choose a state."), 'error');
@@ -117,6 +119,13 @@
     const sites = KampTrailData.getVisibleCampsites();
     const summary = document.getElementById('result-summary');
     const entryLayer=window.kamptrailFilters?.entryLayer;
+    if (entryLayer === 'overnight-parking') {
+      summary.textContent = 'Overnight parking';
+      const note = document.createElement('p');
+      note.textContent = 'Use Stops in this map view in the overnight parking filters to inspect and save a location.';
+      document.getElementById('result-list').replaceChildren(note);
+      return;
+    }
     if(['rest-areas','dump-stations'].includes(entryLayer)){
       const note=document.createElement('p');note.className='list-empty';note.textContent=t(entryLayer==='rest-areas'?'Official rest-area layer is on. Tap an R marker for source details. Coverage is incomplete.':'Dump-station layer is on. Tap a D marker for source details. Coverage is incomplete.');
       summary.textContent=t(entryLayer==='rest-areas'?'Official rest areas':'Dump stations');document.getElementById('result-list').replaceChildren(note);return;
