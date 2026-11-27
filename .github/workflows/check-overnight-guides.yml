@@ -1,0 +1,19 @@
+name: Verify live overnight parking guides
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'overnight-guides.js'
+      - 'overnight-parking.js'
+      - 'data/overnight/stops.json'
+      - 'scripts/acceptance/verify-overnight-guides.js'
+      - '.github/workflows/check-overnight-guides.yml'
+permissions:
+  contents: read
+jobs:
+  live-guides:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: node scripts/acceptance/verify-overnight-guides.js

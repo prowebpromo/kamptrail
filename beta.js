@@ -3,7 +3,7 @@
   'use strict';
   const VERSION='2.51.0';
   const MODES=Object.freeze({
-    'overnight-parking':{label:'Overnight parking',note:'Parking-related listings. A marker does not establish overnight permission. Confirm with the property manager.'},
+    'overnight-parking':{label:'Overnight parking',note:'Inspect a stop’s source and call ahead before you travel.'},
     'rest-areas':{label:'Official rest areas',note:'Official rest-area layer is on. Coverage is incomplete. A location or stay limit does not establish overnight permission.'},
     'dump-stations':{label:'Dump stations',note:'Dump-station layer is on. Tap a D marker for its source. Coverage, access, hours and fees need confirmation.'},
     'free-camping':{label:'Reported free camping',note:'Only listings reporting free are shown. Unknown fees and conditional offers are excluded. Confirm current fees and access.'},
@@ -70,7 +70,7 @@
   function viewPlace(site){const p=site?.properties;if(!p||typeof p.id!=='string')return;beginActivity();if(!sessionViews.has(p.id)){sessionViews.add(p.id);use('views');track('marker_viewed',{place_kind:'campsite'});}s.recent=[{id:p.id,name:String(p.name||'Campsite').slice(0,200)},...s.recent.filter(x=>x.id!==p.id)].slice(0,12);persist();render();}
   let recentDialog;
   function recent(){if(!recentDialog){recentDialog=document.createElement('dialog');recentDialog.id='kt-recent-dialog';recentDialog.setAttribute('aria-labelledby','kt-recent-title');document.body.append(recentDialog);}recentDialog.replaceChildren();const h=document.createElement('h2');h.id='kt-recent-title';h.textContent=t('Recently viewed places');recentDialog.append(h,button('Close',()=>recentDialog.close()));const list=document.createElement('ul');for(const item of s.recent){const li=document.createElement('li');const open=button('',async()=>{recentDialog.close();const hash='#site='+encodeURIComponent(item.id),unchanged=location.hash===hash;location.hash=hash;await root.KampTrailMapLoader?.start();if(unchanged)root.dispatchEvent(new Event('hashchange'));});open.textContent=item.name;li.append(open);list.append(li);}if(!s.recent.length){const p=document.createElement('p');p.textContent=t('Campsites you open will appear here. This list stays on this device.');recentDialog.append(p);}recentDialog.append(list,button('Clear recently viewed',()=>{s.recent=[];beginActivity();persist();recent();}));const trigger=document.getElementById('kt-recent');recentDialog.onclose=()=>trigger?.focus();if(!recentDialog.open)recentDialog.showModal();}
-  function clearEntry(){if(!entry.mode&&!entryApplied)return;entry.mode=null;entryApplied=false;const box=document.getElementById('kt-entry-state');if(box)box.hidden=true;const u=new URL(location.href);for(const k of ['mode','near','state'])u.searchParams.delete(k);history.replaceState(null,'',u);}
+  function clearEntry(){if(!entry.mode&&!entryApplied)return;root.KampTrailOvernight?.close();entry.mode=null;entryApplied=false;const box=document.getElementById('kt-entry-state');if(box)box.hidden=true;const u=new URL(location.href);for(const k of ['mode','near','state'])u.searchParams.delete(k);history.replaceState(null,'',u);}
   function applyEntry(){
     if(!entry.mode)return;
     if(hasSharedTarget(location.hash)){entry.mode=null;return;}
@@ -80,6 +80,7 @@
     if(entry.mode==='rest-areas')root.KampTrailLayers.showRestAreas();
     if(entry.mode==='blm')root.KampTrailLayers.showLand();
     const box=document.getElementById('kt-entry-state');box.hidden=false;const p=document.createElement('p');p.textContent=t(MODES[entry.mode].label)+'. '+t(MODES[entry.mode].note);box.replaceChildren(p,button('Show all campsites',()=>{root.KampTrailFilters.reset();clearEntry();}));
+    if (entry.mode === 'overnight-parking') root.KampTrailOvernight.open(box, root.map);
     if(entry.state&&document.querySelector('#state-select option[value="'+entry.state+'"]')){const select=document.getElementById('state-select');select.value=entry.state;select.dispatchEvent(new Event('change'));}
     if(entry.near)document.getElementById('near')?.click();
     track('open_in_kamptrail');

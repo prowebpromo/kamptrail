@@ -157,7 +157,9 @@
     map.on('baselayerchange', e => { st.base = Object.keys(bases).find(name=>bases[name]===e.layer) || st.base; const p = readPrefs(); p.base = st.base; writePrefs(p); });
     map.on('overlayadd overlayremove', e => {
       const on = e.type === 'overlayadd';
-      const p = readPrefs(); p.overlays = p.overlays || {}; p.overlays[Object.keys(st.overlays).find(name=>st.overlays[name]===e.layer) || e.name] = on; writePrefs(p);
+      if (!st.overnight) {
+        const p = readPrefs(); p.overlays = p.overlays || {}; p.overlays[Object.keys(st.overlays).find(name=>st.overlays[name]===e.layer) || e.name] = on; writePrefs(p);
+      }
       if (e.layer === land) { on ? st.landLegend.addTo(map) : st.landLegend.remove(); }
       if (e.layer === st.services) {
         if(on)map.attributionControl?.addAttribution(SERVICE_ATTRIBUTION);else map.attributionControl?.removeAttribution(SERVICE_ATTRIBUTION);
@@ -175,5 +177,16 @@
       openSpot(e.latlng);
     });
   }
-  window.KampTrailLayers = {version: '2.51.0', init, openSpot, loadServices, showRestAreas:()=>{const l=st.overlays['Official rest areas'];if(st.map&&l&&!st.map.hasLayer(l))l.addTo(st.map);}, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
+  // Suspend optional overlays while the dedicated mode owns the displayed pins.
+  // Restore the visitor's layers without rewriting their device preferences.
+  function pauseOverlays(on) {
+    if (on && !st.overnight) {
+      st.overnight = Object.values(st.overlays).filter(layer => st.map.hasLayer(layer));
+      for (const layer of st.overnight) st.map.removeLayer(layer);
+    } else if (!on && st.overnight) {
+      for (const layer of st.overnight) st.map.addLayer(layer);
+      st.overnight = null;
+    }
+  }
+  window.KampTrailLayers = {pauseOverlays, overnightRestRecords: force => st.overlays['Official rest areas'].loadOvernightRecords(force), version: '2.51.0', init, openSpot, loadServices, showRestAreas:()=>{const l=st.overlays['Official rest areas'];if(st.map&&l&&!st.map.hasLayer(l))l.addTo(st.map);}, showServices:()=>{if(st.map&&!st.map.hasLayer(st.services))st.services.addTo(st.map);return loadServices();}, serviceIds:()=>st.services?.getLayers().map(m=>m.ktServiceId)||[], showLand: () => { const l = st.overlays['Public land (BLM, USFS, NPS)']; if (st.map && l && !st.map.hasLayer(l)) l.addTo(st.map); }, isOn: name => !!(st.map && st.overlays[name] && st.map.hasLayer(st.overlays[name])), getBase: () => st.base};
 })();
