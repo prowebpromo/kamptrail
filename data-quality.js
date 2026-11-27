@@ -1048,7 +1048,7 @@
     const forecast=global.KampTrailForecast,forecastActive=filters.forecastMinC!=null||filters.forecastMaxC!=null,forecastNow=forecast?.effectiveNow();
     return sites.filter(site => {
       const p=site.properties;
-      if (['rest-areas','dump-stations'].includes(filters.entryLayer)) return false;
+      if (['overnight-parking','rest-areas','dump-stations'].includes(filters.entryLayer)) return false;
       // Entry intent selects only the retained record's own publisher. Member evidence never promotes a match.
       if (filters.catalogueSource === 'blm' && p.source !== 'Bureau of Land Management') return false;
       if(forecastActive&&(!forecast||!forecast.matches(site,filters,forecastNow)))return false;

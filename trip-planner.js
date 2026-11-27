@@ -61,7 +61,7 @@
   function getSite(stop) {
     const record=historicalRecord(stop);if(record)return window.KampTrailListingHistory.historicalFeature(record);
     // A saved service may share an OSM identity with a campground; keep its service evidence.
-    if(stop.feature?.properties?.type==='service')return valid(stop.feature)?stop.feature:null;
+    if(stop.feature?.properties?.type==='service' || Array.isArray(stop.feature?.properties?.overnight_states))return valid(stop.feature)?stop.feature:null;
     // Resolve current display/routing data without rewriting the saved id or original snapshot.
     const current=window.KampTrailData?.getCampsiteById(stop.id);
     if(valid(current))return clone(current);
@@ -142,12 +142,18 @@
     const site=getSite(stop);if(!site)return;
     close();
     st.savedMarker?.remove();st.savedMarker=null;
-    if(site.properties.type!=='service'&&window.KampTrailData?.focusCampsite?.(stop.id))return;
+    if(site.properties.type!=='service'&&!Array.isArray(site.properties.overnight_states)&&window.KampTrailData?.focusCampsite?.(stop.id))return;
     const [lng,lat]=site.geometry.coordinates;
     st.map.setView([lat,lng],12);
     // A snapshot location remains viewable even if its source region is not loaded.
     if(window.L?.marker) {
       const popup=document.createElement('div');
+      if (Array.isArray(site.properties.overnight_states)) {
+        popup.dataset.overnightSavedId = stop.id;
+        const policy = document.createElement('p');
+        policy.textContent = site.properties.overnight_policy || '';
+        popup.append(policy);
+      }
       const title=document.createElement('strong');title.textContent=nameOf(site);
       const note=document.createElement('p');note.textContent=stop.note ? stop.note : (site.properties.type==='service'?t("Saved service location. Confirm current access and opening with the operator."):t("Saved location. Confirm current campsite access with the operator."));
       const evidence=document.createElement('p');if(site.properties.type==='service')evidence.textContent=typeof site.properties.service_evidence==='string'?site.properties.service_evidence.slice(0,4000):t("Dated service evidence unavailable. Opening, RV access and overnight permission are unverified.");
@@ -511,7 +517,7 @@
       window.addEventListener('kamptrail:dataupdated',()=>{if(window.KampTrailData?.getLoadStatus?.().history==='ready')for(const[id,result]of listingResolutions)if(result.kind==='unavailable')listingResolutions.delete(id);const before=st.topologyKey;if(captureMissingSnapshots())save();syncRevision();render();if(st.topologyKey!==before)drawRoute();recoverLegacyStops();});
     },
     addStop(id,snapshot) {
-      const site=window.KampTrailData?.getCampsiteById(id) || snapshot;
+      const site=Array.isArray(snapshot?.properties?.overnight_states) ? snapshot : window.KampTrailData?.getCampsiteById(id) || snapshot;
       if(!valid(site)){notify(t("That campsite has not loaded yet. Try again after its listing loads."));return;}
       const key=savedId(site);
       if(st.stops.some(stop=>sameListing(stop,site))){open();return;}

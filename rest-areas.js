@@ -158,6 +158,7 @@
     map.on('overlayadd overlayremove',e=>{if(e.layer===layer){if(!active()){++view;controller?.abort();}redraw();}});
     let timer;map.on('moveend',()=>{global.clearTimeout(timer);timer=global.setTimeout(()=>redraw(),180);});map.on('popupclose',()=>global.setTimeout(()=>{if(!map._popup?.isOpen?.())redraw();},0));
     global.addEventListener('offline',()=>{++view;controller?.abort();redraw();});global.addEventListener('online',()=>redraw());
+    layer.loadOvernightRecords = load;
     return layer;
   }
   const api={version:'2.51.0',requestTimeoutMs:20000,REGIONS,validateIndex,validate,validatePolicies,resolvePolicy,policyFor,policyDescription,place,feature,describe,within,detail,init};

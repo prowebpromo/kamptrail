@@ -1,5 +1,5 @@
 // Versioned local assets, persistent visited data, and saved USGS Topo tiles chosen by the visitor.
-const VERSION = 'kt-v96';
+const VERSION = 'kt-v97';
 const TOPO_TILES = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
 const PREFIX = `kamptrail:${self.registration.scope}:`;
 const SHELL_CACHE = `${PREFIX}${VERSION}`;
@@ -19,7 +19,7 @@ const SHELL = [
   'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/marker-icon.png','vendor/leaflet/images/marker-icon-2x.png','vendor/leaflet/images/marker-shadow.png','vendor/leaflet/images/layers.png','vendor/leaflet/images/layers-2x.png',
   'vendor/markercluster/leaflet.markercluster.js','vendor/markercluster/MarkerCluster.css','vendor/markercluster/MarkerCluster.Default.css',
-  'feedback.js','install.js','safety.js','how-to.html','updates.html','tools.html','guides.html','plan.html','about.html','resources.css','terms.html','safety.html','privacy.html','legal.css'
+  'data/overnight/stops.json','feedback.js','install.js','safety.js','how-to.html','updates.html','tools.html','guides.html','plan.html','about.html','resources.css','terms.html','safety.html','privacy.html','legal.css'
 ];
 // Cold visits also fetch the visible page. Pace all shell requests and pause both
 // workers together if the hosting service asks us to retry later.
