@@ -87,8 +87,14 @@
     for (const evidence of row.policySources || []) actions.append(link('Agency policy', evidence.url));
     if (row.phone) actions.append(link('Call ' + row.phone, 'tel:' + row.phone.replace(/[^+0-9]/g, '')));
     const [lng, lat] = row.coordinates;
+    if (row.type === 'dump') actions.append(link('© OpenStreetMap contributors', 'https://www.openstreetmap.org/copyright'));
     actions.append(link('Directions', row.directions || 'https://www.google.com/maps/dir/?api=1&destination=' + lat + ',' + lng),
-      button('Save stop', () => root.KampTrailTrip.addStop(row.snapshot.properties.id, row.snapshot)));
+      button('Save stop', () => {
+        const feature = {...row.snapshot, properties: {...row.snapshot.properties, overnight_states: row.states,
+          overnight_interstates: row.interstates || [], overnight_policy: row.policy, overnight_checked: row.checked || null,
+          overnight_source: row.source, overnight_status: row.status}};
+        root.KampTrailTrip.addStop(feature.properties.id, feature);
+      }));
     const guides = element('nav');
     guides.setAttribute('aria-label', 'Boondock or Bust parking guides');
     addGuides(guides, row, s.directory);
@@ -246,9 +252,12 @@
       const extra = element('div');
       extra.className = 'kt-extra-overnight';
       const guides = element('nav');
+      const saved = content.querySelector('[data-overnight-saved-id]')?.dataset.overnightSavedId;
+      const snapshot = saved && root.KampTrailTrip.getStops().find(stop => stop.id === saved)?.feature;
       const id = opened._source?.kamptrailId;
       const place = id && root.KampTrailData.getCampsiteById(id);
-      const row = {states: place?.properties?.states || []};
+      const row = {states: snapshot?.properties?.overnight_states || place?.properties?.states || root.KampTrailSearchRegions?.get(String(id)) || [],
+        interstates: snapshot?.properties?.overnight_interstates};
       addGuides(guides, row, s.directory);
       s.openGuide = {guides, row};
       extra.append(element('p', disclaimer), guides);

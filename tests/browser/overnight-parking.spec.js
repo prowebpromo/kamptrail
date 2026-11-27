@@ -35,6 +35,9 @@ test('overnight entry opens sourced operator pins, filters and saves a stop', as
   await page.locator('.leaflet-marker-icon[title="Oxford Casino Hotel & Sportsbook"]').click();
   await page.locator('.kt-overnight-popup').getByRole('button', {name:'Save stop'}).click();
   await expect.poll(() => page.evaluate(() => KampTrailTrip.getStops().map(stop => stop.id))).toContain('casino:oxford-me');
+  const saved = await page.evaluate(() => KampTrailTrip.getStops().find(stop => stop.id === 'casino:oxford-me').feature.properties);
+  expect(saved.overnight_states).toEqual(['ME']);
+  expect(saved.overnight_status).toBe('official-policy');
 });
 
 test('rest-area and dump pins use the same disclaimer and live guide fallback', async ({page}) => {
