@@ -2,6 +2,10 @@ const {test, expect} = require('@playwright/test');
 const seed = require('../../data/overnight/stops.json');
 const base = 'https://boondockorbust.com/resources/';
 const slugs = ['overnight-rv-parking-new-york', 'overnight-rv-parking-maine', 'i-81-overnight-rv-parking', 'i-90-overnight-rv-parking'];
+test.use({serviceWorkers:'block'});
+test.beforeEach(async ({context}) => {
+  await context.route(/^https:\/\//, route => route.abort());
+});
 
 test('overnight entry opens sourced operator pins, filters and saves a stop', async ({page}) => {
   await page.route('https://boondockorbust.com/wp-json/wp/v2/posts?**', route => route.fulfill({
@@ -31,4 +35,33 @@ test('overnight entry opens sourced operator pins, filters and saves a stop', as
   await page.locator('.leaflet-marker-icon[title="Oxford Casino Hotel & Sportsbook"]').click();
   await page.locator('.kt-overnight-popup').getByRole('button', {name:'Save stop'}).click();
   await expect.poll(() => page.evaluate(() => KampTrailTrip.getStops().map(stop => stop.id))).toContain('casino:oxford-me');
+});
+
+test('rest-area and dump pins use the same disclaimer and live guide fallback', async ({page}) => {
+  const data = require('../../data/rest-areas/TX.json');
+  const rest = data.records[0];
+  const [lng, lat] = rest.coordinates;
+  await page.route('**/data/rest-areas/index.json', route => route.fulfill({json:{version:1,regions:[{region:'TX',file:'TX.json'}]}}));
+  await page.route('**/data/rest-areas/TX.json', route => route.fulfill({json:{...data,records:[rest]}}));
+  await page.goto('/?mode=overnight-parking&state=TX');
+  const filters = page.getByRole('group', {name:'Overnight parking filters'});
+  await expect(filters).toBeVisible();
+  await page.evaluate(({lat,lng}) => {
+    // Inject one known dump after exercising the production service loader in its own suite.
+    KampTrailServices.loadBounds = async () => ({
+      items:[{id:'osm:node:100',osm_type:'node',osm_id:'100',name:'Fixture dump station',coordinates:[lng+0.02,lat],
+        source_region:'TX',states:['TX'],categories:['dump'],tags:{amenity:'sanitary_dump_station'}}],
+      manifest:{coverage:[{region:'TX',retrieved_at:'2026-11-01T00:00:00Z'}]}
+    });
+    map.setView([lat,lng], 12, {animate:false});
+  }, {lat,lng});
+  for (const name of [rest.name, 'Fixture dump station']) {
+    await page.getByTitle(name,{exact:true}).click();
+    const popup = page.locator('.kt-overnight-popup');
+    await expect(popup).toContainText('A pin is a place to ask about, not permission to stay.');
+    await expect(popup.getByRole('link', {name:'State parking guide index'})).toHaveAttribute('href', /#state-guides$/);
+    await page.evaluate(() => map.closePopup());
+  }
+  await filters.getByLabel('Verified policy only').check();
+  await expect(page.getByTitle('Fixture dump station',{exact:true})).toHaveCount(0);
 });

@@ -182,6 +182,10 @@
         s.stateSelect.append(option);
       }
       s.seedNote = '';
+      if (s.initialOverview && s.map.getZoom() === s.startZoom && s.map.getCenter().equals(s.startCenter) && s.seed.length) {
+        s.map.fitBounds(s.seed.map(row => [row.coordinates[1], row.coordinates[0]]), {padding: [28, 28], maxZoom: 8, animate: false});
+      }
+      s.initialOverview = false;
     } catch { s.seedNote = 'Operator locations unavailable. Retry sources.'; }
     render(s);
   }
@@ -189,6 +193,12 @@
     close();
     const s = session = {map, kinds: new Set(Object.keys(kindNames)), verified: false, casinoState: '', origin: null, radius: 50,
       markers: new Map(), layer: root.L.layerGroup().addTo(map), seed: [], rest: [], dumps: [], seedNote: '', restNote: '', dumpNote: ''};
+    const entry = root.KampTrailBeta.entry;
+    let hasSavedView = false;
+    try { hasSavedView = !!root.localStorage.getItem('kt_last_position'); } catch {}
+    s.startCenter = map.getCenter();
+    s.startZoom = map.getZoom();
+    s.initialOverview = !entry.state && !entry.near && !hasSavedView;
     root.KampTrailLayers.pauseOverlays(true);
     document.body.classList.add('kt-overnight-mode');
     const controls = element('fieldset');
