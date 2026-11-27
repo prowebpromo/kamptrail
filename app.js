@@ -75,8 +75,8 @@
     navigator.geolocation.getCurrentPosition(pos => {
       const {latitude:lat, longitude:lng, accuracy} = pos.coords;
       locationLayer = L.circle([lat,lng], {radius:Math.min(accuracy || 100,5000),color:'#2a7850',fillOpacity:.15}).addTo(map);
-      window.KampTrailOvernight?.near([lng, lat]);
       map.setView([lat,lng], 8);
+      window.KampTrailOvernight?.near([lng, lat]);
       near.disabled = false; near.classList.add('active'); near.setAttribute('aria-pressed','true');
       showToast(window.KampTrailBeta?.entry.mode === 'overnight-parking' ? 'Showing overnight stops near your location.' : t("Showing campsite listings near your location."));
     }, () => {

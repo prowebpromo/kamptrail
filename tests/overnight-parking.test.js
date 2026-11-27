@@ -33,3 +33,11 @@ test('policy, category and casino state filters combine without promoting an unk
   assert.ok(rows.every(row => !overnight.matches(row, filters)));
   assert.equal(overnight.disclaimer, 'A pin is a place to ask about, not permission to stay.');
 });
+
+test('Tonight near me respects a documented facility season and prohibitions', () => {
+  const campground = seed.find(row => row.id === 'osm:way:1201192567');
+  assert.equal(overnight.tonightCandidate(campground, new Date('2026-11-27T17:00:00Z')), false);
+  assert.equal(overnight.tonightCandidate(campground, new Date('2026-09-01T00:30:00Z')), true);
+  assert.equal(overnight.tonightCandidate({prohibitsOvernight:true}), false);
+  assert.equal(overnight.tonightCandidate({status:'unverified'}), true);
+});

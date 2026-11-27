@@ -52,6 +52,7 @@
     return {id: r.id, type: 'rest', states: [r.state], name: r.name, coordinates: r.coordinates,
       status: verified ? 'official-policy' : 'unverified', checked: (policy.sources[0]?.retrieved_at || d.source.retrieved_at).slice(0, 10),
       source: r.source_url, policySources: policy.sources, policy: rest.describe(r, d), interstates,
+      prohibitsOvernight: [policy.rules.overnight_parking, policy.rules.sleeping_in_vehicle].includes('prohibited'),
       snapshot: rest.feature(r, d)};
   }
   function dumpRow(item, manifest) {
@@ -95,10 +96,16 @@
     box.append(actions, guides);
     return box;
   }
+  function tonightCandidate(row, date = new Date()) {
+    if (row.prohibitsOvernight) return false;
+    if (!row.openMonths) return true;
+    const month = Number(new Intl.DateTimeFormat('en-US', {month: 'numeric', timeZone: row.timeZone}).format(date));
+    return row.openMonths.includes(month);
+  }
   function matches(row, s) {
     return s.kinds.has(row.type) && (!s.verified || row.status === 'official-policy') &&
       (!s.casinoState || row.type === 'casino' && row.states.includes(s.casinoState)) &&
-      (!s.origin || root.KampTrailServices.distance(s.origin, row.coordinates) <= s.radius);
+      (!s.origin || tonightCandidate(row) && root.KampTrailServices.distance(s.origin, row.coordinates) <= s.radius);
   }
   function render(s) {
     if (s !== session) return;
@@ -132,7 +139,7 @@
     s.request?.abort();
     const request = s.request = new AbortController();
     const current = () => session === s && !request.signal.aborted;
-    const zoomed = s.map.getZoom() >= 6;
+    const zoomed = !!s.origin || s.map.getZoom() >= 6;
     if (!zoomed || !s.kinds.has('rest') || s.casinoState) s.rest = [];
     if (!zoomed || !s.kinds.has('dump') || s.casinoState || s.verified) s.dumps = [];
     s.restNote = s.kinds.has('rest') && !zoomed ? 'Zoom in for regional rest areas.' : '';
@@ -197,14 +204,14 @@
     toggle('Verified policy only', false, checked => { s.verified = checked; });
     const radius = choice('Radius', [10, 25, 50, 100].map(n => [String(n), n + ' miles']));
     radius.select.value = String(s.radius);
-    radius.select.onchange = () => { s.radius = Number(radius.select.value); render(s); };
+    radius.select.onchange = () => { s.radius = Number(radius.select.value); near(s.origin); };
     const casino = choice('Casino parking by state', [['', 'All stops']]);
     s.stateSelect = casino.select;
     casino.select.onchange = () => {
       s.casinoState = casino.select.value;
       const rows = s.seed.filter(row => row.type === 'casino' && row.states.includes(s.casinoState));
       if (rows.length) {
-        s.origin = null;
+        if (s.origin) document.getElementById('near').click();
         s.kinds.add('casino'); controls.querySelector('input').checked = true;
         map.fitBounds(rows.map(row => [row.coordinates[1], row.coordinates[0]]), {maxZoom: 10});
       }
@@ -251,6 +258,10 @@
     if (!session) return;
     session.origin = coordinates;
     session.near.textContent = coordinates ? 'Clear nearby radius' : 'Tonight near me';
+    if (coordinates) {
+      const b = root.KampTrailServices.radiusBounds(coordinates, session.radius);
+      session.map.fitBounds([[b.south, b.west], [b.north, b.east < b.west ? b.east + 360 : b.east]]);
+    }
     render(session);
   }
   function close() {
@@ -264,7 +275,7 @@
     root.KampTrailLayers.pauseOverlays(false);
     document.body.classList.remove('kt-overnight-mode');
   }
-  const api = {version: VERSION, open, close, near, matches, seedRow, disclaimer};
+  const api = {version: VERSION, open, close, near, matches, tonightCandidate, seedRow, disclaimer};
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root.document) root.KampTrailOvernight = api;
 })(typeof window === 'object' ? window : globalThis);
