@@ -48,12 +48,16 @@
     const rest = root.KampTrailRestAreas;
     const policy = rest.policyFor(r, d);
     const verified = policy.sources.length > 0 && policy.rules.overnight_parking !== 'unknown';
-    const interstates = (r.location + ' ' + r.name).match(/\b(?:I[ -]+|Interstate\s+)[1-9]\d{0,2}\b/gi) || [];
+    const interstates = interstateRoutes(r.location + ' ' + r.name);
     return {id: r.id, type: 'rest', states: [r.state], name: r.name, coordinates: r.coordinates,
       status: verified ? 'official-policy' : 'unverified', checked: (policy.sources[0]?.retrieved_at || d.source.retrieved_at).slice(0, 10),
       source: r.source_url, policySources: policy.sources, policy: rest.describe(r, d), interstates,
       prohibitsOvernight: [policy.rules.overnight_parking, policy.rules.sleeping_in_vehicle].includes('prohibited'),
       snapshot: rest.feature(r, d)};
+  }
+  function interstateRoutes(text) {
+    const matches = String(text).matchAll(/\b(?:interstate(?:\s+highway)?|ih|i)[\s-]*([1-9]\d{0,2})\b/gi);
+    return [...new Set(Array.from(matches, match => 'I-' + match[1]))];
   }
   function dumpRow(item, manifest) {
     const features = root.KampTrailServices;
@@ -294,7 +298,7 @@
     root.KampTrailLayers.pauseOverlays(false);
     document.body.classList.remove('kt-overnight-mode');
   }
-  const api = {version: VERSION, open, close, near, matches, tonightCandidate, seedRow, disclaimer};
+  const api = {version: VERSION, open, close, near, matches, tonightCandidate, interstateRoutes, seedRow, disclaimer};
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root.document) root.KampTrailOvernight = api;
 })(typeof window === 'object' ? window : globalThis);

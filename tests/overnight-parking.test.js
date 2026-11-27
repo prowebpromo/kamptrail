@@ -41,3 +41,8 @@ test('Tonight near me respects a documented facility season and prohibitions', (
   assert.equal(overnight.tonightCandidate({prohibitsOvernight:true}), false);
   assert.equal(overnight.tonightCandidate({status:'unverified'}), true);
 });
+
+test('agency interstate designations resolve to exact routes', () => {
+  assert.deepEqual(overnight.interstateRoutes('IH 10 West, I10, Interstate Highway 35 and I-80'), ['I-10','I-35','I-80']);
+  assert.deepEqual(overnight.interstateRoutes('US 5, State Route 90, I-35E'), []);
+});

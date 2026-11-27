@@ -20,20 +20,21 @@ test('overnight entry opens sourced operator pins, filters and saves a stop', as
   for (const row of seed) {
     await page.evaluate(({lat,lng}) => window.map.setView([lat,lng], 11, {animate: false}), row);
     await page.getByTitle(row.name, {exact:true}).click();
-    const popup = page.locator('.kt-overnight-popup');
+    const popup = page.locator('[data-overnight-id="' + row.id + '"]');
     await expect(popup).toContainText('A pin is a place to ask about, not permission to stay.');
     await expect(popup.getByRole('link', {name: 'Directions'})).toHaveAttribute('href', row.directions);
     if (row.state === 'NY') await expect(popup.getByRole('link', {name:'New York parking guide'})).toHaveAttribute('href', base + slugs[0] + '/');
     else if (row.state === 'PA') await expect(popup.getByRole('link', {name:'State parking guide index'})).toHaveAttribute('href', /#state-guides$/);
     if (row.interstates.includes('I-81')) await expect(popup.getByRole('link', {name:'I-81 parking guide'})).toHaveAttribute('href', base + slugs[2] + '/');
     await page.evaluate(() => window.map.closePopup());
+    await expect(popup).toHaveCount(0);
   }
   await filters.getByLabel('Verified policy only').check();
   const lead = seed.find(row => row.status === 'unverified');
   await expect(page.getByTitle(lead.name, {exact:true})).toHaveCount(0);
   await filters.getByLabel('Casino parking by state').selectOption('ME');
   await page.locator('.leaflet-marker-icon[title="Oxford Casino Hotel & Sportsbook"]').click();
-  await page.locator('.kt-overnight-popup').getByRole('button', {name:'Save stop'}).click();
+  await page.locator('[data-overnight-id="casino:oxford-me"]').getByRole('button', {name:'Save stop'}).click();
   await expect.poll(() => page.evaluate(() => KampTrailTrip.getStops().map(stop => stop.id))).toContain('casino:oxford-me');
   const saved = await page.evaluate(() => KampTrailTrip.getStops().find(stop => stop.id === 'casino:oxford-me').feature.properties);
   expect(saved.overnight_states).toEqual(['ME']);
@@ -58,12 +59,13 @@ test('rest-area and dump pins use the same disclaimer and live guide fallback', 
     });
     map.setView([lat,lng], 12, {animate:false});
   }, {lat,lng});
-  for (const name of [rest.name, 'Fixture dump station']) {
+  for (const [name, id] of [[rest.name, rest.id], ['Fixture dump station', 'osm:node:100']]) {
     await page.getByTitle(name,{exact:true}).click();
-    const popup = page.locator('.kt-overnight-popup');
+    const popup = page.locator('[data-overnight-id="' + id + '"]');
     await expect(popup).toContainText('A pin is a place to ask about, not permission to stay.');
     await expect(popup.getByRole('link', {name:'State parking guide index'})).toHaveAttribute('href', /#state-guides$/);
     await page.evaluate(() => map.closePopup());
+    await expect(popup).toHaveCount(0);
   }
   await filters.getByLabel('Verified policy only').check();
   await expect(page.getByTitle('Fixture dump station',{exact:true})).toHaveCount(0);
